@@ -1,8 +1,198 @@
-.botones {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: #f5f9f7;
+    font-family: Arial, sans-serif;
+    color: #315f6d;
+}
+
+
+header {
+    height: 60px;
+    background-color: #68757d;
+
 
     display: flex;
-    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+
+
+    padding: 0 45px;
+}
+
+
+header h2 {
+    color: white;
+    font-size: 20px;
+}
+
+
+.botones {
+    display: flex;
+    gap: 15px;
+}
+
+
+.botones a {
+    background-color: #d8bce4;
+    color: #355664;
+
+
+    text-decoration: none;
+
+
+    padding: 9px 16px;
+
+
+    border-radius: 7px;
+
+
+    font-size: 14px;
+}
+
+
+.botones a:hover {
+    background-color: #c9a5d7;
+}
+
+
+main {
+    text-align: center;
+    padding-top: 65px;
+}
+
+
+.pequeno {
+    color: #5d98a8;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+
+h1 {
+    color: #2f7184;
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+
+.subtitulo {
+    color: #66838c;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+
+.cuadro {
+    width: 70%;
+    max-width: 620px;
+    min-height: 260px;
+
+
+    background-color: #b7e2cb;
+
+
+    margin: 0 auto;
+
+
+    border-radius: 14px;
+
+
+    padding: 40px;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    box-shadow: 0 8px 25px rgba(60, 100, 110, 0.10);
+}
+
+
+.icono {
+    width: 55px;
+    height: 55px;
+
+
+    background-color: white;
+    color: #3b8293;
+
+
+    border-radius: 50%;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    font-size: 30px;
+
+
+    margin-bottom: 20px;
+}
+
+
+.cuadro h3 {
+    color: #2f6878;
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+
+.cuadro p {
+    color: #53747d;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 450px;
+}
+
+
+@media (max-width: 600px) {
+
+
+    header {
+        padding: 0 20px;
+    }
+
+
+    header h2 {
+        font-size: 17px;
+    }
+
+
+    .botones {
+        gap: 7px;
+    }
+
+
+    .botones a {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+
+    main {
+        padding-top: 45px;
+    }
+
+
+    h1 {
+        font-size: 34px;
+    }
+
+
+    .cuadro {
+        width: 85%;
+        padding: 30px 20px;
+    }
 }
