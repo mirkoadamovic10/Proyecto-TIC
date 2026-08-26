@@ -1,21 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroPassport</title>
+    <title>Registrarse - NeuroPassport</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-   <header>
-    <h1>Nombre</h1>
-    <h2>Apellido</h2>
-    <h3>ID Usuario</h3>
-    <h4>DNI</h4>
-    <h5>Mail</h5>
-    <h6>Contraseña</h6>
-    h7
-    
-   </header> 
-    
+
+    <main class="register-container">
+
+        <div class="register-card">
+
+            <h1>Crear una cuenta</h1>
+
+            <div class="campo">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" placeholder="Ingresá tu nombre">
+            </div>
+
+            <div class="campo">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" placeholder="Ingresá tu correo">
+            </div>
+
+            <div class="campo">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Ingresá tu contraseña">
+            </div>
+
+            <div class="campo">
+                <label for="rol">Rol</label>
+
+                <select id="rol">
+                    <option value="">Seleccioná tu rol</option>
+                    <option value="personal">Personal</option>
+                    <option value="medico">Médico</option>
+                    <option value="familia">Familia</option>
+                    <option value="terapista">Terapista ocupacional / kinesiólogo</option>
+                    <option value="escuela">Escuela o universidad</option>
+                    <option value="empresa">Empresa</option>
+                </select>
+            </div>
+
+            <button class="register-button">Registrarse</button>
+
+        </div>
+
+    </main>
+
 </body>
 </html>

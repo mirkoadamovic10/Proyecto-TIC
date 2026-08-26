@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroPassport</title>
+    <title>Iniciar sesión - NeuroPassport</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <h1>Bienvenido de vuelta</h1>
-        <h2>Usuario</h2>
-        <h3>Contraseña</h3>
-        <div class="botones">
-            <button>Enter</button>
+
+    <main class="login-container">
+
+        <div class="login-card">
+
+            <h1>Bienvenido de vuelta</h1>
+
+            <div class="campo">
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" placeholder="Ingresá tu usuario">
+            </div>
+
+            <div class="campo">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Ingresá tu contraseña">
+            </div>
+
+            <button class="login-button">Iniciar sesión</button>
+
         </div>
-        
-    </header>
+
+    </main>
+
 </body>
 </html>
