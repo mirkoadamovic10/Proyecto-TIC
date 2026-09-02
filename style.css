@@ -321,3 +321,197 @@ h1 {
     font-size: 16px;
     cursor: pointer;
 }
+.pasaporte-container {
+    min-height: 100vh;
+    background: #eaf5f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.pasaporte {
+    width: 900px;
+    max-width: 95%;
+    min-height: 620px;
+    background: #f8f3e8;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(45, 83, 94, 0.20);
+    overflow: hidden;
+    position: relative;
+}
+
+.pasaporte-header {
+    height: 100px;
+    background: #2f7184;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.pasaporte-header h1 {
+    margin: 0;
+    font-size: 32px;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.pasaporte-header p {
+    margin: 6px 0 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.pasaporte-header::after {
+    content: "✦";
+    position: absolute;
+    right: 35px;
+    top: 30px;
+    font-size: 30px;
+    opacity: 0.5;
+}
+
+.pagina {
+    min-height: 390px;
+    padding: 40px 70px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.pagina-pasaporte {
+    display: none;
+    animation: pasarPagina 0.35s ease;
+}
+
+.pagina-pasaporte.activa {
+    display: block;
+}
+
+@keyframes pasarPagina {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.pagina-pasaporte h2 {
+    color: #2f7184;
+    text-align: center;
+    font-size: 28px;
+    margin: 0 0 30px;
+}
+
+.pagina-pasaporte h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #8bc7d4;
+    margin: 10px auto 0;
+    border-radius: 10px;
+}
+
+.pagina-pasaporte .campo {
+    margin-bottom: 18px;
+}
+
+.pagina-pasaporte .campo label {
+    display: block;
+    color: #315f6d;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.pagina-pasaporte .campo input,
+.pagina-pasaporte .campo textarea,
+.pagina-pasaporte .campo select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #c5dfe5;
+    border-radius: 10px;
+    background: white;
+    color: #315f6d;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.pagina-pasaporte .campo input:focus,
+.pagina-pasaporte .campo textarea:focus,
+.pagina-pasaporte .campo select:focus {
+    border-color: #5fa9ba;
+    box-shadow: 0 0 0 3px rgba(95, 169, 186, 0.15);
+}
+
+.pagina-pasaporte .campo textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.agregar-button {
+    display: block;
+    margin: 25px auto 0;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    background: #2f7184;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.agregar-button:hover {
+    transform: translateY(-2px);
+    background: #255d6d;
+}
+
+.navegacion {
+    height: 90px;
+    background: #edf6f7;
+    border-top: 1px solid #d5e7ea;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 45px;
+    box-sizing: border-box;
+}
+
+.navegacion button {
+    border: none;
+    background: #2f7184;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.navegacion button:hover:not(:disabled) {
+    background: #255d6d;
+    transform: translateY(-2px);
+}
+
+.navegacion button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+#numero-pagina {
+    color: #315f6d;
+    font-weight: bold;
+    font-size: 14px;
+}

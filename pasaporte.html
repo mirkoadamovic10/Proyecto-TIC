@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasaporte - NeuroPassport</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+```
+<main class="pasaporte-container">
+
+    <div class="pasaporte">
+
+        <header class="pasaporte-header">
+            <h1>NeuroPassport</h1>
+            <p>Mi Pasaporte</p>
+        </header>
+
+        <div class="pagina">
+
+            <!-- PÁGINA 1 -->
+            <section class="pagina-pasaporte activa">
+                <h2>Diagnósticos</h2>
+
+                <div class="campo">
+                    <label for="diagnostico">Diagnóstico</label>
+                    <input type="text" id="diagnostico" placeholder="Ingresá el diagnóstico">
+                </div>
+
+                <div class="campo">
+                    <label for="fecha-diagnostico">Fecha</label>
+                    <input type="date" id="fecha-diagnostico">
+                </div>
+
+                <div class="campo">
+                    <label for="observaciones-diagnostico">Observaciones</label>
+                    <textarea id="observaciones-diagnostico" placeholder="Agregá observaciones"></textarea>
+                </div>
+
+                <button class="agregar-button" id="agregar-diagnostico">
+                    + Agregar diagnóstico
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 2 -->
+            <section class="pagina-pasaporte">
+                <h2>Medicación</h2>
+
+                <div class="campo">
+                    <label for="medicacion">Medicamento</label>
+                    <input type="text" id="medicacion" placeholder="Ingresá el medicamento">
+                </div>
+
+                <div class="campo">
+                    <label for="dosis">Dosis</label>
+                    <input type="text" id="dosis" placeholder="Ingresá la dosis">
+                </div>
+
+                <div class="campo">
+                    <label for="frecuencia">Frecuencia</label>
+                    <input type="text" id="frecuencia" placeholder="Ej: cada 8 horas">
+                </div>
+
+                <button class="agregar-button" id="agregar-medicacion">
+                    + Agregar medicación
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 3 -->
+            <section class="pagina-pasaporte">
+                <h2>Alergias</h2>
+
+                <div class="campo">
+                    <label for="alergia">Alergia</label>
+                    <input type="text" id="alergia" placeholder="Ingresá la alergia">
+                </div>
+
+                <div class="campo">
+                    <label for="reaccion">Reacción</label>
+                    <input type="text" id="reaccion" placeholder="¿Qué reacción produce?">
+                </div>
+
+                <div class="campo">
+                    <label for="observaciones-alergia">Observaciones</label>
+                    <textarea id="observaciones-alergia" placeholder="Agregá información"></textarea>
+                </div>
+
+                <button class="agregar-button" id="agregar-alergia">
+                    + Agregar alergia
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 4 -->
+            <section class="pagina-pasaporte">
+                <h2>Estudios</h2>
+
+                <div class="campo">
+                    <label for="estudio">Nombre del estudio</label>
+                    <input type="text" id="estudio" placeholder="Ingresá el estudio">
+                </div>
+
+                <div class="campo">
+                    <label for="fecha-estudio">Fecha</label>
+                    <input type="date" id="fecha-estudio">
+                </div>
+
+                <div class="campo">
+                    <label for="resultado-estudio">Resultado / Observaciones</label>
+                    <textarea id="resultado-estudio" placeholder="Agregá información"></textarea>
+                </div>
+
+                <button class="agregar-button" id="agregar-estudio">
+                    + Agregar estudio
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 5 -->
+            <section class="pagina-pasaporte">
+                <h2>Terapias</h2>
+
+                <div class="campo">
+                    <label for="terapia">Tipo de terapia</label>
+                    <input type="text" id="terapia" placeholder="Ingresá la terapia">
+                </div>
+
+                <div class="campo">
+                    <label for="profesional-terapia">Profesional</label>
+                    <input type="text" id="profesional-terapia" placeholder="Nombre del profesional">
+                </div>
+
+                <div class="campo">
+                    <label for="frecuencia-terapia">Frecuencia</label>
+                    <input type="text" id="frecuencia-terapia" placeholder="Ej: una vez por semana">
+                </div>
+
+                <button class="agregar-button" id="agregar-terapia">
+                    + Agregar terapia
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 6 -->
+            <section class="pagina-pasaporte">
+                <h2>Cirugías</h2>
+
+                <div class="campo">
+                    <label for="cirugia">Cirugía</label>
+                    <input type="text" id="cirugia" placeholder="Ingresá la cirugía">
+                </div>
+
+                <div class="campo">
+                    <label for="fecha-cirugia">Fecha</label>
+                    <input type="date" id="fecha-cirugia">
+                </div>
+
+                <div class="campo">
+                    <label for="observaciones-cirugia">Observaciones</label>
+                    <textarea id="observaciones-cirugia" placeholder="Agregá información"></textarea>
+                </div>
+
+                <button class="agregar-button" id="agregar-cirugia">
+                    + Agregar cirugía
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 7 -->
+            <section class="pagina-pasaporte">
+                <h2>Contactos</h2>
+
+                <div class="campo">
+                    <label for="nombre-contacto">Nombre</label>
+                    <input type="text" id="nombre-contacto" placeholder="Nombre del contacto">
+                </div>
+
+                <div class="campo">
+                    <label for="telefono-contacto">Teléfono</label>
+                    <input type="tel" id="telefono-contacto" placeholder="Número de teléfono">
+                </div>
+
+                <div class="campo">
+                    <label for="relacion-contacto">Relación</label>
+                    <input type="text" id="relacion-contacto" placeholder="Ej: Madre, médico, tutor">
+                </div>
+
+                <button class="agregar-button" id="agregar-contacto">
+                    + Agregar contacto
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 8 -->
+            <section class="pagina-pasaporte">
+                <h2>Cobertura médica</h2>
+
+                <div class="campo">
+                    <label for="cobertura">Obra social / Prepaga</label>
+                    <input type="text" id="cobertura" placeholder="Ingresá la cobertura">
+                </div>
+
+                <div class="campo">
+                    <label for="numero-afiliado">Número de afiliado</label>
+                    <input type="text" id="numero-afiliado" placeholder="Ingresá el número">
+                </div>
+
+                <div class="campo">
+                    <label for="plan-medico">Plan</label>
+                    <input type="text" id="plan-medico" placeholder="Ingresá el plan">
+                </div>
+
+                <button class="agregar-button" id="guardar-cobertura">
+                    Guardar cobertura
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 9 -->
+            <section class="pagina-pasaporte">
+                <h2>Certificados</h2>
+
+                <div class="campo">
+                    <label for="certificado">Tipo de certificado</label>
+                    <input type="text" id="certificado" placeholder="Ingresá el certificado">
+                </div>
+
+                <div class="campo">
+                    <label for="fecha-certificado">Fecha</label>
+                    <input type="date" id="fecha-certificado">
+                </div>
+
+                <div class="campo">
+                    <label for="observaciones-certificado">Observaciones</label>
+                    <textarea id="observaciones-certificado" placeholder="Agregá información"></textarea>
+                </div>
+
+                <button class="agregar-button" id="agregar-certificado">
+                    + Agregar certificado
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 10 -->
+            <section class="pagina-pasaporte">
+                <h2>Adaptaciones</h2>
+
+                <div class="campo">
+                    <label for="adaptacion">Adaptación necesaria</label>
+                    <input type="text" id="adaptacion" placeholder="Ingresá la adaptación">
+                </div>
+
+                <div class="campo">
+                    <label for="lugar-adaptacion">Dónde se necesita</label>
+                    <input type="text" id="lugar-adaptacion" placeholder="Ej: Escuela, trabajo, universidad">
+                </div>
+
+                <div class="campo">
+                    <label for="detalle-adaptacion">Detalles</label>
+                    <textarea id="detalle-adaptacion" placeholder="Explicá qué se necesita"></textarea>
+                </div>
+
+                <button class="agregar-button" id="agregar-adaptacion">
+                    + Agregar adaptación
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 11 -->
+            <section class="pagina-pasaporte">
+                <h2>Objetivos</h2>
+
+                <div class="campo">
+                    <label for="objetivo">Objetivo</label>
+                    <textarea id="objetivo" placeholder="Escribí tu objetivo"></textarea>
+                </div>
+
+                <button class="agregar-button" id="agregar-objetivo">
+                    + Agregar objetivo
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 12 -->
+            <section class="pagina-pasaporte">
+                <h2>Preferencias de aprendizaje</h2>
+
+                <div class="campo">
+                    <label for="aprendizaje">¿Cómo aprendés mejor?</label>
+                    <textarea id="aprendizaje" placeholder="Contanos tus preferencias de aprendizaje"></textarea>
+                </div>
+
+                <div class="campo">
+                    <label for="ayudas-aprendizaje">¿Qué ayudas necesitás?</label>
+                    <textarea id="ayudas-aprendizaje" placeholder="Ej: material visual, más tiempo, etc."></textarea>
+                </div>
+
+                <button class="agregar-button" id="guardar-aprendizaje">
+                    Guardar preferencias
+                </button>
+            </section>
+
+
+            <!-- PÁGINA 13 -->
+            <section class="pagina-pasaporte">
+                <h2>Formas de comunicación</h2>
+
+                <div class="campo">
+                    <label for="comunicacion">¿Cómo preferís comunicarte?</label>
+                    <textarea id="comunicacion" placeholder="Contanos tus preferencias"></textarea>
+                </div>
+
+                <div class="campo">
+                    <label for="necesidades-comunicacion">Necesidades de comunicación</label>
+                    <textarea id="necesidades-comunicacion" placeholder="Agregá información"></textarea>
+                </div>
+
+                <button class="agregar-button" id="guardar-comunicacion">
+                    Guardar información
+                </button>
+            </section>
+
+        </div>
+
+
+        <!-- NAVEGACIÓN -->
+        <div class="navegacion">
+            <button id="anterior">← Anterior</button>
+
+            <span id="numero-pagina">1 / 13</span>
+
+            <button id="siguiente">Siguiente →</button>
+        </div>
+
+    </div>
+
+</main>
+
+<script src="pasaporte.js"></script>
+```
+
+</body>
+
+</html>
