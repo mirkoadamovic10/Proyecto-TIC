@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,25 +12,51 @@
 
     <main class="login-container">
 
-        <div class="login-card">
+        <section class="login-card" aria-labelledby="titulo-login">
 
-            <h1>Bienvenido de vuelta</h1>
+            <header>
+                <h1 id="titulo-login">Bienvenido de vuelta</h1>
+            </header>
 
-            <div class="campo">
-                <label for="usuario">Usuario</label>
-                <input type="text" id="usuario" placeholder="Ingresá tu usuario">
-            </div>
+            <form>
 
-            <div class="campo">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" placeholder="Ingresá tu contraseña">
-            </div>
+                <div class="campo">
+                    <label for="usuario">Usuario</label>
+                    <input
+                        type="text"
+                        id="usuario"
+                        name="usuario"
+                        placeholder="Ingresá tu usuario"
+                    >
+                </div>
 
-            <button class="login-button">Iniciar sesión</button>
+                <div class="campo">
+                    <label for="password">Contraseña</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Ingresá tu contraseña"
+                    >
+                </div>
 
-        </div>
+                <footer>
+                    <button
+                        class="login-button"
+                        type="submit"
+                    >
+                        Iniciar sesión
+                    </button>
+                </footer>
+
+            </form>
+
+        </section>
 
     </main>
+
     <script src="iniciar-sesion.js" defer></script>
+
 </body>
+
 </html>

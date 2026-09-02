@@ -388,3 +388,42 @@ h1 {
     position: absolute;
     bottom: 7px;
 }
+
+
+.contenedor-pasaporte {
+    position: relative;
+}
+
+.submenu-pasaporte {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 560px;
+    padding: 16px;
+    background-color: #dceff2;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.boton-pasaporte {
+    height: 42px;
+    background-color: #2f7184;
+    color: white;
+    border: none;
+    padding: 8px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boton-pasaporte:hover {
+    background-color: #245b6b;
+}
+
+.boton-pasaporte:active {
+    transform: scale(0.97);
+}

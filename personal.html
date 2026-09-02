@@ -10,28 +10,129 @@
 
 <body>
 
+    
     <header class="barra-personal">
 
-        <nav class="menu-personal">
+        
+        <nav class="menu-personal" aria-label="Navegación principal">
 
-            <button class="boton-menu">Inicio</button>
+            <button class="boton-menu">
+                Inicio
+            </button>
 
-            <button class="boton-menu">Pasaporte</button>
 
-            <button class="boton-menu">Agenda</button>
+            <section class="contenedor-pasaporte">
 
-            <button class="boton-menu">Alerta</button>
+                <button
+                    class="boton-menu"
+                    id="botonPasaporte"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="submenuPasaporte">
+
+                    Pasaporte
+
+                </button>
+
+
+                <nav
+                    class="submenu-pasaporte"
+                    id="submenuPasaporte"
+                    aria-label="Información del pasaporte">
+
+                    <button class="boton-pasaporte" type="button">
+                        Diagnósticos
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Medicación
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Alergias
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Estudios
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Terapias
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Cirugías
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Contactos
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Cobertura médica
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Certificados
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Adaptaciones
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Objetivos
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Preferencias de aprendizaje
+                    </button>
+
+                    <button class="boton-pasaporte" type="button">
+                        Formas de comunicación
+                    </button>
+
+                </nav>
+
+            </section>
+
+
+            <button class="boton-menu" type="button">
+                Agenda
+            </button>
+
+            <button class="boton-menu" type="button">
+                Alerta
+            </button>
 
         </nav>
 
-        <button class="perfil">
-            <span class="cabeza"></span>
-            <span class="cuerpo"></span>
-        </button>o
+
+        <aside>
+
+            <button class="perfil" type="button" aria-label="Perfil">
+
+                <span class="cabeza"></span>
+
+                <span class="cuerpo"></span>
+
+            </button>
+
+        </aside>
+
     </header>
 
+
     <main class="inicio-personal">
+
+        <section aria-label="Contenido principal">
+
+        </section>
+
     </main>
+
+
+    <script src="personal.js"></script>
 
 </body>
 
