@@ -2,7 +2,7 @@ const inputUsuario = document.getElementById("usuario");
 const inputPassword = document.getElementById("password");
 const botonLogin = document.querySelector(".login-button");
 
-botonLogin.addEventListener("click", async () => {
+botonLogin.addEventListener("click", () => {
 
     const usuario = inputUsuario.value.trim();
     const password = inputPassword.value.trim();
@@ -14,7 +14,6 @@ botonLogin.addEventListener("click", async () => {
 
     if (usuario === "admin" && password === "123456") {
         alert("¡Bienvenido/a!");
-        window.location.href = "pasaporte.html";
     } else {
         alert("Usuario o contraseña incorrectos.");
     }
