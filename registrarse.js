@@ -12,7 +12,7 @@ botonRegistrarse.addEventListener("click", () => {
         password.value.trim() === "" ||
         rol.value === ""
     ) {
-        alert("Por favor, completá todos los campos.");
+        alert("Por favor, completá todos los datos.");
         return;
     }
 

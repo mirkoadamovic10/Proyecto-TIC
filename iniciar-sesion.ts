@@ -7,7 +7,7 @@ botonLogin?.addEventListener("click", async () => {
     const password = inputPassword?.value.trim() || "";
 
     if (!usuario || !password) {
-        alert("Por favor, completá ambos campos.");
+        alert("Por favor, completá toda la información.");
         return;
     }
 
