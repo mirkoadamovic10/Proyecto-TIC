@@ -1,8 +1,11 @@
+const formulario = document.querySelector("form");
+
 const inputUsuario = document.getElementById("usuario");
 const inputPassword = document.getElementById("password");
-const botonLogin = document.querySelector(".login-button");
 
-botonLogin?.addEventListener("click", async () => {
+formulario?.addEventListener("submit", async (evento) => {
+
+    evento.preventDefault();
 
     const usuario = inputUsuario?.value.trim() || "";
     const password = inputPassword?.value.trim() || "";
@@ -13,14 +16,11 @@ botonLogin?.addEventListener("click", async () => {
     }
 
     try {
-
         const respuesta = await fetch("http://localhost:3000/api/login", {
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify({
                 usuario: usuario,
                 password: password
@@ -41,9 +41,7 @@ botonLogin?.addEventListener("click", async () => {
         window.location.href = "../index.html";
 
     } catch (error) {
-
         console.error("Error de conexión:", error);
-
         alert("No se pudo conectar con el servidor.");
     }
 });
