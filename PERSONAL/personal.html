@@ -1,32 +1,35 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+
+    <title>NeuroPassport - Inicio</title>
+
     <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
 
-    
     <header class="barra-personal">
 
-        
-        <nav class="menu-personal" aria-label="Navegación principal">
+        <nav class="menu-personal" aria-label="Menú principal">
 
-            <button class="boton-menu">
+            <!-- INICIO -->
+            <a href="./personal.html" class="boton-menu">
                 Inicio
-            </button>
+            </a>
 
 
+            <!-- PASAPORTE -->
             <section class="contenedor-pasaporte">
 
                 <button
+                    type="button"
                     class="boton-menu"
                     id="botonPasaporte"
-                    type="button"
                     aria-expanded="false"
                     aria-controls="submenuPasaporte">
 
@@ -36,59 +39,60 @@
 
 
                 <nav
-                    class="submenu-pasaporte"
                     id="submenuPasaporte"
-                    aria-label="Información del pasaporte">
+                    class="submenu-pasaporte"
+                    hidden
+                    aria-label="Opciones del pasaporte">
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Diagnósticos
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Medicación
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Alergias
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Estudios
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Terapias
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Cirugías
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Contactos
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Cobertura médica
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Certificados
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Adaptaciones
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Objetivos
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Preferencias de aprendizaje
                     </button>
 
-                    <button class="boton-pasaporte" type="button">
+                    <button type="button" class="boton-pasaporte">
                         Formas de comunicación
                     </button>
 
@@ -97,21 +101,29 @@
             </section>
 
 
-            <button class="boton-menu" id="botonAgenda">Agenda</button>
+            <!-- AGENDA -->
+            <a href="./agenda.html" class="boton-menu">
+                Agenda
+            </a>
 
-            <button class="boton-menu" type="button">
+
+            <!-- ALERTA -->
+            <a href="./alertas.html" class="boton-menu">
                 Alerta
-            </button>
+            </a>
 
         </nav>
 
 
+        <!-- PERFIL -->
         <aside>
 
-            <button class="perfil" type="button" aria-label="Perfil">
+            <button
+                type="button"
+                class="perfil"
+                aria-label="Perfil">
 
                 <span class="cabeza"></span>
-
                 <span class="cuerpo"></span>
 
             </button>
@@ -121,17 +133,27 @@
     </header>
 
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="inicio-personal">
 
-        <section aria-label="Contenido principal">
+        <section aria-label="Página de inicio">
+
+            <h1>Bienvenido a NeuroPassport</h1>
+
+            <p>
+                Desde este espacio podés acceder a tu pasaporte,
+                agenda y alertas.
+            </p>
 
         </section>
 
     </main>
 
 
-    <script src="personal.js"></script>
+    <!-- JAVASCRIPT -->
+    <script src="./personal.js"></script>
 
 </body>
 
 </html>
+```

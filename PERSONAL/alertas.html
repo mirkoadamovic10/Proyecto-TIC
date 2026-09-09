@@ -1,0 +1,217 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Alertas - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ENCABEZADO -->
+    <header class="barra-personal">
+
+        <nav
+            class="menu-personal"
+            aria-label="Navegación principal">
+
+            <a
+                href="./personal.html"
+                class="boton-menu">
+
+                Inicio
+
+            </a>
+
+            <a
+                href="./agenda.html"
+                class="boton-menu">
+
+                Agenda
+
+            </a>
+
+            <a
+                href="./alertas.html"
+                class="boton-menu"
+                aria-current="page">
+
+                Alerta
+
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="pagina-alertas">
+
+
+        <section
+            class="panel-alertas"
+            aria-labelledby="titulo-alertas">
+
+
+            <h1 id="titulo-alertas">
+                Mis alertas
+            </h1>
+
+
+            <!-- FORMULARIO -->
+            <form id="formularioAlerta">
+
+
+                <!-- TIPO -->
+                <div class="campo-alerta">
+
+                    <label for="tipoAlerta">
+                        Tipo de alerta
+                    </label>
+
+                    <select
+                        id="tipoAlerta"
+                        name="tipoAlerta"
+                        required>
+
+                        <option value="">
+                            Elegí una opción
+                        </option>
+
+                        <option value="Aviso">
+                            Aviso
+                        </option>
+
+                        <option value="Medicación">
+                            Medicación
+                        </option>
+
+                        <option value="Estudios pendientes">
+                            Estudios pendientes
+                        </option>
+
+                        <option value="Vencimiento del CUD">
+                            Vencimiento del CUD
+                        </option>
+
+                        <option value="Renovación de recetas">
+                            Renovación de recetas
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DETALLE -->
+                <div class="campo-alerta">
+
+                    <label for="detalleAlerta">
+                        Detalle
+                    </label>
+
+                    <input
+                        type="text"
+                        id="detalleAlerta"
+                        name="detalleAlerta"
+                        placeholder="Escribí un detalle"
+                        required>
+
+                </div>
+
+
+                <!-- FECHA -->
+                <div class="campo-alerta">
+
+                    <label for="fechaAlerta">
+                        Fecha
+                    </label>
+
+                    <input
+                        type="date"
+                        id="fechaAlerta"
+                        name="fechaAlerta"
+                        required>
+
+                </div>
+
+
+                <!-- HORA -->
+                <div class="campo-alerta">
+
+                    <label for="horaAlerta">
+                        Hora
+                    </label>
+
+                    <input
+                        type="time"
+                        id="horaAlerta"
+                        name="horaAlerta"
+                        required>
+
+                </div>
+
+
+                <!-- GUARDAR -->
+                <button
+                    type="submit"
+                    class="boton-guardar-alerta">
+
+                    Guardar alerta
+
+                </button>
+
+
+            </form>
+
+
+            <!-- LISTA DE ALERTAS -->
+            <section
+                class="lista-alertas"
+                aria-labelledby="titulo-lista-alertas">
+
+
+                <h2 id="titulo-lista-alertas">
+                    Alertas guardadas
+                </h2>
+
+
+                <div id="listaAlertas">
+
+                    <p id="mensajeSinAlertas">
+                        No hay alertas guardadas.
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- JAVASCRIPT DE ALERTAS -->
+    <script src="./alertas.js"></script>
+
+
+</body>
+
+</html>
+```
