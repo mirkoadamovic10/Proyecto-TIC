@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alergias - NeuroPassport</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-tipo="alergias" data-nombre="Alergias">
+
+    <header class="barra-personal">
+        <h2>NeuroPassport</h2>
+    </header>
+
+    <main class="pasaporte-pagina">
+
+        <div class="pasaporte-contenido">
+
+            <h1 class="pasaporte-titulo">Alergias</h1>
+
+            <p class="pasaporte-descripcion">
+                Información sobre alergias y reacciones conocidas.
+            </p>
+
+            <section class="agregar-seccion">
+
+                <h3>Agregar alergia</h3>
+
+                <p>Ingresá una nueva alergia para guardarla en tu pasaporte.</p>
+
+                <button class="boton-agregar" id="botonAgregar">
+                    + Agregar alergia
+                </button>
+
+                <div class="formulario-agregar" id="formularioAgregar">
+                    <div id="formularioContenido"></div>
+                </div>
+
+            </section>
+
+            <section class="informacion-guardada">
+
+                <h3>Alergias guardadas</h3>
+
+                <div class="lista-items" id="listaItems"></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <script src="pasaporte.js"></script>
+
+</body>
+
+</html>

@@ -427,3 +427,916 @@ h1 {
 .boton-pasaporte:active {
     transform: scale(0.97);
 }
+
+
+
+.pasaporte-pagina {
+    min-height: calc(100vh - 65px);
+    background-color: #f4f8f6;
+    padding: 45px 60px;
+    box-sizing: border-box;
+}
+
+.pasaporte-contenido {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.pasaporte-titulo {
+    text-align: center;
+    color: #2f7184;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.pasaporte-descripcion {
+    text-align: center;
+    color: #66838c;
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+
+
+.agregar-seccion {
+    background-color: #b7e2cb;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 18px rgba(60, 100, 110, 0.08);
+}
+
+.agregar-seccion h3 {
+    margin: 0 0 8px 0;
+    color: #2f6878;
+    font-size: 20px;
+}
+
+.agregar-seccion p {
+    margin: 0 0 20px 0;
+    color: #53747d;
+    font-size: 14px;
+}
+
+
+.boton-agregar {
+    background-color: #2f7184;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boton-agregar:hover {
+    background-color: #245b6b;
+}
+
+
+.formulario-agregar {
+    display: none;
+    margin-top: 20px;
+    background-color: #f4f8f6;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.formulario-agregar.visible {
+    display: block;
+}
+
+.formulario-agregar label {
+    display: block;
+    margin-bottom: 7px;
+    color: #28627a;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.formulario-agregar input,
+.formulario-agregar textarea,
+.formulario-agregar select {
+    width: 100%;
+    min-height: 42px;
+    border: none;
+    border-radius: 9px;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    background-color: white;
+    color: #315f6d;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.formulario-agregar textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.guardar-item {
+    background-color: #68747c;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.guardar-item:hover {
+    opacity: 0.85;
+}
+
+
+.informacion-guardada {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 18px rgba(60, 100, 110, 0.08);
+}
+
+.informacion-guardada h3 {
+    margin: 0 0 20px 0;
+    color: #2f6878;
+    font-size: 20px;
+}
+
+.lista-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.item-guardado {
+    background-color: #dceff2;
+    border-radius: 12px;
+    padding: 18px;
+    position: relative;
+    border-left: 5px solid #2f7184;
+}
+
+.item-guardado h4 {
+    margin: 0 0 8px 0;
+    color: #2f6878;
+    font-size: 17px;
+}
+
+.item-guardado p {
+    margin: 5px 0;
+    color: #53747d;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.item-fecha {
+    font-size: 12px !important;
+    color: #66838c !important;
+    margin-top: 10px !important;
+}
+
+.boton-eliminar {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    border: none;
+    background: transparent;
+    color: #68747c;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.boton-eliminar:hover {
+    color: #2f7184;
+}
+
+
+.sin-informacion {
+    text-align: center;
+    padding: 30px;
+    color: #66838c;
+    font-size: 14px;
+}
+
+
+@media (max-width: 700px) {
+
+    .pasaporte-pagina {
+        padding: 30px 20px;
+    }
+
+    .pasaporte-titulo {
+        font-size: 28px;
+    }
+
+    .agregar-seccion,
+    .informacion-guardada {
+        padding: 20px;
+    }
+}
+/* =========================
+   AGENDA
+========================= */
+
+.pagina-agenda {
+    margin: 0;
+    background: #f1f8f1;
+    font-family: Arial, sans-serif;
+    color: #315f6d;
+}
+
+
+/* BARRA SUPERIOR */
+
+.barra-agenda {
+    height: 65px;
+    background: #68757d;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 28px;
+
+    box-sizing: border-box;
+}
+
+.barra-agenda h2 {
+    color: white;
+    font-size: 22px;
+    margin: 0;
+}
+
+
+/* MENU */
+
+.menu-agenda {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+
+    background: #68757d;
+}
+
+
+.boton-menu-agenda {
+    border: none;
+
+    background: #d8bce4;
+
+    color: white;
+
+    font-weight: bold;
+
+    padding: 10px 22px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+
+.boton-menu-agenda:hover {
+    background: #c9a5d7;
+}
+
+
+.boton-menu-agenda.activo {
+    background: #b7e2cb;
+    color: #315f6d;
+}
+
+
+/* PERFIL */
+
+.perfil-agenda {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #d8bce4;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.perfil-cabeza {
+    width: 12px;
+    height: 12px;
+
+    background: #68757d;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 8px;
+    left: 14px;
+}
+
+
+.perfil-cuerpo {
+    width: 24px;
+    height: 13px;
+
+    background: #68757d;
+
+    border-radius: 15px 15px 0 0;
+
+    position: absolute;
+
+    bottom: 5px;
+    left: 8px;
+}
+
+
+/* CONTENEDOR PRINCIPAL */
+
+.agenda-principal {
+    padding: 35px 45px 50px;
+}
+
+
+.agenda-contenedor {
+    max-width: 1100px;
+
+    margin: auto;
+}
+
+
+/* PARTE SUPERIOR */
+
+.agenda-superior {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+
+.agenda-superior h1 {
+    margin: 0 0 6px;
+
+    font-size: 32px;
+
+    color: #2f7184;
+}
+
+
+.agenda-superior p {
+    margin: 0;
+
+    color: #68757d;
+
+    font-size: 15px;
+}
+
+
+/* BOTON AGREGAR */
+
+.boton-agregar-evento {
+    background: #2f7184;
+
+    color: white;
+
+    border: none;
+
+    padding: 13px 22px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,0.10);
+}
+
+
+.boton-agregar-evento:hover {
+    background: #245d6d;
+}
+
+
+/* CALENDARIO */
+
+.calendario {
+    background: white;
+
+    border-radius: 18px;
+
+    border: 1px solid #d8e2df;
+
+    overflow: hidden;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+}
+
+
+/* CABECERA DEL CALENDARIO */
+
+.calendario-cabecera {
+    height: 65px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 30px;
+
+    background: #dceff2;
+
+    border-bottom: 1px solid #cbdcde;
+}
+
+
+.calendario-cabecera h2 {
+    width: 180px;
+
+    text-align: center;
+
+    margin: 0;
+
+    color: #2f7184;
+
+    font-size: 21px;
+}
+
+
+.boton-mes {
+    border: none;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 10px;
+
+    background: #d8bce4;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+
+.boton-mes:hover {
+    background: #c9a5d7;
+}
+
+
+/* DIAS DE LA SEMANA */
+
+.dias-semana {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    background: #f4f8f6;
+
+    border-bottom: 1px solid #dce5e1;
+}
+
+
+.dias-semana div {
+    padding: 13px 5px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+    color: #68757d;
+
+    font-size: 13px;
+}
+
+
+/* CUADRÍCULA */
+
+.dias-calendario {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+}
+
+
+.dia {
+    min-height: 115px;
+
+    border-right: 1px solid #dce5e1;
+
+    border-bottom: 1px solid #dce5e1;
+
+    padding: 9px;
+
+    box-sizing: border-box;
+
+    background: white;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+}
+
+
+.dia:hover {
+    background: #f5fbfa;
+}
+
+
+.dia-vacio {
+    background: #f7faf8;
+
+    cursor: default;
+}
+
+
+.dia-vacio:hover {
+    background: #f7faf8;
+}
+
+
+.numero-dia {
+    display: block;
+
+    width: 27px;
+    height: 27px;
+
+    line-height: 27px;
+
+    text-align: center;
+
+    border-radius: 50%;
+
+    font-size: 13px;
+
+    color: #68757d;
+
+    margin-bottom: 5px;
+}
+
+
+/* EVENTOS */
+
+.evento-calendario {
+    border-radius: 6px;
+
+    padding: 5px 6px;
+
+    margin-top: 4px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    overflow: hidden;
+}
+
+
+.nombre-evento {
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.hora-evento {
+    margin-top: 2px;
+
+    opacity: 0.75;
+
+    font-size: 10px;
+}
+
+
+/* LOS 5 COLORES DEL WIREFRAME */
+
+.evento-calendario.turno {
+    background: #2f7184;
+
+    color: white;
+}
+
+
+.evento-calendario.estudio {
+    background: #9bd9dc;
+
+    color: #315f6d;
+}
+
+
+.evento-calendario.terapia {
+    background: #c9b1dc;
+
+    color: #4d4560;
+}
+
+
+.evento-calendario.medicacion {
+    background: #b7e2cb;
+
+    color: #315f6d;
+}
+
+
+.evento-calendario.control {
+    background: #f3aaa5;
+
+    color: #653f3c;
+}
+
+
+/* REFERENCIAS */
+
+.referencias {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 18px;
+
+    padding: 20px 5px 5px;
+}
+
+
+.referencia {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 12px;
+
+    color: #68757d;
+}
+
+
+.color-referencia {
+    width: 25px;
+
+    height: 10px;
+
+    border-radius: 3px;
+
+    display: inline-block;
+}
+
+
+.color-referencia.turno {
+    background: #2f7184;
+}
+
+
+.color-referencia.estudio {
+    background: #9bd9dc;
+}
+
+
+.color-referencia.terapia {
+    background: #c9b1dc;
+}
+
+
+.color-referencia.medicacion {
+    background: #b7e2cb;
+}
+
+
+.color-referencia.control {
+    background: #f3aaa5;
+}
+
+
+/* VENTANA PARA AGREGAR EVENTO */
+
+.ventana-evento {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(49, 95, 109, 0.30);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+
+.ventana-evento.mostrar {
+    display: flex;
+}
+
+
+.formulario-evento {
+    width: 100%;
+
+    max-width: 480px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    position: relative;
+
+    box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+}
+
+
+.formulario-evento h2 {
+    margin: 0 0 7px;
+
+    color: #2f7184;
+
+    font-size: 24px;
+}
+
+
+.formulario-evento p {
+    margin: 0 0 22px;
+
+    color: #68757d;
+
+    font-size: 13px;
+}
+
+
+.formulario-evento label {
+    display: block;
+
+    margin-top: 14px;
+    margin-bottom: 6px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color: #315f6d;
+}
+
+
+.formulario-evento input,
+.formulario-evento select,
+.formulario-evento textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cbdad6;
+
+    border-radius: 9px;
+
+    padding: 11px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    outline: none;
+}
+
+
+.formulario-evento input:focus,
+.formulario-evento select:focus,
+.formulario-evento textarea:focus {
+    border-color: #2f7184;
+}
+
+
+.formulario-evento textarea {
+    height: 75px;
+
+    resize: vertical;
+}
+
+
+.cerrar-evento {
+    position: absolute;
+
+    top: 15px;
+    right: 18px;
+
+    border: none;
+
+    background: none;
+
+    font-size: 27px;
+
+    color: #68757d;
+
+    cursor: pointer;
+}
+
+
+.boton-guardar-evento {
+    width: 100%;
+
+    margin-top: 23px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 13px;
+
+    background: #2f7184;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+.boton-guardar-evento:hover {
+    background: #245d6d;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    .barra-agenda {
+        padding: 0 15px;
+    }
+
+    .barra-agenda h2 {
+        display: none;
+    }
+
+    .menu-agenda {
+        margin: auto;
+        gap: 8px;
+    }
+
+    .boton-menu-agenda {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .agenda-principal {
+        padding: 25px 15px;
+    }
+
+    .agenda-superior {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .boton-agregar-evento {
+        width: 100%;
+    }
+
+    .dia {
+        min-height: 90px;
+        padding: 5px;
+    }
+
+    .evento-calendario {
+        font-size: 9px;
+    }
+
+}

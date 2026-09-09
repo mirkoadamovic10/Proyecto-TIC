@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetivos - NeuroPassport</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-tipo="objetivos" data-nombre="Objetivos">
+
+    <header class="barra-personal">
+        <h2>NeuroPassport</h2>
+    </header>
+
+    <main class="pasaporte-pagina">
+
+        <div class="pasaporte-contenido">
+
+            <h1 class="pasaporte-titulo">Objetivos</h1>
+
+            <p class="pasaporte-descripcion">
+                Objetivos personales y de acompañamiento.
+            </p>
+
+            <section class="agregar-seccion">
+
+                <h3>Agregar objetivo</h3>
+
+                <p>Ingresá un nuevo objetivo.</p>
+
+                <button class="boton-agregar" id="botonAgregar">
+                    + Agregar objetivo
+                </button>
+
+                <div class="formulario-agregar" id="formularioAgregar">
+                    <div id="formularioContenido"></div>
+                </div>
+
+            </section>
+
+            <section class="informacion-guardada">
+
+                <h3>Objetivos guardados</h3>
+
+                <div class="lista-items" id="listaItems"></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <script src="pasaporte.js"></script>
+
+</body>
+
+</html>

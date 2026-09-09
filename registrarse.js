@@ -4,7 +4,9 @@ const password = document.getElementById("password");
 const rol = document.getElementById("rol");
 const botonRegistrarse = document.querySelector(".register-button");
 
-botonRegistrarse.addEventListener("click", () => {
+botonRegistrarse.addEventListener("click", function(event) {
+
+    event.preventDefault();
 
     if (
         nombre.value.trim() === "" ||
@@ -17,9 +19,10 @@ botonRegistrarse.addEventListener("click", () => {
     }
 
     if (rol.value === "personal") {
-        window.location.href = "personal.html";
-    } else {
-        alert("Registro realizado correctamente.");
+        window.location.href = "PERSONAL/personal.html";
+        return;
     }
+
+    alert("Registro realizado correctamente.");
 
 });
