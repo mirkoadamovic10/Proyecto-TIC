@@ -10,7 +10,6 @@ if (botonPasaporte && submenuPasaporte) {
     });
 }
 
-
 const botonesPasaporte = document.querySelectorAll(".boton-pasaporte");
 
 const pantallas = {
@@ -42,7 +41,6 @@ botonesPasaporte.forEach(function (boton) {
     });
 
 });
-
 
 const botonAgenda = document.getElementById("botonAgenda");
 

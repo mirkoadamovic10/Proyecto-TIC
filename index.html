@@ -1,5 +1,5 @@
+<!DOCTYPE html>
 <html lang="es">
-
 
 <head>
     <meta charset="UTF-8">
@@ -8,54 +8,684 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
-
 
     <header>
         <h2>NeuroPassport</h2>
 
-
         <div class="botones">
-                <button id="iniciarSesion">Iniciar sesión</button>
-                <button id="registrarse">Registrarse</button>
+            <button id="iniciarSesion">Iniciar sesión</button>
+            <button id="registrarse">Registrarse</button>
         </div>
     </header>
 
-
     <main>
-
 
         <p class="pequeno">BIENVENIDO A</p>
 
-
         <h1>NeuroPassport</h1>
-
 
         <p class="subtitulo">
             Tu información, en un solo lugar
         </p>
 
-
         <section class="cuadro">
-
-
-            <div class="icono">+</div>
-
-
-            <h3>Tu información, siempre disponible</h3>
-
-
-            <p>
-                Organizá tu información de salud, educación
-                y necesidades de apoyo de manera simple y segura.
-            </p>
-
-
+            <canvas id="redNeuronal"></canvas>
         </section>
-        <script src="index.js" defer></script>
-    </main>
-</body>
 
+    </main>
+
+    <script src="index.js" defer></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const canvas = document.getElementById("redNeuronal");
+            const cuadro = document.querySelector(".cuadro");
+
+            const ctx = canvas.getContext("2d");
+
+            let ancho;
+            let alto;
+            let dpr;
+
+            const neuronas = [];
+            const impulsos = [];
+
+            const cantidadNeuronas = 45;
+
+            function ajustarCanvas() {
+
+                const rect = cuadro.getBoundingClientRect();
+
+                ancho = rect.width;
+                alto = rect.height;
+
+                dpr = window.devicePixelRatio || 1;
+
+                canvas.width = ancho * dpr;
+                canvas.height = alto * dpr;
+
+                canvas.style.width = ancho + "px";
+                canvas.style.height = alto + "px";
+
+                ctx.setTransform(
+                    dpr,
+                    0,
+                    0,
+                    dpr,
+                    0,
+                    0
+                );
+            }
+
+            function crearNeurona() {
+
+                const x = Math.random() * ancho;
+                const y = Math.random() * alto;
+
+                const ramas = [];
+
+                const cantidadRamas =
+                    Math.floor(Math.random() * 7) + 5;
+
+                for (let i = 0; i < cantidadRamas; i++) {
+
+                    const angulo =
+                        Math.random() * Math.PI * 2;
+
+                    const longitud =
+                        Math.random() * 80 + 45;
+
+                    ramas.push({
+                        angulo: angulo,
+                        longitud: longitud,
+                        grosor: Math.random() * 1.8 + 0.6
+                    });
+                }
+
+                return {
+                    x: x,
+                    y: y,
+
+                    vx: (Math.random() - 0.5) * 0.15,
+                    vy: (Math.random() - 0.5) * 0.15,
+
+                    radio: Math.random() * 5 + 3,
+
+                    ramas: ramas,
+
+                    brillo: Math.random() * Math.PI * 2,
+
+                    fase: Math.random() * Math.PI * 2
+                };
+            }
+
+            function crearRed() {
+
+                neuronas.length = 0;
+
+                for (let i = 0; i < cantidadNeuronas; i++) {
+
+                    neuronas.push(
+                        crearNeurona()
+                    );
+                }
+            }
+
+            function distancia(a, b) {
+
+                const dx = a.x - b.x;
+                const dy = a.y - b.y;
+
+                return Math.sqrt(
+                    dx * dx + dy * dy
+                );
+            }
+
+            function dibujarRama(
+                neurona,
+                rama
+            ) {
+
+                const x1 = neurona.x;
+                const y1 = neurona.y;
+
+                const curva =
+                    rama.longitud * 0.45;
+
+                const xControl =
+                    x1 +
+                    Math.cos(rama.angulo) *
+                    curva;
+
+                const yControl =
+                    y1 +
+                    Math.sin(rama.angulo) *
+                    curva;
+
+                const x2 =
+                    x1 +
+                    Math.cos(rama.angulo) *
+                    rama.longitud;
+
+                const y2 =
+                    y1 +
+                    Math.sin(rama.angulo) *
+                    rama.longitud;
+
+                ctx.beginPath();
+
+                ctx.moveTo(
+                    x1,
+                    y1
+                );
+
+                ctx.quadraticCurveTo(
+                    xControl,
+                    yControl,
+                    x2,
+                    y2
+                );
+
+                ctx.strokeStyle =
+                    "rgba(255,255,255,0.42)";
+
+                ctx.lineWidth =
+                    rama.grosor;
+
+                ctx.stroke();
+
+                return {
+                    x: x2,
+                    y: y2
+                };
+            }
+
+            function dibujarNeurona(neurona, tiempo) {
+
+                const pulso =
+                    (Math.sin(
+                        tiempo * 0.002 +
+                        neurona.brillo
+                    ) + 1) / 2;
+
+                /* RAMIFICACIONES */
+
+                neurona.ramas.forEach(
+                    function (rama) {
+
+                        const punta =
+                            dibujarRama(
+                                neurona,
+                                rama
+                            );
+
+                        /* pequeñas ramificaciones */
+
+                        for (
+                            let i = 0;
+                            i < 2;
+                            i++
+                        ) {
+
+                            const angulo =
+                                rama.angulo +
+                                (i === 0 ? 0.45 : -0.45);
+
+                            const largo =
+                                rama.longitud *
+                                0.45;
+
+                            const xInicio =
+                                neurona.x +
+                                Math.cos(rama.angulo) *
+                                rama.longitud *
+                                0.55;
+
+                            const yInicio =
+                                neurona.y +
+                                Math.sin(rama.angulo) *
+                                rama.longitud *
+                                0.55;
+
+                            const xControl =
+                                xInicio +
+                                Math.cos(angulo) *
+                                largo *
+                                0.45;
+
+                            const yControl =
+                                yInicio +
+                                Math.sin(angulo) *
+                                largo *
+                                0.45;
+
+                            const xFinal =
+                                xInicio +
+                                Math.cos(angulo) *
+                                largo;
+
+                            const yFinal =
+                                yInicio +
+                                Math.sin(angulo) *
+                                largo;
+
+                            ctx.beginPath();
+
+                            ctx.moveTo(
+                                xInicio,
+                                yInicio
+                            );
+
+                            ctx.quadraticCurveTo(
+                                xControl,
+                                yControl,
+                                xFinal,
+                                yFinal
+                            );
+
+                            ctx.strokeStyle =
+                                "rgba(255,255,255,0.25)";
+
+                            ctx.lineWidth = 0.8;
+
+                            ctx.stroke();
+                        }
+                    }
+                );
+
+                /* BRILLO ALREDEDOR DE LA NEURONA */
+
+                const gradiente =
+                    ctx.createRadialGradient(
+                        neurona.x,
+                        neurona.y,
+                        0,
+                        neurona.x,
+                        neurona.y,
+                        neurona.radio * 7
+                    );
+
+                gradiente.addColorStop(
+                    0,
+                    `rgba(255,255,255,${0.7 + pulso * 0.25})`
+                );
+
+                gradiente.addColorStop(
+                    0.35,
+                    `rgba(180,245,245,${0.25 + pulso * 0.2})`
+                );
+
+                gradiente.addColorStop(
+                    1,
+                    "rgba(180,245,245,0)"
+                );
+
+                ctx.fillStyle = gradiente;
+
+                ctx.beginPath();
+
+                ctx.arc(
+                    neurona.x,
+                    neurona.y,
+                    neurona.radio * 7,
+                    0,
+                    Math.PI * 2
+                );
+
+                ctx.fill();
+
+                /* CUERPO DE LA NEURONA */
+
+                ctx.beginPath();
+
+                ctx.arc(
+                    neurona.x,
+                    neurona.y,
+                    neurona.radio,
+                    0,
+                    Math.PI * 2
+                );
+
+                ctx.fillStyle =
+                    "rgba(220,255,255,0.95)";
+
+                ctx.shadowBlur =
+                    15 + pulso * 12;
+
+                ctx.shadowColor =
+                    "rgba(200,255,255,0.9)";
+
+                ctx.fill();
+
+                ctx.shadowBlur = 0;
+            }
+
+            function conectarNeuronas() {
+
+                for (
+                    let i = 0;
+                    i < neuronas.length;
+                    i++
+                ) {
+
+                    for (
+                        let j = i + 1;
+                        j < neuronas.length;
+                        j++
+                    ) {
+
+                        const a = neuronas[i];
+                        const b = neuronas[j];
+
+                        const d =
+                            distancia(a, b);
+
+                        if (d < 180) {
+
+                            const opacidad =
+                                (1 - d / 180) *
+                                0.28;
+
+                            ctx.beginPath();
+
+                            ctx.moveTo(
+                                a.x,
+                                a.y
+                            );
+
+                            ctx.lineTo(
+                                b.x,
+                                b.y
+                            );
+
+                            ctx.strokeStyle =
+                                `rgba(210,250,250,${opacidad})`;
+
+                            ctx.lineWidth = 0.7;
+
+                            ctx.stroke();
+
+                        }
+                    }
+                }
+            }
+
+            function crearImpulso() {
+
+                if (neuronas.length < 2) {
+                    return;
+                }
+
+                const inicio =
+                    neuronas[
+                        Math.floor(
+                            Math.random() *
+                            neuronas.length
+                        )
+                    ];
+
+                let destino = null;
+
+                let distanciaMinima = Infinity;
+
+                neuronas.forEach(
+                    function (n) {
+
+                        if (n === inicio) {
+                            return;
+                        }
+
+                        const d =
+                            distancia(
+                                inicio,
+                                n
+                            );
+
+                        if (
+                            d < distanciaMinima &&
+                            d < 180
+                        ) {
+
+                            distanciaMinima = d;
+                            destino = n;
+
+                        }
+                    }
+                );
+
+                if (destino) {
+
+                    impulsos.push({
+                        inicio: inicio,
+                        destino: destino,
+                        progreso: 0,
+                        velocidad:
+                            Math.random() *
+                            0.008 +
+                            0.004
+                    });
+                }
+            }
+
+            function dibujarImpulsos() {
+
+                impulsos.forEach(
+                    function (impulso) {
+
+                        impulso.progreso +=
+                            impulso.velocidad;
+
+                        const p =
+                            impulso.progreso;
+
+                        const x =
+                            impulso.inicio.x +
+                            (
+                                impulso.destino.x -
+                                impulso.inicio.x
+                            ) * p;
+
+                        const y =
+                            impulso.inicio.y +
+                            (
+                                impulso.destino.y -
+                                impulso.inicio.y
+                            ) * p;
+
+                        const brillo =
+                            ctx.createRadialGradient(
+                                x,
+                                y,
+                                0,
+                                x,
+                                y,
+                                14
+                            );
+
+                        brillo.addColorStop(
+                            0,
+                            "rgba(255,255,255,1)"
+                        );
+
+                        brillo.addColorStop(
+                            0.3,
+                            "rgba(220,255,255,0.7)"
+                        );
+
+                        brillo.addColorStop(
+                            1,
+                            "rgba(220,255,255,0)"
+                        );
+
+                        ctx.fillStyle = brillo;
+
+                        ctx.beginPath();
+
+                        ctx.arc(
+                            x,
+                            y,
+                            14,
+                            0,
+                            Math.PI * 2
+                        );
+
+                        ctx.fill();
+                    }
+                );
+
+                for (
+                    let i = impulsos.length - 1;
+                    i >= 0;
+                    i--
+                ) {
+
+                    if (
+                        impulsos[i].progreso >= 1
+                    ) {
+
+                        impulsos.splice(i, 1);
+
+                    }
+                }
+            }
+
+            function animar(tiempo) {
+
+                ctx.clearRect(
+                    0,
+                    0,
+                    ancho,
+                    alto
+                );
+
+                /* fondo del rectángulo */
+
+                const fondo =
+                    ctx.createRadialGradient(
+                        ancho / 2,
+                        alto / 2,
+                        0,
+                        ancho / 2,
+                        alto / 2,
+                        Math.max(
+                            ancho,
+                            alto
+                        )
+                    );
+
+                fondo.addColorStop(
+                    0,
+                    "rgba(105,190,198,0.30)"
+                );
+
+                fondo.addColorStop(
+                    0.5,
+                    "rgba(70,145,158,0.15)"
+                );
+
+                fondo.addColorStop(
+                    1,
+                    "rgba(40,100,115,0.05)"
+                );
+
+                ctx.fillStyle = fondo;
+
+                ctx.fillRect(
+                    0,
+                    0,
+                    ancho,
+                    alto
+                );
+
+                /* movimiento */
+
+                neuronas.forEach(
+                    function (neurona) {
+
+                        neurona.x +=
+                            neurona.vx;
+
+                        neurona.y +=
+                            neurona.vy;
+
+                        if (
+                            neurona.x < -40
+                        ) {
+                            neurona.x =
+                                ancho + 40;
+                        }
+
+                        if (
+                            neurona.x >
+                            ancho + 40
+                        ) {
+                            neurona.x = -40;
+                        }
+
+                        if (
+                            neurona.y < -40
+                        ) {
+                            neurona.y =
+                                alto + 40;
+                        }
+
+                        if (
+                            neurona.y >
+                            alto + 40
+                        ) {
+                            neurona.y = -40;
+                        }
+                    }
+                );
+
+                conectarNeuronas();
+
+                neuronas.forEach(
+                    function (neurona) {
+
+                        dibujarNeurona(
+                            neurona,
+                            tiempo
+                        );
+                    }
+                );
+
+                dibujarImpulsos();
+
+                requestAnimationFrame(
+                    animar
+                );
+            }
+
+            ajustarCanvas();
+
+            crearRed();
+
+            window.addEventListener(
+                "resize",
+                function () {
+
+                    ajustarCanvas();
+
+                    crearRed();
+
+                }
+            );
+
+            setInterval(
+                crearImpulso,
+                350
+            );
+
+            requestAnimationFrame(
+                animar
+            );
+
+        });
+    </script>
+
+</body>
 
 </html>
