@@ -17,7 +17,10 @@
     --gris-claro: #edf2f1;
     --blanco: #ffffff;
     --texto: #294d57;
-    --sombra: 0 12px 35px rgba(40, 88, 102, 0.10);
+    --fondo: #f4f9f8;
+    --borde: #dce9e6;
+    --sombra: 0 14px 40px rgba(40, 88, 102, 0.10);
+    --sombra-fuerte: 0 20px 55px rgba(40, 88, 102, 0.15);
 }
 
 html {
@@ -25,72 +28,102 @@ html {
 }
 
 body {
-    margin: 0;
-    background: linear-gradient(135deg, #f4faf8 0%, #eef7f6 100%);
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(217, 195, 229, 0.22),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 5% 90%,
+            rgba(185, 223, 204, 0.25),
+            transparent 25%
+        ),
+        var(--fondo);
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--texto);
 }
 
-/* =========================
-   BARRA PRINCIPAL
-========================= */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
 
 header {
     height: 70px;
-    background: linear-gradient(90deg, #526b73, #65777e);
+    background: linear-gradient(
+        135deg,
+        #526b73,
+        #687b82
+    );
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 45px;
-    box-shadow: 0 4px 18px rgba(40, 70, 80, 0.15);
+    box-shadow: 0 5px 22px rgba(40, 70, 80, 0.16);
 }
 
 header h2 {
     color: white;
     font-size: 22px;
     font-weight: 700;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.4px;
 }
 
 .botones {
     display: flex;
-    gap: 12px;
     align-items: center;
+    gap: 12px;
 }
 
-.botones a {
+.botones a,
+.botones button {
+    min-width: 125px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border: none;
+    border-radius: 13px;
     background: rgba(217, 195, 229, 0.95);
     color: #385964;
     text-decoration: none;
-    padding: 10px 19px;
-    border-radius: 12px;
     font-size: 14px;
-    font-weight: 600;
-    transition: all 0.25s ease;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    font-weight: 650;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+    transition: 0.22s ease;
 }
 
-.botones a:hover {
+.botones a:hover,
+.botones button:hover {
     background: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 18px rgba(40, 88, 102, 0.12);
 }
-
-/* =========================
-   HOME PRINCIPAL
-========================= */
 
 main {
     text-align: center;
-    padding: 80px 20px;
+    padding: 75px 20px;
 }
 
 .pequeno {
     color: var(--azul);
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 750;
     letter-spacing: 3px;
-    margin-bottom: 12px;
+    margin-bottom: 13px;
     text-transform: uppercase;
 }
 
@@ -99,35 +132,29 @@ h1 {
     font-size: 46px;
     font-weight: 750;
     letter-spacing: -1.5px;
+    line-height: 1.15;
     margin-bottom: 12px;
 }
 
 .subtitulo {
     color: #71858b;
     font-size: 17px;
-    margin-bottom: 45px;
+    line-height: 1.6;
+    margin-bottom: 42px;
 }
 
-/* =========================
-   RECTANGULO DE NEURONAS
-========================= */
-
 .cuadro {
-    width: 70%;
-    max-width: 680px;
-    height: 500px;
+    width: min(90%, 850px);
+    height: 460px;
     margin: 0 auto;
-    padding: 0;
-
     position: relative;
     overflow: hidden;
-
-    border-radius: 25px;
-
-    background: transparent;
-    border: none;
-    box-shadow: none;
-
+    border-radius: 30px;
+    background: var(--celeste);
+    border: 1px solid rgba(143, 203, 208, 0.35);
+    box-shadow:
+        0 20px 50px rgba(40, 88, 102, 0.10),
+        inset 0 0 35px rgba(255, 255, 255, 0.35);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -137,12 +164,8 @@ h1 {
     width: 100%;
     height: 100%;
     display: block;
-    border-radius: 25px;
+    border-radius: 30px;
 }
-
-/* =========================
-   LOGIN / REGISTRO
-========================= */
 
 .login-container,
 .register-container {
@@ -150,10 +173,18 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 35px 20px;
+    padding: 40px 20px;
     background:
-        radial-gradient(circle at 15% 20%, rgba(185, 223, 204, 0.55), transparent 30%),
-        radial-gradient(circle at 85% 80%, rgba(217, 195, 229, 0.45), transparent 30%),
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(185, 223, 204, 0.55),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(217, 195, 229, 0.50),
+            transparent 30%
+        ),
         #f3f8f7;
 }
 
@@ -161,11 +192,11 @@ h1 {
 .register-card {
     width: 100%;
     max-width: 500px;
-    padding: 45px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 26px;
-    box-shadow: 0 18px 50px rgba(40, 88, 102, 0.13);
-    border: 1px solid rgba(210, 229, 225, 0.9);
+    padding: 43px;
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 27px;
+    border: 1px solid rgba(210, 229, 225, 0.95);
+    box-shadow: var(--sombra-fuerte);
 }
 
 .login-card h1,
@@ -199,9 +230,8 @@ h1 {
     background: #f8fbfa;
     color: var(--texto);
     font-size: 15px;
-    font-family: inherit;
     outline: none;
-    transition: all 0.2s ease;
+    transition: 0.22s ease;
 }
 
 .campo input::placeholder {
@@ -211,7 +241,7 @@ h1 {
 .campo input:focus,
 .campo select:focus {
     border-color: var(--azul-claro);
-    background: white;
+    background: #ffffff;
     box-shadow: 0 0 0 4px rgba(143, 203, 208, 0.16);
 }
 
@@ -226,20 +256,22 @@ h1 {
     margin-top: 10px;
     border: none;
     border-radius: 13px;
-    background: linear-gradient(135deg, #397d8c, #2f6878);
+    background: linear-gradient(
+        135deg,
+        #397d8c,
+        #2f6878
+    );
     color: white;
     font-size: 15px;
     font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: 0 7px 18px rgba(47, 104, 120, 0.20);
+    box-shadow: 0 8px 20px rgba(47, 104, 120, 0.20);
+    transition: 0.22s ease;
 }
 
 .login-button:hover,
 .register-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(47, 104, 120, 0.27);
+    box-shadow: 0 12px 25px rgba(47, 104, 120, 0.27);
 }
 
 .login-button:active,
@@ -247,150 +279,351 @@ h1 {
     transform: translateY(0);
 }
 
-/* =========================
-   HOME PERSONAL
-========================= */
-
 .barra-personal {
     width: 100%;
     height: 72px;
-    background: linear-gradient(90deg, #526b73, #687b82);
+    background: linear-gradient(
+        135deg,
+        #526b73,
+        #687b82
+    );
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 32px;
-    box-shadow: 0 4px 18px rgba(40, 70, 80, 0.14);
+    box-shadow: 0 5px 22px rgba(40, 70, 80, 0.15);
+    position: relative;
+    z-index: 100;
 }
 
 .menu-personal {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 14px;
+    padding: 6px;
     background: rgba(255, 255, 255, 0.08);
-    padding: 7px;
-    border-radius: 17px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
 }
 
-.boton-menu {
-    min-width: 105px;
-    height: 40px;
-    background: #d9c3e5;
-    border: none;
-    border-radius: 12px;
-    color: #385964;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    padding: 0 20px;
-    transition: all 0.22s ease;
-}
-
-.boton-menu:hover {
-    background: #ffffff;
-    transform: translateY(-2px);
-}
-
-.perfil {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 3px solid rgba(255,255,255,0.5);
-    background: #d9c3e5;
-    cursor: pointer;
+.menu-personal > .boton-menu,
+.menu-personal > .contenedor-pasaporte > .boton-menu {
+    width: 120px;
+    height: 43px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    padding: 0;
+    border: none;
+    border-radius: 13px;
+    background: var(--lila);
+    color: #385964;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.22s ease;
 }
 
-.cabeza {
-    width: 12px;
-    height: 12px;
-    background: #687b82;
-    border-radius: 50%;
-    position: absolute;
-    top: 8px;
+.menu-personal > .boton-menu:hover,
+.menu-personal > .contenedor-pasaporte > .boton-menu:hover {
+    background: #ffffff;
+    color: var(--azul-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 16px rgba(40, 88, 102, 0.12);
+    text-decoration: none;
 }
 
-.cuerpo {
-    width: 24px;
-    height: 14px;
-    background: #687b82;
-    border-radius: 14px 14px 0 0;
-    position: absolute;
-    bottom: 6px;
+.menu-personal a.boton-menu {
+    text-decoration: none;
+    border-bottom: none;
 }
 
-/* =========================
-   MENU PASAPORTE
-========================= */
+.menu-personal a.boton-menu::after {
+    display: none;
+}
 
 .contenedor-pasaporte {
     position: relative;
+    width: 120px;
+    height: 43px;
+}
+
+.contenedor-pasaporte > .boton-menu {
+    width: 120px;
+    height: 43px;
 }
 
 .submenu-pasaporte {
     display: grid;
     position: absolute;
-    top: calc(100% + 10px);
-    left: 0;
-    width: 590px;
+    top: calc(100% + 13px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
     padding: 18px;
     background: rgba(255, 255, 255, 0.98);
     grid-template-columns: 1fr 1fr;
-    gap: 11px;
+    gap: 10px;
     z-index: 1000;
-    border-radius: 18px;
-    box-shadow: 0 18px 45px rgba(40, 80, 90, 0.18);
+    border-radius: 20px;
     border: 1px solid #dce9e6;
+    box-shadow: 0 22px 50px rgba(40, 80, 90, 0.18);
+    backdrop-filter: blur(12px);
 }
+
 .submenu-pasaporte[hidden] {
     display: none;
 }
 
 .boton-pasaporte {
-    min-height: 44px;
-    background: #e8f4f3;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    background: #eaf6f5;
     color: #356775;
-    border: 1px solid #d4e9e6;
-    border-radius: 11px;
-    padding: 9px 13px;
+    border: 1px solid #d7e9e6;
+    border-radius: 12px;
+    padding: 9px 14px;
     font-size: 13px;
-    font-family: inherit;
     font-weight: 650;
-    cursor: pointer;
-    transition: all 0.2s ease;
     text-align: left;
+    transition: 0.20s ease;
 }
 
 .boton-pasaporte:hover {
-    background: #b9dfcc;
-    color: #285866;
-    border-color: #b9dfcc;
+    background: var(--verde);
+    color: var(--azul-oscuro);
+    border-color: var(--verde);
     transform: translateX(3px);
+    box-shadow: 0 5px 13px rgba(40, 88, 102, 0.08);
 }
 
 .boton-pasaporte:active {
     transform: scale(0.98);
 }
 
-/* =========================
-   PANTALLAS DEL PASAPORTE
-========================= */
+.perfil {
+    width: 52px !important;
+    height: 52px !important;
+    position: relative !important;
+    display: block !important;
+    padding: 0 !important;
+    border: 3px solid rgba(255, 255, 255, 0.45) !important;
+    border-radius: 50% !important;
+    background: #d1d3d4 !important;
+    overflow: hidden !important;
+    box-shadow: 0 6px 15px rgba(30, 60, 70, 0.12);
+    transition: 0.2s ease;
+}
+
+.perfil:hover {
+    transform: scale(1.04);
+}
+
+.perfil .cabeza {
+    position: absolute !important;
+    width: 20px !important;
+    height: 20px !important;
+    top: 9px !important;
+    left: 50% !important;
+    margin: 0 !important;
+    transform: translateX(-50%) !important;
+    background: #ffffff !important;
+    border-radius: 50% !important;
+    display: block !important;
+    z-index: 2 !important;
+}
+
+.perfil .cuerpo {
+    position: absolute !important;
+    width: 39px !important;
+    height: 24px !important;
+    left: 50% !important;
+    bottom: -1px !important;
+    margin: 0 !important;
+    transform: translateX(-50%) !important;
+    background: #ffffff !important;
+    border-radius: 50% 50% 0 0 !important;
+    display: block !important;
+    z-index: 1 !important;
+}
+
+.inicio-personal {
+    min-height: calc(100vh - 72px);
+    padding: 75px 30px 80px;
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(217, 195, 229, 0.22),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 10% 85%,
+            rgba(185, 223, 204, 0.24),
+            transparent 25%
+        ),
+        #f4f9f8;
+    text-align: center;
+}
+
+.contenido-inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inicio-personal h1 {
+    color: var(--azul-oscuro);
+    font-size: 40px;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+}
+
+.inicio-personal p {
+    color: #71858b;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.ilustracion-pasaporte {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+    margin-bottom: 25px;
+}
+
+.pasaporte-dibujo {
+    width: 270px;
+    height: 335px;
+    position: relative;
+    transform: rotate(-9deg);
+    filter: drop-shadow(
+        0 18px 22px rgba(40, 88, 102, 0.16)
+    );
+}
+
+.pasaporte-tapa {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(
+        145deg,
+        #397d8c,
+        #285866
+    );
+    border-radius: 25px;
+    border: 3px solid rgba(255, 255, 255, 0.10);
+}
+
+.pasaporte-tapa::before {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    top: -90px;
+    right: -100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.pasaporte-tapa::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    bottom: -100px;
+    left: -90px;
+    border-radius: 50%;
+    background: rgba(217, 195, 229, 0.08);
+}
+
+.texto-pasaporte {
+    margin-top: 53px;
+    position: relative;
+    z-index: 2;
+    color: #d9c3e5;
+    font-size: 27px;
+    font-weight: 750;
+    letter-spacing: 4px;
+}
+
+.globo-pasaporte {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    border: 5px solid #d9c3e5;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.linea-horizontal {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    top: 53px;
+    left: 0;
+    background: #d9c3e5;
+}
+
+.linea-vertical {
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    top: 0;
+    left: 53px;
+    background: #d9c3e5;
+}
+
+.linea-curva-1 {
+    position: absolute;
+    width: 67px;
+    height: 116px;
+    top: 0;
+    left: 22px;
+    border-left: 4px solid #d9c3e5;
+    border-radius: 50%;
+}
+
+.linea-curva-2 {
+    position: absolute;
+    width: 67px;
+    height: 116px;
+    top: 0;
+    right: 22px;
+    border-right: 4px solid #d9c3e5;
+    border-radius: 50%;
+}
 
 .pasaporte-pagina {
     min-height: calc(100vh - 72px);
-    background:
-        radial-gradient(circle at 90% 10%, rgba(217, 195, 229, 0.28), transparent 25%),
-        radial-gradient(circle at 5% 90%, rgba(185, 223, 204, 0.30), transparent 25%),
-        #f3f8f7;
     padding: 55px 45px 70px;
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(217, 195, 229, 0.28),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 5% 90%,
+            rgba(185, 223, 204, 0.30),
+            transparent 25%
+        ),
+        #f3f8f7;
 }
 
 .pasaporte-contenido {
+    width: 100%;
     max-width: 1050px;
     margin: 0 auto;
 }
@@ -408,20 +641,21 @@ h1 {
     text-align: center;
     color: #71878d;
     font-size: 15px;
+    line-height: 1.6;
     margin-bottom: 38px;
 }
 
-/* =========================
-   TARJETA PARA AGREGAR
-========================= */
-
 .agregar-seccion {
-    background: linear-gradient(135deg, #c5e5d3, #d7eee2);
-    border-radius: 22px;
     padding: 30px;
     margin-bottom: 28px;
+    background: linear-gradient(
+        135deg,
+        #c5e5d3,
+        #dff1e7
+    );
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 23px;
     box-shadow: var(--sombra);
-    border: 1px solid rgba(255,255,255,0.8);
 }
 
 .agregar-seccion h3 {
@@ -434,37 +668,37 @@ h1 {
     margin: 0 0 20px;
     color: #5a7a82;
     font-size: 14px;
+    line-height: 1.5;
 }
 
 .boton-agregar {
-    background: #397d8c;
-    color: white;
     border: none;
     border-radius: 12px;
     padding: 12px 23px;
+    background: linear-gradient(
+        135deg,
+        #397d8c,
+        #2f6878
+    );
+    color: white;
     font-size: 14px;
     font-weight: 700;
-    cursor: pointer;
-    transition: all 0.22s ease;
-    box-shadow: 0 5px 14px rgba(47, 104, 120, 0.18);
+    box-shadow: 0 6px 16px rgba(47, 104, 120, 0.18);
+    transition: 0.22s ease;
 }
 
 .boton-agregar:hover {
-    background: #2f6878;
     transform: translateY(-2px);
+    box-shadow: 0 10px 21px rgba(47, 104, 120, 0.25);
 }
-
-/* =========================
-   FORMULARIO
-========================= */
 
 .formulario-agregar {
     display: none;
     margin-top: 20px;
-    background: rgba(255,255,255,0.92);
-    border-radius: 17px;
-    padding: 23px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.94);
     border: 1px solid #d9e7e3;
+    border-radius: 18px;
 }
 
 .formulario-agregar.visible {
@@ -475,8 +709,8 @@ h1 {
     display: block;
     margin-bottom: 7px;
     color: #315f6d;
-    font-weight: 700;
     font-size: 13px;
+    font-weight: 700;
 }
 
 .formulario-agregar input,
@@ -484,22 +718,22 @@ h1 {
 .formulario-agregar select {
     width: 100%;
     min-height: 45px;
+    margin-bottom: 15px;
+    padding: 10px 13px;
     border: 1px solid #d4e2df;
     border-radius: 11px;
-    padding: 10px 13px;
-    margin-bottom: 15px;
     background: #f9fcfb;
     color: #315f6d;
-    font-family: inherit;
     font-size: 14px;
     outline: none;
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 .formulario-agregar input:focus,
 .formulario-agregar textarea:focus,
 .formulario-agregar select:focus {
-    border-color: #8fcbd0;
+    border-color: var(--azul-claro);
+    background: white;
     box-shadow: 0 0 0 4px rgba(143, 203, 208, 0.14);
 }
 
@@ -509,14 +743,13 @@ h1 {
 }
 
 .guardar-item {
-    background: #65747b;
-    color: white;
     border: none;
     border-radius: 11px;
     padding: 11px 22px;
-    cursor: pointer;
+    background: var(--gris);
+    color: white;
     font-weight: 700;
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 .guardar-item:hover {
@@ -524,16 +757,12 @@ h1 {
     transform: translateY(-1px);
 }
 
-/* =========================
-   INFORMACION GUARDADA
-========================= */
-
 .informacion-guardada {
-    background: rgba(255,255,255,0.96);
-    border-radius: 22px;
     padding: 30px;
-    box-shadow: var(--sombra);
+    background: rgba(255, 255, 255, 0.97);
     border: 1px solid #e0ebe8;
+    border-radius: 23px;
+    box-shadow: var(--sombra);
 }
 
 .informacion-guardada h3 {
@@ -549,17 +778,22 @@ h1 {
 }
 
 .item-guardado {
-    background: linear-gradient(135deg, #edf7f5, #e5f2ef);
-    border-radius: 15px;
-    padding: 20px;
     position: relative;
-    border-left: 5px solid #397d8c;
-    transition: all 0.2s ease;
+    padding: 20px;
+    background: linear-gradient(
+        135deg,
+        #edf7f5,
+        #e5f2ef
+    );
+    border: 1px solid #dcebe7;
+    border-left: 5px solid var(--azul);
+    border-radius: 16px;
+    transition: 0.2s ease;
 }
 
 .item-guardado:hover {
     transform: translateX(3px);
-    box-shadow: 0 6px 18px rgba(40,88,102,0.08);
+    box-shadow: 0 8px 20px rgba(40, 88, 102, 0.08);
 }
 
 .item-guardado h4 {
@@ -576,9 +810,9 @@ h1 {
 }
 
 .item-fecha {
-    font-size: 12px !important;
-    color: #82969b !important;
     margin-top: 10px !important;
+    color: #82969b !important;
+    font-size: 12px !important;
 }
 
 .boton-eliminar {
@@ -586,13 +820,12 @@ h1 {
     right: 15px;
     top: 15px;
     border: none;
-    background: #ffffff;
-    color: #82969b;
-    cursor: pointer;
-    font-size: 13px;
-    border-radius: 8px;
     padding: 6px 9px;
-    transition: 0.2s;
+    border-radius: 8px;
+    background: white;
+    color: #82969b;
+    font-size: 12px;
+    transition: 0.2s ease;
 }
 
 .boton-eliminar:hover {
@@ -601,32 +834,36 @@ h1 {
 }
 
 .sin-informacion {
-    text-align: center;
     padding: 40px 20px;
+    text-align: center;
     color: #84979b;
     font-size: 14px;
 }
 
-/* =========================
-   AGENDA
-========================= */
-
 .pagina-agenda {
+    min-height: 100vh;
     margin: 0;
     background:
-        radial-gradient(circle at 90% 10%, rgba(217,195,229,0.25), transparent 25%),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(217, 195, 229, 0.25),
+            transparent 25%
+        ),
         #f1f8f6;
-    font-family: "Segoe UI", Arial, sans-serif;
     color: #315f6d;
 }
 
 .barra-agenda {
     height: 72px;
-    background: linear-gradient(90deg, #526b73, #687b82);
     display: flex;
     align-items: center;
     padding: 0 32px;
-    box-shadow: 0 4px 18px rgba(40,70,80,0.14);
+    background: linear-gradient(
+        135deg,
+        #526b73,
+        #687b82
+    );
+    box-shadow: 0 5px 22px rgba(40, 70, 80, 0.14);
 }
 
 .barra-agenda h2 {
@@ -639,22 +876,23 @@ h1 {
     margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 16px;
-    background: rgba(255,255,255,0.08);
-    padding: 7px;
-    border-radius: 17px;
+    gap: 14px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
 }
 
 .boton-menu-agenda {
+    min-width: 105px;
+    height: 42px;
+    padding: 0 18px;
     border: none;
-    background: #d9c3e5;
+    border-radius: 13px;
+    background: var(--lila);
     color: #385964;
     font-weight: 700;
-    padding: 10px 20px;
-    border-radius: 12px;
-    cursor: pointer;
     font-size: 14px;
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 .boton-menu-agenda:hover {
@@ -663,60 +901,64 @@ h1 {
 }
 
 .boton-menu-agenda.activo {
-    background: #b9dfcc;
+    background: var(--verde);
     color: #315f6d;
 }
 
 .perfil-agenda {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: #d9c3e5;
+    width: 45px;
+    height: 45px;
     position: relative;
     overflow: hidden;
-    border: 3px solid rgba(255,255,255,0.45);
+    border: 3px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    background: #d1d3d4;
 }
 
 .perfil-cabeza {
-    width: 12px;
-    height: 12px;
-    background: #687b82;
-    border-radius: 50%;
+    width: 13px;
+    height: 13px;
     position: absolute;
     top: 8px;
-    left: 13px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: white;
 }
 
 .perfil-cuerpo {
-    width: 24px;
-    height: 13px;
-    background: #687b82;
-    border-radius: 15px 15px 0 0;
+    width: 27px;
+    height: 15px;
     position: absolute;
-    bottom: 5px;
-    left: 7px;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px 16px 0 0;
+    background: white;
 }
 
 .agenda-principal {
-    padding: 45px 45px 60px;
+    padding: 48px 45px 65px;
 }
 
 .agenda-contenedor {
+    width: 100%;
     max-width: 1120px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .agenda-superior {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 27px;
+    gap: 25px;
+    margin-bottom: 28px;
 }
 
 .agenda-superior h1 {
     margin: 0 0 6px;
-    font-size: 34px;
     color: #2f7184;
+    font-size: 34px;
 }
 
 .agenda-superior p {
@@ -726,67 +968,69 @@ h1 {
 }
 
 .boton-agregar-evento {
-    background: linear-gradient(135deg, #397d8c, #2f6878);
-    color: white;
     border: none;
     padding: 13px 23px;
     border-radius: 13px;
+    background: linear-gradient(
+        135deg,
+        #397d8c,
+        #2f6878
+    );
+    color: white;
     font-weight: 700;
     font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 7px 18px rgba(47,104,120,0.18);
-    transition: 0.2s;
+    box-shadow: 0 7px 18px rgba(47, 104, 120, 0.18);
+    transition: 0.2s ease;
 }
 
 .boton-agregar-evento:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 22px rgba(47,104,120,0.25);
+    box-shadow: 0 10px 23px rgba(47, 104, 120, 0.25);
 }
 
-/* =========================
-   CALENDARIO
-========================= */
-
 .calendario {
-    background: white;
-    border-radius: 22px;
-    border: 1px solid #dce8e5;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(40,80,90,0.09);
+    background: white;
+    border: 1px solid #dce8e5;
+    border-radius: 23px;
+    box-shadow: 0 18px 45px rgba(40, 80, 90, 0.09);
 }
 
 .calendario-cabecera {
-    height: 70px;
+    height: 72px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 28px;
-    background: linear-gradient(90deg, #dff2f3, #e7f4f2);
+    background: linear-gradient(
+        90deg,
+        #dff2f3,
+        #e7f4f2
+    );
     border-bottom: 1px solid #d4e3e1;
 }
 
 .calendario-cabecera h2 {
     width: 190px;
-    text-align: center;
     margin: 0;
     color: #2f7184;
     font-size: 21px;
+    text-align: center;
 }
 
 .boton-mes {
-    border: none;
     width: 39px;
     height: 39px;
+    border: none;
     border-radius: 11px;
-    background: #d9c3e5;
+    background: var(--lila);
     color: #526b73;
     font-size: 22px;
-    cursor: pointer;
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 .boton-mes:hover {
-    background: #b9dfcc;
+    background: var(--verde);
     transform: scale(1.05);
 }
 
@@ -799,10 +1043,10 @@ h1 {
 
 .dias-semana div {
     padding: 14px 5px;
-    text-align: center;
-    font-weight: 700;
     color: #65747b;
     font-size: 12px;
+    font-weight: 700;
+    text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -814,12 +1058,12 @@ h1 {
 
 .dia {
     min-height: 120px;
-    border-right: 1px solid #e1ebe8;
-    border-bottom: 1px solid #e1ebe8;
     padding: 10px;
     background: white;
+    border-right: 1px solid #e1ebe8;
+    border-bottom: 1px solid #e1ebe8;
     cursor: pointer;
-    transition: 0.15s;
+    transition: 0.15s ease;
 }
 
 .dia:hover {
@@ -835,25 +1079,25 @@ h1 {
     display: block;
     width: 29px;
     height: 29px;
-    line-height: 29px;
-    text-align: center;
+    margin-bottom: 6px;
+    color: #65747b;
     border-radius: 50%;
     font-size: 13px;
-    color: #65747b;
-    margin-bottom: 6px;
     font-weight: 600;
+    line-height: 29px;
+    text-align: center;
 }
 
 .evento-calendario {
-    border-radius: 7px;
-    padding: 5px 7px;
-    margin-top: 4px;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
-    font-size: 11px;
     overflow: hidden;
-    transition: 0.15s;
+    margin-top: 4px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.15s ease;
 }
 
 .evento-calendario:hover {
@@ -862,9 +1106,9 @@ h1 {
 }
 
 .nombre-evento {
+    overflow: hidden;
     font-weight: 700;
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -910,15 +1154,15 @@ h1 {
     display: flex;
     align-items: center;
     gap: 7px;
-    font-size: 12px;
     color: #68757d;
+    font-size: 12px;
 }
 
 .color-referencia {
     width: 27px;
     height: 10px;
-    border-radius: 4px;
     display: inline-block;
+    border-radius: 4px;
 }
 
 .color-referencia.turno {
@@ -941,20 +1185,16 @@ h1 {
     background: #f3aaa5;
 }
 
-/* =========================
-   MODAL AGENDA
-========================= */
-
 .ventana-evento {
     position: fixed;
     inset: 0;
-    background: rgba(41, 77, 87, 0.42);
-    backdrop-filter: blur(5px);
     display: none;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    z-index: 1000;
+    background: rgba(41, 77, 87, 0.42);
+    backdrop-filter: blur(6px);
+    z-index: 2000;
 }
 
 .ventana-evento.mostrar {
@@ -964,11 +1204,11 @@ h1 {
 .formulario-evento {
     width: 100%;
     max-width: 490px;
-    background: white;
-    border-radius: 23px;
-    padding: 32px;
     position: relative;
-    box-shadow: 0 25px 65px rgba(30,60,70,0.25);
+    padding: 32px;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 25px 65px rgba(30, 60, 70, 0.25);
 }
 
 .formulario-evento h2 {
@@ -981,40 +1221,47 @@ h1 {
     margin: 0 0 22px;
     color: #71858b;
     font-size: 13px;
+    line-height: 1.5;
 }
 
 .formulario-evento label {
     display: block;
     margin-top: 14px;
     margin-bottom: 6px;
+    color: #315f6d;
     font-size: 13px;
     font-weight: 700;
-    color: #315f6d;
 }
 
 .formulario-evento input,
 .formulario-evento select,
 .formulario-evento textarea {
     width: 100%;
-    box-sizing: border-box;
+    padding: 11px;
     border: 1px solid #d3e1de;
     border-radius: 11px;
-    padding: 11px;
-    font-family: inherit;
+    background: #f9fcfb;
+    color: var(--texto);
     font-size: 13px;
     outline: none;
-    background: #f9fcfb;
+    transition: 0.2s ease;
+}
+
+.formulario-evento input,
+.formulario-evento select {
+    height: 44px;
 }
 
 .formulario-evento input:focus,
 .formulario-evento select:focus,
 .formulario-evento textarea:focus {
-    border-color: #8fcbd0;
-    box-shadow: 0 0 0 4px rgba(143,203,208,0.14);
+    border-color: var(--azul-claro);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(143, 203, 208, 0.14);
 }
 
 .formulario-evento textarea {
-    height: 80px;
+    min-height: 80px;
     resize: vertical;
 }
 
@@ -1025,42 +1272,199 @@ h1 {
     width: 35px;
     height: 35px;
     border: none;
-    background: #f0f5f4;
     border-radius: 50%;
-    font-size: 20px;
+    background: #f0f5f4;
     color: #68757d;
-    cursor: pointer;
-    transition: 0.2s;
+    font-size: 20px;
+    transition: 0.2s ease;
 }
 
 .cerrar-evento:hover {
     background: #d9e8e5;
+    transform: rotate(5deg);
 }
 
 .boton-guardar-evento {
     width: 100%;
     margin-top: 23px;
+    padding: 13px;
     border: none;
     border-radius: 12px;
-    padding: 13px;
-    background: linear-gradient(135deg, #397d8c, #2f6878);
+    background: linear-gradient(
+        135deg,
+        #397d8c,
+        #2f6878
+    );
     color: white;
-    font-weight: 700;
-    cursor: pointer;
     font-size: 14px;
-    transition: 0.2s;
+    font-weight: 700;
+    box-shadow: 0 7px 18px rgba(47, 104, 120, 0.18);
+    transition: 0.2s ease;
 }
 
 .boton-guardar-evento:hover {
     transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(47, 104, 120, 0.25);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+.contenedor-alerta {
+    position: relative;
+}
+
+.panel-alertas {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 390px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 22px;
+    background: white;
+    border: 1px solid #dce9e6;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(40, 80, 90, 0.20);
+    z-index: 2000;
+}
+
+.panel-alertas h2 {
+    margin: 0 0 20px;
+    color: #2f6878;
+    font-size: 21px;
+}
+
+#formularioAlerta label {
+    display: block;
+    margin-bottom: 7px;
+    color: #315f6d;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#formularioAlerta input,
+#formularioAlerta select {
+    width: 100%;
+    height: 43px;
+    margin-bottom: 15px;
+    padding: 8px 12px;
+    border: 1px solid #d4e2df;
+    border-radius: 10px;
+    background: #f9fcfb;
+    color: #315f6d;
+    font-size: 13px;
+    outline: none;
+}
+
+#formularioAlerta input:focus,
+#formularioAlerta select:focus {
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 0 4px rgba(143, 203, 208, 0.12);
+}
+
+.boton-guardar-alerta {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 11px;
+    background: #397d8c;
+    color: white;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.boton-guardar-alerta:hover {
+    background: #2f6878;
+    transform: translateY(-1px);
+}
+
+.lista-alertas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.alerta-guardada {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px;
+    background: #edf7f5;
+    border-left: 4px solid #397d8c;
+    border-radius: 12px;
+}
+
+.alerta-guardada strong {
+    color: #2f6878;
+    font-size: 14px;
+}
+
+.alerta-guardada p {
+    margin: 5px 0;
+    color: #58767e;
+    font-size: 13px;
+}
+
+.alerta-guardada small {
+    color: #82969b;
+    font-size: 11px;
+}
+
+.boton-eliminar-alerta {
+    align-self: center;
+    padding: 6px 9px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #82969b;
+    font-size: 11px;
+    transition: 0.2s ease;
+}
+
+.boton-eliminar-alerta:hover {
+    background: #f3d9d7;
+    color: #9b5d58;
+}
+
+.sin-alertas {
+    color: #84979b;
+    font-size: 13px;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    header {
+        padding: 0 22px;
+    }
+
+    .barra-personal {
+        padding: 0 20px;
+    }
+
+    .menu-personal {
+        gap: 8px;
+    }
+
+    .menu-personal > .boton-menu,
+    .menu-personal > .contenedor-pasaporte > .boton-menu,
+    .contenedor-pasaporte {
+        width: 105px;
+    }
+
+    .submenu-pasaporte {
+        width: 520px;
+    }
+
+    .cuadro {
+        width: 90%;
+        height: 420px;
+    }
+
+    .agenda-principal {
+        padding: 35px 25px 50px;
+    }
+}
 
 @media (max-width: 800px) {
-
     header {
         padding: 0 18px;
     }
@@ -1073,8 +1477,10 @@ h1 {
         gap: 7px;
     }
 
-    .botones a {
-        padding: 8px 11px;
+    .botones a,
+    .botones button {
+        min-width: auto;
+        padding: 0 12px;
         font-size: 12px;
     }
 
@@ -1084,7 +1490,7 @@ h1 {
 
     .cuadro {
         width: 90%;
-        height: 400px;
+        height: 380px;
     }
 
     .barra-personal {
@@ -1095,10 +1501,10 @@ h1 {
         gap: 5px;
     }
 
-    .boton-menu {
-        min-width: auto;
-        padding: 0 11px;
-        font-size: 12px;
+    .menu-personal > .boton-menu,
+    .menu-personal > .contenedor-pasaporte > .boton-menu,
+    .contenedor-pasaporte {
+        width: 92px;
     }
 
     .submenu-pasaporte {
@@ -1139,6 +1545,7 @@ h1 {
     }
 
     .boton-menu-agenda {
+        min-width: auto;
         padding: 8px 10px;
         font-size: 12px;
     }
@@ -1169,10 +1576,33 @@ h1 {
     .hora-evento {
         display: none;
     }
+
+    .pasaporte-dibujo {
+        width: 230px;
+        height: 290px;
+    }
+
+    .texto-pasaporte {
+        margin-top: 45px;
+        font-size: 23px;
+    }
+
+    .globo-pasaporte {
+        top: 105px;
+        width: 105px;
+        height: 105px;
+    }
+
+    .linea-horizontal {
+        top: 47px;
+    }
+
+    .linea-vertical {
+        left: 47px;
+    }
 }
 
 @media (max-width: 550px) {
-
     .login-card,
     .register-card {
         padding: 30px 23px;
@@ -1185,13 +1615,89 @@ h1 {
     }
 
     .perfil {
-        width: 39px;
-        height: 39px;
+        width: 42px !important;
+        height: 42px !important;
     }
 
-    .boton-menu {
-        min-width: auto;
-        padding: 0 8px;
+    .perfil .cabeza {
+        width: 16px !important;
+        height: 16px !important;
+        top: 8px !important;
+    }
+
+    .perfil .cuerpo {
+        width: 32px !important;
+        height: 20px !important;
+    }
+
+    .menu-personal {
+        padding: 5px;
+    }
+
+    .menu-personal > .boton-menu,
+    .menu-personal > .contenedor-pasaporte > .boton-menu,
+    .contenedor-pasaporte {
+        width: 82px;
+        height: 38px;
+    }
+
+    .menu-personal > .boton-menu,
+    .menu-personal > .contenedor-pasaporte > .boton-menu {
+        font-size: 11px;
+    }
+
+    .inicio-personal {
+        padding: 55px 18px;
+    }
+
+    .inicio-personal h1 {
+        font-size: 31px;
+    }
+
+    .inicio-personal p {
+        font-size: 14px;
+    }
+
+    .pasaporte-dibujo {
+        width: 205px;
+        height: 260px;
+    }
+
+    .texto-pasaporte {
+        margin-top: 40px;
+        font-size: 20px;
+        letter-spacing: 3px;
+    }
+
+    .globo-pasaporte {
+        top: 95px;
+        width: 90px;
+        height: 90px;
+        border-width: 4px;
+    }
+
+    .linea-horizontal {
+        top: 40px;
+        height: 3px;
+    }
+
+    .linea-vertical {
+        left: 40px;
+        width: 3px;
+    }
+
+    .linea-curva-1 {
+        width: 50px;
+        height: 88px;
+        left: 17px;
+        border-width: 3px;
+    }
+
+    .linea-curva-2 {
+        width: 50px;
+        height: 88px;
+        right: 17px;
+        border-width: 3px;
     }
 
     .agenda-superior h1 {
@@ -1205,260 +1711,150 @@ h1 {
     .dias-semana div {
         font-size: 9px;
     }
+
+    .panel-alertas {
+        position: fixed;
+        top: 82px;
+        left: 15px;
+        right: 15px;
+        width: auto;
+        max-height: calc(100vh - 100px);
+    }
 }
 
-  /* =========================
-   ALERTAS
-========================= */
 
-.contenedor-alerta {
+.submenu-pasaporte {
+    position: fixed !important;
+
+    
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+
+
+    top: 125px !important;
+
+    
+    width: 600px !important;
+    max-width: calc(100vw - 40px) !important;
+
+   
+    box-sizing: border-box !important;
+    z-index: 9999 !important;
+}
+
+
+
+
+.perfil {
+    position: relative !important;
+    width: 52px !important;
+    height: 52px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+}
+
+
+
+
+.perfil .cabeza {
+    position: absolute !important;
+
+    width: 18px !important;
+    height: 18px !important;
+
+  
+    top: 6px !important;
+
+    left: 50% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    transform: translateX(-50%) !important;
+
+    background: #ffffff !important;
+    border-radius: 50% !important;
+
+    z-index: 10 !important;
+}
+
+
+
+
+.perfil .cuerpo {
+    position: absolute !important;
+
+    width: 38px !important;
+    height: 23px !important;
+
+    bottom: -2px !important;
+
+    left: 50% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    transform: translateX(-50%) !important;
+
+    background: #ffffff !important;
+
+    border-radius: 50% 50% 0 0 !important;
+
+    z-index: 9 !important;
+}
+.contenedor-perfil {
     position: relative;
 }
 
 
-.panel-alertas {
-    position: absolute;
+.submenu-perfil {
+    display: none;
+    position: fixed;
+    top: 125px;
+    right: 40px;
+    left: auto;
+    transform: none;
 
-    top: calc(100% + 10px);
+    width: 420px;
+    max-width: calc(100vw - 40px);
 
-    right: 0;
-
-    width: 390px;
-
-    max-height: 600px;
-
-    overflow-y: auto;
-
-    padding: 22px;
+    padding: 20px;
 
     background: #ffffff;
+    border-radius: 24px;
 
+    box-shadow: 0 12px 35px rgba(40, 88, 102, 0.12);
+
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+
+    z-index: 9999;
+}
+
+.submenu-perfil.activo {
+    display: grid;
+}
+
+.submenu-perfil button {
+    border: none;
     border-radius: 18px;
+    padding: 22px 15px;
 
-    box-shadow:
-        0 18px 45px
-        rgba(40, 80, 90, 0.20);
-
-    border: 1px solid #dce9e6;
-
-    z-index: 2000;
-
-    box-sizing: border-box;
-}
-
-
-.panel-alertas h2 {
-
-    margin: 0 0 20px;
-
-    color: #2f6878;
-
-    font-size: 21px;
-
-}
-
-
-#formularioAlerta label {
-
-    display: block;
-
-    margin-bottom: 7px;
-
-    color: #315f6d;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-}
-
-
-#formularioAlerta input,
-#formularioAlerta select {
-
-    width: 100%;
-
-    height: 43px;
-
-    margin-bottom: 15px;
-
-    padding: 8px 12px;
-
-    border: 1px solid #d4e2df;
-
-    border-radius: 10px;
-
-    background: #f9fcfb;
-
-    color: #315f6d;
+    background: #dff2f3;
+    color: #285866;
 
     font-family: inherit;
-
-    font-size: 13px;
-
-    box-sizing: border-box;
-
-}
-
-
-#formularioAlerta input:focus,
-#formularioAlerta select:focus {
-
-    border-color: #8fcbd0;
-
-    outline: none;
-
-}
-
-
-.boton-guardar-alerta {
-
-    width: 100%;
-
-    padding: 12px;
-
-    border: none;
-
-    border-radius: 11px;
-
-    background: #397d8c;
-
-    color: white;
-
+    font-size: 16px;
     font-weight: 700;
 
     cursor: pointer;
 
+    transition: 0.2s ease;
 }
 
-
-.boton-guardar-alerta:hover {
-
-    background: #2f6878;
-
-}
-
-
-.lista-alertas {
-
-    margin-top: 22px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 10px;
-
-}
-
-
-.alerta-guardada {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 12px;
-
-    padding: 14px;
-
-    background: #edf7f5;
-
-    border-radius: 12px;
-
-    border-left: 4px solid #397d8c;
-
-}
-
-
-.alerta-guardada strong {
-
-    color: #2f6878;
-
-    font-size: 14px;
-
-}
-
-
-.alerta-guardada p {
-
-    margin: 5px 0;
-
-    color: #58767e;
-
-    font-size: 13px;
-
-}
-
-
-.alerta-guardada small {
-
-    color: #82969b;
-
-    font-size: 11px;
-
-}
-
-
-.boton-eliminar-alerta {
-
-    align-self: center;
-
-    border: none;
-
-    background: white;
-
-    color: #82969b;
-
-    border-radius: 8px;
-
-    padding: 6px 9px;
-
-    cursor: pointer;
-
-    font-size: 11px;
-
-}
-
-
-.boton-eliminar-alerta:hover {
-
-    background: #f3d9d7;
-
-    color: #9b5d58;
-
-}
-
-
-.sin-alertas {
-
-    text-align: center;
-
-    color: #84979b;
-
-    font-size: 13px;
-
-}
-
-
-/* MÓVIL */
-
-@media (max-width: 550px) {
-
-    .panel-alertas {
-
-        position: fixed;
-
-        top: 82px;
-
-        left: 15px;
-
-        right: 15px;
-
-        width: auto;
-
-        max-height: calc(100vh - 100px);
-
-    }
-
+.submenu-perfil button:hover {
+    transform: translateY(-2px);
+    background: #b9dfcc;
 }

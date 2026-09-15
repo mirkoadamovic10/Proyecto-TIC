@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -106,27 +105,28 @@
                 Agenda
             </a>
 
-
-            <!-- ALERTA -->
-            <a href="./alertas.html" class="boton-menu">
-                Alerta
-            </a>
-
         </nav>
 
 
         <!-- PERFIL -->
         <aside>
 
-            <button
-                type="button"
-                class="perfil"
-                aria-label="Perfil">
+           <div class="contenedor-perfil">
+    <button type="button" class="perfil" aria-label="Perfil" id="botonPerfil">
+        <span class="cabeza"></span>
+        <span class="cuerpo"></span>
+    </button>
 
-                <span class="cabeza"></span>
-                <span class="cuerpo"></span>
+    <div class="submenu-perfil" id="submenuPerfil">
+        <button type="button" data-pagina="configuracion.html">
+            Configuración
+        </button>
 
-            </button>
+        <button type="button" data-pagina="informacion-personal.html">
+            Información personal
+        </button>
+    </div>
+</div>
 
         </aside>
 
@@ -136,18 +136,34 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main class="inicio-personal">
 
-        <section aria-label="Página de inicio">
+    <section class="contenido-inicio" aria-label="Página de inicio">
 
-            <h1>Bienvenido a NeuroPassport</h1>
+       <h1 id="saludoUsuario">¡Hola! Bienvenido a NeuroPassport</h1>
 
-            <p>
-                Desde este espacio podés acceder a tu pasaporte,
-                agenda y alertas.
-            </p>
+        <figure class="ilustracion-pasaporte" aria-label="Ilustración de un pasaporte">
 
-        </section>
+            <div class="pasaporte-dibujo">
 
-    </main>
+                <div class="pasaporte-tapa">
+
+                    <span class="texto-pasaporte">PASSPORT</span>
+
+                    <span class="globo-pasaporte">
+                        <span class="linea-horizontal"></span>
+                        <span class="linea-vertical"></span>
+                        <span class="linea-curva-1"></span>
+                        <span class="linea-curva-2"></span>
+                    </span>
+
+                </div>
+
+            </div>
+
+        </figure>
+
+    </section>
+
+</main>
 
 
     <!-- JAVASCRIPT -->
@@ -156,4 +172,3 @@
 </body>
 
 </html>
-```

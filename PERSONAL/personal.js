@@ -1,25 +1,17 @@
-```javascript
 // ========================================
 // MENÚ PASAPORTE
 // ========================================
 
-const botonPasaporte =
-    document.getElementById("botonPasaporte");
+const botonPasaporte = document.getElementById("botonPasaporte");
+const submenuPasaporte = document.getElementById("submenuPasaporte");
 
-const submenuPasaporte =
-    document.getElementById("submenuPasaporte");
-
-
-// Abrir y cerrar el menú Pasaporte
 if (botonPasaporte && submenuPasaporte) {
 
     botonPasaporte.addEventListener("click", function () {
 
-        const estaOculto =
-            submenuPasaporte.hidden;
+        const estaOculto = submenuPasaporte.hidden;
 
-        submenuPasaporte.hidden =
-            !estaOculto;
+        submenuPasaporte.hidden = !estaOculto;
 
         botonPasaporte.setAttribute(
             "aria-expanded",
@@ -35,9 +27,7 @@ if (botonPasaporte && submenuPasaporte) {
 // BOTONES DEL PASAPORTE
 // ========================================
 
-const botonesPasaporte =
-    document.querySelectorAll(".boton-pasaporte");
-
+const botonesPasaporte = document.querySelectorAll(".boton-pasaporte");
 
 const pantallas = {
 
@@ -63,34 +53,57 @@ const pantallas = {
 
     "Objetivos": "objetivos.html",
 
-    "Preferencias de aprendizaje":
-        "preferencias-aprendizaje.html",
+    "Preferencias de aprendizaje": "preferencias-aprendizaje.html",
 
-    "Formas de comunicación":
-        "formas-comunicacion.html"
+    "Formas de comunicación": "formas-comunicacion.html"
 
 };
 
 
-// Navegar a cada pantalla
+// ========================================
+// NAVEGAR A LAS PANTALLAS
+// ========================================
+
 botonesPasaporte.forEach(function (boton) {
 
     boton.addEventListener("click", function () {
 
-        const nombrePantalla =
-            boton.textContent.trim();
+        const nombrePantalla = boton.textContent.trim();
 
-        const pagina =
-            pantallas[nombrePantalla];
+        const pagina = pantallas[nombrePantalla];
 
         if (pagina) {
-
-            window.location.href =
-                "./" + pagina;
-
+            window.location.href = pagina;
         }
 
     });
 
 });
-```
+const nombreUsuario = localStorage.getItem("nombreUsuario");
+
+const saludoUsuario = document.getElementById("saludoUsuario");
+
+if (nombreUsuario && saludoUsuario) {
+    saludoUsuario.textContent = `¡Hola ${nombreUsuario}! Bienvenido a NeuroPassport`;
+}
+const botonPerfil = document.getElementById("botonPerfil");
+const submenuPerfil = document.getElementById("submenuPerfil");
+
+if (botonPerfil && submenuPerfil) {
+    botonPerfil.addEventListener("click", function () {
+        const abierto = submenuPerfil.classList.toggle("activo");
+        botonPerfil.setAttribute("aria-expanded", abierto);
+    });
+
+    const opcionesPerfil = submenuPerfil.querySelectorAll("button");
+
+    opcionesPerfil.forEach(function (opcion) {
+        opcion.addEventListener("click", function () {
+            const pagina = opcion.getAttribute("data-pagina");
+
+            if (pagina) {
+                window.location.href = pagina;
+            }
+        });
+    });
+}

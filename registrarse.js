@@ -18,6 +18,8 @@ botonRegistrarse.addEventListener("click", function(event) {
         return;
     }
 
+    localStorage.setItem("nombreUsuario", nombre.value.trim());
+
     if (rol.value === "personal") {
         window.location.href = "PERSONAL/personal.html";
         return;
