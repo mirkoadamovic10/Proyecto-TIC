@@ -5,7 +5,6 @@ const rol = document.getElementById("rol");
 const botonRegistrarse = document.querySelector(".register-button");
 
 botonRegistrarse.addEventListener("click", function(event) {
-
     event.preventDefault();
 
     if (
@@ -25,6 +24,10 @@ botonRegistrarse.addEventListener("click", function(event) {
         return;
     }
 
-    alert("Registro realizado correctamente.");
+    if (rol.value === "familia") {
+        window.location.href = "FAMILIA/familia.html";
+        return;
+    }
 
+    alert("Registro realizado correctamente.");
 });

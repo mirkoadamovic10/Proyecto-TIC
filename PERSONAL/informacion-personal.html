@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información personal</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header class="encabezado-info">
+        <a href="personal.html" class="volver">← Volver</a>
+        <h1>Información personal</h1>
+    </header>
+
+    <main class="pagina-info">
+
+        <section class="tarjeta-info">
+
+            <div class="titulo-seccion">
+                <h2>Datos personales</h2>
+                <p>Completá tu información personal.</p>
+            </div>
+
+            <form id="formularioInfo">
+
+                <div class="fila">
+                    <div class="campo campo-grande">
+                        <label for="apellidoNombre">Apellido y nombre</label>
+                        <input type="text" id="apellidoNombre" placeholder="Ingresá tu apellido y nombre">
+                    </div>
+
+                    <div class="campo">
+                        <label for="documento">Documento</label>
+                        <input type="text" id="documento" placeholder="Ingresá tu documento">
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo">
+                        <label for="fechaNacimiento">Fecha de nacimiento</label>
+                        <input type="date" id="fechaNacimiento">
+                    </div>
+
+                    <div class="campo">
+                        <label for="edad">Edad</label>
+                        <input type="number" id="edad" min="0" placeholder="Edad">
+                    </div>
+
+                    <div class="campo">
+                        <label for="sexo">Sexo</label>
+                        <select id="sexo">
+                            <option value="">Seleccionar</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Otro">Otro</option>
+                            <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo campo-grande">
+                        <label for="domicilio">Domicilio</label>
+                        <input type="text" id="domicilio" placeholder="Ingresá tu domicilio">
+                    </div>
+
+                    <div class="campo">
+                        <label for="telFijo">Teléfono fijo</label>
+                        <input type="tel" id="telFijo" placeholder="Ingresá tu teléfono">
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo">
+                        <label for="grupoSanguineo">Grupo sanguíneo</label>
+                        <select id="grupoSanguineo">
+                            <option value="">Seleccionar</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="factorRh">Factor Rh</label>
+                        <select id="factorRh">
+                            <option value="">Seleccionar</option>
+                            <option value="+">Positivo (+)</option>
+                            <option value="-">Negativo (-)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="separador"></div>
+
+                <h2 class="titulo-contacto">Datos de contacto de los padres</h2>
+
+                <div class="fila">
+                    <div class="campo campo-grande">
+                        <label for="madre">Madre</label>
+                        <input type="text" id="madre" placeholder="Nombre y apellido">
+                    </div>
+
+                    <div class="campo">
+                        <label for="celularMadre">Celular</label>
+                        <input type="tel" id="celularMadre" placeholder="Número de celular">
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo campo-grande">
+                        <label for="padre">Padre</label>
+                        <input type="text" id="padre" placeholder="Nombre y apellido">
+                    </div>
+
+                    <div class="campo">
+                        <label for="celularPadre">Celular</label>
+                        <input type="tel" id="celularPadre" placeholder="Número de celular">
+                    </div>
+                </div>
+
+                <div class="acciones">
+                    <button type="submit" class="boton-guardar" id="botonGuardar">
+                        Guardar información
+                    </button>
+
+                    <button type="button" class="boton-editar" id="botonEditar">
+                        Editar información
+                    </button>
+                </div>
+
+                <p class="mensaje" id="mensaje"></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="informacion-personal.js"></script>
+
+</body>
+
+</html>

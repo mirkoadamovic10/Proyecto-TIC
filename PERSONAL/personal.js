@@ -1,7 +1,3 @@
-// ========================================
-// MENÚ PASAPORTE
-// ========================================
-
 const botonPasaporte = document.getElementById("botonPasaporte");
 const submenuPasaporte = document.getElementById("submenuPasaporte");
 
@@ -22,10 +18,6 @@ if (botonPasaporte && submenuPasaporte) {
 
 }
 
-
-// ========================================
-// BOTONES DEL PASAPORTE
-// ========================================
 
 const botonesPasaporte = document.querySelectorAll(".boton-pasaporte");
 
@@ -60,10 +52,6 @@ const pantallas = {
 };
 
 
-// ========================================
-// NAVEGAR A LAS PANTALLAS
-// ========================================
-
 botonesPasaporte.forEach(function (boton) {
 
     boton.addEventListener("click", function () {
@@ -79,6 +67,8 @@ botonesPasaporte.forEach(function (boton) {
     });
 
 });
+
+
 const nombreUsuario = localStorage.getItem("nombreUsuario");
 
 const saludoUsuario = document.getElementById("saludoUsuario");
@@ -86,24 +76,64 @@ const saludoUsuario = document.getElementById("saludoUsuario");
 if (nombreUsuario && saludoUsuario) {
     saludoUsuario.textContent = `¡Hola ${nombreUsuario}! Bienvenido a NeuroPassport`;
 }
+
+
 const botonPerfil = document.getElementById("botonPerfil");
 const submenuPerfil = document.getElementById("submenuPerfil");
 
 if (botonPerfil && submenuPerfil) {
+
     botonPerfil.addEventListener("click", function () {
+
         const abierto = submenuPerfil.classList.toggle("activo");
-        botonPerfil.setAttribute("aria-expanded", abierto);
+
+        botonPerfil.setAttribute(
+            "aria-expanded",
+            String(abierto)
+        );
+
     });
 
     const opcionesPerfil = submenuPerfil.querySelectorAll("button");
 
     opcionesPerfil.forEach(function (opcion) {
+
         opcion.addEventListener("click", function () {
+
             const pagina = opcion.getAttribute("data-pagina");
 
             if (pagina) {
                 window.location.href = pagina;
             }
+
         });
+
     });
+
+}
+
+
+const fotoPerfil = localStorage.getItem("fotoPerfil");
+
+if (botonPerfil && fotoPerfil) {
+
+    const imagenPerfil = document.createElement("img");
+
+    imagenPerfil.src = fotoPerfil;
+    imagenPerfil.alt = "Foto de perfil";
+    imagenPerfil.classList.add("imagen-perfil");
+
+    botonPerfil.appendChild(imagenPerfil);
+
+    const cabeza = botonPerfil.querySelector(".cabeza");
+    const cuerpo = botonPerfil.querySelector(".cuerpo");
+
+    if (cabeza) {
+        cabeza.style.display = "none";
+    }
+
+    if (cuerpo) {
+        cuerpo.style.display = "none";
+    }
+
 }

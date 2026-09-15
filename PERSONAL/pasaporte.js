@@ -467,3 +467,10 @@ function eliminarItem(id) {
 crearFormulario();
 
 mostrarItems();
+const perfil = document.getElementById("botonPerfil");
+const fotoPerfil = localStorage.getItem("fotoPerfil");
+
+if (perfil && fotoPerfil) {
+    perfil.style.backgroundImage = `url("${fotoPerfil}")`;
+    perfil.classList.add("perfil-con-foto");
+}

@@ -16,13 +16,10 @@
 
         <nav class="menu-personal" aria-label="Menú principal">
 
-            <!-- INICIO -->
             <a href="./personal.html" class="boton-menu">
                 Inicio
             </a>
 
-
-            <!-- PASAPORTE -->
             <section class="contenedor-pasaporte">
 
                 <button
@@ -31,11 +28,8 @@
                     id="botonPasaporte"
                     aria-expanded="false"
                     aria-controls="submenuPasaporte">
-
                     Pasaporte
-
                 </button>
-
 
                 <nav
                     id="submenuPasaporte"
@@ -99,74 +93,95 @@
 
             </section>
 
-
-            <!-- AGENDA -->
             <a href="./agenda.html" class="boton-menu">
                 Agenda
             </a>
 
         </nav>
 
-
-        <!-- PERFIL -->
         <aside>
 
-           <div class="contenedor-perfil">
-    <button type="button" class="perfil" aria-label="Perfil" id="botonPerfil">
-        <span class="cabeza"></span>
-        <span class="cuerpo"></span>
-    </button>
+            <div class="contenedor-perfil">
 
-    <div class="submenu-perfil" id="submenuPerfil">
-        <button type="button" data-pagina="configuracion.html">
-            Configuración
-        </button>
+                <button
+                    type="button"
+                    class="perfil"
+                    aria-label="Perfil"
+                    id="botonPerfil">
 
-        <button type="button" data-pagina="informacion-personal.html">
-            Información personal
-        </button>
-    </div>
-</div>
+                    <span class="cabeza"></span>
+                    <span class="cuerpo"></span>
 
-        </aside>
+                </button>
 
-    </header>
+                <div
+                    class="submenu-perfil"
+                    id="submenuPerfil">
 
+                    <button
+                        type="button"
+                        data-pagina="configuracion.html">
+                        Configuración
+                    </button>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="inicio-personal">
-
-    <section class="contenido-inicio" aria-label="Página de inicio">
-
-       <h1 id="saludoUsuario">¡Hola! Bienvenido a NeuroPassport</h1>
-
-        <figure class="ilustracion-pasaporte" aria-label="Ilustración de un pasaporte">
-
-            <div class="pasaporte-dibujo">
-
-                <div class="pasaporte-tapa">
-
-                    <span class="texto-pasaporte">PASSPORT</span>
-
-                    <span class="globo-pasaporte">
-                        <span class="linea-horizontal"></span>
-                        <span class="linea-vertical"></span>
-                        <span class="linea-curva-1"></span>
-                        <span class="linea-curva-2"></span>
-                    </span>
+                    <button
+                        type="button"
+                        data-pagina="informacion-personal.html">
+                        Información personal
+                    </button>
 
                 </div>
 
             </div>
 
-        </figure>
+        </aside>
 
-    </section>
+    </header>
 
-</main>
+    <main class="inicio-personal">
 
+        <section
+            class="contenido-inicio"
+            aria-label="Página de inicio">
 
-    <!-- JAVASCRIPT -->
+            <h1 id="saludoUsuario">
+                ¡Hola! Bienvenido a NeuroPassport
+            </h1>
+
+            <figure
+                class="ilustracion-pasaporte"
+                aria-label="Ilustración de un pasaporte">
+
+                <div class="pasaporte-dibujo">
+
+                    <div class="pasaporte-tapa">
+
+                        <span class="texto-pasaporte">
+                            PASSPORT
+                        </span>
+
+                        <span class="globo-pasaporte">
+
+                            <span class="linea-horizontal"></span>
+
+                            <span class="linea-vertical"></span>
+
+                            <span class="linea-curva-1"></span>
+
+                            <span class="linea-curva-2"></span>
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </figure>
+
+        </section>
+
+    </main>
+
     <script src="./personal.js"></script>
 
 </body>
