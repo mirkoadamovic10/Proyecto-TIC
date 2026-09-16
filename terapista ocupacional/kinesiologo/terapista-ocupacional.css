@@ -1,0 +1,257 @@
+```css
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #071d25, #0d3944, #155b66);
+    color: white;
+}
+
+
+/* HEADER */
+
+header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+header h2 {
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #b9ffff;
+}
+
+
+/* PERFIL */
+
+main {
+    width: 86%;
+    max-width: 1100px;
+    margin: 60px auto;
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+    padding: 45px;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+
+/* FOTO */
+
+.foto {
+    min-width: 190px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(135deg, #78dfe5, #2e8996);
+
+    border: 5px solid rgba(255, 255, 255, 0.7);
+
+    box-shadow: 0 0 35px rgba(130, 240, 245, 0.3);
+}
+
+.foto span {
+    font-size: 80px;
+}
+
+
+/* DATOS */
+
+.profesion {
+    color: #a8f5f5;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.datos h1 {
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+.datos h2 {
+    font-size: 21px;
+    font-weight: normal;
+    color: #b9eeee;
+    margin-bottom: 20px;
+}
+
+.descripcion {
+    max-width: 650px;
+    line-height: 1.6;
+    color: #d7eeee;
+}
+
+
+/* INFORMACIÓN */
+
+.informacion {
+    display: flex;
+    gap: 35px;
+    margin-top: 30px;
+}
+
+.informacion div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.informacion strong {
+    font-size: 13px;
+    color: #9cebed;
+}
+
+.informacion span {
+    font-size: 15px;
+}
+
+
+/* BOTÓN */
+
+.turno {
+    margin-top: 30px;
+
+    padding: 14px 30px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #b7f5f5;
+    color: #12343b;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.turno:hover {
+    transform: translateY(-2px);
+    background: white;
+}
+
+
+/* TARJETAS */
+
+.contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+
+    margin-top: 25px;
+}
+
+.tarjeta {
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 20px;
+}
+
+.tarjeta h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #b8f7f7;
+}
+
+.tarjeta ul {
+    list-style: none;
+}
+
+.tarjeta li {
+    padding: 10px 0;
+
+    color: #d8eeee;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.horarios p {
+    padding: 11px 0;
+    color: #d8eeee;
+}
+
+.horarios strong {
+    display: inline-block;
+    width: 100px;
+    color: white;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 750px) {
+
+    .perfil {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .datos h1 {
+        font-size: 30px;
+    }
+
+    .informacion {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .contenido {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        gap: 10px;
+    }
+}
+```
