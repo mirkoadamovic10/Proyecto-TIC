@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agenda</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="pagina-agenda">
+
+    <header class="barra-agenda">
+
+        <h2>NeuroPassport</h2>
+
+        <div class="menu-agenda">
+
+            <button class="boton-menu-agenda" onclick="window.location.href='familia.html'">
+                Inicio
+            </button>
+
+            <button class="boton-menu-agenda" onclick="window.location.href='linkear.html'">
+                Linkear
+            </button>
+
+            <button class="boton-menu-agenda activo">
+                Agenda
+            </button>
+
+            <div class="perfil-agenda">
+                <span class="perfil-cabeza"></span>
+                <span class="perfil-cuerpo"></span>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="agenda-principal">
+
+        <section class="agenda-contenedor">
+
+            <div class="agenda-superior">
+
+                <div>
+                    <h1>Agenda</h1>
+
+                    <p>
+                        Eventos de la persona vinculada.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="calendario">
+
+                <div class="calendario-cabecera">
+
+                    <button id="mesAnterior" class="boton-mes">
+                        ‹
+                    </button>
+
+                    <h2 id="mesActual"></h2>
+
+                    <button id="mesSiguiente" class="boton-mes">
+                        ›
+                    </button>
+
+                </div>
+
+                <div class="dias-semana">
+
+                    <div>Lun</div>
+                    <div>Mar</div>
+                    <div>Mié</div>
+                    <div>Jue</div>
+                    <div>Vie</div>
+                    <div>Sáb</div>
+                    <div>Dom</div>
+
+                </div>
+
+                <div id="diasCalendario" class="dias-calendario"></div>
+
+            </div>
+
+            <div class="referencias">
+
+                <div class="referencia">
+                    <span class="color-referencia turno"></span>
+                    <span>Turno médico</span>
+                </div>
+
+                <div class="referencia">
+                    <span class="color-referencia estudio"></span>
+                    <span>Estudio médico</span>
+                </div>
+
+                <div class="referencia">
+                    <span class="color-referencia terapia"></span>
+                    <span>Terapia</span>
+                </div>
+
+                <div class="referencia">
+                    <span class="color-referencia medicacion"></span>
+                    <span>Medicación</span>
+                </div>
+
+                <div class="referencia">
+                    <span class="color-referencia control"></span>
+                    <span>Control / seguimiento</span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="agenda-familia.js"></script>
+
+</body>
+
+</html>

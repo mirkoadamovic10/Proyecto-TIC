@@ -29,5 +29,10 @@ botonRegistrarse.addEventListener("click", function(event) {
         return;
     }
 
+    if (rol.value === "medico") {
+        window.location.href = "MEDICO/medico.html";
+        return;
+    }
+
     alert("Registro realizado correctamente.");
 });

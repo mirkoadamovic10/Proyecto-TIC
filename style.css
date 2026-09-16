@@ -2303,3 +2303,452 @@ h1 {
     background: transparent !important;
     box-shadow: none !important;
 }
+.pagina-linkear {
+    min-height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.tarjeta-linkear {
+    width: min(550px, 100%);
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 28px;
+    box-shadow: var(--sombra);
+    text-align: center;
+}
+
+.tarjeta-linkear h1 {
+    color: var(--azul-oscuro);
+    margin-bottom: 12px;
+}
+
+.tarjeta-linkear p {
+    color: var(--texto);
+    margin-bottom: 25px;
+}
+
+.campo-linkear {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.campo-linkear label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--texto);
+    font-weight: 600;
+}
+
+.campo-linkear input {
+    width: 100%;
+    padding: 14px 16px;
+    border: none;
+    border-radius: 14px;
+    background: var(--gris-claro);
+    font-size: 16px;
+    outline: none;
+}
+
+.boton-linkear {
+    border: none;
+    padding: 14px 30px;
+    border-radius: 16px;
+    background: var(--verde);
+    color: var(--azul-oscuro);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.boton-linkear:hover {
+    transform: translateY(-2px);
+}
+.pagina-personas,
+.pagina-datos-persona {
+    min-height: calc(100vh - 100px);
+    padding: 50px 20px;
+}
+
+.personas-contenedor,
+.datos-persona-contenedor {
+    width: min(1000px, 100%);
+    margin: 0 auto;
+}
+
+.personas-contenedor h1,
+.datos-persona-contenedor h1 {
+    color: var(--azul-oscuro);
+    margin-bottom: 10px;
+}
+
+.personas-contenedor > p {
+    color: var(--texto);
+    margin-bottom: 30px;
+}
+
+.lista-personas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.persona-vinculada {
+    border: none;
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+    box-shadow: var(--sombra);
+    cursor: pointer;
+}
+
+.persona-vinculada:hover {
+    transform: translateY(-2px);
+}
+
+.volver-personas {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: var(--azul-oscuro);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.bloque-datos {
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    margin-top: 25px;
+    box-shadow: var(--sombra);
+}
+
+.bloque-datos h2 {
+    color: var(--azul-oscuro);
+    margin-bottom: 20px;
+}
+
+.lista-pasaporte {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+@media (max-width: 700px) {
+
+    .lista-personas,
+    .lista-pasaporte {
+        grid-template-columns: 1fr;
+    }
+
+}
+.pagina-pacientes {
+    min-height: calc(100vh - 100px);
+    padding: 50px 20px;
+}
+
+.pacientes-contenedor {
+    width: min(1000px, 100%);
+    margin: 0 auto;
+}
+
+.pacientes-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.pacientes-superior h1 {
+    color: var(--azul-oscuro);
+    margin-bottom: 8px;
+}
+
+.pacientes-superior p {
+    color: var(--texto);
+}
+
+.boton-nuevo-paciente {
+    border: none;
+    padding: 14px 22px;
+    border-radius: 16px;
+    background: var(--verde);
+    color: var(--azul-oscuro);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.lista-pacientes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.tarjeta-paciente {
+    background: white;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: var(--sombra);
+}
+
+.tarjeta-paciente h2 {
+    color: var(--azul-oscuro);
+    margin-bottom: 8px;
+}
+
+.tarjeta-paciente p {
+    color: var(--gris);
+}
+
+.ventana-linkear {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(40, 88, 102, 0.18);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.ventana-linkear.mostrar {
+    display: flex;
+}
+
+.formulario-linkear {
+    position: relative;
+    width: min(500px, calc(100% - 40px));
+    padding: 35px;
+    background: white;
+    border-radius: 26px;
+    box-shadow: var(--sombra);
+}
+
+.formulario-linkear h2 {
+    color: var(--azul-oscuro);
+    margin-bottom: 10px;
+}
+
+.formulario-linkear p {
+    color: var(--texto);
+    margin-bottom: 25px;
+}
+
+.formulario-linkear label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.formulario-linkear input {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: var(--gris-claro);
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.boton-enviar-solicitud {
+    width: 100%;
+    border: none;
+    padding: 14px;
+    border-radius: 15px;
+    background: var(--verde);
+    color: var(--azul-oscuro);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.cerrar-linkear {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    color: var(--gris);
+    cursor: pointer;
+}
+
+.mensaje-solicitud {
+    margin-top: 18px;
+    margin-bottom: 0 !important;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+
+    .pacientes-superior {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .lista-pacientes {
+        grid-template-columns: 1fr;
+    }
+
+}
+.boton-menu-agenda {
+    border: none !important;
+    background: #dff2f3 !important;
+    color: #285866 !important;
+    padding: 14px 28px !important;
+    min-width: 130px !important;
+    height: 50px !important;
+    border-radius: 18px !important;
+    font-size: 16px !important;
+    font-family: inherit !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.boton-menu-agenda:hover {
+    background: #b9dfcc !important;
+}
+
+.boton-menu-agenda.activo {
+    background: #b9dfcc !important;
+    color: #285866 !important;
+}
+.boton-menu-agenda {
+    background: #d8bce4 !important;
+    color: #285866 !important;
+    border: none !important;
+    width: 120px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    border-radius: 14px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+}
+
+.boton-menu-agenda.activo {
+    background: #d8bce4 !important;
+    color: #285866 !important;
+}
+
+.boton-menu-agenda:hover {
+    background: #d8bce4 !important;
+}
+.boton-menu-agenda,
+.boton-menu-agenda.activo {
+    font-family: "Manrope", sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+}
+.formulario-evento {
+    width: 480px !important;
+    max-width: 90vw !important;
+    max-height: 85vh !important;
+    overflow-y: auto !important;
+    padding: 28px !important;
+    border-radius: 24px !important;
+    box-sizing: border-box !important;
+}
+
+.ventana-evento {
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+.ventana-evento.mostrar {
+    display: flex !important;
+}
+
+.formulario-evento h2 {
+    margin-bottom: 8px !important;
+}
+
+.formulario-evento p {
+    margin-bottom: 18px !important;
+}
+
+.formulario-evento label {
+    display: block !important;
+    margin-top: 12px !important;
+    margin-bottom: 6px !important;
+}
+
+.formulario-evento input,
+.formulario-evento select,
+.formulario-evento textarea {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.formulario-evento textarea {
+    min-height: 80px !important;
+    max-height: 110px !important;
+}
+.perfil-agenda {
+    position: relative !important;
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    border-radius: 50% !important;
+    background: #d9d9d9 !important;
+    overflow: hidden !important;
+    margin-left: 8px !important;
+}
+
+.perfil-agenda .perfil-cabeza {
+    position: absolute !important;
+    width: 18px !important;
+    height: 18px !important;
+    top: 7px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: #ffffff !important;
+    border-radius: 50% !important;
+}
+
+.perfil-agenda .perfil-cuerpo {
+    position: absolute !important;
+    width: 38px !important;
+    height: 23px !important;
+    bottom: -2px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: #ffffff !important;
+    border-radius: 50% 50% 0 0 !important;
+}
+.perfil-agenda {
+    position: absolute !important;
+    right: 25px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+
+    border-radius: 50% !important;
+    background: #d9d9d9 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+}
+.barra-agenda {
+    position: relative !important;
+}

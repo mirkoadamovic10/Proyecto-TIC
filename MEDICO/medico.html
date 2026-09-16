@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NeuroPassport - Familia</title>
+    <title>NeuroPassport - Médico</title>
 
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -16,21 +16,22 @@
 
         <nav class="menu-personal">
 
-            <a href="familia.html" class="boton-menu">
+            <a href="medico.html" class="boton-menu">
                 Inicio
             </a>
 
-            <a href="persona.html" class="boton-menu">
-                Persona
-            </a>
-            
-            <a href="linkear.html" class="boton-menu">
-                Linkear
+            <a href="pacientes.html" class="boton-menu">
+                Pacientes
             </a>
 
-            <a href="agenda-familia.html" class="boton-menu">
+            <button class="boton-menu-agenda" onclick="window.location.href='agenda-medico.html'">
                 Agenda
-            </a>
+            </button>
+
+            <div class="perfil-agenda">
+                <span class="perfil-cabeza"></span>
+                <span class="perfil-cuerpo"></span>
+            </div>
 
         </nav>
 
@@ -40,19 +41,19 @@
 
         <section class="contenido-inicio">
 
-            <h1 id="saludoFamilia">
+            <h1 id="saludoMedico">
                 ¡Hola! Bienvenido a NeuroPassport
             </h1>
 
             <p>
-                Desde este espacio podés acompañar y gestionar la información de la persona.
+                Desde este espacio podés acceder a la información de tus pacientes.
             </p>
 
         </section>
 
     </main>
 
-    <script src="familia.js"></script>
+    <script src="medico.js"></script>
 
 </body>
 
