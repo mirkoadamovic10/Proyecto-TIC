@@ -12,30 +12,47 @@
 
 <body class="pagina-agenda">
 
-    <header class="barra-agenda">
+    <header class="barra-empresa">
 
-        <h2>NeuroPassport</h2>
+        <nav class="menu-empresa">
 
-        <div class="menu-agenda">
+            <a
+                href="medico.html"
+                class="boton-menu-empresa">
 
-            <button class="boton-menu-agenda" onclick="window.location.href='medico.html'">
                 Inicio
-            </button>
 
-            <button class="boton-menu-agenda" onclick="window.location.href='pacientes.html'">
+            </a>
+
+
+            <a
+                href="pacientes.html"
+                class="boton-menu-empresa">
+
                 Pacientes
-            </button>
 
-            <button class="boton-menu-agenda activo">
+            </a>
+
+
+            <a
+                href="agenda-medico.html"
+                class="boton-menu-empresa">
+
                 Agenda
-            </button>
 
-            <div class="perfil-agenda">
-                <span class="perfil-cabeza"></span>
-                <span class="perfil-cuerpo"></span>
-            </div>
+            </a>
 
-        </div>
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa">
+
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+
+        </a>
 
     </header>
 
@@ -56,8 +73,13 @@
 
                 </div>
 
-                <button id="botonAgregarEvento" class="boton-agregar-evento">
+
+                <button
+                    id="botonAgregarEvento"
+                    class="boton-agregar-evento">
+
                     + Agregar evento
+
                 </button>
 
             </div>
@@ -67,14 +89,24 @@
 
                 <div class="calendario-cabecera">
 
-                    <button id="mesAnterior" class="boton-mes">
+                    <button
+                        id="mesAnterior"
+                        class="boton-mes">
+
                         ‹
+
                     </button>
+
 
                     <h2 id="mesActual"></h2>
 
-                    <button id="mesSiguiente" class="boton-mes">
+
+                    <button
+                        id="mesSiguiente"
+                        class="boton-mes">
+
                         ›
+
                     </button>
 
                 </div>
@@ -93,7 +125,11 @@
                 </div>
 
 
-                <div id="diasCalendario" class="dias-calendario"></div>
+                <div
+                    id="diasCalendario"
+                    class="dias-calendario">
+
+                </div>
 
             </div>
 
@@ -132,13 +168,20 @@
     </main>
 
 
-    <div id="ventanaEvento" class="ventana-evento">
+    <div
+        id="ventanaEvento"
+        class="ventana-evento">
 
         <div class="formulario-evento">
 
-            <button id="cerrarEvento" class="cerrar-evento">
+            <button
+                id="cerrarEvento"
+                class="cerrar-evento">
+
                 ×
+
             </button>
+
 
             <h2>Agregar consulta</h2>
 
@@ -154,8 +197,7 @@
             <input
                 type="text"
                 id="tituloEvento"
-                placeholder="Ej. Consulta médica"
-            >
+                placeholder="Ej. Consulta médica">
 
 
             <label for="pacienteEvento">
@@ -165,8 +207,7 @@
             <input
                 type="text"
                 id="pacienteEvento"
-                placeholder="Ej. Juan Pérez"
-            >
+                placeholder="Ej. Juan Pérez">
 
 
             <label for="motivoEvento">
@@ -175,8 +216,8 @@
 
             <textarea
                 id="motivoEvento"
-                placeholder="Ej. Control de seguimiento..."
-            ></textarea>
+                placeholder="Ej. Control de seguimiento...">
+            </textarea>
 
 
             <label for="fechaEvento">
@@ -185,8 +226,7 @@
 
             <input
                 type="date"
-                id="fechaEvento"
-            >
+                id="fechaEvento">
 
 
             <label for="horaEvento">
@@ -195,8 +235,7 @@
 
             <input
                 type="time"
-                id="horaEvento"
-            >
+                id="horaEvento">
 
 
             <label for="tipoEvento">
@@ -234,12 +273,16 @@
 
             <textarea
                 id="descripcionEvento"
-                placeholder="Agregá información adicional..."
-            ></textarea>
+                placeholder="Agregá información adicional...">
+            </textarea>
 
 
-            <button id="guardarEvento" class="boton-guardar-evento">
+            <button
+                id="guardarEvento"
+                class="boton-guardar-evento">
+
                 Guardar consulta
+
             </button>
 
         </div>

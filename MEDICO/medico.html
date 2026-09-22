@@ -12,34 +12,40 @@
 
 <body>
 
-    <header class="barra-personal">
+    <header class="barra-empresa">
 
-        <nav class="menu-personal">
+        <nav class="menu-empresa">
 
-            <a href="medico.html" class="boton-menu">
+            <a href="medico.html" class="boton-menu-empresa">
                 Inicio
             </a>
 
-            <a href="pacientes.html" class="boton-menu">
+            <a href="pacientes.html" class="boton-menu-empresa">
                 Pacientes
             </a>
 
-            <button class="boton-menu-agenda" onclick="window.location.href='agenda-medico.html'">
+            <a href="agenda-medico.html" class="boton-menu-empresa">
                 Agenda
-            </button>
-
-            <a href="configuracion.html" class="perfil-agenda" id="perfilAgenda" title="Configuración">
-                <span class="perfil-cabeza"></span>
-                <span class="perfil-cuerpo"></span>
             </a>
 
         </nav>
 
+        <a href="configuracion.html"
+           class="perfil-empresa"
+           id="perfilMedico"
+           title="Configuración">
+
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
     </header>
 
-    <main class="inicio-personal">
 
-        <section class="contenido-inicio">
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
 
             <h1 id="saludoMedico">
                 ¡Hola! Bienvenido a NeuroPassport
@@ -51,7 +57,64 @@
 
         </section>
 
+
+        <section class="empresa-acciones">
+
+            <article class="tarjeta-empresa">
+
+                <h2>Pacientes</h2>
+
+                <p>
+                    Consultá las personas vinculadas a tu cuenta
+                    y accedé a la información que hayan habilitado.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='pacientes.html'">
+
+                    Ver pacientes
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-empresa">
+
+                <h2>Agenda</h2>
+
+                <p>
+                    Organizá tus consultas, controles y turnos
+                    con tus pacientes.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='agenda-medico.html'">
+
+                    Ver agenda
+
+                </button>
+
+            </article>
+
+        </section>
+
+
+        <section class="empresa-info">
+
+            <h2>Información de pacientes</h2>
+
+            <p>
+                Solo vas a poder acceder a la información que cada paciente
+                haya decidido compartir con vos.
+            </p>
+
+        </section>
+
     </main>
+
 
     <script src="medico.js" defer></script>
 

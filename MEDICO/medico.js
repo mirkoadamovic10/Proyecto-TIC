@@ -1,20 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const nombreUsuario = localStorage.getItem("nombreUsuario");
-    const fotoUsuario = localStorage.getItem("fotoPerfil");
 
-    const saludoMedico = document.getElementById("saludoMedico");
-    const perfilAgenda = document.getElementById("perfilAgenda");
+    const nombreUsuario =
+        localStorage.getItem("nombreUsuario");
 
-    // Saludo personalizado
+    const fotoUsuario =
+        localStorage.getItem("fotoPerfil");
+
+    const saludoMedico =
+        document.getElementById("saludoMedico");
+
+    const perfilMedico =
+        document.getElementById("perfilMedico");
+
+
     if (nombreUsuario && saludoMedico) {
-        saludoMedico.textContent = `¡Hola ${nombreUsuario}! Bienvenido a NeuroPassport`;
+
+        saludoMedico.textContent =
+            `¡Hola ${nombreUsuario}! Bienvenido a NeuroPassport`;
+
     }
 
-    // Cargar foto de perfil en el avatar superior
-    if (fotoUsuario && perfilAgenda) {
-        perfilAgenda.style.backgroundImage = `url("${fotoUsuario}")`;
-        perfilAgenda.style.backgroundSize = "cover";
-        perfilAgenda.style.backgroundPosition = "center";
-        perfilAgenda.classList.add("tiene-foto");
+
+    if (fotoUsuario && perfilMedico) {
+
+        perfilMedico.style.backgroundImage =
+            `url("${fotoUsuario}")`;
+
+        perfilMedico.style.backgroundSize =
+            "cover";
+
+        perfilMedico.style.backgroundPosition =
+            "center";
+
+        perfilMedico.classList.add("tiene-foto");
+
     }
+
 });

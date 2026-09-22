@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresa - NeuroPassport</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="pagina-empresa">
+
+    <header class="barra-empresa">
+
+        <div class="menu-empresa">
+
+            <button class="boton-menu-empresa" onclick="location.href='empresa.html'">
+                Inicio
+            </button>
+
+            <button class="boton-menu-empresa" onclick="location.href='empleados.html'">
+                Empleados
+            </button>
+
+        </div>
+
+        <div class="perfil-empresa">
+            <div class="avatar-empresa"></div>
+
+            <div class="submenu-perfil-empresa">
+                <button>Configuración</button>
+                <button>Información personal</button>
+            </div>
+        </div>
+
+    </header>
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+            <h1 id="bienvenidaEmpresa">¡Hola! Bienvenido a NeuroPassport</h1>
+            <p>
+                Gestioná la información de los empleados que te hayan autorizado a verla.
+            </p>
+        </section>
+
+        <section class="empresa-acciones">
+
+            <div class="tarjeta-empresa">
+
+                <h2>Linkear empleado</h2>
+
+                <p>
+                    Vinculá a un empleado mediante su código de NeuroPassport.
+                </p>
+
+                <button onclick="location.href='empleados.html'">
+                    Linkear empleado
+                </button>
+
+            </div>
+
+            <div class="tarjeta-empresa">
+
+                <h2>Mis empleados</h2>
+
+                <p>
+                    Consultá los empleados que están vinculados con tu empresa.
+                </p>
+
+                <button onclick="location.href='empleados.html'">
+                    Ver empleados
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="empresa-info">
+
+            <h2>Información compartida</h2>
+
+            <p>
+                Solo podrás consultar la información que cada empleado haya decidido compartir con la empresa.
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="empresa.js"></script>
+
+</body>
+
+</html>

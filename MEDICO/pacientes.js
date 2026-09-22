@@ -19,14 +19,17 @@ const mensajeSolicitud =
 const listaPacientes =
     document.getElementById("listaPacientes");
 
+
 let pacientes =
     JSON.parse(
         localStorage.getItem("pacientesLinkeados")
     ) || [];
 
+
 function mostrarPacientes() {
 
     listaPacientes.innerHTML = "";
+
 
     if (pacientes.length === 0) {
 
@@ -36,12 +39,15 @@ function mostrarPacientes() {
         mensaje.textContent =
             "Todavía no tenés pacientes vinculados.";
 
+        mensaje.classList.add("sin-empleados");
+
         listaPacientes.appendChild(mensaje);
 
         return;
     }
 
-    pacientes.forEach(function(paciente) {
+
+    pacientes.forEach(function (paciente) {
 
         const tarjeta =
             document.createElement("div");
@@ -50,11 +56,13 @@ function mostrarPacientes() {
             "tarjeta-paciente"
         );
 
+
         const nombre =
             document.createElement("h2");
 
         nombre.textContent =
             paciente.nombre || paciente.email;
+
 
         const email =
             document.createElement("p");
@@ -62,8 +70,10 @@ function mostrarPacientes() {
         email.textContent =
             paciente.email;
 
+
         tarjeta.appendChild(nombre);
         tarjeta.appendChild(email);
+
 
         listaPacientes.appendChild(tarjeta);
 
@@ -71,9 +81,10 @@ function mostrarPacientes() {
 
 }
 
+
 botonNuevoPaciente.addEventListener(
     "click",
-    function() {
+    function () {
 
         ventanaLinkear.classList.add("mostrar");
 
@@ -84,18 +95,20 @@ botonNuevoPaciente.addEventListener(
     }
 );
 
+
 cerrarLinkear.addEventListener(
     "click",
-    function() {
+    function () {
 
         ventanaLinkear.classList.remove("mostrar");
 
     }
 );
 
+
 ventanaLinkear.addEventListener(
     "click",
-    function(evento) {
+    function (evento) {
 
         if (evento.target === ventanaLinkear) {
 
@@ -108,12 +121,14 @@ ventanaLinkear.addEventListener(
     }
 );
 
+
 botonEnviarSolicitud.addEventListener(
     "click",
-    function() {
+    function () {
 
         const email =
             emailPaciente.value.trim();
+
 
         if (email === "") {
 
@@ -121,7 +136,9 @@ botonEnviarSolicitud.addEventListener(
                 "Ingresá el correo del paciente.";
 
             return;
+
         }
+
 
         const solicitudes =
             JSON.parse(
@@ -129,6 +146,7 @@ botonEnviarSolicitud.addEventListener(
                     "solicitudesMedicas"
                 )
             ) || [];
+
 
         const solicitud = {
 
@@ -140,12 +158,15 @@ botonEnviarSolicitud.addEventListener(
 
         };
 
+
         solicitudes.push(solicitud);
+
 
         localStorage.setItem(
             "solicitudesMedicas",
             JSON.stringify(solicitudes)
         );
+
 
         mensajeSolicitud.textContent =
             "Solicitud enviada. El paciente debe aceptar la vinculación.";
@@ -154,5 +175,6 @@ botonEnviarSolicitud.addEventListener(
 
     }
 );
+
 
 mostrarPacientes();

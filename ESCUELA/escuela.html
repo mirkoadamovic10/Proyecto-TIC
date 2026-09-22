@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escuela - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header class="barra-escuela">
+
+        <h2>NeuroPassport</h2>
+
+        <nav class="menu-escuela">
+
+            <button
+                class="boton-menu-escuela activo"
+                onclick="window.location.href='escuela.html'">
+                Inicio
+            </button>
+
+            <button
+                class="boton-menu-escuela"
+                onclick="window.location.href='estudiantes.html'">
+                Estudiantes
+            </button>
+
+            <button
+                class="boton-menu-escuela"
+                onclick="window.location.href='estudiantes.html'">
+                Linkear estudiante
+            </button>
+
+        </nav>
+
+        <button class="perfil-escuela" id="botonPerfil">
+
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+
+        </button>
+
+        <div class="submenu-perfil-escuela" id="submenuPerfil" hidden>
+
+            <button onclick="alert('Configuración próximamente')">
+                Configuración
+            </button>
+
+            <button onclick="alert('Información personal próximamente')">
+                Información personal
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="escuela-principal">
+
+        <section class="escuela-bienvenida">
+
+            <p class="escuela-etiqueta">
+                ESCUELA / UNIVERSIDAD
+            </p>
+
+            <h1 id="saludoEscuela">
+                ¡Hola! Bienvenido a NeuroPassport
+            </h1>
+
+            <p>
+                Gestioná y acompañá a tus estudiantes
+                respetando la información que cada uno decide compartir.
+            </p>
+
+        </section>
+
+
+        <section class="escuela-acciones">
+
+            <article class="tarjeta-escuela">
+
+                <div class="icono-tarjeta-escuela">
+                    +
+                </div>
+
+                <h2>Linkear estudiante</h2>
+
+                <p>
+                    Vinculá un estudiante a tu institución
+                    para acceder a la información que tenga habilitada.
+                </p>
+
+                <button
+                    class="boton-escuela"
+                    onclick="window.location.href='estudiantes.html'">
+                    Linkear estudiante
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-escuela">
+
+                <div class="icono-tarjeta-escuela">
+                    ✓
+                </div>
+
+                <h2>Mis estudiantes</h2>
+
+                <p>
+                    Consultá los estudiantes que están vinculados
+                    con tu institución.
+                </p>
+
+                <button
+                    class="boton-escuela secundario"
+                    onclick="window.location.href='estudiantes.html'">
+                    Ver estudiantes
+                </button>
+
+            </article>
+
+        </section>
+
+
+        <section class="escuela-info">
+
+            <h2>Información compartida</h2>
+
+            <p>
+                Cada estudiante puede decidir qué información
+                compartir con su escuela o universidad.
+            </p>
+
+            <div class="info-permisos">
+
+                <div>
+                    <span>✓</span>
+                    <p>Preferencias de aprendizaje</p>
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    <p>Adaptaciones</p>
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    <p>Formas de comunicación</p>
+                </div>
+
+                <div>
+                    <span>🔒</span>
+                    <p>Información no autorizada</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="escuela.js"></script>
+
+</body>
+
+</html>

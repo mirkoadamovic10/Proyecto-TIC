@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personas - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header class="barra-familia">
+
+        <nav class="menu-familia">
+
+            <a href="familia.html" class="boton-menu-familia">
+                Inicio
+            </a>
+
+            <a href="personas.html" class="boton-menu-familia">
+                Personas
+            </a>
+
+            <a href="agenda-familia.html" class="boton-menu-familia">
+                Agenda
+            </a>
+
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-familia"
+            id="perfilFamilia">
+
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+    <main class="familia-pagina">
+
+        <section>
+
+            <div class="personas-superior">
+
+                <div>
+
+                    <h1>Personas</h1>
+
+                    <p class="texto-familia">
+                        Personas vinculadas a tu cuenta.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="boton-nueva-persona"
+                    id="botonNuevaPersona">
+
+                    + Linkear persona
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="listaPersonas"
+                class="lista-personas">
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="ventanaLinkearFamilia"
+        class="ventana-linkear-familia">
+
+        <div class="formulario-linkear-familia">
+
+            <button
+                type="button"
+                class="cerrar-linkear-familia"
+                id="cerrarLinkearFamilia">
+
+                ×
+
+            </button>
+
+
+            <h2>Linkear persona</h2>
+
+            <p>
+                Ingresá el correo electrónico de la persona que querés vincular.
+            </p>
+
+
+            <label for="emailPersona">
+                Correo electrónico
+            </label>
+
+            <input
+                type="email"
+                id="emailPersona"
+                placeholder="persona@email.com">
+
+
+            <button
+                type="button"
+                class="boton-enviar-solicitud-familia"
+                id="botonEnviarSolicitudFamilia">
+
+                Enviar solicitud
+
+            </button>
+
+
+            <p
+                id="mensajeSolicitudFamilia"
+                class="mensaje-solicitud-familia">
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script src="personas.js"></script>
+
+</body>
+
+</html>

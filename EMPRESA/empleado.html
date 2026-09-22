@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleado - NeuroPassport</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="pagina-empresa">
+
+    <header class="barra-empresa">
+
+        <div class="menu-empresa">
+
+            <button class="boton-menu-empresa" onclick="location.href='empresa.html'">
+                Inicio
+            </button>
+
+            <button class="boton-menu-empresa" onclick="location.href='empleados.html'">
+                Empleados
+            </button>
+
+        </div>
+
+        <div class="perfil-empresa">
+            <div class="avatar-empresa"></div>
+
+            <div class="submenu-perfil-empresa">
+                <button>Configuración</button>
+                <button>Información personal</button>
+            </div>
+        </div>
+
+    </header>
+
+    <main class="perfil-empleado-pagina">
+
+        <div class="cabecera-empleado">
+
+            <button onclick="location.href='empleados.html'">
+                ← Volver
+            </button>
+
+            <h1 id="nombreEmpleado">Empleado</h1>
+
+        </div>
+
+        <section class="informacion-habilitada">
+
+            <h2>Información habilitada</h2>
+
+            <div id="informacionEmpleado"></div>
+
+        </section>
+
+    </main>
+
+    <script src="empleado.js"></script>
+
+</body>
+
+</html>

@@ -1,213 +1,429 @@
-const diasCalendario = document.getElementById("diasCalendario");
-const mesActual = document.getElementById("mesActual");
+document.addEventListener("DOMContentLoaded", function () {
 
-const mesAnterior = document.getElementById("mesAnterior");
-const mesSiguiente = document.getElementById("mesSiguiente");
+    const diasCalendario =
+        document.getElementById("diasCalendario");
 
-let fechaCalendario = new Date();
+    const mesActual =
+        document.getElementById("mesActual");
 
-let eventos = JSON.parse(
-    localStorage.getItem("neuropassport_eventos")
-) || [];
+    const mesAnterior =
+        document.getElementById("mesAnterior");
 
-const nombresMeses = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre"
-];
+    const mesSiguiente =
+        document.getElementById("mesSiguiente");
 
-const tiposEvento = {
+    const botonAgregarEvento =
+        document.getElementById("botonAgregarEvento");
 
-    turno: {
-        nombre: "Turno médico",
-        clase: "turno"
-    },
+    const ventanaEvento =
+        document.getElementById("ventanaEvento");
 
-    estudio: {
-        nombre: "Estudio médico",
-        clase: "estudio"
-    },
+    const cerrarEvento =
+        document.getElementById("cerrarEvento");
 
-    terapia: {
-        nombre: "Terapia",
-        clase: "terapia"
-    },
+    const guardarEvento =
+        document.getElementById("guardarEvento");
 
-    medicacion: {
-        nombre: "Medicación",
-        clase: "medicacion"
-    },
+    const tituloEvento =
+        document.getElementById("tituloEvento");
 
-    control: {
-        nombre: "Control / seguimiento",
-        clase: "control"
+    const personaEvento =
+        document.getElementById("personaEvento");
+
+    const motivoEvento =
+        document.getElementById("motivoEvento");
+
+    const fechaEvento =
+        document.getElementById("fechaEvento");
+
+    const horaEvento =
+        document.getElementById("horaEvento");
+
+    const tipoEvento =
+        document.getElementById("tipoEvento");
+
+    const descripcionEvento =
+        document.getElementById("descripcionEvento");
+
+    const perfilFamilia =
+        document.getElementById("perfilFamilia");
+
+
+    const fotoUsuario =
+        localStorage.getItem("fotoPerfil");
+
+
+    if (fotoUsuario && perfilFamilia) {
+
+        perfilFamilia.style.backgroundImage =
+            `url("${fotoUsuario}")`;
+
+        perfilFamilia.style.backgroundSize =
+            "cover";
+
+        perfilFamilia.style.backgroundPosition =
+            "center";
+
+        perfilFamilia.classList.add("tiene-foto");
+
     }
 
-};
 
-function mostrarCalendario() {
+    let fechaCalendario = new Date();
 
-    diasCalendario.innerHTML = "";
 
-    const año = fechaCalendario.getFullYear();
-    const mes = fechaCalendario.getMonth();
+    let eventos =
+        JSON.parse(
+            localStorage.getItem(
+                "neuropassport_eventos_familia"
+            )
+        ) || [];
 
-    mesActual.textContent =
-        nombresMeses[mes] + " " + año;
 
-    let primerDia =
-        new Date(año, mes, 1).getDay();
+    function mostrarCalendario() {
 
-    if (primerDia === 0) {
-        primerDia = 7;
-    }
+        diasCalendario.innerHTML = "";
 
-    const cantidadDias =
-        new Date(año, mes + 1, 0).getDate();
 
-    for (let i = 1; i < primerDia; i++) {
+        const año =
+            fechaCalendario.getFullYear();
 
-        const espacio = document.createElement("div");
+        const mes =
+            fechaCalendario.getMonth();
 
-        espacio.classList.add(
-            "dia",
-            "dia-vacio"
-        );
 
-        diasCalendario.appendChild(espacio);
-    }
-
-    for (let dia = 1; dia <= cantidadDias; dia++) {
-
-        const elementoDia =
-            document.createElement("div");
-
-        elementoDia.classList.add("dia");
-
-        const numeroDia =
-            document.createElement("span");
-
-        numeroDia.classList.add("numero-dia");
-
-        numeroDia.textContent = dia;
-
-        elementoDia.appendChild(numeroDia);
-
-        const fechaFormateada =
-            `${año}-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
-
-        const eventosDelDia =
-            eventos.filter(
-                evento => evento.fecha === fechaFormateada
+        const nombreMes =
+            fechaCalendario.toLocaleDateString(
+                "es-AR",
+                {
+                    month: "long",
+                    year: "numeric"
+                }
             );
 
-        eventosDelDia.forEach(evento => {
 
-            const eventoElemento =
+        mesActual.textContent =
+            nombreMes.charAt(0).toUpperCase() +
+            nombreMes.slice(1);
+
+
+        let primerDia =
+            new Date(
+                año,
+                mes,
+                1
+            ).getDay();
+
+
+        primerDia =
+            primerDia === 0
+                ? 6
+                : primerDia - 1;
+
+
+        const cantidadDias =
+            new Date(
+                año,
+                mes + 1,
+                0
+            ).getDate();
+
+
+        for (
+            let i = 0;
+            i < primerDia;
+            i++
+        ) {
+
+            const espacio =
                 document.createElement("div");
 
-            eventoElemento.classList.add(
-                "evento-calendario",
-                tiposEvento[evento.tipo].clase
+            espacio.className =
+                "dia-calendario vacio";
+
+            diasCalendario.appendChild(
+                espacio
             );
 
-            const nombre =
+        }
+
+
+        for (
+            let dia = 1;
+            dia <= cantidadDias;
+            dia++
+        ) {
+
+            const celda =
+                document.createElement("div");
+
+            celda.className =
+                "dia-calendario";
+
+
+            const numero =
                 document.createElement("span");
 
-            nombre.classList.add("nombre-evento");
+            numero.textContent =
+                dia;
 
-            nombre.textContent = evento.titulo;
+            celda.appendChild(
+                numero
+            );
 
-            eventoElemento.appendChild(nombre);
 
-            if (evento.hora) {
+            const fecha =
+                `${año}-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
 
-                const hora =
-                    document.createElement("span");
 
-                hora.classList.add("hora-evento");
+            const eventosDelDia =
+                eventos.filter(
+                    function (evento) {
 
-                hora.textContent = evento.hora;
+                        return evento.fecha === fecha;
 
-                eventoElemento.appendChild(hora);
-            }
+                    }
+                );
 
-            eventoElemento.addEventListener(
-                "click",
-                function (e) {
 
-                    e.stopPropagation();
+            eventosDelDia.forEach(
+                function (evento) {
 
-                    mostrarInformacionEvento(evento);
+                    const eventoElemento =
+                        document.createElement("div");
+
+                    eventoElemento.className =
+                        `evento-calendario ${evento.tipo}`;
+
+
+                    eventoElemento.textContent =
+                        evento.titulo;
+
+
+                    eventoElemento.addEventListener(
+                        "click",
+                        function (e) {
+
+                            e.stopPropagation();
+
+                            mostrarEvento(
+                                evento
+                            );
+
+                        }
+                    );
+
+
+                    celda.appendChild(
+                        eventoElemento
+                    );
 
                 }
             );
 
-            elementoDia.appendChild(eventoElemento);
 
-        });
+            diasCalendario.appendChild(
+                celda
+            );
 
-        diasCalendario.appendChild(elementoDia);
+        }
 
     }
 
-}
 
-function mostrarInformacionEvento(evento) {
+    function mostrarEvento(evento) {
 
-    const tipo =
-        tiposEvento[evento.tipo].nombre;
+        const informacion =
+            `Evento: ${evento.titulo}\n\n` +
+            `Persona: ${evento.persona}\n` +
+            `Motivo: ${evento.motivo}\n` +
+            `Fecha: ${evento.fecha}\n` +
+            `Hora: ${evento.hora || "Sin horario"}\n` +
+            `Descripción: ${evento.descripcion || "Sin descripción"}`;
 
-    let mensaje =
-        `${evento.titulo}\n\n` +
-        `Tipo: ${tipo}\n` +
-        `Fecha: ${evento.fecha}`;
 
-    if (evento.hora) {
-        mensaje += `\nHora: ${evento.hora}`;
-    }
+        const eliminar =
+            confirm(
+                informacion +
+                "\n\n¿Querés eliminar este evento?"
+            );
 
-    if (evento.descripcion) {
-        mensaje += `\n\n${evento.descripcion}`;
-    }
 
-    alert(mensaje);
+        if (!eliminar) {
+            return;
+        }
 
-}
 
-mesAnterior.addEventListener(
-    "click",
-    function () {
+        eventos =
+            eventos.filter(
+                function (item) {
 
-        fechaCalendario.setMonth(
-            fechaCalendario.getMonth() - 1
+                    return item.id !== evento.id;
+
+                }
+            );
+
+
+        localStorage.setItem(
+            "neuropassport_eventos_familia",
+            JSON.stringify(eventos)
         );
+
 
         mostrarCalendario();
 
     }
-);
 
-mesSiguiente.addEventListener(
-    "click",
-    function () {
 
-        fechaCalendario.setMonth(
-            fechaCalendario.getMonth() + 1
-        );
+    botonAgregarEvento.addEventListener(
+        "click",
+        function () {
 
-        mostrarCalendario();
+            ventanaEvento.classList.add(
+                "mostrar"
+            );
 
-    }
-);
+        }
+    );
 
-mostrarCalendario();
+
+    cerrarEvento.addEventListener(
+        "click",
+        function () {
+
+            ventanaEvento.classList.remove(
+                "mostrar"
+            );
+
+        }
+    );
+
+
+    ventanaEvento.addEventListener(
+        "click",
+        function (evento) {
+
+            if (
+                evento.target === ventanaEvento
+            ) {
+
+                ventanaEvento.classList.remove(
+                    "mostrar"
+                );
+
+            }
+
+        }
+    );
+
+
+    guardarEvento.addEventListener(
+        "click",
+        function () {
+
+            if (
+                tituloEvento.value.trim() === "" ||
+                personaEvento.value.trim() === "" ||
+                motivoEvento.value.trim() === "" ||
+                fechaEvento.value === ""
+            ) {
+
+                alert(
+                    "Completá el nombre, la persona, el motivo y la fecha."
+                );
+
+                return;
+
+            }
+
+
+            const nuevoEvento = {
+
+                id: Date.now(),
+
+                titulo:
+                    tituloEvento.value.trim(),
+
+                persona:
+                    personaEvento.value.trim(),
+
+                motivo:
+                    motivoEvento.value.trim(),
+
+                fecha:
+                    fechaEvento.value,
+
+                hora:
+                    horaEvento.value,
+
+                tipo:
+                    tipoEvento.value,
+
+                descripcion:
+                    descripcionEvento.value.trim()
+
+            };
+
+
+            eventos.push(
+                nuevoEvento
+            );
+
+
+            localStorage.setItem(
+                "neuropassport_eventos_familia",
+                JSON.stringify(eventos)
+            );
+
+
+            tituloEvento.value = "";
+            personaEvento.value = "";
+            motivoEvento.value = "";
+            fechaEvento.value = "";
+            horaEvento.value = "";
+            tipoEvento.value = "turno";
+            descripcionEvento.value = "";
+
+
+            ventanaEvento.classList.remove(
+                "mostrar"
+            );
+
+
+            mostrarCalendario();
+
+        }
+    );
+
+
+    mesAnterior.addEventListener(
+        "click",
+        function () {
+
+            fechaCalendario.setMonth(
+                fechaCalendario.getMonth() - 1
+            );
+
+            mostrarCalendario();
+
+        }
+    );
+
+
+    mesSiguiente.addEventListener(
+        "click",
+        function () {
+
+            fechaCalendario.setMonth(
+                fechaCalendario.getMonth() + 1
+            );
+
+            mostrarCalendario();
+
+        }
+    );
+
+
+    mostrarCalendario();
+
+});

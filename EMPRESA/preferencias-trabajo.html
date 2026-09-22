@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferencias de trabajo - NeuroPassport</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="pagina-empresa">
+
+    <header class="barra-empresa">
+
+        <div class="menu-empresa">
+
+            <button class="boton-menu-empresa" onclick="location.href='empresa.html'">
+                Inicio
+            </button>
+
+            <button class="boton-menu-empresa" onclick="location.href='empleados.html'">
+                Empleados
+            </button>
+
+        </div>
+
+        <div class="perfil-empresa">
+            <div class="avatar-empresa"></div>
+
+            <div class="submenu-perfil-empresa">
+                <button>Configuración</button>
+                <button>Información personal</button>
+            </div>
+        </div>
+
+    </header>
+
+    <main class="preferencias-pagina">
+
+        <h1>Preferencias de trabajo</h1>
+
+        <p>
+            Completá esta información para indicar qué condiciones,
+            formas de trabajo y adaptaciones pueden ayudarte.
+        </p>
+
+        <form id="formPreferencias">
+
+            <div class="campo-preferencia">
+
+                <label for="formaTrabajo">
+                    ¿Cómo trabajás mejor?
+                </label>
+
+                <textarea
+                    id="formaTrabajo"
+                    placeholder="Ej: con instrucciones escritas, ejemplos, tareas organizadas por pasos..."
+                ></textarea>
+
+            </div>
+
+            <div class="campo-preferencia">
+
+                <label for="ayudasTrabajo">
+                    ¿Qué ayudas necesitás?
+                </label>
+
+                <textarea
+                    id="ayudasTrabajo"
+                    placeholder="Escribí las ayudas o apoyos que pueden facilitar tu trabajo."
+                ></textarea>
+
+            </div>
+
+            <div class="campo-preferencia">
+
+                <label for="ambienteTrabajo">
+                    ¿Qué ambiente de trabajo te favorece?
+                </label>
+
+                <textarea
+                    id="ambienteTrabajo"
+                    placeholder="Ej: poco ruido, espacio tranquilo, determinada iluminación..."
+                ></textarea>
+
+            </div>
+
+            <div class="campo-preferencia">
+
+                <label for="organizacion">
+                    ¿Cómo preferís organizar tus tareas?
+                </label>
+
+                <textarea
+                    id="organizacion"
+                    placeholder="Ej: lista de tareas, calendario, recordatorios, instrucciones paso a paso..."
+                ></textarea>
+
+            </div>
+
+            <div class="campo-preferencia">
+
+                <label for="comunicacionTrabajo">
+                    ¿Qué forma de comunicación preferís?
+                </label>
+
+                <textarea
+                    id="comunicacionTrabajo"
+                    placeholder="Ej: mensajes escritos, instrucciones claras, reuniones breves..."
+                ></textarea>
+
+            </div>
+
+            <div class="campo-preferencia">
+
+                <label for="otras">
+                    Otras observaciones
+                </label>
+
+                <textarea
+                    id="otras"
+                    placeholder="Agregá cualquier otra información que quieras compartir."
+                ></textarea>
+
+            </div>
+
+            <label class="permiso-empresa">
+
+                <input
+                    type="checkbox"
+                    id="compartirEmpresa"
+                >
+
+                <span>
+                    Compartir estas preferencias con la empresa
+                </span>
+
+            </label>
+
+            <button
+                type="submit"
+                class="boton-guardar-preferencias"
+            >
+                Guardar
+            </button>
+
+        </form>
+
+    </main>
+
+    <script src="preferencias-trabajo.js"></script>
+
+</body>
+
+</html>

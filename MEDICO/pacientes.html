@@ -12,57 +12,75 @@
 
 <body>
 
-    <header class="barra-personal">
+    <header class="barra-empresa">
 
-        <nav class="menu-personal">
+        <nav class="menu-empresa">
 
-            <a href="medico.html" class="boton-menu">
+            <a href="medico.html" class="boton-menu-empresa">
                 Inicio
             </a>
 
-            <a href="pacientes.html" class="boton-menu">
+            <a href="pacientes.html" class="boton-menu-empresa">
                 Pacientes
             </a>
 
-            <a href="#" class="boton-menu">
+            <a href="agenda-medico.html" class="boton-menu-empresa">
                 Agenda
             </a>
 
         </nav>
 
+        <a href="configuracion.html"
+           class="perfil-empresa"
+           id="perfilMedico">
+
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
     </header>
 
-    <main class="pagina-pacientes">
 
-        <section class="pacientes-contenedor">
+    <main class="empresa-pagina">
+
+        <section>
 
             <div class="pacientes-superior">
 
                 <div>
+
                     <h1>Pacientes</h1>
 
-                    <p>
+                    <p class="texto-empresa">
                         Personas vinculadas a tu cuenta.
                     </p>
+
                 </div>
+
 
                 <button
                     type="button"
                     class="boton-nuevo-paciente"
                     id="botonNuevoPaciente">
+
                     + Linkear nuevo paciente
+
                 </button>
 
             </div>
 
+
             <div
                 id="listaPacientes"
                 class="lista-pacientes">
+
             </div>
 
         </section>
 
     </main>
+
 
     <div
         id="ventanaLinkear"
@@ -74,14 +92,18 @@
                 type="button"
                 class="cerrar-linkear"
                 id="cerrarLinkear">
+
                 ×
+
             </button>
+
 
             <h2>Linkear nuevo paciente</h2>
 
             <p>
                 Ingresá el correo electrónico del paciente.
             </p>
+
 
             <label for="emailPaciente">
                 Correo electrónico
@@ -92,21 +114,27 @@
                 id="emailPaciente"
                 placeholder="paciente@email.com">
 
+
             <button
                 type="button"
                 class="boton-enviar-solicitud"
                 id="botonEnviarSolicitud">
+
                 Enviar solicitud
+
             </button>
+
 
             <p
                 id="mensajeSolicitud"
                 class="mensaje-solicitud">
+
             </p>
 
         </div>
 
     </div>
+
 
     <script src="pacientes.js"></script>
 

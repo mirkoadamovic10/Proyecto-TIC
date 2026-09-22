@@ -1,22 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const nombreUsuario = localStorage.getItem("nombreUsuario");
-    const fotoGuardada = localStorage.getItem("fotoPerfil");
-    
-    const saludoFamilia = document.getElementById("saludoFamilia");
-    const perfilAgenda = document.getElementById("perfilAgenda");
-    const navCabeza = document.getElementById("navCabeza");
-    const navCuerpo = document.getElementById("navCuerpo");
+
+    const nombreUsuario =
+        localStorage.getItem("nombreUsuario");
+
+    const fotoUsuario =
+        localStorage.getItem("fotoPerfil");
+
+    const saludoFamilia =
+        document.getElementById("saludoFamilia");
+
+    const perfilFamilia =
+        document.getElementById("perfilFamilia");
+
 
     if (nombreUsuario && saludoFamilia) {
-        saludoFamilia.textContent = `¡Hola ${nombreUsuario}! Bienvenido a NeuroPassport`;
+
+        saludoFamilia.textContent =
+            `¡Hola ${nombreUsuario}! Bienvenido a NeuroPassport`;
+
     }
 
-    if (fotoGuardada && perfilAgenda) {
-        perfilAgenda.style.backgroundImage = `url("${fotoGuardada}")`;
-        perfilAgenda.style.backgroundSize = "cover";
-        perfilAgenda.style.backgroundPosition = "center";
-        
-        if (navCabeza) navCabeza.style.display = "none";
-        if (navCuerpo) navCuerpo.style.display = "none";
+
+    if (fotoUsuario && perfilFamilia) {
+
+        perfilFamilia.style.backgroundImage =
+            `url("${fotoUsuario}")`;
+
+        perfilFamilia.style.backgroundSize =
+            "cover";
+
+        perfilFamilia.style.backgroundPosition =
+            "center";
+
+        perfilFamilia.classList.add("tiene-foto");
+
     }
+
 });

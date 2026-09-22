@@ -18,26 +18,34 @@
 
         <div class="menu-agenda">
 
-            <button class="boton-menu-agenda" onclick="window.location.href='familia.html'">
+            <button
+                class="boton-menu-agenda"
+                onclick="window.location.href='familia.html'">
                 Inicio
             </button>
 
-            <button class="boton-menu-agenda" onclick="window.location.href='linkear.html'">
-                Linkear
+            <button
+                class="boton-menu-agenda"
+                onclick="window.location.href='personas.html'">
+                Personas
             </button>
 
-            <button class="boton-menu-agenda activo">
+            <button
+                class="boton-menu-agenda activo">
                 Agenda
             </button>
 
             <div class="perfil-agenda">
+
                 <span class="perfil-cabeza"></span>
                 <span class="perfil-cuerpo"></span>
+
             </div>
 
         </div>
 
     </header>
+
 
     <main class="agenda-principal">
 
@@ -46,30 +54,50 @@
             <div class="agenda-superior">
 
                 <div>
+
                     <h1>Agenda</h1>
 
                     <p>
-                        Eventos de la persona vinculada.
+                        Organizá los turnos, estudios, terapias y controles médicos.
                     </p>
+
                 </div>
 
+                <button
+                    id="botonAgregarEvento"
+                    class="boton-agregar-evento">
+
+                    + Agregar evento
+
+                </button>
+
             </div>
+
 
             <div class="calendario">
 
                 <div class="calendario-cabecera">
 
-                    <button id="mesAnterior" class="boton-mes">
+                    <button
+                        id="mesAnterior"
+                        class="boton-mes">
+
                         ‹
+
                     </button>
 
                     <h2 id="mesActual"></h2>
 
-                    <button id="mesSiguiente" class="boton-mes">
+                    <button
+                        id="mesSiguiente"
+                        class="boton-mes">
+
                         ›
+
                     </button>
 
                 </div>
+
 
                 <div class="dias-semana">
 
@@ -83,35 +111,59 @@
 
                 </div>
 
-                <div id="diasCalendario" class="dias-calendario"></div>
+
+                <div
+                    id="diasCalendario"
+                    class="dias-calendario">
+                </div>
 
             </div>
+
 
             <div class="referencias">
 
                 <div class="referencia">
+
                     <span class="color-referencia turno"></span>
+
                     <span>Turno médico</span>
+
                 </div>
 
+
                 <div class="referencia">
+
                     <span class="color-referencia estudio"></span>
+
                     <span>Estudio médico</span>
+
                 </div>
 
+
                 <div class="referencia">
+
                     <span class="color-referencia terapia"></span>
+
                     <span>Terapia</span>
+
                 </div>
 
+
                 <div class="referencia">
+
                     <span class="color-referencia medicacion"></span>
+
                     <span>Medicación</span>
+
                 </div>
 
+
                 <div class="referencia">
+
                     <span class="color-referencia control"></span>
+
                     <span>Control / seguimiento</span>
+
                 </div>
 
             </div>
@@ -119,6 +171,109 @@
         </section>
 
     </main>
+
+
+    <div
+        id="ventanaEvento"
+        class="ventana-evento">
+
+        <div class="formulario-evento">
+
+            <button
+                id="cerrarEvento"
+                class="cerrar-evento">
+
+                ×
+
+            </button>
+
+
+            <h2>Agregar evento</h2>
+
+            <p>
+                Completá la información del evento.
+            </p>
+
+
+            <label for="tituloEvento">
+                Nombre del evento
+            </label>
+
+            <input
+                type="text"
+                id="tituloEvento"
+                placeholder="Ej. Turno con el neurólogo">
+
+
+            <label for="fechaEvento">
+                Fecha
+            </label>
+
+            <input
+                type="date"
+                id="fechaEvento">
+
+
+            <label for="horaEvento">
+                Hora
+            </label>
+
+            <input
+                type="time"
+                id="horaEvento">
+
+
+            <label for="tipoEvento">
+                Tipo de evento
+            </label>
+
+            <select id="tipoEvento">
+
+                <option value="turno">
+                    Turno médico
+                </option>
+
+                <option value="estudio">
+                    Estudio médico
+                </option>
+
+                <option value="terapia">
+                    Terapia
+                </option>
+
+                <option value="medicacion">
+                    Medicación
+                </option>
+
+                <option value="control">
+                    Control / seguimiento
+                </option>
+
+            </select>
+
+
+            <label for="descripcionEvento">
+                Descripción
+            </label>
+
+            <textarea
+                id="descripcionEvento"
+                placeholder="Agregá información adicional...">
+            </textarea>
+
+
+            <button
+                id="guardarEvento"
+                class="boton-guardar-evento">
+
+                Guardar evento
+
+            </button>
+
+        </div>
+
+    </div>
+
 
     <script src="agenda-familia.js"></script>
 
