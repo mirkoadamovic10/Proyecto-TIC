@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Objetivos - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+
+    <header class="barra-personal">
+
+        <nav class="menu-personal">
+
+            <a href="terapista.html" class="boton-menu">
+                Inicio
+            </a>
+
+            <a href="pacientes.html" class="boton-menu">
+                Pacientes
+            </a>
+
+            <button
+                class="boton-menu-agenda"
+                onclick="window.location.href='agenda-terapista.html'">
+
+                Agenda
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main class="pagina-objetivos">
+
+        <section class="objetivos-contenedor">
+
+
+            <div class="objetivos-superior">
+
+                <div>
+
+                    <h1>
+                        Objetivos
+                    </h1>
+
+                    <p id="nombrePaciente">
+                        Objetivos del paciente
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="botonAgregarObjetivo"
+                    class="boton-agregar-objetivo">
+
+                    + Agregar objetivo
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="listaObjetivos"
+                class="lista-objetivos">
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="ventanaObjetivo"
+        class="ventana-objetivo">
+
+        <div class="formulario-objetivo">
+
+
+            <button
+                id="cerrarObjetivo"
+                class="cerrar-objetivo">
+
+                ×
+
+            </button>
+
+
+            <h2>
+                Nuevo objetivo
+            </h2>
+
+
+            <p>
+                Agregá un objetivo para realizar el seguimiento del paciente.
+            </p>
+
+
+            <label for="textoObjetivo">
+                Objetivo
+            </label>
+
+
+            <textarea
+                id="textoObjetivo"
+                placeholder="Ej. Mejorar la movilidad de la mano derecha...">
+            </textarea>
+
+
+            <button
+                id="guardarObjetivo"
+                class="boton-guardar-objetivo">
+
+                Guardar objetivo
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+    <script src="objetivos.js"></script>
+
+</body>
+
+</html>

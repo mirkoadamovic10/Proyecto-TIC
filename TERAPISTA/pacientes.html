@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pacientes - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+
+    <header class="barra-personal">
+
+        <nav class="menu-personal">
+
+            <a href="terapista.html" class="boton-menu">
+                Inicio
+            </a>
+
+            <a href="pacientes.html" class="boton-menu">
+                Pacientes
+            </a>
+
+            <button
+                class="boton-menu-agenda"
+                onclick="window.location.href='agenda-terapista.html'">
+                Agenda
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main class="pagina-pacientes">
+
+        <section class="pacientes-contenedor">
+
+            <div class="pacientes-superior">
+
+                <div>
+
+                    <h1>Pacientes</h1>
+
+                    <p>
+                        Personas vinculadas a tu cuenta.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="boton-nuevo-paciente"
+                    id="botonNuevoPaciente">
+
+                    + Linkear nuevo paciente
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="listaPacientes"
+                class="lista-pacientes">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="ventanaLinkear"
+        class="ventana-linkear">
+
+        <div class="formulario-linkear">
+
+            <button
+                type="button"
+                class="cerrar-linkear"
+                id="cerrarLinkear">
+
+                ×
+
+            </button>
+
+
+            <h2>
+                Linkear nuevo paciente
+            </h2>
+
+
+            <p>
+                Ingresá el correo electrónico del paciente.
+            </p>
+
+
+            <label for="emailPaciente">
+                Correo electrónico
+            </label>
+
+
+            <input
+                type="email"
+                id="emailPaciente"
+                placeholder="paciente@email.com">
+
+
+            <button
+                type="button"
+                class="boton-enviar-solicitud"
+                id="botonEnviarSolicitud">
+
+                Enviar solicitud
+
+            </button>
+
+
+            <p
+                id="mensajeSolicitud"
+                class="mensaje-solicitud">
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script src="pacientes.js"></script>
+
+</body>
+
+</html>

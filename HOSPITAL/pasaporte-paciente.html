@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pasaporte del paciente - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa">
+
+            <a href="hospital.html" class="boton-menu-empresa">
+                Inicio
+            </a>
+
+            <a href="medicos.html" class="boton-menu-empresa">
+                Médicos
+            </a>
+
+            <a href="pacientes.html" class="boton-menu-empresa">
+                Pacientes
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+
+            <h1 id="nombrePaciente">
+                Pasaporte del paciente
+            </h1>
+
+            <p>
+                Información compartida por el paciente y los profesionales vinculados.
+            </p>
+
+        </section>
+
+
+        <section class="pasaporte-hospital">
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Diagnósticos</h2>
+
+                <div id="diagnosticosPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="diagnosticos">
+
+                    + Agregar diagnóstico
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Medicaciones</h2>
+
+                <div id="medicacionesPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="medicaciones">
+
+                    + Agregar medicación
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Alergias</h2>
+
+                <div id="alergiasPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="alergias">
+
+                    + Agregar alergia
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Estudios</h2>
+
+                <div id="estudiosPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="estudios">
+
+                    + Agregar estudio
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Imágenes</h2>
+
+                <div id="imagenesPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="imagenes">
+
+                    + Agregar imagen
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Recetas</h2>
+
+                <div id="recetasPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="recetas">
+
+                    + Agregar receta
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Terapias</h2>
+
+                <div id="terapiasPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="terapias">
+
+                    + Agregar terapia
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Cirugías</h2>
+
+                <div id="cirugiasPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="cirugias">
+
+                    + Agregar cirugía
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Certificados</h2>
+
+                <div id="certificadosPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="certificados">
+
+                    + Agregar certificado
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Adaptaciones</h2>
+
+                <div id="adaptacionesPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="adaptaciones">
+
+                    + Agregar adaptación
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-pasaporte-hospital">
+
+                <h2>Objetivos</h2>
+
+                <div id="objetivosPaciente"></div>
+
+                <button
+                    class="boton-agregar-pasaporte"
+                    data-seccion="objetivos">
+
+                    + Agregar objetivo
+
+                </button>
+
+            </article>
+
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="ventanaPasaporte"
+        class="ventana-hospital">
+
+        <div class="formulario-hospital">
+
+            <button
+                id="cerrarPasaporte"
+                class="cerrar-hospital">
+
+                ×
+
+            </button>
+
+
+            <h2 id="tituloVentanaPasaporte">
+                Agregar información
+            </h2>
+
+
+            <label for="informacionPasaporte">
+                Información
+            </label>
+
+
+            <textarea
+                id="informacionPasaporte"
+                placeholder="Ingresá la información...">
+            </textarea>
+
+
+            <button
+                id="guardarPasaporte"
+                class="boton-guardar-hospital">
+
+                Guardar
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="pasaporte-paciente.js"></script>
+
+</body>
+
+</html>

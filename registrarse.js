@@ -17,11 +17,8 @@ botonRegistrarse.addEventListener("click", function(event) {
         return;
     }
 
-    const nombreUsuario = nombre.value.trim();
-
-    localStorage.setItem("nombreUsuario", nombreUsuario);
+    localStorage.setItem("nombreUsuario", nombre.value.trim());
     localStorage.setItem("emailUsuario", email.value.trim());
-    localStorage.setItem("rolUsuario", rol.value);
 
     if (rol.value === "personal") {
         window.location.href = "PERSONAL/personal.html";
@@ -35,6 +32,16 @@ botonRegistrarse.addEventListener("click", function(event) {
 
     if (rol.value === "medico") {
         window.location.href = "MEDICO/medico.html";
+        return;
+    }
+
+    if (rol.value === "terapista") {
+        window.location.href = "TERAPISTA/terapista.html";
+        return;
+    }
+
+    if (rol.value === "hospital") {
+        window.location.href = "HOSPITAL/hospital.html";
         return;
     }
 

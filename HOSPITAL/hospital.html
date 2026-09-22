@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NeuroPassport - Hospital</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa">
+
+            <a href="hospital.html" class="boton-menu-empresa">
+                Inicio
+            </a>
+
+            <a href="medicos.html" class="boton-menu-empresa">
+                Médicos
+            </a>
+
+            <a href="pacientes.html" class="boton-menu-empresa">
+                Pacientes
+            </a>
+
+        </nav>
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            id="perfilHospital"
+            title="Configuración">
+
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+
+            <h1 id="saludoHospital">
+                ¡Hola! Bienvenido a NeuroPassport
+            </h1>
+
+            <p>
+                Administrá tus médicos, pacientes y la información
+                clínica compartida desde un solo lugar.
+            </p>
+
+        </section>
+
+
+        <section class="empresa-acciones">
+
+            <article class="tarjeta-empresa">
+
+                <h2>Médicos</h2>
+
+                <p>
+                    Vinculá médicos al hospital para que puedan trabajar
+                    con los pacientes y utilizar las funciones profesionales.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='medicos.html'">
+
+                    Ver médicos
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-empresa">
+
+                <h2>Pacientes</h2>
+
+                <p>
+                    Vinculá pacientes al hospital y accedé a la información
+                    que tengan habilitada para compartir.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='pacientes.html'">
+
+                    Ver pacientes
+
+                </button>
+
+            </article>
+
+
+            <article class="tarjeta-empresa">
+
+                <h2>Información compartida</h2>
+
+                <p>
+                    Consultá estudios, diagnósticos, recetas e información
+                    agregada por profesionales de otros hospitales.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='pacientes.html'">
+
+                    Ver información
+
+                </button>
+
+            </article>
+
+        </section>
+
+
+        <section class="empresa-info">
+
+            <h2>Red de hospitales</h2>
+
+            <p>
+                Los pacientes pueden estar vinculados a diferentes hospitales.
+                La información compartida queda organizada en un único
+                pasaporte para evitar que los datos queden separados.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="hospital.js" defer></script>
+
+</body>
+
+</html>

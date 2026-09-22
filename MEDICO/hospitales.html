@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hospitales - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa">
+
+            <a href="medico.html" class="boton-menu-empresa">
+                Inicio
+            </a>
+
+            <a href="pacientes.html" class="boton-menu-empresa">
+                Pacientes
+            </a>
+
+            <a href="agenda-medico.html" class="boton-menu-empresa">
+                Agenda
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+
+            <h1>Hospitales</h1>
+
+            <p>
+                Vinculate a hospitales para trabajar con ellos desde tu cuenta profesional.
+            </p>
+
+        </section>
+
+
+        <section class="empresa-acciones">
+
+            <article class="tarjeta-empresa">
+
+                <h2>Vincular hospital</h2>
+
+                <p>
+                    Ingresá el correo del hospital al que querés vincularte.
+                </p>
+
+                <input
+                    type="email"
+                    id="emailHospital"
+                    placeholder="hospital@email.com">
+
+                <button
+                    id="botonVincularHospital"
+                    type="button">
+
+                    Vincular hospital
+
+                </button>
+
+                <p id="mensajeHospital"></p>
+
+            </article>
+
+        </section>
+
+
+        <section>
+
+            <h2>Mis hospitales</h2>
+
+            <div
+                id="listaHospitales"
+                class="lista-hospital">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="hospitales.js"></script>
+
+</body>
+
+</html>

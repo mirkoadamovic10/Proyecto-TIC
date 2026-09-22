@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Médicos - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa">
+
+            <a href="hospital.html" class="boton-menu-empresa">
+                Inicio
+            </a>
+
+            <a href="medicos.html" class="boton-menu-empresa">
+                Médicos
+            </a>
+
+            <a href="pacientes.html" class="boton-menu-empresa">
+                Pacientes
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+
+            <div>
+
+                <h1>Médicos</h1>
+
+                <p>
+                    Profesionales vinculados a este hospital.
+                </p>
+
+            </div>
+
+            <button
+                id="botonAgregarMedico"
+                class="boton-agregar-hospital">
+
+                + Agregar médico
+
+            </button>
+
+        </section>
+
+
+        <section
+            id="listaMedicos"
+            class="lista-hospital">
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="ventanaMedico"
+        class="ventana-hospital">
+
+        <div class="formulario-hospital">
+
+            <button
+                id="cerrarMedico"
+                class="cerrar-hospital">
+
+                ×
+
+            </button>
+
+
+            <h2>
+                Agregar médico
+            </h2>
+
+            <p>
+                Ingresá el correo profesional del médico.
+            </p>
+
+
+            <label for="emailMedico">
+                Correo electrónico
+            </label>
+
+            <input
+                type="email"
+                id="emailMedico"
+                placeholder="medico@email.com">
+
+
+            <button
+                id="guardarMedico"
+                class="boton-guardar-hospital">
+
+                Agregar médico
+
+            </button>
+
+
+            <p
+                id="mensajeMedico"
+                class="mensaje-hospital">
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script src="medicos.js"></script>
+
+</body>
+
+</html>

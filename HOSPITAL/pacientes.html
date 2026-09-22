@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pacientes - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa">
+
+            <a href="hospital.html" class="boton-menu-empresa">
+                Inicio
+            </a>
+
+            <a href="medicos.html" class="boton-menu-empresa">
+                Médicos
+            </a>
+
+            <a href="pacientes.html" class="boton-menu-empresa">
+                Pacientes
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+
+            <div>
+
+                <h1>Pacientes</h1>
+
+                <p>
+                    Personas vinculadas al hospital.
+                </p>
+
+            </div>
+
+            <button
+                id="botonAgregarPaciente"
+                class="boton-agregar-hospital">
+
+                + Linkear paciente
+
+            </button>
+
+        </section>
+
+
+        <section
+            id="listaPacientes"
+            class="lista-hospital">
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="ventanaPaciente"
+        class="ventana-hospital">
+
+        <div class="formulario-hospital">
+
+            <button
+                id="cerrarPaciente"
+                class="cerrar-hospital">
+
+                ×
+
+            </button>
+
+
+            <h2>
+                Linkear paciente
+            </h2>
+
+            <p>
+                Ingresá el correo electrónico del paciente.
+            </p>
+
+
+            <label for="emailPaciente">
+                Correo electrónico
+            </label>
+
+            <input
+                type="email"
+                id="emailPaciente"
+                placeholder="paciente@email.com">
+
+
+            <button
+                id="guardarPaciente"
+                class="boton-guardar-hospital">
+
+                Linkear paciente
+
+            </button>
+
+
+            <p
+                id="mensajePaciente"
+                class="mensaje-hospital">
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script src="pacientes.js"></script>
+
+</body>
+
+</html>

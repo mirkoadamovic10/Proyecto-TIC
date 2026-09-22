@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NeuroPassport - Médico</title>
+    <title>NeuroPassport - Terapista</title>
 
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -16,7 +16,7 @@
 
         <nav class="menu-empresa">
 
-            <a href="medico.html" class="boton-menu-empresa">
+            <a href="terapista.html" class="boton-menu-empresa">
                 Inicio
             </a>
 
@@ -24,7 +24,7 @@
                 Pacientes
             </a>
 
-            <a href="agenda-medico.html" class="boton-menu-empresa">
+            <a href="agenda-terapista.html" class="boton-menu-empresa">
                 Agenda
             </a>
 
@@ -32,7 +32,7 @@
 
         <a href="configuracion.html"
            class="perfil-empresa"
-           id="perfilMedico"
+           id="perfilTerapista"
            title="Configuración">
 
             <span class="perfil-cabeza"></span>
@@ -47,12 +47,13 @@
 
         <section class="empresa-bienvenida">
 
-            <h1 id="saludoMedico">
+            <h1 id="saludoTerapista">
                 ¡Hola! Bienvenido a NeuroPassport
             </h1>
 
             <p>
-                Desde este espacio podés acceder a la información de tus pacientes.
+                Desde este espacio podés acceder a la información de tus pacientes
+                y realizar el seguimiento de sus objetivos.
             </p>
 
         </section>
@@ -85,13 +86,13 @@
                 <h2>Agenda</h2>
 
                 <p>
-                    Organizá tus consultas, controles y turnos
+                    Organizá tus terapias, controles y turnos
                     con tus pacientes.
                 </p>
 
                 <button
                     type="button"
-                    onclick="window.location.href='agenda-medico.html'">
+                    onclick="window.location.href='agenda-terapista.html'">
 
                     Ver agenda
 
@@ -99,16 +100,17 @@
 
             </article>
 
+
         </section>
 
 
         <section class="empresa-info">
 
-            <h2>Información de pacientes</h2>
+            <h2>Seguimiento de pacientes</h2>
 
             <p>
-                Solo vas a poder acceder a la información que cada paciente
-                haya decidido compartir con vos.
+                Desde el perfil de cada paciente vas a poder agregar objetivos
+                y marcar si fueron cumplidos o todavía están pendientes.
             </p>
 
         </section>
@@ -116,26 +118,8 @@
     </main>
 
 
-    <script src="medico.js" defer></script>
+    <script src="terapista.js" defer></script>
 
 </body>
 
 </html>
-<article class="tarjeta-empresa">
-
-    <h2>Hospitales</h2>
-
-    <p>
-        Vinculate a un hospital para trabajar con tus pacientes
-        desde su cuenta profesional.
-    </p>
-
-    <button
-        type="button"
-        onclick="window.location.href='hospitales.html'">
-
-        Ver hospitales
-
-    </button>
-
-</article>
