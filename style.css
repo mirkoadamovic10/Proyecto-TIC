@@ -61,66 +61,7 @@ a {
     color: inherit;
 }
 
-/* ============================= */
-/* HEADER */
-/* ============================= */
-
-header {
-    height: 70px;
-    background: linear-gradient(
-        135deg,
-        var(--azul-oscuro),
-        var(--azul)
-    );
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 45px;
-    box-shadow: 0 5px 22px rgba(40, 88, 102, 0.16);
-}
-
-header h2 {
-    color: var(--blanco);
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.4px;
-}
-
-.botones {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.botones a,
-.botones button {
-    min-width: 125px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 18px;
-    border: none;
-    border-radius: 13px;
-    background: rgba(217, 195, 229, 0.95);
-    color: var(--azul-oscuro);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 650;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
-    transition: 0.22s ease;
-}
-
-.botones a:hover,
-.botones button:hover {
-    background: var(--blanco);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(40, 88, 102, 0.12);
-}
-
-/* ============================= */
 /* INICIO */
-/* ============================= */
 
 main {
     text-align: center;
@@ -176,9 +117,7 @@ h1 {
     border-radius: 30px;
 }
 
-/* ============================= */
 /* LOGIN / REGISTRO */
-/* ============================= */
 
 .login-container,
 .register-container {
@@ -282,9 +221,7 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* ============================= */
 /* BARRA PERSONAL */
-/* ============================= */
 
 .barra-personal {
     width: 100%;
@@ -338,9 +275,7 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* ============================= */
 /* PASAPORTE */
-/* ============================= */
 
 .contenedor-pasaporte {
     position: relative;
@@ -425,9 +360,7 @@ h1 {
     border-radius: 50% 50% 0 0 !important;
 }
 
-/* ============================= */
 /* INICIO PERSONAL */
-/* ============================= */
 
 .inicio-personal {
     min-height: calc(100vh - 72px);
@@ -465,9 +398,7 @@ h1 {
     line-height: 1.6;
 }
 
-/* ============================= */
 /* DIBUJO PASAPORTE */
-/* ============================= */
 
 .ilustracion-pasaporte {
     width: 100%;
@@ -565,9 +496,7 @@ h1 {
     border-radius: 50%;
 }
 
-/* ============================= */
-/* PASAPORTE PÁGINA */
-/* ============================= */
+/* PASAPORTE PAGINA */
 
 .pasaporte-pagina {
     min-height: calc(100vh - 72px);
@@ -693,9 +622,7 @@ h1 {
     font-weight: 700;
 }
 
-/* ============================= */
-/* INFORMACIÓN GUARDADA */
-/* ============================= */
+/* INFORMACION GUARDADA */
 
 .informacion-guardada {
     padding: 30px;
@@ -768,9 +695,7 @@ h1 {
     text-align: center;
 }
 
-/* ============================= */
 /* AGENDA */
-/* ============================= */
 
 .pagina-agenda {
     min-height: 100vh;
@@ -1025,9 +950,7 @@ h1 {
     color: #653f3c;
 }
 
-/* ============================= */
 /* MODAL EVENTO */
-/* ============================= */
 
 .ventana-evento {
     position: fixed;
@@ -1054,6 +977,7 @@ h1 {
     background: white;
     border-radius: 24px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .formulario-evento h2 {
@@ -1109,7 +1033,7 @@ h1 {
     color: var(--gris);
 }
 
-ALERTAS
+/* ALERTAS */
 
 .contenedor-alerta {
     position: relative;
@@ -1190,7 +1114,7 @@ ALERTAS
     color: #58767e;
 }
 
-SUBMENU PERFIL
+/* SUBMENU PERFIL */
 
 .contenedor-perfil {
     position: relative;
@@ -1230,7 +1154,7 @@ SUBMENU PERFIL
     background: var(--verde);
 }
 
-INFO
+/* INFO */
 
 .encabezado-info,
 .encabezado-configuracion {
@@ -1304,6 +1228,7 @@ INFO
 }
 
 .separador {
+    width: 100%;
     height: 1px;
     background: #e1ebe8;
     margin: 35px 0 30px;
@@ -1332,7 +1257,7 @@ INFO
     color: var(--azul);
 }
 
-CONFIGURACION
+/* CONFIGURACION */
 
 .pagina-configuracion {
     min-height: calc(100vh - 90px);
@@ -1430,7 +1355,7 @@ CONFIGURACION
     font-weight: 700;
 }
 
-LINK PERSONAS PACIENTES
+/* LINK PERSONAS / PACIENTES */
 
 .pagina-linkear,
 .pagina-personas,
@@ -1504,11 +1429,10 @@ LINK PERSONAS PACIENTES
     margin: 0 auto;
 }
 
-.lista-personas,
-.lista-pacientes {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+.lista-personas {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .persona-vinculada {
@@ -1548,146 +1472,7 @@ LINK PERSONAS PACIENTES
     display: flex;
 }
 
-
-
-@media (max-width: 900px) {
-    header {
-        padding: 0 22px;
-    }
-
-    .barra-personal {
-        padding: 0 20px;
-    }
-
-    .submenu-pasaporte {
-        width: 520px;
-    }
-
-    .cuadro {
-        width: 90%;
-        height: 420px;
-    }
-
-    .agenda-principal {
-        padding: 35px 25px 50px;
-    }
-}
-
-@media (max-width: 800px) {
-    header {
-        padding: 0 18px;
-    }
-
-    h1 {
-        font-size: 35px;
-    }
-
-    .cuadro {
-        width: 90%;
-        height: 380px;
-    }
-
-    .submenu-pasaporte {
-        width: 90vw;
-        grid-template-columns: 1fr;
-    }
-
-    .pasaporte-pagina {
-        padding: 35px 18px 50px;
-    }
-
-    .agregar-seccion,
-    .informacion-guardada {
-        padding: 22px;
-    }
-
-    .agenda-principal {
-        padding: 28px 15px 45px;
-    }
-
-    .agenda-superior {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .boton-agregar-evento {
-        width: 100%;
-    }
-
-    .dia {
-        min-height: 90px;
-        padding: 5px;
-    }
-}
-
-@media (max-width: 750px) {
-    .fila {
-        flex-direction: column;
-    }
-
-    .acciones {
-        flex-direction: column;
-    }
-
-    .boton-guardar,
-    .boton-editar {
-        width: 100%;
-    }
-
-    .perfil-agenda {
-        right: 15px !important;
-    }
-
-    .lista-personas,
-    .lista-pacientes {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 550px) {
-    .login-card,
-    .register-card {
-        padding: 30px 23px;
-    }
-
-    .inicio-personal {
-        padding: 55px 18px;
-    }
-
-    .inicio-personal h1 {
-        font-size: 31px;
-    }
-
-    .pasaporte-dibujo {
-        width: 205px;
-        height: 260px;
-    }
-
-    .texto-pasaporte {
-        margin-top: 40px;
-        font-size: 20px;
-    }
-
-    .globo-pasaporte {
-        top: 95px;
-        width: 90px;
-        height: 90px;
-    }
-
-    .agenda-superior h1 {
-        font-size: 29px;
-    }
-
-    .panel-alertas {
-        position: fixed;
-        top: 82px;
-        left: 15px;
-        right: 15px;
-        width: auto;
-        max-height: calc(100vh - 100px);
-    }
-}
-ESCUELA/UNIVERSIDAD
+/* ESCUELA / UNIVERSIDAD */
 
 .barra-escuela {
     height: 72px;
@@ -1715,7 +1500,7 @@ ESCUELA/UNIVERSIDAD
     align-items: center;
     gap: 14px;
     padding: 6px;
-    background: rgba(255,255,255,.08);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 18px;
 }
 
@@ -1773,8 +1558,7 @@ ESCUELA/UNIVERSIDAD
     border-radius: 50% 50% 0 0;
 }
 
-
-PERFIL
+/* PERFIL ESCUELA */
 
 .submenu-perfil-escuela {
     position: absolute;
@@ -1804,8 +1588,7 @@ PERFIL
     background: var(--celeste);
 }
 
-
-HOME
+/* HOME ESCUELA */
 
 .escuela-principal {
     min-height: calc(100vh - 72px);
@@ -1836,7 +1619,6 @@ HOME
     color: var(--gris);
     line-height: 1.6;
 }
-
 
 .escuela-acciones {
     width: min(1050px, 100%);
@@ -1897,7 +1679,6 @@ HOME
     background: var(--lila);
 }
 
-
 .escuela-info {
     width: min(1050px, 100%);
     margin: 25px auto 0;
@@ -1927,7 +1708,7 @@ HOME
     align-items: center;
     gap: 10px;
     padding: 15px;
-    background: rgba(255,255,255,.75);
+    background: rgba(255, 255, 255, 0.75);
     border-radius: 15px;
 }
 
@@ -1941,8 +1722,7 @@ HOME
     font-size: 13px;
 }
 
-
-PAGINA ESTUDIANTES
+/* PAGINA ESTUDIANTES */
 
 .escuela-pagina {
     min-height: calc(100vh - 72px);
@@ -1967,7 +1747,6 @@ PAGINA ESTUDIANTES
 .escuela-titulo p:last-child {
     color: var(--gris);
 }
-
 
 .formulario-linkear-escuela {
     padding: 30px;
@@ -2010,7 +1789,6 @@ PAGINA ESTUDIANTES
     color: var(--azul);
     font-weight: 600;
 }
-
 
 .estudiantes-seccion h2 {
     margin-bottom: 18px;
@@ -2087,8 +1865,7 @@ PAGINA ESTUDIANTES
     color: var(--gris);
 }
 
-
-PERFIL ESTUDIANTE
+/* PERFIL ESTUDIANTE */
 
 .perfil-estudiante-pagina {
     min-height: calc(100vh - 72px);
@@ -2124,7 +1901,6 @@ PERFIL ESTUDIANTE
 .perfil-estudiante-cabecera p:last-child {
     color: var(--gris);
 }
-
 
 .informacion-habilitada {
     padding: 30px;
@@ -2207,8 +1983,7 @@ PERFIL ESTUDIANTE
     color: var(--gris);
 }
 
-
-PREFERENCIAS
+/* PREFERENCIAS */
 
 .preferencias-pagina {
     min-height: calc(100vh - 72px);
@@ -2262,7 +2037,6 @@ PREFERENCIAS
     box-sizing: border-box;
 }
 
-
 .permiso-escuela {
     display: flex;
     align-items: center;
@@ -2283,8 +2057,7 @@ PREFERENCIAS
     color: var(--gris);
 }
 
-
-SWITCH
+/* SWITCH */
 
 .switch {
     position: relative;
@@ -2305,7 +2078,7 @@ SWITCH
     border-radius: 30px;
     background: #cbd8d5;
     cursor: pointer;
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .slider::before {
@@ -2317,7 +2090,7 @@ SWITCH
     top: 4px;
     border-radius: 50%;
     background: white;
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .switch input:checked + .slider {
@@ -2327,7 +2100,6 @@ SWITCH
 .switch input:checked + .slider::before {
     transform: translateX(22px);
 }
-
 
 .boton-guardar-preferencias {
     width: 100%;
@@ -2347,65 +2119,7 @@ SWITCH
     font-weight: 700;
 }
 
-
-
-
-@media (max-width: 800px) {
-
-    .menu-escuela {
-        margin-right: 70px;
-        gap: 7px;
-    }
-
-    .boton-menu-escuela {
-        min-width: auto;
-        padding: 0 12px;
-    }
-
-    .escuela-acciones,
-    .lista-estudiantes {
-        grid-template-columns: 1fr;
-    }
-
-    .info-permisos {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-@media (max-width: 600px) {
-
-    .barra-escuela {
-        padding: 0 15px;
-    }
-
-    .barra-escuela h2 {
-        display: none;
-    }
-
-    .menu-escuela {
-        margin-left: 0;
-        margin-right: 60px;
-    }
-
-    .boton-menu-escuela {
-        font-size: 12px;
-    }
-
-    .escuela-bienvenida h1 {
-        font-size: 28px;
-    }
-
-    .info-permisos {
-        grid-template-columns: 1fr;
-    }
-
-    .perfil-estudiante-cabecera {
-        align-items: flex-start;
-    }
-
-}
-EMPRESA
+/* EMPRESA */
 
 .barra-empresa {
     height: 72px;
@@ -2413,8 +2127,12 @@ EMPRESA
     display: flex;
     align-items: center;
     padding: 0 32px;
-    background: linear-gradient(135deg, var(--azul-oscuro), var(--azul));
-    box-shadow: 0 5px 22px rgba(40, 88, 102, .14);
+    background: linear-gradient(
+        135deg,
+        var(--azul-oscuro),
+        var(--azul)
+    );
+    box-shadow: 0 5px 22px rgba(40, 88, 102, 0.14);
 }
 
 .menu-empresa {
@@ -2423,7 +2141,7 @@ EMPRESA
     align-items: center;
     gap: 14px;
     padding: 6px;
-    background: rgba(255, 255, 255, .08);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 18px;
 }
 
@@ -2433,10 +2151,15 @@ EMPRESA
     color: var(--azul-oscuro);
     width: 120px;
     height: 44px;
+    padding: 0;
     border-radius: 14px;
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .boton-menu-empresa:hover {
@@ -2454,6 +2177,7 @@ EMPRESA
     background: #d9d9d9;
     cursor: pointer;
     z-index: 20;
+    overflow: hidden;
 }
 
 .avatar-empresa {
@@ -2473,6 +2197,7 @@ EMPRESA
     background: var(--blanco);
     border-radius: 16px;
     box-shadow: var(--sombra);
+    z-index: 1000;
 }
 
 .submenu-perfil-empresa.mostrar {
@@ -2494,8 +2219,7 @@ EMPRESA
     background: var(--celeste);
 }
 
-
-INICIO
+/* INICIO EMPRESA */
 
 .empresa-principal {
     width: 90%;
@@ -2571,8 +2295,7 @@ INICIO
     color: var(--texto);
 }
 
-
-PAGINA EMPLEADOS
+/* PAGINA EMPLEADOS */
 
 .empresa-pagina {
     width: 90%;
@@ -2667,8 +2390,7 @@ PAGINA EMPLEADOS
     border-radius: 16px;
 }
 
-
-EMPLEADO
+/* EMPLEADO */
 
 .perfil-empleado-pagina {
     width: 90%;
@@ -2695,18 +2417,6 @@ EMPLEADO
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
-}
-
-.informacion-habilitada {
-    background: var(--blanco);
-    padding: 30px;
-    border-radius: 24px;
-    box-shadow: var(--sombra);
-}
-
-.informacion-habilitada h2 {
-    color: var(--azul-oscuro);
-    margin-bottom: 20px;
 }
 
 .informacion-empleado {
@@ -2736,15 +2446,14 @@ EMPLEADO
     cursor: pointer;
 }
 
-.sin-informacion {
-    color: var(--gris);
-    background: var(--gris-claro);
-    padding: 20px;
-    border-radius: 16px;
+/* PREFERENCIAS DE TRABAJO */
+
+#formPreferencias {
+    background: var(--blanco);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: var(--sombra);
 }
-
-
-PREFERENCIAS DE TRABAJO
 
 .preferencias-pagina {
     width: 90%;
@@ -2762,25 +2471,22 @@ PREFERENCIAS DE TRABAJO
     line-height: 1.6;
 }
 
-#formPreferencias {
-    background: var(--blanco);
-    padding: 30px;
-    border-radius: 25px;
-    box-shadow: var(--sombra);
-}
-
-.campo-preferencia {
+.preferencias-pagina .campo-preferencia {
     margin-bottom: 22px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
 }
 
-.campo-preferencia label {
+.preferencias-pagina .campo-preferencia label {
     display: block;
     color: var(--azul-oscuro);
     font-weight: 700;
     margin-bottom: 8px;
 }
 
-.campo-preferencia textarea {
+.preferencias-pagina .campo-preferencia textarea {
     width: 100%;
     min-height: 100px;
     resize: vertical;
@@ -2791,9 +2497,10 @@ PREFERENCIAS DE TRABAJO
     font-size: 14px;
     color: var(--texto);
     outline: none;
+    background: var(--blanco);
 }
 
-.campo-preferencia textarea:focus {
+.preferencias-pagina .campo-preferencia textarea:focus {
     border-color: var(--azul-claro);
 }
 
@@ -2814,106 +2521,7 @@ PREFERENCIAS DE TRABAJO
     accent-color: var(--azul);
 }
 
-.boton-guardar-preferencias {
-    border: none;
-    background: var(--verde);
-    color: var(--azul-oscuro);
-    padding: 13px 24px;
-    border-radius: 12px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.boton-guardar-preferencias:hover {
-    transform: translateY(-1px);
-}
-
-
-
-
-@media (max-width: 700px) {
-
-    .empresa-acciones {
-        grid-template-columns: 1fr;
-    }
-
-    .formulario-linkear-empresa {
-        flex-direction: column;
-    }
-
-    .tarjeta-empleado {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .cabecera-empleado {
-        flex-wrap: wrap;
-    }
-}
-MEDICOS
-
-.barra-empresa {
-    height: 72px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 0 32px;
-    background: linear-gradient(135deg, var(--azul-oscuro), var(--azul));
-    box-shadow: 0 5px 22px rgba(40, 88, 102, .14);
-}
-
-.menu-empresa {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 6px;
-    background: rgba(255, 255, 255, .08);
-    border-radius: 18px;
-}
-
-.boton-menu-empresa {
-    width: 120px;
-    height: 44px;
-    padding: 0;
-    border: none;
-    border-radius: 14px;
-    background: var(--lila);
-    color: var(--azul-oscuro);
-    font-size: 15px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.boton-menu-empresa:hover {
-    transform: translateY(-1px);
-}
-
-.perfil-empresa {
-    position: absolute;
-    right: 25px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: #d9d9d9;
-    overflow: hidden;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.perfil-empresa.tiene-foto {
-    background-repeat: no-repeat;
-}
-
-
- PACIENTES
+/* MEDICOS / HOSPITAL */
 
 .pacientes-superior {
     display: flex;
@@ -2959,8 +2567,7 @@ MEDICOS
     color: var(--gris);
 }
 
-
-VENTANA LINKEAR
+/* VENTANA LINKEAR */
 
 .ventana-linkear {
     position: fixed;
@@ -2968,8 +2575,8 @@ VENTANA LINKEAR
     display: none;
     align-items: center;
     justify-content: center;
-    background: rgba(40, 88, 102, .25);
-    z-index: 100;
+    background: rgba(40, 88, 102, 0.25);
+    z-index: 1000;
 }
 
 .ventana-linkear.mostrar {
@@ -3039,27 +2646,7 @@ VENTANA LINKEAR
     margin-top: 15px;
 }
 
-
-
-
-@media (max-width: 700px) {
-
-    .menu-empresa {
-        gap: 6px;
-    }
-
-    .boton-menu-empresa {
-        width: 95px;
-        font-size: 13px;
-    }
-
-    .pacientes-superior {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-}
-FAMILIA
+/* FAMILIA */
 
 .barra-familia {
     height: 72px;
@@ -3067,8 +2654,12 @@ FAMILIA
     display: flex;
     align-items: center;
     padding: 0 32px;
-    background: linear-gradient(135deg, var(--azul-oscuro), var(--azul));
-    box-shadow: 0 5px 22px rgba(40, 88, 102, .14);
+    background: linear-gradient(
+        135deg,
+        var(--azul-oscuro),
+        var(--azul)
+    );
+    box-shadow: 0 5px 22px rgba(40, 88, 102, 0.14);
 }
 
 .menu-familia {
@@ -3077,7 +2668,7 @@ FAMILIA
     align-items: center;
     gap: 14px;
     padding: 6px;
-    background: rgba(255, 255, 255, .08);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 18px;
 }
 
@@ -3120,8 +2711,7 @@ FAMILIA
     background-repeat: no-repeat;
 }
 
-
-INICIO
+/* INICIO FAMILIA */
 
 .familia-principal {
     width: 90%;
@@ -3199,8 +2789,7 @@ INICIO
     line-height: 1.6;
 }
 
-
-PERSONAS
+/* PERSONAS FAMILIA */
 
 .familia-pagina {
     width: 90%;
@@ -3236,12 +2825,6 @@ PERSONAS
     cursor: pointer;
 }
 
-.lista-personas {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
 .tarjeta-persona {
     background: var(--blanco);
     padding: 22px;
@@ -3266,8 +2849,7 @@ PERSONAS
     box-shadow: var(--sombra);
 }
 
-
-LINK DE PERSONA 
+/* LINK DE PERSONA FAMILIA */
 
 .ventana-linkear-familia {
     position: fixed;
@@ -3275,7 +2857,7 @@ LINK DE PERSONA
     display: none;
     align-items: center;
     justify-content: center;
-    background: rgba(40, 88, 102, .25);
+    background: rgba(40, 88, 102, 0.25);
     z-index: 100;
 }
 
@@ -3346,40 +2928,7 @@ LINK DE PERSONA
     margin-top: 15px;
 }
 
-
-
-
-@media (max-width: 700px) {
-
-    .menu-familia {
-        gap: 6px;
-    }
-
-    .boton-menu-familia {
-        width: 95px;
-        font-size: 13px;
-    }
-
-    .familia-acciones {
-        grid-template-columns: 1fr;
-    }
-
-    .personas-superior {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-}
-AGENDA FAMILIA
-
-
-.pagina-agenda {
-    min-height: 100vh;
-    background: var(--fondo);
-}
-
-
-BARRA SUPERIOR
+/* AGENDA FAMILIA */
 
 .pagina-agenda .barra-agenda {
     height: 72px;
@@ -3392,7 +2941,7 @@ BARRA SUPERIOR
         var(--azul-oscuro),
         var(--azul)
     );
-    box-shadow: 0 5px 22px rgba(40, 88, 102, .14);
+    box-shadow: 0 5px 22px rgba(40, 88, 102, 0.14);
 }
 
 .pagina-agenda .barra-agenda h2 {
@@ -3402,21 +2951,15 @@ BARRA SUPERIOR
     margin: 0;
 }
 
-
-MENU
-
 .pagina-agenda .menu-agenda {
     margin-left: auto;
     display: flex;
     align-items: center;
     gap: 14px;
     padding: 6px;
-    background: rgba(255, 255, 255, .08);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 18px;
 }
-
-
- BOTONES DEL MENU
 
 .pagina-agenda .boton-menu-agenda {
     border: none;
@@ -3443,9 +2986,6 @@ MENU
     background: var(--verde);
 }
 
-
-PERFIL 
-
 .pagina-agenda .perfil-agenda {
     width: 52px;
     height: 52px;
@@ -3464,9 +3004,6 @@ PERFIL
     background-repeat: no-repeat;
 }
 
-
-AGENDA 
-
 .pagina-agenda .agenda-principal {
     width: 100%;
     padding: 45px 0 60px;
@@ -3481,9 +3018,6 @@ AGENDA
     padding: 35px;
     box-shadow: var(--sombra);
 }
-
-
-PARTE SUPERIOR
 
 .pagina-agenda .agenda-superior {
     display: flex;
@@ -3505,9 +3039,6 @@ PARTE SUPERIOR
     font-size: 15px;
 }
 
-
-BOTON AGREGAR 
-
 .pagina-agenda .boton-agregar-evento {
     border: none;
     background: var(--verde);
@@ -3524,18 +3055,12 @@ BOTON AGREGAR
     transform: translateY(-1px);
 }
 
-
- CALENDARIO 
-
 .pagina-agenda .calendario {
     width: 100%;
     background: var(--celeste);
     border-radius: 24px;
     padding: 25px;
 }
-
-
- CABECERA DEL CALENDARIO 
 
 .pagina-agenda .calendario-cabecera {
     display: flex;
@@ -3553,9 +3078,6 @@ BOTON AGREGAR
     font-size: 22px;
 }
 
-
- FLECHAS 
-
 .pagina-agenda .boton-mes {
     width: 42px;
     height: 42px;
@@ -3566,15 +3088,12 @@ BOTON AGREGAR
     font-size: 27px;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(40, 88, 102, .08);
+    box-shadow: 0 4px 12px rgba(40, 88, 102, 0.08);
 }
 
 .pagina-agenda .boton-mes:hover {
     background: var(--verde);
 }
-
-
-DIAS DE LA SEMANA 
 
 .pagina-agenda .dias-semana {
     display: grid;
@@ -3591,17 +3110,11 @@ DIAS DE LA SEMANA
     padding: 10px 0;
 }
 
-
-CUADRICULAS
-
 .pagina-agenda .dias-calendario {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 8px;
 }
-
-
-DIA
 
 .pagina-agenda .dia-calendario {
     min-height: 105px;
@@ -3624,9 +3137,6 @@ DIA
     background: transparent;
 }
 
-
-EVENTOS
-
 .pagina-agenda .evento-calendario {
     width: 100%;
     padding: 5px 7px;
@@ -3639,9 +3149,6 @@ EVENTOS
     text-overflow: ellipsis;
     cursor: pointer;
 }
-
-
-COLORES DE EVENTOS
 
 .pagina-agenda .evento-calendario.turno {
     background: var(--lila);
@@ -3667,9 +3174,6 @@ COLORES DE EVENTOS
     background: #d5e7e3;
     color: var(--azul-oscuro);
 }
-
-
-REFERENCIAS
 
 .pagina-agenda .referencias {
     display: flex;
@@ -3714,9 +3218,6 @@ REFERENCIAS
     background: #d5e7e3;
 }
 
-
-VENTANA
-
 .pagina-agenda .ventana-evento {
     position: fixed;
     inset: 0;
@@ -3724,16 +3225,13 @@ VENTANA
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(40, 88, 102, .25);
+    background: rgba(40, 88, 102, 0.25);
     z-index: 1000;
 }
 
 .pagina-agenda .ventana-evento.mostrar {
     display: flex;
 }
-
-
-FORMULARIO
 
 .pagina-agenda .formulario-evento {
     width: 90%;
@@ -3757,9 +3255,6 @@ FORMULARIO
     margin-bottom: 22px;
 }
 
-
- CERRAR
-
 .pagina-agenda .cerrar-evento {
     position: absolute;
     right: 18px;
@@ -3773,9 +3268,6 @@ FORMULARIO
     cursor: pointer;
 }
 
-
-LABELS
-
 .pagina-agenda .formulario-evento label {
     display: block;
     margin: 15px 0 7px;
@@ -3783,9 +3275,6 @@ LABELS
     font-size: 14px;
     font-weight: 700;
 }
-
-
-INPUTS
 
 .pagina-agenda .formulario-evento input,
 .pagina-agenda .formulario-evento select,
@@ -3812,9 +3301,6 @@ INPUTS
     border-color: var(--azul-claro);
 }
 
-
-GUARDAR 
-
 .pagina-agenda .boton-guardar-evento {
     width: 100%;
     margin-top: 24px;
@@ -3828,58 +3314,7 @@ GUARDAR
     cursor: pointer;
 }
 
-
-
-
-@media (max-width: 800px) {
-
-    .pagina-agenda .barra-agenda {
-        padding: 0 15px;
-    }
-
-    .pagina-agenda .barra-agenda h2 {
-        display: none;
-    }
-
-    .pagina-agenda .menu-agenda {
-        width: 100%;
-        justify-content: center;
-        margin-left: 0;
-    }
-
-    .pagina-agenda .boton-menu-agenda {
-        width: 100px;
-        font-size: 13px;
-    }
-
-    .pagina-agenda .perfil-agenda {
-        display: none;
-    }
-
-    .pagina-agenda .agenda-contenedor {
-        padding: 20px;
-    }
-
-    .pagina-agenda .agenda-superior {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .pagina-agenda .calendario {
-        padding: 12px;
-    }
-
-    .pagina-agenda .dia-calendario {
-        min-height: 80px;
-        padding: 6px;
-    }
-
-    .pagina-agenda .evento-calendario {
-        font-size: 9px;
-    }
-
-}
-OBJETIVOS TERAPISTA
+/* OBJETIVOS TERAPISTA */
 
 .pagina-objetivos {
     min-height: calc(100vh - 72px);
@@ -3989,7 +3424,7 @@ OBJETIVOS TERAPISTA
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: rgba(40, 88, 102, .25);
+    background: rgba(40, 88, 102, 0.25);
     z-index: 1000;
 }
 
@@ -4063,26 +3498,7 @@ OBJETIVOS TERAPISTA
     cursor: pointer;
 }
 
-@media (max-width: 700px) {
-
-    .objetivos-superior {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .tarjeta-objetivo {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .boton-estado-objetivo {
-        width: 100%;
-    }
-
-}
-
-HOSPITAL
-HOME
+/* HOSPITAL */
 
 .hospital-principal {
     width: 90%;
@@ -4090,9 +3506,6 @@ HOME
     margin: 0 auto;
     padding: 55px 0 70px;
 }
-
-
-ENCABEZADO HOSPITAL
 
 .hospital-bienvenida {
     position: relative;
@@ -4160,9 +3573,6 @@ ENCABEZADO HOSPITAL
     line-height: 1.65;
 }
 
-
-INDICADORES
-
 .hospital-indicadores {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -4212,9 +3622,6 @@ INDICADORES
     color: var(--gris);
     font-size: 12px;
 }
-
-
-
 
 .hospital-acciones {
     display: grid;
@@ -4283,11 +3690,7 @@ INDICADORES
     line-height: 1.55;
 }
 
-
-
-
 .boton-agregar-hospital,
-.boton-nuevo-paciente,
 .boton-agregar-medico,
 .boton-linkear-hospital {
     border: none;
@@ -4302,15 +3705,11 @@ INDICADORES
 }
 
 .boton-agregar-hospital:hover,
-.boton-nuevo-paciente:hover,
 .boton-agregar-medico:hover,
 .boton-linkear-hospital:hover {
     transform: translateY(-2px);
     box-shadow: 0 7px 18px rgba(40, 88, 102, 0.10);
 }
-
-
-
 
 .hospital-info {
     position: relative;
@@ -4361,9 +3760,6 @@ INDICADORES
     line-height: 1.4;
 }
 
-
-
-
 .pagina-hospital {
     min-height: calc(100vh - 72px);
     padding: 50px 25px 70px;
@@ -4389,9 +3785,6 @@ INDICADORES
     line-height: 1.6;
 }
 
-
-
-
 .hospital-lista-superior {
     display: flex;
     align-items: center;
@@ -4409,9 +3802,6 @@ INDICADORES
     color: var(--gris);
     font-size: 13px;
 }
-
-
-
 
 .lista-medicos-hospital {
     display: grid;
@@ -4475,9 +3865,6 @@ INDICADORES
     font-weight: 800;
 }
 
-
-
-
 .lista-pacientes-hospital {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -4531,8 +3918,6 @@ INDICADORES
     font-size: 13px;
 }
 
-
-
 .hospital-vacio {
     padding: 45px 25px;
     background: var(--blanco);
@@ -4565,9 +3950,6 @@ INDICADORES
     color: var(--gris);
     font-size: 14px;
 }
-
-
-
 
 .lista-hospital {
     display: grid;
@@ -4643,9 +4025,6 @@ INDICADORES
     background: var(--verde);
     transform: translateY(-1px);
 }
-
-
-
 
 .ventana-hospital {
     position: fixed;
@@ -4770,7 +4149,6 @@ INDICADORES
     font-size: 13px;
 }
 
-
 .pasaporte-hospital {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -4830,91 +4208,7 @@ INDICADORES
     transform: translateY(-1px);
 }
 
-
-
-@media (max-width: 900px) {
-
-    .hospital-indicadores {
-        grid-template-columns: 1fr;
-    }
-
-    .hospital-funciones {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .lista-medicos-hospital,
-    .lista-pacientes-hospital,
-    .lista-hospital {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-
-@media (max-width: 700px) {
-
-    .hospital-principal {
-        width: 92%;
-        padding: 35px 0 50px;
-    }
-
-    .hospital-bienvenida {
-        padding: 28px 25px;
-    }
-
-    .hospital-bienvenida h1 {
-        font-size: 30px;
-    }
-
-    .hospital-acciones {
-        grid-template-columns: 1fr;
-    }
-
-    .hospital-lista-superior {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .hospital-funciones {
-        grid-template-columns: 1fr;
-    }
-
-    .pagina-hospital {
-        padding: 35px 18px 50px;
-    }
-
-    .hospital-titulo h1 {
-        font-size: 29px;
-    }
-
-    .pasaporte-hospital {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-
-@media (max-width: 500px) {
-
-    .hospital-bienvenida {
-        border-radius: 22px;
-        padding: 25px 21px;
-    }
-
-    .hospital-bienvenida h1 {
-        font-size: 27px;
-    }
-
-    .tarjeta-hospital-accion {
-        padding: 24px;
-    }
-
-    .formulario-hospital {
-        padding: 27px 22px;
-    }
-
-}
-
+/* ELEMENTOS GENERALES */
 
 button,
 a,
@@ -4941,9 +4235,6 @@ textarea,
         opacity 0.2s ease;
 }
 
-
-
-
 @keyframes aparecer {
     from {
         opacity: 0;
@@ -4956,7 +4247,6 @@ textarea,
     }
 }
 
-main,
 .pagina-hospital,
 .pagina-agenda,
 .familia-principal,
@@ -4967,9 +4257,6 @@ main,
 .pasaporte-pagina {
     animation: aparecer 0.45s ease;
 }
-
-
-
 
 button {
     font-family: inherit;
@@ -4991,9 +4278,6 @@ textarea:focus-visible {
     outline: 3px solid rgba(143, 203, 208, 0.45);
     outline-offset: 3px;
 }
-
-
-
 
 .boton-agregar,
 .boton-agregar-evento,
@@ -5027,7 +4311,6 @@ textarea:focus-visible {
     box-shadow: 0 10px 22px rgba(40, 88, 102, 0.13);
 }
 
-
 .tarjeta-hospital:hover,
 .tarjeta-paciente-hospital:hover,
 .tarjeta-medico-hospital:hover,
@@ -5042,9 +4325,6 @@ textarea:focus-visible {
 .item-guardado:hover {
     transform: translateY(-3px);
 }
-
-
-
 
 input,
 select,
@@ -5068,24 +4348,15 @@ textarea:focus {
     box-shadow: 0 0 0 4px rgba(143, 203, 208, 0.12);
 }
 
-
-
-
 input::placeholder,
 textarea::placeholder {
     color: #91a0a5;
 }
 
-
-
-
 ::selection {
     background: var(--verde);
     color: var(--azul-oscuro);
 }
-
-
-
 
 ::-webkit-scrollbar {
     width: 9px;
@@ -5104,7 +4375,7 @@ textarea::placeholder {
     background: var(--azul);
 }
 
-
+/* SUBMENUS */
 
 .submenu-pasaporte,
 .submenu-perfil,
@@ -5126,8 +4397,7 @@ textarea::placeholder {
     }
 }
 
-
-
+/* ESTADOS VACIOS */
 
 .sin-empleados,
 .sin-informacion,
@@ -5141,7 +4411,6 @@ textarea::placeholder {
         var(--gris-claro)
     );
 }
-
 
 .chip,
 .etiqueta,
@@ -5157,9 +4426,6 @@ textarea::placeholder {
     font-size: 12px;
     font-weight: 700;
 }
-
-
-
 
 .estado-activo {
     background: var(--verde-claro);
@@ -5181,8 +4447,7 @@ textarea::placeholder {
     color: #8b527d;
 }
 
-
-
+/* PROGRESO */
 
 .progreso-contenedor {
     width: 100%;
@@ -5223,7 +4488,7 @@ textarea::placeholder {
     transition: width 0.5s ease;
 }
 
-
+/* RESUMEN */
 
 .tarjeta-resumen {
     display: flex;
@@ -5267,8 +4532,7 @@ textarea::placeholder {
     font-size: 12px;
 }
 
-
-
+/* ACTIVIDAD */
 
 .actividad-reciente {
     background: var(--blanco);
@@ -5318,32 +4582,25 @@ textarea::placeholder {
     font-size: 12px;
 }
 
-
+/* NOTIFICACIONES */
 
 .notificacion {
     position: fixed;
     right: 25px;
     bottom: 25px;
     z-index: 3000;
-
     min-width: 280px;
     max-width: 380px;
-
     display: flex;
     align-items: center;
     gap: 12px;
-
     padding: 15px 18px;
-
     background: var(--blanco);
     border: 1px solid var(--borde);
     border-left: 5px solid var(--verde);
-
     border-radius: 16px;
     box-shadow: var(--sombra-fuerte);
-
     color: var(--texto);
-
     animation: notificacionEntrada 0.35s ease;
 }
 
@@ -5371,8 +4628,7 @@ textarea::placeholder {
     }
 }
 
-
-
+/* MODALES GENERALES */
 
 .ventana-evento,
 .ventana-hospital,
@@ -5402,8 +4658,7 @@ textarea::placeholder {
     }
 }
 
-
-
+/* ICONOS */
 
 .icono-tarjeta {
     width: 50px;
@@ -5419,18 +4674,7 @@ textarea::placeholder {
     font-weight: 800;
 }
 
-
-
-
-.separador {
-    width: 100%;
-    height: 1px;
-    margin: 25px 0;
-    background: var(--borde);
-}
-
-
-
+/* SECCIONES */
 
 .seccion-superior {
     display: flex;
@@ -5451,7 +4695,7 @@ textarea::placeholder {
     font-size: 14px;
 }
 
-
+/* ACCESOS RAPIDOS */
 
 .accesos-rapidos {
     display: grid;
@@ -5504,8 +4748,7 @@ textarea::placeholder {
     font-size: 12px;
 }
 
-
-
+/* VOLVER */
 
 .boton-volver {
     display: inline-flex;
@@ -5527,8 +4770,7 @@ textarea::placeholder {
     transform: translateX(-2px);
 }
 
-
-
+/* BUSCADOR */
 
 .buscador-neuropassport {
     position: relative;
@@ -5558,8 +4800,7 @@ textarea::placeholder {
     z-index: 2;
 }
 
-
-
+/* INFORMACION PRIVADA */
 
 .informacion-privada {
     display: flex;
@@ -5579,8 +4820,7 @@ textarea::placeholder {
     color: var(--azul-oscuro);
 }
 
-
-
+/* CONEXION */
 
 .estado-conexion {
     display: inline-flex;
@@ -5602,8 +4842,7 @@ textarea::placeholder {
     background: #62a982;
 }
 
-
-
+/* AVATAR GENERICO */
 
 .avatar-generico {
     position: relative;
@@ -5639,17 +4878,40 @@ textarea::placeholder {
     background: #aab5b8;
 }
 
-
-
-
 a {
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
-
-
+/* RESPONSIVE GENERAL */
 
 @media (max-width: 900px) {
+
+    .barra-personal {
+        padding: 0 22px;
+    }
+
+    .cuadro {
+        width: 90%;
+        height: 420px;
+    }
+
+    .agenda-principal {
+        padding: 35px 25px 50px;
+    }
+
+    .hospital-indicadores {
+        grid-template-columns: 1fr;
+    }
+
+    .hospital-funciones {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lista-medicos-hospital,
+    .lista-pacientes-hospital,
+    .lista-hospital {
+        grid-template-columns: 1fr;
+    }
 
     .accesos-rapidos {
         grid-template-columns: repeat(2, 1fr);
@@ -5660,8 +4922,136 @@ a {
     }
 }
 
+@media (max-width: 800px) {
 
-@media (max-width: 700px) {
+    h1 {
+        font-size: 35px;
+    }
+
+    .cuadro {
+        width: 90%;
+        height: 380px;
+    }
+
+    .submenu-pasaporte {
+        width: 90vw;
+        grid-template-columns: 1fr;
+    }
+
+    .pasaporte-pagina {
+        padding: 35px 18px 50px;
+    }
+
+    .agregar-seccion,
+    .informacion-guardada {
+        padding: 22px;
+    }
+
+    .agenda-principal {
+        padding: 28px 15px 45px;
+    }
+
+    .agenda-superior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .boton-agregar-evento {
+        width: 100%;
+    }
+
+    .dia {
+        min-height: 90px;
+        padding: 5px;
+    }
+
+    .menu-escuela {
+        margin-right: 70px;
+        gap: 7px;
+    }
+
+    .boton-menu-escuela {
+        min-width: auto;
+        padding: 0 12px;
+    }
+
+    .escuela-acciones,
+    .lista-estudiantes {
+        grid-template-columns: 1fr;
+    }
+
+    .info-permisos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pagina-agenda .barra-agenda {
+        padding: 0 15px;
+    }
+
+    .pagina-agenda .barra-agenda h2 {
+        display: none;
+    }
+
+    .pagina-agenda .menu-agenda {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .pagina-agenda .boton-menu-agenda {
+        width: 100px;
+        font-size: 13px;
+    }
+
+    .pagina-agenda .perfil-agenda {
+        display: none;
+    }
+
+    .pagina-agenda .agenda-contenedor {
+        padding: 20px;
+    }
+
+    .pagina-agenda .agenda-superior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pagina-agenda .calendario {
+        padding: 12px;
+    }
+
+    .pagina-agenda .dia-calendario {
+        min-height: 80px;
+        padding: 6px;
+    }
+
+    .pagina-agenda .evento-calendario {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .fila {
+        flex-direction: column;
+    }
+
+    .acciones {
+        flex-direction: column;
+    }
+
+    .boton-guardar,
+    .boton-editar {
+        width: 100%;
+    }
+
+    .perfil-agenda {
+        right: 15px !important;
+    }
+
+    .lista-estudiantes {
+        grid-template-columns: 1fr;
+    }
 
     .accesos-rapidos {
         grid-template-columns: 1fr;
@@ -5683,11 +5073,258 @@ a {
         bottom: 15px;
         min-width: auto;
     }
-
 }
 
+@media (max-width: 700px) {
+
+    .barra-escuela {
+        padding: 0 15px;
+    }
+
+    .barra-escuela h2 {
+        display: none;
+    }
+
+    .menu-escuela {
+        margin-left: 0;
+        margin-right: 60px;
+    }
+
+    .boton-menu-escuela {
+        font-size: 12px;
+    }
+
+    .escuela-bienvenida h1 {
+        font-size: 28px;
+    }
+
+    .info-permisos {
+        grid-template-columns: 1fr;
+    }
+
+    .perfil-estudiante-cabecera {
+        align-items: flex-start;
+    }
+
+    .empresa-acciones {
+        grid-template-columns: 1fr;
+    }
+
+    .formulario-linkear-empresa {
+        flex-direction: column;
+    }
+
+    .tarjeta-empleado {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .cabecera-empleado {
+        flex-wrap: wrap;
+    }
+
+    .menu-empresa {
+        gap: 6px;
+    }
+
+    .boton-menu-empresa {
+        width: 95px;
+        font-size: 13px;
+    }
+
+    .pacientes-superior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-familia {
+        gap: 6px;
+    }
+
+    .boton-menu-familia {
+        width: 95px;
+        font-size: 13px;
+    }
+
+    .familia-acciones {
+        grid-template-columns: 1fr;
+    }
+
+    .personas-superior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .objetivos-superior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tarjeta-objetivo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .boton-estado-objetivo {
+        width: 100%;
+    }
+
+    .hospital-principal {
+        width: 92%;
+        padding: 35px 0 50px;
+    }
+
+    .hospital-bienvenida {
+        padding: 28px 25px;
+    }
+
+    .hospital-bienvenida h1 {
+        font-size: 30px;
+    }
+
+    .hospital-acciones {
+        grid-template-columns: 1fr;
+    }
+
+    .hospital-lista-superior {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hospital-funciones {
+        grid-template-columns: 1fr;
+    }
+
+    .pagina-hospital {
+        padding: 35px 18px 50px;
+    }
+
+    .hospital-titulo h1 {
+        font-size: 29px;
+    }
+
+    .pasaporte-hospital {
+        grid-template-columns: 1fr;
+    }
+
+    .accesos-rapidos {
+        grid-template-columns: 1fr;
+    }
+
+    .seccion-superior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tarjeta-resumen {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .notificacion {
+        right: 15px;
+        left: 15px;
+        bottom: 15px;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .barra-escuela {
+        padding: 0 15px;
+    }
+
+    .barra-escuela h2 {
+        display: none;
+    }
+
+    .menu-escuela {
+        margin-left: 0;
+        margin-right: 60px;
+    }
+
+    .boton-menu-escuela {
+        font-size: 12px;
+    }
+
+    .escuela-bienvenida h1 {
+        font-size: 28px;
+    }
+
+    .info-permisos {
+        grid-template-columns: 1fr;
+    }
+
+    .perfil-estudiante-cabecera {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .login-card,
+    .register-card {
+        padding: 30px 23px;
+    }
+
+    .inicio-personal {
+        padding: 55px 18px;
+    }
+
+    .inicio-personal h1 {
+        font-size: 31px;
+    }
+
+    .pasaporte-dibujo {
+        width: 205px;
+        height: 260px;
+    }
+
+    .texto-pasaporte {
+        margin-top: 40px;
+        font-size: 20px;
+    }
+
+    .globo-pasaporte {
+        top: 95px;
+        width: 90px;
+        height: 90px;
+    }
+
+    .agenda-superior h1 {
+        font-size: 29px;
+    }
+
+    .panel-alertas {
+        position: fixed;
+        top: 82px;
+        left: 15px;
+        right: 15px;
+        width: auto;
+        max-height: calc(100vh - 100px);
+    }
+}
 
 @media (max-width: 500px) {
+
+    .hospital-bienvenida {
+        border-radius: 22px;
+        padding: 25px 21px;
+    }
+
+    .hospital-bienvenida h1 {
+        font-size: 27px;
+    }
+
+    .tarjeta-hospital-accion {
+        padding: 24px;
+    }
+
+    .formulario-hospital {
+        padding: 27px 22px;
+    }
 
     .accesos-rapidos {
         gap: 12px;
@@ -5697,5 +5334,4 @@ a {
     .tarjeta-resumen {
         padding: 20px;
     }
-
 }
