@@ -1,59 +1,100 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Adaptaciones - NeuroPassport</title>
+
     <link rel="stylesheet" href="../style.css">
 </head>
 
 <body data-tipo="adaptaciones" data-nombre="Adaptaciones">
 
     <header class="barra-personal">
+
         <h2>NeuroPassport</h2>
+
     </header>
+
 
     <main class="pasaporte-pagina">
 
-        <div class="pasaporte-contenido">
+        <section class="pasaporte-contenido">
 
-            <h1 class="pasaporte-titulo">Adaptaciones</h1>
+            <header>
 
-            <p class="pasaporte-descripcion">
-                Adaptaciones y necesidades de apoyo.
-            </p>
+                <h1 class="pasaporte-titulo">
+                    Adaptaciones
+                </h1>
+
+                <p class="pasaporte-descripcion">
+                    Adaptaciones y necesidades de apoyo.
+                </p>
+
+            </header>
+
 
             <section class="agregar-seccion">
 
-                <h3>Agregar adaptación</h3>
+                <header>
 
-                <p>Ingresá una nueva adaptación.</p>
+                    <h3>Agregar adaptación</h3>
 
-                <button class="boton-agregar" id="botonAgregar">
+                    <p>
+                        Ingresá una nueva adaptación.
+                    </p>
+
+                </header>
+
+
+                <button
+                    type="button"
+                    class="boton-agregar"
+                    id="botonAgregar">
+
                     + Agregar adaptación
+
                 </button>
 
-                <div class="formulario-agregar" id="formularioAgregar">
+
+                <aside
+                    class="formulario-agregar"
+                    id="formularioAgregar">
+
                     <div id="formularioContenido"></div>
+
+                </aside>
+
+            </section>
+
+
+            <section class="informacion-guardada">
+
+                <header>
+
+                    <h3>Adaptaciones guardadas</h3>
+
+                </header>
+
+
+                <div
+                    class="lista-items"
+                    id="listaItems">
                 </div>
 
             </section>
 
-            <section class="informacion-guardada">
-
-                <h3>Adaptaciones guardadas</h3>
-
-                <div class="lista-items" id="listaItems"></div>
-
-            </section>
-
-        </div>
+        </section>
 
     </main>
+
 
     <script src="pasaporte.js"></script>
 
 </body>
 
 </html>
+```

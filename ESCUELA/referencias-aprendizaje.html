@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,163 +15,164 @@
 
 <body>
 
-<header class="barra-escuela">
+    <header class="barra-escuela">
 
-    <h2>NeuroPassport</h2>
+        <h2>NeuroPassport</h2>
 
-</header>
-
-
-<main class="preferencias-pagina">
-
-    <section class="preferencias-contenedor">
-
-        <button
-            class="volver-escuela"
-            onclick="history.back()">
-            ← Volver
-        </button>
+    </header>
 
 
-        <div class="preferencias-cabecera">
+    <main class="preferencias-pagina">
 
-            <p class="escuela-etiqueta">
-                NEUROPASSPORT
-            </p>
-
-            <h1>Preferencias de aprendizaje</h1>
-
-            <p>
-                Completá esta información para explicar
-                qué formas de aprendizaje ayudan más al estudiante.
-            </p>
-
-        </div>
-
-
-        <form id="formPreferencias">
-
-            <div class="campo-preferencia">
-
-                <label for="aprendeMejor">
-                    ¿Cómo aprende mejor?
-                </label>
-
-                <textarea
-                    id="aprendeMejor"
-                    placeholder="Ej: aprende mejor con explicaciones visuales, ejemplos y esquemas...">
-                </textarea>
-
-            </div>
-
-
-            <div class="campo-preferencia">
-
-                <label for="ayudas">
-                    ¿Qué ayudas necesita?
-                </label>
-
-                <textarea
-                    id="ayudas"
-                    placeholder="Ej: necesita instrucciones escritas, más tiempo, dividir las actividades...">
-                </textarea>
-
-            </div>
-
-
-            <div class="campo-preferencia">
-
-                <label for="ambiente">
-                    ¿Qué ambiente favorece el aprendizaje?
-                </label>
-
-                <textarea
-                    id="ambiente"
-                    placeholder="Ej: ambiente tranquilo, pocos estímulos, lugar determinado dentro del aula...">
-                </textarea>
-
-            </div>
-
-
-            <div class="campo-preferencia">
-
-                <label for="evaluaciones">
-                    ¿Qué puede ayudar durante las evaluaciones?
-                </label>
-
-                <textarea
-                    id="evaluaciones"
-                    placeholder="Ej: más tiempo, instrucciones claras, dividir la evaluación...">
-                </textarea>
-
-            </div>
-
-
-            <div class="campo-preferencia">
-
-                <label for="observaciones">
-                    Otras observaciones
-                </label>
-
-                <textarea
-                    id="observaciones"
-                    placeholder="Agregá cualquier otra información importante...">
-                </textarea>
-
-            </div>
-
-
-            <div class="permiso-escuela">
-
-                <div>
-
-                    <h3>
-                        Compartir con la escuela
-                    </h3>
-
-                    <p>
-                        Si activás esta opción, la escuela podrá
-                        consultar estas preferencias.
-                    </p>
-
-                </div>
-
-                <label class="switch">
-
-                    <input
-                        type="checkbox"
-                        id="compartirEscuela">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
+        <article class="preferencias-contenedor">
 
             <button
-                type="submit"
-                class="boton-guardar-preferencias">
-
-                Guardar preferencias
-
+                class="volver-escuela"
+                onclick="history.back()">
+                ← Volver
             </button>
 
-        </form>
+
+            <header class="preferencias-cabecera">
+
+                <p class="escuela-etiqueta">
+                    NEUROPASSPORT
+                </p>
+
+                <h1>Preferencias de aprendizaje</h1>
+
+                <p>
+                    Completá esta información para explicar
+                    qué formas de aprendizaje ayudan más al estudiante.
+                </p>
+
+            </header>
 
 
-        <p
-            id="mensajePreferencias"
-            class="mensaje-preferencias">
-        </p>
+            <form id="formPreferencias">
 
-    </section>
+                <fieldset class="campo-preferencia">
 
-</main>
+                    <label for="aprendeMejor">
+                        ¿Cómo aprende mejor?
+                    </label>
+
+                    <textarea
+                        id="aprendeMejor"
+                        placeholder="Ej: aprende mejor con explicaciones visuales, ejemplos y esquemas...">
+                    </textarea>
+
+                </fieldset>
 
 
-<script src="preferencias-aprendizaje.js"></script>
+                <fieldset class="campo-preferencia">
+
+                    <label for="ayudas">
+                        ¿Qué ayudas necesita?
+                    </label>
+
+                    <textarea
+                        id="ayudas"
+                        placeholder="Ej: necesita instrucciones escritas, más tiempo, dividir las actividades...">
+                    </textarea>
+
+                </fieldset>
+
+
+                <fieldset class="campo-preferencia">
+
+                    <label for="ambiente">
+                        ¿Qué ambiente favorece el aprendizaje?
+                    </label>
+
+                    <textarea
+                        id="ambiente"
+                        placeholder="Ej: ambiente tranquilo, pocos estímulos, lugar determinado dentro del aula...">
+                    </textarea>
+
+                </fieldset>
+
+
+                <fieldset class="campo-preferencia">
+
+                    <label for="evaluaciones">
+                        ¿Qué puede ayudar durante las evaluaciones?
+                    </label>
+
+                    <textarea
+                        id="evaluaciones"
+                        placeholder="Ej: más tiempo, instrucciones claras, dividir la evaluación...">
+                    </textarea>
+
+                </fieldset>
+
+
+                <fieldset class="campo-preferencia">
+
+                    <label for="observaciones">
+                        Otras observaciones
+                    </label>
+
+                    <textarea
+                        id="observaciones"
+                        placeholder="Agregá cualquier otra información importante...">
+                    </textarea>
+
+                </fieldset>
+
+
+                <section class="permiso-escuela">
+
+                    <header>
+
+                        <h3>
+                            Compartir con la escuela
+                        </h3>
+
+                        <p>
+                            Si activás esta opción, la escuela podrá
+                            consultar estas preferencias.
+                        </p>
+
+                    </header>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="compartirEscuela">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </section>
+
+
+                <button
+                    type="submit"
+                    class="boton-guardar-preferencias">
+
+                    Guardar preferencias
+
+                </button>
+
+            </form>
+
+
+            <output
+                id="mensajePreferencias"
+                class="mensaje-preferencias">
+            </output>
+
+        </article>
+
+    </main>
+
+
+    <script src="preferencias-aprendizaje.js"></script>
 
 </body>
 
 </html>
+```

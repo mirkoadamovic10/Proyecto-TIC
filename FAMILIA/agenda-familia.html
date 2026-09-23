@@ -1,3 +1,4 @@
+```html id="v4m8zs"
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,7 +17,7 @@
 
         <h2>NeuroPassport</h2>
 
-        <div class="menu-agenda">
+        <nav class="menu-agenda" aria-label="Navegación principal">
 
             <button
                 class="boton-menu-agenda"
@@ -35,23 +36,23 @@
                 Agenda
             </button>
 
-            <div class="perfil-agenda">
+            <aside class="perfil-agenda" aria-label="Perfil de usuario">
 
                 <span class="perfil-cabeza"></span>
                 <span class="perfil-cuerpo"></span>
 
-            </div>
+            </aside>
 
-        </div>
+        </nav>
 
     </header>
 
 
     <main class="agenda-principal">
 
-        <section class="agenda-contenedor">
+        <article class="agenda-contenedor">
 
-            <div class="agenda-superior">
+            <header class="agenda-superior">
 
                 <div>
 
@@ -71,12 +72,12 @@
 
                 </button>
 
-            </div>
+            </header>
 
 
-            <div class="calendario">
+            <section class="calendario">
 
-                <div class="calendario-cabecera">
+                <header class="calendario-cabecera">
 
                     <button
                         id="mesAnterior"
@@ -96,18 +97,20 @@
 
                     </button>
 
-                </div>
+                </header>
 
 
-                <div class="dias-semana">
+                <div
+                    class="dias-semana"
+                    aria-label="Días de la semana">
 
-                    <div>Lun</div>
-                    <div>Mar</div>
-                    <div>Mié</div>
-                    <div>Jue</div>
-                    <div>Vie</div>
-                    <div>Sáb</div>
-                    <div>Dom</div>
+                    <span>Lun</span>
+                    <span>Mar</span>
+                    <span>Mié</span>
+                    <span>Jue</span>
+                    <span>Vie</span>
+                    <span>Sáb</span>
+                    <span>Dom</span>
 
                 </div>
 
@@ -117,15 +120,14 @@
                     class="dias-calendario">
                 </div>
 
-            </div>
+            </section>
 
 
-            <div class="referencias">
+            <aside class="referencias" aria-label="Referencias de eventos">
 
                 <div class="referencia">
 
                     <span class="color-referencia turno"></span>
-
                     <span>Turno médico</span>
 
                 </div>
@@ -134,7 +136,6 @@
                 <div class="referencia">
 
                     <span class="color-referencia estudio"></span>
-
                     <span>Estudio médico</span>
 
                 </div>
@@ -143,7 +144,6 @@
                 <div class="referencia">
 
                     <span class="color-referencia terapia"></span>
-
                     <span>Terapia</span>
 
                 </div>
@@ -152,7 +152,6 @@
                 <div class="referencia">
 
                     <span class="color-referencia medicacion"></span>
-
                     <span>Medicación</span>
 
                 </div>
@@ -161,25 +160,25 @@
                 <div class="referencia">
 
                     <span class="color-referencia control"></span>
-
                     <span>Control / seguimiento</span>
 
                 </div>
 
-            </div>
+            </aside>
 
-        </section>
+        </article>
 
     </main>
 
 
-    <div
+    <dialog
         id="ventanaEvento"
         class="ventana-evento">
 
-        <div class="formulario-evento">
+        <form class="formulario-evento">
 
             <button
+                type="button"
                 id="cerrarEvento"
                 class="cerrar-evento">
 
@@ -188,11 +187,15 @@
             </button>
 
 
-            <h2>Agregar evento</h2>
+            <header>
 
-            <p>
-                Completá la información del evento.
-            </p>
+                <h2>Agregar evento</h2>
+
+                <p>
+                    Completá la información del evento.
+                </p>
+
+            </header>
 
 
             <label for="tituloEvento">
@@ -270,9 +273,9 @@
 
             </button>
 
-        </div>
+        </form>
 
-    </div>
+    </dialog>
 
 
     <script src="agenda-familia.js"></script>
@@ -280,3 +283,4 @@
 </body>
 
 </html>
+```

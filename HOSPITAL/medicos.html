@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,7 +17,7 @@
 
     <header class="barra-empresa">
 
-        <nav class="menu-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
 
             <a href="hospital.html" class="boton-menu-empresa">
                 Inicio
@@ -39,7 +40,7 @@
 
         <section class="empresa-bienvenida">
 
-            <div>
+            <header>
 
                 <h1>Médicos</h1>
 
@@ -47,9 +48,11 @@
                     Profesionales vinculados a este hospital.
                 </p>
 
-            </div>
+            </header>
+
 
             <button
+                type="button"
                 id="botonAgregarMedico"
                 class="boton-agregar-hospital">
 
@@ -62,64 +65,76 @@
 
         <section
             id="listaMedicos"
-            class="lista-hospital">
+            class="lista-hospital"
+            aria-label="Lista de médicos">
 
         </section>
 
     </main>
 
 
-    <div
+    <aside
         id="ventanaMedico"
         class="ventana-hospital">
 
-        <div class="formulario-hospital">
+        <section class="formulario-hospital">
 
             <button
+                type="button"
                 id="cerrarMedico"
-                class="cerrar-hospital">
+                class="cerrar-hospital"
+                aria-label="Cerrar">
 
                 ×
 
             </button>
 
 
-            <h2>
-                Agregar médico
-            </h2>
+            <header>
 
-            <p>
-                Ingresá el correo profesional del médico.
-            </p>
+                <h2>
+                    Agregar médico
+                </h2>
 
+                <p>
+                    Ingresá el correo profesional del médico.
+                </p>
 
-            <label for="emailMedico">
-                Correo electrónico
-            </label>
-
-            <input
-                type="email"
-                id="emailMedico"
-                placeholder="medico@email.com">
+            </header>
 
 
-            <button
-                id="guardarMedico"
-                class="boton-guardar-hospital">
+            <form>
 
-                Agregar médico
+                <label for="emailMedico">
+                    Correo electrónico
+                </label>
 
-            </button>
+                <input
+                    type="email"
+                    id="emailMedico"
+                    placeholder="medico@email.com">
 
 
-            <p
+                <button
+                    type="button"
+                    id="guardarMedico"
+                    class="boton-guardar-hospital">
+
+                    Agregar médico
+
+                </button>
+
+            </form>
+
+
+            <output
                 id="mensajeMedico"
                 class="mensaje-hospital">
-            </p>
+            </output>
 
-        </div>
+        </section>
 
-    </div>
+    </aside>
 
 
     <script src="medicos.js"></script>
@@ -127,3 +142,4 @@
 </body>
 
 </html>
+```

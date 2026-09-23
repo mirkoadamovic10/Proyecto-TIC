@@ -1,3 +1,4 @@
+```html id="8xw3pf"
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,107 +15,116 @@
 
 <body>
 
-<header class="barra-escuela">
+    <header class="barra-escuela">
 
-    <h2>NeuroPassport</h2>
+        <h2>NeuroPassport</h2>
 
-    <nav class="menu-escuela">
+        <nav class="menu-escuela" aria-label="Navegación principal">
 
-        <button
-            class="boton-menu-escuela"
-            onclick="window.location.href='escuela.html'">
-            Inicio
-        </button>
+            <button
+                class="boton-menu-escuela"
+                onclick="window.location.href='escuela.html'">
+                Inicio
+            </button>
 
-        <button
-            class="boton-menu-escuela activo"
-            onclick="window.location.href='estudiantes.html'">
-            Estudiantes
-        </button>
+            <button
+                class="boton-menu-escuela activo"
+                onclick="window.location.href='estudiantes.html'">
+                Estudiantes
+            </button>
 
-    </nav>
+        </nav>
 
-</header>
-
-
-<main class="perfil-estudiante-pagina">
-
-    <section class="perfil-estudiante-contenedor">
-
-        <button
-            class="volver-escuela"
-            onclick="window.location.href='estudiantes.html'">
-            ← Volver a estudiantes
-        </button>
+    </header>
 
 
-        <div class="perfil-estudiante-cabecera">
+    <main class="perfil-estudiante-pagina">
 
-            <div
-                class="avatar-estudiante grande"
-                id="avatarEstudiante">
-            </div>
+        <article class="perfil-estudiante-contenedor">
 
-            <div>
+            <button
+                class="volver-escuela"
+                onclick="window.location.href='estudiantes.html'">
+                ← Volver a estudiantes
+            </button>
 
-                <p class="escuela-etiqueta">
-                    PERFIL DEL ESTUDIANTE
-                </p>
 
-                <h1 id="nombreEstudiante">
-                    Estudiante
-                </h1>
+            <header class="perfil-estudiante-cabecera">
+
+                <div
+                    class="avatar-estudiante grande"
+                    id="avatarEstudiante">
+                </div>
+
+                <div>
+
+                    <p class="escuela-etiqueta">
+                        PERFIL DEL ESTUDIANTE
+                    </p>
+
+                    <h1 id="nombreEstudiante">
+                        Estudiante
+                    </h1>
+
+                    <p>
+                        Información compartida por el estudiante
+                        o su familia.
+                    </p>
+
+                </div>
+
+            </header>
+
+
+            <section class="informacion-habilitada">
+
+                <header>
+
+                    <h2>Información habilitada</h2>
+
+                    <p>
+                        La escuela solamente puede consultar
+                        la información que el estudiante o su familia
+                        hayan decidido compartir.
+                    </p>
+
+                </header>
+
+
+                <div
+                    id="contenidoHabilitado"
+                    class="contenido-habilitado">
+                </div>
+
+            </section>
+
+
+            <section
+                id="sinInformacion"
+                class="sin-informacion"
+                hidden>
+
+                <header>
+
+                    <h2>No hay información compartida</h2>
+
+                </header>
 
                 <p>
-                    Información compartida por el estudiante
-                    o su familia.
+                    Este estudiante todavía no habilitó
+                    información para la escuela.
                 </p>
 
-            </div>
+            </section>
 
-        </div>
+        </article>
 
-
-        <section class="informacion-habilitada">
-
-            <h2>Información habilitada</h2>
-
-            <p>
-                La escuela solamente puede consultar
-                la información que el estudiante o su familia
-                hayan decidido compartir.
-            </p>
+    </main>
 
 
-            <div
-                id="contenidoHabilitado"
-                class="contenido-habilitado">
-            </div>
-
-        </section>
-
-
-        <section
-            id="sinInformacion"
-            class="sin-informacion"
-            hidden>
-
-            <h2>No hay información compartida</h2>
-
-            <p>
-                Este estudiante todavía no habilitó
-                información para la escuela.
-            </p>
-
-        </section>
-
-    </section>
-
-</main>
-
-
-<script src="estudiante.js"></script>
+    <script src="estudiante.js"></script>
 
 </body>
 
 </html>
+```

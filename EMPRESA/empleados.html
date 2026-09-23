@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -12,7 +13,7 @@
 
     <header class="barra-empresa">
 
-        <div class="menu-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
 
             <button class="boton-menu-empresa" onclick="location.href='empresa.html'">
                 Inicio
@@ -22,28 +23,36 @@
                 Empleados
             </button>
 
-        </div>
+        </nav>
 
-        <div class="perfil-empresa">
+        <aside class="perfil-empresa" aria-label="Perfil de usuario">
+
             <div class="avatar-empresa"></div>
 
-            <div class="submenu-perfil-empresa">
+            <nav class="submenu-perfil-empresa" aria-label="Opciones de perfil">
                 <button>Configuración</button>
                 <button>Información personal</button>
-            </div>
-        </div>
+            </nav>
+
+        </aside>
 
     </header>
 
     <main class="empresa-pagina">
 
-        <h1>Mis empleados</h1>
+        <header>
+            <h1>Mis empleados</h1>
 
-        <p class="texto-empresa">
-            Linkeá un empleado utilizando su código de NeuroPassport.
-        </p>
+            <p class="texto-empresa">
+                Linkeá un empleado utilizando su código de NeuroPassport.
+            </p>
+        </header>
 
         <section class="formulario-linkear-empresa">
+
+            <label for="codigoEmpleado" class="sr-only">
+                Código del empleado
+            </label>
 
             <input
                 type="text"
@@ -59,7 +68,9 @@
 
         <section class="lista-empleados">
 
-            <h2>Empleados vinculados</h2>
+            <header>
+                <h2>Empleados vinculados</h2>
+            </header>
 
             <div id="empleadosVinculados"></div>
 
@@ -72,3 +83,4 @@
 </body>
 
 </html>
+```

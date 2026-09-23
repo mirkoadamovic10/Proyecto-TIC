@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,7 +15,7 @@
 
     <header class="barra-empresa">
 
-        <nav class="menu-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
 
             <a href="medico.html" class="boton-menu-empresa">
                 Inicio
@@ -30,10 +31,13 @@
 
         </nav>
 
-        <a href="configuracion.html"
-           class="perfil-empresa"
-           id="perfilMedico"
-           title="Configuración">
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            id="perfilMedico"
+            title="Configuración"
+            aria-label="Configuración">
 
             <span class="perfil-cabeza"></span>
             <span class="perfil-cuerpo"></span>
@@ -47,22 +51,31 @@
 
         <section class="empresa-bienvenida">
 
-            <h1 id="saludoMedico">
-                ¡Hola! Bienvenido a NeuroPassport
-            </h1>
+            <header>
 
-            <p>
-                Desde este espacio podés acceder a la información de tus pacientes.
-            </p>
+                <h1 id="saludoMedico">
+                    ¡Hola! Bienvenido a NeuroPassport
+                </h1>
+
+                <p>
+                    Desde este espacio podés acceder a la información de tus pacientes.
+                </p>
+
+            </header>
 
         </section>
 
 
         <section class="empresa-acciones">
 
+
             <article class="tarjeta-empresa">
 
-                <h2>Pacientes</h2>
+                <header>
+
+                    <h2>Pacientes</h2>
+
+                </header>
 
                 <p>
                     Consultá las personas vinculadas a tu cuenta
@@ -82,7 +95,11 @@
 
             <article class="tarjeta-empresa">
 
-                <h2>Agenda</h2>
+                <header>
+
+                    <h2>Agenda</h2>
+
+                </header>
 
                 <p>
                     Organizá tus consultas, controles y turnos
@@ -99,12 +116,41 @@
 
             </article>
 
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>Hospitales</h2>
+
+                </header>
+
+                <p>
+                    Vinculate a un hospital para trabajar con tus pacientes
+                    desde su cuenta profesional.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='hospitales.html'">
+
+                    Ver hospitales
+
+                </button>
+
+            </article>
+
+
         </section>
 
 
         <section class="empresa-info">
 
-            <h2>Información de pacientes</h2>
+            <header>
+
+                <h2>Información de pacientes</h2>
+
+            </header>
 
             <p>
                 Solo vas a poder acceder a la información que cada paciente
@@ -121,21 +167,4 @@
 </body>
 
 </html>
-<article class="tarjeta-empresa">
-
-    <h2>Hospitales</h2>
-
-    <p>
-        Vinculate a un hospital para trabajar con tus pacientes
-        desde su cuenta profesional.
-    </p>
-
-    <button
-        type="button"
-        onclick="window.location.href='hospitales.html'">
-
-        Ver hospitales
-
-    </button>
-
-</article>
+```

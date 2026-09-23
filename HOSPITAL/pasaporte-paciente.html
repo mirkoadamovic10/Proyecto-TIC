@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,7 +17,7 @@
 
     <header class="barra-empresa">
 
-        <nav class="menu-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
 
             <a href="hospital.html" class="boton-menu-empresa">
                 Inicio
@@ -39,27 +40,36 @@
 
         <section class="empresa-bienvenida">
 
-            <h1 id="nombrePaciente">
-                Pasaporte del paciente
-            </h1>
+            <header>
 
-            <p>
-                Información compartida por el paciente y los profesionales vinculados.
-            </p>
+                <h1 id="nombrePaciente">
+                    Pasaporte del paciente
+                </h1>
+
+                <p>
+                    Información compartida por el paciente y los profesionales vinculados.
+                </p>
+
+            </header>
 
         </section>
 
 
-        <section class="pasaporte-hospital">
+        <section
+            class="pasaporte-hospital"
+            aria-label="Información del pasaporte">
 
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Diagnósticos</h2>
+                <header>
+                    <h2>Diagnósticos</h2>
+                </header>
 
                 <div id="diagnosticosPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="diagnosticos">
 
@@ -72,11 +82,14 @@
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Medicaciones</h2>
+                <header>
+                    <h2>Medicaciones</h2>
+                </header>
 
                 <div id="medicacionesPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="medicaciones">
 
@@ -89,11 +102,14 @@
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Alergias</h2>
+                <header>
+                    <h2>Alergias</h2>
+                </header>
 
                 <div id="alergiasPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="alergias">
 
@@ -106,11 +122,14 @@
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Estudios</h2>
+                <header>
+                    <h2>Estudios</h2>
+                </header>
 
                 <div id="estudiosPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="estudios">
 
@@ -123,11 +142,14 @@
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Imágenes</h2>
+                <header>
+                    <h2>Imágenes</h2>
+                </header>
 
                 <div id="imagenesPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="imagenes">
 
@@ -140,11 +162,14 @@
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Recetas</h2>
+                <header>
+                    <h2>Recetas</h2>
+                </header>
 
                 <div id="recetasPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="recetas">
 
@@ -157,11 +182,14 @@
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Terapias</h2>
+                <header>
+                    <h2>Terapias</h2>
+                </header>
 
                 <div id="terapiasPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="terapias">
 
@@ -174,11 +202,14 @@
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Cirugías</h2>
+                <header>
+                    <h2>Cirugías</h2>
+                </header>
 
                 <div id="cirugiasPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="cirugias">
 
@@ -191,11 +222,14 @@
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Certificados</h2>
+                <header>
+                    <h2>Certificados</h2>
+                </header>
 
                 <div id="certificadosPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="certificados">
 
@@ -208,11 +242,14 @@
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Adaptaciones</h2>
+                <header>
+                    <h2>Adaptaciones</h2>
+                </header>
 
                 <div id="adaptacionesPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="adaptaciones">
 
@@ -225,11 +262,14 @@
 
             <article class="tarjeta-pasaporte-hospital">
 
-                <h2>Objetivos</h2>
+                <header>
+                    <h2>Objetivos</h2>
+                </header>
 
                 <div id="objetivosPaciente"></div>
 
                 <button
+                    type="button"
                     class="boton-agregar-pasaporte"
                     data-seccion="objetivos">
 
@@ -245,48 +285,59 @@
     </main>
 
 
-    <div
+    <aside
         id="ventanaPasaporte"
         class="ventana-hospital">
 
-        <div class="formulario-hospital">
+        <section class="formulario-hospital">
 
             <button
+                type="button"
                 id="cerrarPasaporte"
-                class="cerrar-hospital">
+                class="cerrar-hospital"
+                aria-label="Cerrar">
 
                 ×
 
             </button>
 
 
-            <h2 id="tituloVentanaPasaporte">
-                Agregar información
-            </h2>
+            <header>
+
+                <h2 id="tituloVentanaPasaporte">
+                    Agregar información
+                </h2>
+
+            </header>
 
 
-            <label for="informacionPasaporte">
-                Información
-            </label>
+            <form>
+
+                <label for="informacionPasaporte">
+                    Información
+                </label>
 
 
-            <textarea
-                id="informacionPasaporte"
-                placeholder="Ingresá la información...">
-            </textarea>
+                <textarea
+                    id="informacionPasaporte"
+                    placeholder="Ingresá la información...">
+                </textarea>
 
 
-            <button
-                id="guardarPasaporte"
-                class="boton-guardar-hospital">
+                <button
+                    type="button"
+                    id="guardarPasaporte"
+                    class="boton-guardar-hospital">
 
-                Guardar
+                    Guardar
 
-            </button>
+                </button>
 
-        </div>
+            </form>
 
-    </div>
+        </section>
+
+    </aside>
 
 
     <script src="pasaporte-paciente.js"></script>
@@ -294,3 +345,4 @@
 </body>
 
 </html>
+

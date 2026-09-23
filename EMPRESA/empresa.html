@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -12,7 +13,7 @@
 
     <header class="barra-empresa">
 
-        <div class="menu-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
 
             <button class="boton-menu-empresa" onclick="location.href='empresa.html'">
                 Inicio
@@ -22,33 +23,42 @@
                 Empleados
             </button>
 
-        </div>
+        </nav>
 
-        <div class="perfil-empresa">
+        <aside class="perfil-empresa" aria-label="Perfil de usuario">
+
             <div class="avatar-empresa"></div>
 
-            <div class="submenu-perfil-empresa">
+            <nav class="submenu-perfil-empresa" aria-label="Opciones de perfil">
                 <button>Configuración</button>
                 <button>Información personal</button>
-            </div>
-        </div>
+            </nav>
+
+        </aside>
 
     </header>
 
     <main class="empresa-principal">
 
         <section class="empresa-bienvenida">
-            <h1 id="bienvenidaEmpresa">¡Hola! Bienvenido a NeuroPassport</h1>
-            <p>
-                Gestioná la información de los empleados que te hayan autorizado a verla.
-            </p>
+
+            <header>
+                <h1 id="bienvenidaEmpresa">¡Hola! Bienvenido a NeuroPassport</h1>
+
+                <p>
+                    Gestioná la información de los empleados que te hayan autorizado a verla.
+                </p>
+            </header>
+
         </section>
 
         <section class="empresa-acciones">
 
-            <div class="tarjeta-empresa">
+            <article class="tarjeta-empresa">
 
-                <h2>Linkear empleado</h2>
+                <header>
+                    <h2>Linkear empleado</h2>
+                </header>
 
                 <p>
                     Vinculá a un empleado mediante su código de NeuroPassport.
@@ -58,11 +68,13 @@
                     Linkear empleado
                 </button>
 
-            </div>
+            </article>
 
-            <div class="tarjeta-empresa">
+            <article class="tarjeta-empresa">
 
-                <h2>Mis empleados</h2>
+                <header>
+                    <h2>Mis empleados</h2>
+                </header>
 
                 <p>
                     Consultá los empleados que están vinculados con tu empresa.
@@ -72,13 +84,15 @@
                     Ver empleados
                 </button>
 
-            </div>
+            </article>
 
         </section>
 
         <section class="empresa-info">
 
-            <h2>Información compartida</h2>
+            <header>
+                <h2>Información compartida</h2>
+            </header>
 
             <p>
                 Solo podrás consultar la información que cada empleado haya decidido compartir con la empresa.
@@ -93,3 +107,4 @@
 </body>
 
 </html>
+```

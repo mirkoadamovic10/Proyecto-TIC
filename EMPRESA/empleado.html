@@ -12,7 +12,7 @@
 
     <header class="barra-empresa">
 
-        <div class="menu-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
 
             <button class="boton-menu-empresa" onclick="location.href='empresa.html'">
                 Inicio
@@ -22,22 +22,24 @@
                 Empleados
             </button>
 
-        </div>
+        </nav>
 
-        <div class="perfil-empresa">
+        <aside class="perfil-empresa" aria-label="Perfil de usuario">
+
             <div class="avatar-empresa"></div>
 
-            <div class="submenu-perfil-empresa">
+            <nav class="submenu-perfil-empresa" aria-label="Opciones de perfil">
                 <button>Configuración</button>
                 <button>Información personal</button>
-            </div>
-        </div>
+            </nav>
+
+        </aside>
 
     </header>
 
     <main class="perfil-empleado-pagina">
 
-        <div class="cabecera-empleado">
+        <header class="cabecera-empleado">
 
             <button onclick="location.href='empleados.html'">
                 ← Volver
@@ -45,7 +47,7 @@
 
             <h1 id="nombreEmpleado">Empleado</h1>
 
-        </div>
+        </header>
 
         <section class="informacion-habilitada">
 

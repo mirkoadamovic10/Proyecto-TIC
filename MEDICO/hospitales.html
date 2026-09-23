@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,7 +17,7 @@
 
     <header class="barra-empresa">
 
-        <nav class="menu-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
 
             <a href="medico.html" class="boton-menu-empresa">
                 Inicio
@@ -39,11 +40,15 @@
 
         <section class="empresa-bienvenida">
 
-            <h1>Hospitales</h1>
+            <header>
 
-            <p>
-                Vinculate a hospitales para trabajar con ellos desde tu cuenta profesional.
-            </p>
+                <h1>Hospitales</h1>
+
+                <p>
+                    Vinculate a hospitales para trabajar con ellos desde tu cuenta profesional.
+                </p>
+
+            </header>
 
         </section>
 
@@ -52,16 +57,26 @@
 
             <article class="tarjeta-empresa">
 
-                <h2>Vincular hospital</h2>
+                <header>
 
-                <p>
-                    Ingresá el correo del hospital al que querés vincularte.
-                </p>
+                    <h2>Vincular hospital</h2>
+
+                    <p>
+                        Ingresá el correo del hospital al que querés vincularte.
+                    </p>
+
+                </header>
+
+
+                <label for="emailHospital">
+                    Correo electrónico del hospital
+                </label>
 
                 <input
                     type="email"
                     id="emailHospital"
                     placeholder="hospital@email.com">
+
 
                 <button
                     id="botonVincularHospital"
@@ -71,7 +86,8 @@
 
                 </button>
 
-                <p id="mensajeHospital"></p>
+
+                <output id="mensajeHospital"></output>
 
             </article>
 
@@ -80,7 +96,12 @@
 
         <section>
 
-            <h2>Mis hospitales</h2>
+            <header>
+
+                <h2>Mis hospitales</h2>
+
+            </header>
+
 
             <div
                 id="listaHospitales"
@@ -97,3 +118,4 @@
 </body>
 
 </html>
+

@@ -1,3 +1,4 @@
+```html id="m2k7rc"
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,7 +15,7 @@
 
     <header class="barra-familia">
 
-        <nav class="menu-familia">
+        <nav class="menu-familia" aria-label="Navegación principal">
 
             <a href="familia.html" class="boton-menu-familia">
                 Inicio
@@ -34,7 +35,8 @@
         <a
             href="configuracion.html"
             class="perfil-familia"
-            id="perfilFamilia">
+            id="perfilFamilia"
+            aria-label="Configuración">
 
             <span class="perfil-cabeza"></span>
             <span class="perfil-cuerpo"></span>
@@ -48,7 +50,7 @@
 
         <section>
 
-            <div class="personas-superior">
+            <header class="personas-superior">
 
                 <div>
 
@@ -70,13 +72,12 @@
 
                 </button>
 
-            </div>
+            </header>
 
 
             <div
                 id="listaPersonas"
                 class="lista-personas">
-
             </div>
 
         </section>
@@ -84,58 +85,66 @@
     </main>
 
 
-    <div
+    <aside
         id="ventanaLinkearFamilia"
         class="ventana-linkear-familia">
 
-        <div class="formulario-linkear-familia">
+        <section class="formulario-linkear-familia">
 
             <button
                 type="button"
                 class="cerrar-linkear-familia"
-                id="cerrarLinkearFamilia">
+                id="cerrarLinkearFamilia"
+                aria-label="Cerrar">
 
                 ×
 
             </button>
 
 
-            <h2>Linkear persona</h2>
+            <header>
 
-            <p>
-                Ingresá el correo electrónico de la persona que querés vincular.
-            </p>
+                <h2>Linkear persona</h2>
 
+                <p>
+                    Ingresá el correo electrónico de la persona que querés vincular.
+                </p>
 
-            <label for="emailPersona">
-                Correo electrónico
-            </label>
-
-            <input
-                type="email"
-                id="emailPersona"
-                placeholder="persona@email.com">
+            </header>
 
 
-            <button
-                type="button"
-                class="boton-enviar-solicitud-familia"
-                id="botonEnviarSolicitudFamilia">
+            <form>
 
-                Enviar solicitud
+                <label for="emailPersona">
+                    Correo electrónico
+                </label>
 
-            </button>
+                <input
+                    type="email"
+                    id="emailPersona"
+                    placeholder="persona@email.com">
 
 
-            <p
+                <button
+                    type="button"
+                    class="boton-enviar-solicitud-familia"
+                    id="botonEnviarSolicitudFamilia">
+
+                    Enviar solicitud
+
+                </button>
+
+            </form>
+
+
+            <output
                 id="mensajeSolicitudFamilia"
                 class="mensaje-solicitud-familia">
+            </output>
 
-            </p>
+        </section>
 
-        </div>
-
-    </div>
+    </aside>
 
 
     <script src="personas.js"></script>
@@ -143,3 +152,4 @@
 </body>
 
 </html>
+```

@@ -1,3 +1,4 @@
+```html id="q4v8lm"
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,7 +17,7 @@
 
     <header class="barra-empresa">
 
-        <nav class="menu-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
 
             <a href="hospital.html" class="boton-menu-empresa">
                 Inicio
@@ -39,7 +40,7 @@
 
         <section class="empresa-bienvenida">
 
-            <div>
+            <header>
 
                 <h1>Pacientes</h1>
 
@@ -47,9 +48,11 @@
                     Personas vinculadas al hospital.
                 </p>
 
-            </div>
+            </header>
+
 
             <button
+                type="button"
                 id="botonAgregarPaciente"
                 class="boton-agregar-hospital">
 
@@ -62,64 +65,76 @@
 
         <section
             id="listaPacientes"
-            class="lista-hospital">
+            class="lista-hospital"
+            aria-label="Lista de pacientes">
 
         </section>
 
     </main>
 
 
-    <div
+    <aside
         id="ventanaPaciente"
         class="ventana-hospital">
 
-        <div class="formulario-hospital">
+        <section class="formulario-hospital">
 
             <button
+                type="button"
                 id="cerrarPaciente"
-                class="cerrar-hospital">
+                class="cerrar-hospital"
+                aria-label="Cerrar">
 
                 ×
 
             </button>
 
 
-            <h2>
-                Linkear paciente
-            </h2>
+            <header>
 
-            <p>
-                Ingresá el correo electrónico del paciente.
-            </p>
+                <h2>
+                    Linkear paciente
+                </h2>
 
+                <p>
+                    Ingresá el correo electrónico del paciente.
+                </p>
 
-            <label for="emailPaciente">
-                Correo electrónico
-            </label>
-
-            <input
-                type="email"
-                id="emailPaciente"
-                placeholder="paciente@email.com">
+            </header>
 
 
-            <button
-                id="guardarPaciente"
-                class="boton-guardar-hospital">
+            <form>
 
-                Linkear paciente
+                <label for="emailPaciente">
+                    Correo electrónico
+                </label>
 
-            </button>
+                <input
+                    type="email"
+                    id="emailPaciente"
+                    placeholder="paciente@email.com">
 
 
-            <p
+                <button
+                    type="button"
+                    id="guardarPaciente"
+                    class="boton-guardar-hospital">
+
+                    Linkear paciente
+
+                </button>
+
+            </form>
+
+
+            <output
                 id="mensajePaciente"
                 class="mensaje-hospital">
-            </p>
+            </output>
 
-        </div>
+        </section>
 
-    </div>
+    </aside>
 
 
     <script src="pacientes.js"></script>
@@ -127,3 +142,4 @@
 </body>
 
 </html>
+

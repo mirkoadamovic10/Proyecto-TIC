@@ -1,3 +1,4 @@
+```html id="q2f7ka"
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,110 +15,121 @@
 
 <body>
 
-<header class="barra-escuela">
+    <header class="barra-escuela">
 
-    <h2>NeuroPassport</h2>
+        <h2>NeuroPassport</h2>
 
-    <nav class="menu-escuela">
-
-        <button
-            class="boton-menu-escuela"
-            onclick="window.location.href='escuela.html'">
-            Inicio
-        </button>
-
-        <button
-            class="boton-menu-escuela activo"
-            onclick="window.location.href='estudiantes.html'">
-            Estudiantes
-        </button>
-
-    </nav>
-
-    <button class="perfil-escuela">
-
-        <span class="perfil-cabeza"></span>
-        <span class="perfil-cuerpo"></span>
-
-    </button>
-
-</header>
-
-
-<main class="escuela-pagina">
-
-    <section class="escuela-contenedor">
-
-        <div class="escuela-titulo">
-
-            <div>
-
-                <p class="escuela-etiqueta">
-                    ESTUDIANTES
-                </p>
-
-                <h1>Mis estudiantes</h1>
-
-                <p>
-                    Vinculá estudiantes para consultar
-                    la información que ellos hayan habilitado.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <section class="formulario-linkear-escuela">
-
-            <h2>Linkear estudiante</h2>
-
-            <p>
-                Ingresá el código de vinculación del estudiante.
-            </p>
-
-            <label for="codigoEstudiante">
-                Código del estudiante
-            </label>
-
-            <input
-                type="text"
-                id="codigoEstudiante"
-                placeholder="Ej: NP-123456"
-            >
+        <nav class="menu-escuela" aria-label="Navegación principal">
 
             <button
-                class="boton-linkear"
-                id="botonLinkear">
-                Linkear estudiante
+                class="boton-menu-escuela"
+                onclick="window.location.href='escuela.html'">
+                Inicio
             </button>
 
-            <p
-                id="mensajeLinkeo"
-                class="mensaje-linkeo">
-            </p>
+            <button
+                class="boton-menu-escuela activo"
+                onclick="window.location.href='estudiantes.html'">
+                Estudiantes
+            </button>
 
-        </section>
+        </nav>
 
+        <button
+            class="perfil-escuela"
+            aria-label="Abrir perfil">
 
-        <section class="estudiantes-seccion">
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
 
-            <h2>Estudiantes vinculados</h2>
+        </button>
 
-            <div
-                id="listaEstudiantes"
-                class="lista-estudiantes">
-            </div>
-
-        </section>
-
-    </section>
-
-</main>
+    </header>
 
 
-<script src="estudiantes.js"></script>
+    <main class="escuela-pagina">
+
+        <article class="escuela-contenedor">
+
+            <header class="escuela-titulo">
+
+                <div>
+
+                    <p class="escuela-etiqueta">
+                        ESTUDIANTES
+                    </p>
+
+                    <h1>Mis estudiantes</h1>
+
+                    <p>
+                        Vinculá estudiantes para consultar
+                        la información que ellos hayan habilitado.
+                    </p>
+
+                </div>
+
+            </header>
+
+
+            <section class="formulario-linkear-escuela">
+
+                <header>
+
+                    <h2>Linkear estudiante</h2>
+
+                    <p>
+                        Ingresá el código de vinculación del estudiante.
+                    </p>
+
+                </header>
+
+                <label for="codigoEstudiante">
+                    Código del estudiante
+                </label>
+
+                <input
+                    type="text"
+                    id="codigoEstudiante"
+                    placeholder="Ej: NP-123456"
+                >
+
+                <button
+                    class="boton-linkear"
+                    id="botonLinkear">
+                    Linkear estudiante
+                </button>
+
+                <p
+                    id="mensajeLinkeo"
+                    class="mensaje-linkeo">
+                </p>
+
+            </section>
+
+
+            <section class="estudiantes-seccion">
+
+                <header>
+
+                    <h2>Estudiantes vinculados</h2>
+
+                </header>
+
+                <div
+                    id="listaEstudiantes"
+                    class="lista-estudiantes">
+                </div>
+
+            </section>
+
+        </article>
+
+    </main>
+
+
+    <script src="estudiantes.js"></script>
 
 </body>
 
 </html>
+```

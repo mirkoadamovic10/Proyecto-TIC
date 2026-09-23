@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,7 +16,7 @@
 
         <h2>NeuroPassport</h2>
 
-        <nav class="menu-escuela">
+        <nav class="menu-escuela" aria-label="Navegación principal">
 
             <button
                 class="boton-menu-escuela activo"
@@ -37,14 +38,23 @@
 
         </nav>
 
-        <button class="perfil-escuela" id="botonPerfil">
+        <button
+            class="perfil-escuela"
+            id="botonPerfil"
+            aria-label="Abrir menú de perfil"
+            aria-expanded="false"
+            aria-controls="submenuPerfil">
 
             <span class="perfil-cabeza"></span>
             <span class="perfil-cuerpo"></span>
 
         </button>
 
-        <div class="submenu-perfil-escuela" id="submenuPerfil" hidden>
+        <nav
+            class="submenu-perfil-escuela"
+            id="submenuPerfil"
+            aria-label="Opciones de perfil"
+            hidden>
 
             <button onclick="alert('Configuración próximamente')">
                 Configuración
@@ -54,7 +64,7 @@
                 Información personal
             </button>
 
-        </div>
+        </nav>
 
     </header>
 
@@ -63,18 +73,22 @@
 
         <section class="escuela-bienvenida">
 
-            <p class="escuela-etiqueta">
-                ESCUELA / UNIVERSIDAD
-            </p>
+            <header>
 
-            <h1 id="saludoEscuela">
-                ¡Hola! Bienvenido a NeuroPassport
-            </h1>
+                <p class="escuela-etiqueta">
+                    ESCUELA / UNIVERSIDAD
+                </p>
 
-            <p>
-                Gestioná y acompañá a tus estudiantes
-                respetando la información que cada uno decide compartir.
-            </p>
+                <h1 id="saludoEscuela">
+                    ¡Hola! Bienvenido a NeuroPassport
+                </h1>
+
+                <p>
+                    Gestioná y acompañá a tus estudiantes
+                    respetando la información que cada uno decide compartir.
+                </p>
+
+            </header>
 
         </section>
 
@@ -83,11 +97,15 @@
 
             <article class="tarjeta-escuela">
 
-                <div class="icono-tarjeta-escuela">
-                    +
-                </div>
+                <header>
 
-                <h2>Linkear estudiante</h2>
+                    <div class="icono-tarjeta-escuela">
+                        +
+                    </div>
+
+                    <h2>Linkear estudiante</h2>
+
+                </header>
 
                 <p>
                     Vinculá un estudiante a tu institución
@@ -105,11 +123,15 @@
 
             <article class="tarjeta-escuela">
 
-                <div class="icono-tarjeta-escuela">
-                    ✓
-                </div>
+                <header>
 
-                <h2>Mis estudiantes</h2>
+                    <div class="icono-tarjeta-escuela">
+                        ✓
+                    </div>
+
+                    <h2>Mis estudiantes</h2>
+
+                </header>
 
                 <p>
                     Consultá los estudiantes que están vinculados
@@ -129,36 +151,40 @@
 
         <section class="escuela-info">
 
-            <h2>Información compartida</h2>
+            <header>
 
-            <p>
-                Cada estudiante puede decidir qué información
-                compartir con su escuela o universidad.
-            </p>
+                <h2>Información compartida</h2>
 
-            <div class="info-permisos">
+                <p>
+                    Cada estudiante puede decidir qué información
+                    compartir con su escuela o universidad.
+                </p>
 
-                <div>
+            </header>
+
+            <ul class="info-permisos">
+
+                <li>
                     <span>✓</span>
                     <p>Preferencias de aprendizaje</p>
-                </div>
+                </li>
 
-                <div>
+                <li>
                     <span>✓</span>
                     <p>Adaptaciones</p>
-                </div>
+                </li>
 
-                <div>
+                <li>
                     <span>✓</span>
                     <p>Formas de comunicación</p>
-                </div>
+                </li>
 
-                <div>
+                <li>
                     <span>🔒</span>
                     <p>Información no autorizada</p>
-                </div>
+                </li>
 
-            </div>
+            </ul>
 
         </section>
 
@@ -170,3 +196,4 @@
 </body>
 
 </html>
+```

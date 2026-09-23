@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,7 +15,7 @@
 
     <header class="barra-empresa">
 
-        <nav class="menu-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
 
             <a href="hospital.html" class="boton-menu-empresa">
                 Inicio
@@ -34,7 +35,8 @@
             href="configuracion.html"
             class="perfil-empresa"
             id="perfilHospital"
-            title="Configuración">
+            title="Configuración"
+            aria-label="Configuración">
 
             <span class="perfil-cabeza"></span>
             <span class="perfil-cuerpo"></span>
@@ -48,14 +50,18 @@
 
         <section class="empresa-bienvenida">
 
-            <h1 id="saludoHospital">
-                ¡Hola! Bienvenido a NeuroPassport
-            </h1>
+            <header>
 
-            <p>
-                Administrá tus médicos, pacientes y la información
-                clínica compartida desde un solo lugar.
-            </p>
+                <h1 id="saludoHospital">
+                    ¡Hola! Bienvenido a NeuroPassport
+                </h1>
+
+                <p>
+                    Administrá tus médicos, pacientes y la información
+                    clínica compartida desde un solo lugar.
+                </p>
+
+            </header>
 
         </section>
 
@@ -64,7 +70,11 @@
 
             <article class="tarjeta-empresa">
 
-                <h2>Médicos</h2>
+                <header>
+
+                    <h2>Médicos</h2>
+
+                </header>
 
                 <p>
                     Vinculá médicos al hospital para que puedan trabajar
@@ -84,7 +94,11 @@
 
             <article class="tarjeta-empresa">
 
-                <h2>Pacientes</h2>
+                <header>
+
+                    <h2>Pacientes</h2>
+
+                </header>
 
                 <p>
                     Vinculá pacientes al hospital y accedé a la información
@@ -104,7 +118,11 @@
 
             <article class="tarjeta-empresa">
 
-                <h2>Información compartida</h2>
+                <header>
+
+                    <h2>Información compartida</h2>
+
+                </header>
 
                 <p>
                     Consultá estudios, diagnósticos, recetas e información
@@ -126,7 +144,11 @@
 
         <section class="empresa-info">
 
-            <h2>Red de hospitales</h2>
+            <header>
+
+                <h2>Red de hospitales</h2>
+
+            </header>
 
             <p>
                 Los pacientes pueden estar vinculados a diferentes hospitales.
@@ -144,3 +166,4 @@
 </body>
 
 </html>
+```

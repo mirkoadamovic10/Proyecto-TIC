@@ -1109,9 +1109,7 @@ h1 {
     color: var(--gris);
 }
 
-/* ============================= */
-/* ALERTAS */
-/* ============================= */
+ALERTAS
 
 .contenedor-alerta {
     position: relative;
@@ -1192,9 +1190,7 @@ h1 {
     color: #58767e;
 }
 
-/* ============================= */
-/* SUBMENU PERFIL */
-/* ============================= */
+SUBMENU PERFIL
 
 .contenedor-perfil {
     position: relative;
@@ -1234,9 +1230,7 @@ h1 {
     background: var(--verde);
 }
 
-/* ============================= */
-/* INFORMACIÓN */
-/* ============================= */
+INFO
 
 .encabezado-info,
 .encabezado-configuracion {
@@ -1338,9 +1332,7 @@ h1 {
     color: var(--azul);
 }
 
-/* ============================= */
-/* CONFIGURACIÓN */
-/* ============================= */
+CONFIGURACION
 
 .pagina-configuracion {
     min-height: calc(100vh - 90px);
@@ -1438,9 +1430,7 @@ h1 {
     font-weight: 700;
 }
 
-/* ============================= */
-/* LINK / PERSONAS / PACIENTES */
-/* ============================= */
+LINK PERSONAS PACIENTES
 
 .pagina-linkear,
 .pagina-personas,
@@ -1558,9 +1548,7 @@ h1 {
     display: flex;
 }
 
-/* ============================= */
-/* RESPONSIVE */
-/* ============================= */
+
 
 @media (max-width: 900px) {
     header {
@@ -1699,9 +1687,7 @@ h1 {
         max-height: calc(100vh - 100px);
     }
 }
-/* ================================================= */
-/* ESCUELA / UNIVERSIDAD */
-/* ================================================= */
+ESCUELA/UNIVERSIDAD
 
 .barra-escuela {
     height: 72px;
@@ -1788,7 +1774,7 @@ h1 {
 }
 
 
-/* PERFIL */
+PERFIL
 
 .submenu-perfil-escuela {
     position: absolute;
@@ -1819,7 +1805,7 @@ h1 {
 }
 
 
-/* HOME */
+HOME
 
 .escuela-principal {
     min-height: calc(100vh - 72px);
@@ -1956,7 +1942,7 @@ h1 {
 }
 
 
-/* PAGINA ESTUDIANTES */
+PAGINA ESTUDIANTES
 
 .escuela-pagina {
     min-height: calc(100vh - 72px);
@@ -2102,7 +2088,7 @@ h1 {
 }
 
 
-/* PERFIL DEL ESTUDIANTE */
+PERFIL ESTUDIANTE
 
 .perfil-estudiante-pagina {
     min-height: calc(100vh - 72px);
@@ -2222,7 +2208,7 @@ h1 {
 }
 
 
-/* PREFERENCIAS */
+PREFERENCIAS
 
 .preferencias-pagina {
     min-height: calc(100vh - 72px);
@@ -2298,7 +2284,7 @@ h1 {
 }
 
 
-/* SWITCH */
+SWITCH
 
 .switch {
     position: relative;
@@ -2362,7 +2348,7 @@ h1 {
 }
 
 
-/* RESPONSIVE */
+
 
 @media (max-width: 800px) {
 
@@ -2419,9 +2405,7 @@ h1 {
     }
 
 }
-/* ============================= */
-/* EMPRESA */
-/* ============================= */
+EMPRESA
 
 .barra-empresa {
     height: 72px;
@@ -2511,9 +2495,7 @@ h1 {
 }
 
 
-/* ============================= */
-/* INICIO EMPRESA */
-/* ============================= */
+INICIO
 
 .empresa-principal {
     width: 90%;
@@ -2590,9 +2572,7 @@ h1 {
 }
 
 
-/* ============================= */
-/* PÁGINA EMPLEADOS */
-/* ============================= */
+PAGINA EMPLEADOS
 
 .empresa-pagina {
     width: 90%;
@@ -2688,9 +2668,7 @@ h1 {
 }
 
 
-/* ============================= */
-/* PERFIL DEL EMPLEADO */
-/* ============================= */
+EMPLEADO
 
 .perfil-empleado-pagina {
     width: 90%;
@@ -2766,9 +2744,7 @@ h1 {
 }
 
 
-/* ============================= */
-/* PREFERENCIAS DE TRABAJO */
-/* ============================= */
+PREFERENCIAS DE TRABAJO
 
 .preferencias-pagina {
     width: 90%;
@@ -2853,9 +2829,7 @@ h1 {
 }
 
 
-/* ============================= */
-/* RESPONSIVE */
-/* ============================= */
+
 
 @media (max-width: 700px) {
 
@@ -2877,9 +2851,7 @@ h1 {
         flex-wrap: wrap;
     }
 }
-/* ============================= */
-/* MEDICO */
-/* ============================= */
+MEDICOS
 
 .barra-empresa {
     height: 72px;
@@ -2941,7 +2913,7 @@ h1 {
 }
 
 
-/* PACIENTES */
+ PACIENTES
 
 .pacientes-superior {
     display: flex;
@@ -2988,7 +2960,7 @@ h1 {
 }
 
 
-/* VENTANA LINKEAR */
+VENTANA LINKEAR
 
 .ventana-linkear {
     position: fixed;
@@ -3068,7 +3040,7 @@ h1 {
 }
 
 
-/* RESPONSIVE */
+
 
 @media (max-width: 700px) {
 
@@ -3087,9 +3059,7 @@ h1 {
     }
 
 }
-/* ============================= */
-/* FAMILIA */
-/* ============================= */
+FAMILIA
 
 .barra-familia {
     height: 72px;
@@ -3151,7 +3121,7 @@ h1 {
 }
 
 
-/* INICIO */
+INICIO
 
 .familia-principal {
     width: 90%;
@@ -3230,7 +3200,7 @@ h1 {
 }
 
 
-/* PERSONAS */
+PERSONAS
 
 .familia-pagina {
     width: 90%;
@@ -3297,7 +3267,7 @@ h1 {
 }
 
 
-/* LINK DE PERSONA */
+LINK DE PERSONA 
 
 .ventana-linkear-familia {
     position: fixed;
@@ -3377,7 +3347,7 @@ h1 {
 }
 
 
-/* RESPONSIVE */
+
 
 @media (max-width: 700px) {
 
@@ -3400,9 +3370,8 @@ h1 {
     }
 
 }
-/* ============================= */
-/* AGENDA - FAMILIA */
-/* ============================= */
+AGENDA FAMILIA
+
 
 .pagina-agenda {
     min-height: 100vh;
@@ -3410,7 +3379,7 @@ h1 {
 }
 
 
-/* BARRA SUPERIOR */
+BARRA SUPERIOR
 
 .pagina-agenda .barra-agenda {
     height: 72px;
@@ -3434,7 +3403,7 @@ h1 {
 }
 
 
-/* MENU */
+MENU
 
 .pagina-agenda .menu-agenda {
     margin-left: auto;
@@ -3447,7 +3416,7 @@ h1 {
 }
 
 
-/* BOTONES DEL MENU */
+ BOTONES DEL MENU
 
 .pagina-agenda .boton-menu-agenda {
     border: none;
@@ -3475,7 +3444,7 @@ h1 {
 }
 
 
-/* PERFIL */
+PERFIL 
 
 .pagina-agenda .perfil-agenda {
     width: 52px;
@@ -3496,7 +3465,7 @@ h1 {
 }
 
 
-/* AGENDA */
+AGENDA 
 
 .pagina-agenda .agenda-principal {
     width: 100%;
@@ -3514,7 +3483,7 @@ h1 {
 }
 
 
-/* PARTE SUPERIOR */
+PARTE SUPERIOR
 
 .pagina-agenda .agenda-superior {
     display: flex;
@@ -3537,7 +3506,7 @@ h1 {
 }
 
 
-/* BOTON AGREGAR */
+BOTON AGREGAR 
 
 .pagina-agenda .boton-agregar-evento {
     border: none;
@@ -3556,7 +3525,7 @@ h1 {
 }
 
 
-/* CALENDARIO */
+ CALENDARIO 
 
 .pagina-agenda .calendario {
     width: 100%;
@@ -3566,7 +3535,7 @@ h1 {
 }
 
 
-/* CABECERA DEL CALENDARIO */
+ CABECERA DEL CALENDARIO 
 
 .pagina-agenda .calendario-cabecera {
     display: flex;
@@ -3585,7 +3554,7 @@ h1 {
 }
 
 
-/* FLECHAS */
+ FLECHAS 
 
 .pagina-agenda .boton-mes {
     width: 42px;
@@ -3605,7 +3574,7 @@ h1 {
 }
 
 
-/* DIAS DE LA SEMANA */
+DIAS DE LA SEMANA 
 
 .pagina-agenda .dias-semana {
     display: grid;
@@ -3623,7 +3592,7 @@ h1 {
 }
 
 
-/* CUADRICULA */
+CUADRICULAS
 
 .pagina-agenda .dias-calendario {
     display: grid;
@@ -3632,7 +3601,7 @@ h1 {
 }
 
 
-/* DIA */
+DIA
 
 .pagina-agenda .dia-calendario {
     min-height: 105px;
@@ -3656,7 +3625,7 @@ h1 {
 }
 
 
-/* EVENTOS */
+EVENTOS
 
 .pagina-agenda .evento-calendario {
     width: 100%;
@@ -3672,7 +3641,7 @@ h1 {
 }
 
 
-/* COLORES DE EVENTOS */
+COLORES DE EVENTOS
 
 .pagina-agenda .evento-calendario.turno {
     background: var(--lila);
@@ -3700,7 +3669,7 @@ h1 {
 }
 
 
-/* REFERENCIAS */
+REFERENCIAS
 
 .pagina-agenda .referencias {
     display: flex;
@@ -3746,7 +3715,7 @@ h1 {
 }
 
 
-/* VENTANA */
+VENTANA
 
 .pagina-agenda .ventana-evento {
     position: fixed;
@@ -3764,7 +3733,7 @@ h1 {
 }
 
 
-/* FORMULARIO */
+FORMULARIO
 
 .pagina-agenda .formulario-evento {
     width: 90%;
@@ -3789,7 +3758,7 @@ h1 {
 }
 
 
-/* CERRAR */
+ CERRAR
 
 .pagina-agenda .cerrar-evento {
     position: absolute;
@@ -3805,7 +3774,7 @@ h1 {
 }
 
 
-/* LABELS */
+LABELS
 
 .pagina-agenda .formulario-evento label {
     display: block;
@@ -3816,7 +3785,7 @@ h1 {
 }
 
 
-/* INPUTS */
+INPUTS
 
 .pagina-agenda .formulario-evento input,
 .pagina-agenda .formulario-evento select,
@@ -3844,7 +3813,7 @@ h1 {
 }
 
 
-/* GUARDAR */
+GUARDAR 
 
 .pagina-agenda .boton-guardar-evento {
     width: 100%;
@@ -3860,7 +3829,7 @@ h1 {
 }
 
 
-/* RESPONSIVE */
+
 
 @media (max-width: 800px) {
 
@@ -3910,9 +3879,7 @@ h1 {
     }
 
 }
-/* ============================= */
-/* OBJETIVOS DEL TERAPISTA */
-/* ============================= */
+OBJETIVOS TERAPISTA
 
 .pagina-objetivos {
     min-height: calc(100vh - 72px);
@@ -4114,13 +4081,8 @@ h1 {
 
 }
 
-/* ================================= */
-/* HOSPITAL */
-/* ================================= */
-
-/* ================================ */
-/* HOME / ESTRUCTURA PRINCIPAL */
-/* ================================ */
+HOSPITAL
+HOME
 
 .hospital-principal {
     width: 90%;
@@ -4130,9 +4092,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* ENCABEZADO DEL HOSPITAL */
-/* ================================ */
+ENCABEZADO HOSPITAL
 
 .hospital-bienvenida {
     position: relative;
@@ -4201,9 +4161,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* INDICADORES */
-/* ================================ */
+INDICADORES
 
 .hospital-indicadores {
     display: grid;
@@ -4256,9 +4214,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* ACCIONES */
-/* ================================ */
+
 
 .hospital-acciones {
     display: grid;
@@ -4328,9 +4284,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* BOTONES HOSPITAL */
-/* ================================ */
+
 
 .boton-agregar-hospital,
 .boton-nuevo-paciente,
@@ -4356,9 +4310,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* SECCIÓN INFORMATIVA */
-/* ================================ */
+
 
 .hospital-info {
     position: relative;
@@ -4410,9 +4362,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* MÉDICOS / PACIENTES */
-/* ================================ */
+
 
 .pagina-hospital {
     min-height: calc(100vh - 72px);
@@ -4440,9 +4390,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* ENCABEZADO DE LISTAS */
-/* ================================ */
+
 
 .hospital-lista-superior {
     display: flex;
@@ -4463,9 +4411,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* LISTA DE MÉDICOS */
-/* ================================ */
+
 
 .lista-medicos-hospital {
     display: grid;
@@ -4530,9 +4476,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* LISTA DE PACIENTES */
-/* ================================ */
+
 
 .lista-pacientes-hospital {
     display: grid;
@@ -4588,9 +4532,6 @@ h1 {
 }
 
 
-/* ================================ */
-/* ESTADO VACÍO */
-/* ================================ */
 
 .hospital-vacio {
     padding: 45px 25px;
@@ -4626,9 +4567,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* TARJETA DE HOSPITAL */
-/* ================================ */
+
 
 .lista-hospital {
     display: grid;
@@ -4706,9 +4645,7 @@ h1 {
 }
 
 
-/* ================================ */
-/* MODAL HOSPITAL */
-/* ================================ */
+
 
 .ventana-hospital {
     position: fixed;
@@ -4834,10 +4771,6 @@ h1 {
 }
 
 
-/* ================================ */
-/* PASAPORTE DEL PACIENTE */
-/* ================================ */
-
 .pasaporte-hospital {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -4898,9 +4831,6 @@ h1 {
 }
 
 
-/* ================================ */
-/* RESPONSIVE HOSPITAL */
-/* ================================ */
 
 @media (max-width: 900px) {
 
@@ -4984,14 +4914,7 @@ h1 {
     }
 
 }
-/* ================================================= */
-/* MEJORAS GENERALES DE TODO NEUROPASSPORT */
-/* ================================================= */
 
-
-/* ================================ */
-/* TRANSICIONES GENERALES */
-/* ================================ */
 
 button,
 a,
@@ -5019,9 +4942,7 @@ textarea,
 }
 
 
-/* ================================ */
-/* ANIMACIÓN DE ENTRADA */
-/* ================================ */
+
 
 @keyframes aparecer {
     from {
@@ -5048,9 +4969,7 @@ main,
 }
 
 
-/* ================================ */
-/* BOTONES GENERALES */
-/* ================================ */
+
 
 button {
     font-family: inherit;
@@ -5074,9 +4993,7 @@ textarea:focus-visible {
 }
 
 
-/* ================================ */
-/* BOTONES VERDES */
-/* ================================ */
+
 
 .boton-agregar,
 .boton-agregar-evento,
@@ -5111,10 +5028,6 @@ textarea:focus-visible {
 }
 
 
-/* ================================ */
-/* TARJETAS GENERALES */
-/* ================================ */
-
 .tarjeta-hospital:hover,
 .tarjeta-paciente-hospital:hover,
 .tarjeta-medico-hospital:hover,
@@ -5131,9 +5044,7 @@ textarea:focus-visible {
 }
 
 
-/* ================================ */
-/* INPUTS GENERALES */
-/* ================================ */
+
 
 input,
 select,
@@ -5158,9 +5069,7 @@ textarea:focus {
 }
 
 
-/* ================================ */
-/* PLACEHOLDER */
-/* ================================ */
+
 
 input::placeholder,
 textarea::placeholder {
@@ -5168,9 +5077,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* SELECCIÓN DE TEXTO */
-/* ================================ */
+
 
 ::selection {
     background: var(--verde);
@@ -5178,9 +5085,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* SCROLLBAR */
-/* ================================ */
+
 
 ::-webkit-scrollbar {
     width: 9px;
@@ -5200,9 +5105,6 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* MENÚS DESPLEGABLES */
-/* ================================ */
 
 .submenu-pasaporte,
 .submenu-perfil,
@@ -5225,9 +5127,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* ESTADO VACÍO MÁS LINDO */
-/* ================================ */
+
 
 .sin-empleados,
 .sin-informacion,
@@ -5242,10 +5142,6 @@ textarea::placeholder {
     );
 }
 
-
-/* ================================ */
-/* ETIQUETAS / CHIPS */
-/* ================================ */
 
 .chip,
 .etiqueta,
@@ -5263,9 +5159,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* ESTADOS */
-/* ================================ */
+
 
 .estado-activo {
     background: var(--verde-claro);
@@ -5288,9 +5182,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* BARRA DE PROGRESO */
-/* ================================ */
+
 
 .progreso-contenedor {
     width: 100%;
@@ -5332,9 +5224,6 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* TARJETA DE RESUMEN */
-/* ================================ */
 
 .tarjeta-resumen {
     display: flex;
@@ -5379,9 +5268,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* ACTIVIDAD RECIENTE */
-/* ================================ */
+
 
 .actividad-reciente {
     background: var(--blanco);
@@ -5432,9 +5319,6 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* NOTIFICACIONES / TOAST */
-/* ================================ */
 
 .notificacion {
     position: fixed;
@@ -5488,9 +5372,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* MODALES GENERALES */
-/* ================================ */
+
 
 .ventana-evento,
 .ventana-hospital,
@@ -5521,9 +5403,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* ICONOS EN TARJETAS */
-/* ================================ */
+
 
 .icono-tarjeta {
     width: 50px;
@@ -5540,9 +5420,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* SEPARADORES */
-/* ================================ */
+
 
 .separador {
     width: 100%;
@@ -5552,9 +5430,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* CABECERAS DE SECCIONES */
-/* ================================ */
+
 
 .seccion-superior {
     display: flex;
@@ -5576,9 +5452,6 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* TARJETAS DE ACCESO RÁPIDO */
-/* ================================ */
 
 .accesos-rapidos {
     display: grid;
@@ -5632,9 +5505,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* BOTÓN DE VOLVER */
-/* ================================ */
+
 
 .boton-volver {
     display: inline-flex;
@@ -5657,9 +5528,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* BUSCADOR */
-/* ================================ */
+
 
 .buscador-neuropassport {
     position: relative;
@@ -5690,9 +5559,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* INFORMACIÓN PRIVADA */
-/* ================================ */
+
 
 .informacion-privada {
     display: flex;
@@ -5713,9 +5580,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* ESTADO DE CONEXIÓN */
-/* ================================ */
+
 
 .estado-conexion {
     display: inline-flex;
@@ -5738,9 +5603,7 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* PERFIL / AVATAR */
-/* ================================ */
+
 
 .avatar-generico {
     position: relative;
@@ -5777,18 +5640,14 @@ textarea::placeholder {
 }
 
 
-/* ================================ */
-/* HOVER EN ENLACES */
-/* ================================ */
+
 
 a {
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
 
-/* ================================ */
-/* RESPONSIVE GENERAL */
-/* ================================ */
+
 
 @media (max-width: 900px) {
 

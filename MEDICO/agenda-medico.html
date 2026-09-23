@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,7 +15,7 @@
 
     <header class="barra-empresa">
 
-        <nav class="menu-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
 
             <a
                 href="medico.html"
@@ -47,7 +48,8 @@
 
         <a
             href="configuracion.html"
-            class="perfil-empresa">
+            class="perfil-empresa"
+            aria-label="Configuración">
 
             <span class="perfil-cabeza"></span>
             <span class="perfil-cuerpo"></span>
@@ -61,7 +63,7 @@
 
         <section class="agenda-contenedor">
 
-            <div class="agenda-superior">
+            <header class="agenda-superior">
 
                 <div>
 
@@ -75,6 +77,7 @@
 
 
                 <button
+                    type="button"
                     id="botonAgregarEvento"
                     class="boton-agregar-evento">
 
@@ -82,16 +85,18 @@
 
                 </button>
 
-            </div>
+            </header>
 
 
-            <div class="calendario">
+            <section class="calendario">
 
-                <div class="calendario-cabecera">
+                <header class="calendario-cabecera">
 
                     <button
+                        type="button"
                         id="mesAnterior"
-                        class="boton-mes">
+                        class="boton-mes"
+                        aria-label="Mes anterior">
 
                         ‹
 
@@ -102,17 +107,21 @@
 
 
                     <button
+                        type="button"
                         id="mesSiguiente"
-                        class="boton-mes">
+                        class="boton-mes"
+                        aria-label="Mes siguiente">
 
                         ›
 
                     </button>
 
-                </div>
+                </header>
 
 
-                <div class="dias-semana">
+                <div
+                    class="dias-semana"
+                    aria-label="Días de la semana">
 
                     <div>Lun</div>
                     <div>Mar</div>
@@ -131,10 +140,12 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
-            <div class="referencias">
+            <section
+                class="referencias"
+                aria-label="Referencias de eventos">
 
                 <div class="referencia">
                     <span class="color-referencia turno"></span>
@@ -161,133 +172,144 @@
                     <span>Control / seguimiento</span>
                 </div>
 
-            </div>
+            </section>
 
         </section>
 
     </main>
 
 
-    <div
+    <aside
         id="ventanaEvento"
         class="ventana-evento">
 
-        <div class="formulario-evento">
+        <section class="formulario-evento">
 
             <button
+                type="button"
                 id="cerrarEvento"
-                class="cerrar-evento">
+                class="cerrar-evento"
+                aria-label="Cerrar">
 
                 ×
 
             </button>
 
 
-            <h2>Agregar consulta</h2>
+            <header>
 
-            <p>
-                Completá la información de la consulta.
-            </p>
+                <h2>Agregar consulta</h2>
 
+                <p>
+                    Completá la información de la consulta.
+                </p>
 
-            <label for="tituloEvento">
-                Nombre del evento
-            </label>
-
-            <input
-                type="text"
-                id="tituloEvento"
-                placeholder="Ej. Consulta médica">
+            </header>
 
 
-            <label for="pacienteEvento">
-                Nombre del paciente
-            </label>
+            <form>
 
-            <input
-                type="text"
-                id="pacienteEvento"
-                placeholder="Ej. Juan Pérez">
+                <label for="tituloEvento">
+                    Nombre del evento
+                </label>
 
-
-            <label for="motivoEvento">
-                Motivo de consulta
-            </label>
-
-            <textarea
-                id="motivoEvento"
-                placeholder="Ej. Control de seguimiento...">
-            </textarea>
+                <input
+                    type="text"
+                    id="tituloEvento"
+                    placeholder="Ej. Consulta médica">
 
 
-            <label for="fechaEvento">
-                Fecha
-            </label>
+                <label for="pacienteEvento">
+                    Nombre del paciente
+                </label>
 
-            <input
-                type="date"
-                id="fechaEvento">
-
-
-            <label for="horaEvento">
-                Hora
-            </label>
-
-            <input
-                type="time"
-                id="horaEvento">
+                <input
+                    type="text"
+                    id="pacienteEvento"
+                    placeholder="Ej. Juan Pérez">
 
 
-            <label for="tipoEvento">
-                Tipo de evento
-            </label>
+                <label for="motivoEvento">
+                    Motivo de consulta
+                </label>
 
-            <select id="tipoEvento">
-
-                <option value="turno">
-                    Consulta
-                </option>
-
-                <option value="estudio">
-                    Estudio médico
-                </option>
-
-                <option value="terapia">
-                    Terapia
-                </option>
-
-                <option value="medicacion">
-                    Medicación
-                </option>
-
-                <option value="control">
-                    Control / seguimiento
-                </option>
-
-            </select>
+                <textarea
+                    id="motivoEvento"
+                    placeholder="Ej. Control de seguimiento...">
+                </textarea>
 
 
-            <label for="descripcionEvento">
-                Descripción
-            </label>
+                <label for="fechaEvento">
+                    Fecha
+                </label>
 
-            <textarea
-                id="descripcionEvento"
-                placeholder="Agregá información adicional...">
-            </textarea>
+                <input
+                    type="date"
+                    id="fechaEvento">
 
 
-            <button
-                id="guardarEvento"
-                class="boton-guardar-evento">
+                <label for="horaEvento">
+                    Hora
+                </label>
 
-                Guardar consulta
+                <input
+                    type="time"
+                    id="horaEvento">
 
-            </button>
 
-        </div>
+                <label for="tipoEvento">
+                    Tipo de evento
+                </label>
 
-    </div>
+                <select id="tipoEvento">
+
+                    <option value="turno">
+                        Consulta
+                    </option>
+
+                    <option value="estudio">
+                        Estudio médico
+                    </option>
+
+                    <option value="terapia">
+                        Terapia
+                    </option>
+
+                    <option value="medicacion">
+                        Medicación
+                    </option>
+
+                    <option value="control">
+                        Control / seguimiento
+                    </option>
+
+                </select>
+
+
+                <label for="descripcionEvento">
+                    Descripción
+                </label>
+
+                <textarea
+                    id="descripcionEvento"
+                    placeholder="Agregá información adicional...">
+                </textarea>
+
+
+                <button
+                    type="button"
+                    id="guardarEvento"
+                    class="boton-guardar-evento">
+
+                    Guardar consulta
+
+                </button>
+
+            </form>
+
+        </section>
+
+    </aside>
 
 
     <script src="agenda-medico.js"></script>
@@ -295,3 +317,4 @@
 </body>
 
 </html>
+```
