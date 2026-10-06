@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NeuroPassport - Escuela / Universidad</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa" aria-label="Navegación principal">
+
+            <a
+                href="escuela.html"
+                class="boton-menu-empresa">
+
+                Inicio
+
+            </a>
+
+
+            <a
+                href="estudiantes.html"
+                class="boton-menu-empresa">
+
+                Estudiantes
+
+            </a>
+
+
+            <a
+                href="empleados.html"
+                class="boton-menu-empresa">
+
+                Empleados
+
+            </a>
+
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            id="perfilInstitucion"
+            title="Configuración"
+            aria-label="Configuración">
+
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+
+        <!-- ========================= -->
+        <!-- BIENVENIDA -->
+        <!-- ========================= -->
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1 id="saludoInstitucion">
+                    ¡Hola! Bienvenido a NeuroPassport
+                </h1>
+
+                <p>
+                    Desde este espacio podés gestionar
+                    estudiantes y empleados de tu institución.
+                </p>
+
+            </header>
+
+        </section>
+
+
+
+        <!-- ========================= -->
+        <!-- TARJETAS -->
+        <!-- ========================= -->
+
+        <section class="empresa-acciones">
+
+
+            <!-- ESTUDIANTES -->
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Estudiantes
+                    </h2>
+
+                </header>
+
+                <p>
+                    Consultá los estudiantes vinculados
+                    a tu institución y accedé a las
+                    preferencias de aprendizaje que hayan decidido compartir.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='estudiantes.html'">
+
+                    Ver estudiantes
+
+                </button>
+
+            </article>
+
+
+
+            <!-- EMPLEADOS -->
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Empleados
+                    </h2>
+
+                </header>
+
+                <p>
+                    Consultá los empleados vinculados
+                    a tu institución y accedé a las
+                    preferencias de trabajo que hayan decidido compartir.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='empleados.html'">
+
+                    Ver empleados
+
+                </button>
+
+            </article>
+
+
+
+            <!-- LINKEAR ESTUDIANTE -->
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Linkear estudiante
+                    </h2>
+
+                </header>
+
+                <p>
+                    Vinculá un estudiante a tu institución
+                    utilizando su código de vinculación.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='estudiantes.html'">
+
+                    Linkear estudiante
+
+                </button>
+
+            </article>
+
+
+
+            <!-- LINKEAR EMPLEADO -->
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Linkear empleado
+                    </h2>
+
+                </header>
+
+                <p>
+                    Vinculá un empleado a tu institución
+                    utilizando su código de vinculación.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='empleados.html'">
+
+                    Linkear empleado
+
+                </button>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- ========================= -->
+        <!-- INFORMACIÓN -->
+        <!-- ========================= -->
+
+        <section class="empresa-info">
+
+            <header>
+
+                <h2>
+                    Información de estudiantes y empleados
+                </h2>
+
+            </header>
+
+            <p>
+                Solo vas a poder acceder a la información
+                que cada estudiante o empleado haya decidido
+                compartir con tu institución.
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="escuela.js" defer></script>
+
+</body>
+
+</html>

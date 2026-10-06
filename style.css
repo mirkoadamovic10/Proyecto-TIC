@@ -5335,3 +5335,383 @@ a {
         padding: 20px;
     }
 }
+/* =========================================================
+   HOME EMPRESA / INSTITUCIÓN
+   ========================================================= */
+
+
+/* ============================= */
+/* PÁGINA */
+/* ============================= */
+
+.pagina-institucion {
+    min-height: 100vh;
+    background: var(--fondo);
+    color: var(--texto);
+}
+
+
+/* ============================= */
+/* BARRA DE NAVEGACIÓN */
+/* ============================= */
+
+.barra-institucion {
+    width: 100%;
+    height: 72px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 45px;
+
+    border-bottom: 1px solid #e2eeee;
+
+    box-shadow: 0 3px 12px rgba(40, 88, 102, 0.07);
+
+    position: relative;
+    z-index: 20;
+}
+
+
+.nav-institucion {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+
+.link-nav-institucion {
+    text-decoration: none;
+
+    color: var(--azul-oscuro);
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+
+.link-nav-institucion:hover {
+    color: var(--azul);
+}
+
+
+/* ============================= */
+/* PERFIL */
+/* ============================= */
+
+.perfil-institucion {
+    position: relative;
+}
+
+
+.boton-perfil-institucion {
+    border: none;
+
+    background: var(--celeste);
+
+    color: var(--azul-oscuro);
+
+    padding: 10px 18px;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.boton-perfil-institucion:hover {
+    background: var(--azul-claro);
+}
+
+
+/* MENÚ DEL PERFIL */
+
+.menu-perfil-institucion {
+    position: absolute;
+
+    top: 48px;
+    right: 0;
+
+    width: 220px;
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 8px;
+
+    box-shadow: 0 8px 25px rgba(40, 88, 102, 0.15);
+
+    display: none;
+
+    border: 1px solid #e4eeee;
+}
+
+
+.menu-perfil-institucion.mostrar {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.menu-perfil-institucion a {
+    text-decoration: none;
+
+    color: var(--texto);
+
+    padding: 12px 14px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+}
+
+
+.menu-perfil-institucion a:hover {
+    background: var(--celeste);
+
+    color: var(--azul-oscuro);
+}
+
+
+/* ============================= */
+/* CONTENIDO */
+/* ============================= */
+
+.contenido-institucion {
+    width: min(1100px, 90%);
+
+    margin: 0 auto;
+
+    padding: 75px 0 80px;
+}
+
+
+/* ============================= */
+/* BIENVENIDA */
+/* ============================= */
+
+.bienvenida-institucion {
+    text-align: center;
+
+    max-width: 750px;
+
+    margin: 0 auto 55px;
+}
+
+
+.texto-bienvenida-institucion {
+    margin: 0 0 8px;
+
+    color: var(--azul);
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+
+.bienvenida-institucion h1 {
+    margin: 0 0 15px;
+
+    color: var(--azul-oscuro);
+
+    font-size: clamp(36px, 5vw, 52px);
+
+    font-weight: 800;
+
+    line-height: 1.1;
+}
+
+
+.descripcion-institucion {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: #58747c;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+
+/* ============================= */
+/* TARJETAS */
+/* ============================= */
+
+.tarjetas-institucion {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 30px;
+
+    max-width: 850px;
+
+    margin: 0 auto;
+}
+
+
+.tarjeta-institucion {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 35px 32px;
+
+    text-align: center;
+
+    border: 1px solid #e1eeee;
+
+    box-shadow: 0 8px 25px rgba(40, 88, 102, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.tarjeta-institucion:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 14px 32px rgba(40, 88, 102, 0.13);
+}
+
+
+.icono-tarjeta-institucion {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 16px;
+
+    background: var(--celeste);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+}
+
+
+.tarjeta-institucion h2 {
+    margin: 0 0 10px;
+
+    color: var(--azul-oscuro);
+
+    font-size: 24px;
+
+    font-weight: 800;
+}
+
+
+.tarjeta-institucion p {
+    margin: 0 auto 25px;
+
+    max-width: 330px;
+
+    color: #617a81;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* ============================= */
+/* BOTONES */
+/* ============================= */
+
+.boton-tarjeta-institucion {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 170px;
+
+    padding: 12px 22px;
+
+    border-radius: 12px;
+
+    background: var(--azul);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+
+.boton-tarjeta-institucion:hover {
+    background: var(--azul-oscuro);
+
+    transform: translateY(-1px);
+}
+
+
+.boton-verde-institucion {
+    background: var(--verde);
+
+    color: var(--azul-oscuro);
+}
+
+
+.boton-verde-institucion:hover {
+    background: #a6d5bd;
+
+    color: var(--azul-oscuro);
+}
+
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 700px) {
+
+    .barra-institucion {
+        padding: 0 20px;
+    }
+
+
+    .nav-institucion {
+        gap: 18px;
+    }
+
+
+    .contenido-institucion {
+        padding-top: 50px;
+    }
+
+
+    .tarjetas-institucion {
+        grid-template-columns: 1fr;
+    }
+
+
+    .bienvenida-institucion h1 {
+        font-size: 38px;
+    }
+
+}

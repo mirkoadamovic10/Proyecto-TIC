@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NeuroPassport - Empresa</title>
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa" aria-label="Navegación principal">
+
+            <a href="empresa.html" class="boton-menu-empresa">
+                Inicio
+            </a>
+
+            <a href="empleados.html" class="boton-menu-empresa">
+                Empleados
+            </a>
+
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            id="perfilEmpresa"
+            title="Configuración"
+            aria-label="Configuración">
+
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1 id="saludoEmpresa">
+                    ¡Hola! Bienvenido a NeuroPassport
+                </h1>
+
+                <p>
+                    Desde este espacio podés gestionar
+                    los empleados vinculados a tu empresa.
+                </p>
+
+            </header>
+
+        </section>
+
+
+        <section class="empresa-acciones">
+
+
+            <!-- EMPLEADOS -->
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Empleados
+                    </h2>
+
+                </header>
+
+                <p>
+                    Consultá los empleados vinculados a tu empresa
+                    y accedé a la información que hayan decidido compartir.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='empleados.html'">
+
+                    Ver empleados
+
+                </button>
+
+            </article>
+
+
+            <!-- LINKEAR EMPLEADO -->
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Linkear empleado
+                    </h2>
+
+                </header>
+
+                <p>
+                    Vinculá un empleado a tu empresa
+                    utilizando su código de vinculación.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='empleados.html'">
+
+                    Linkear empleado
+
+                </button>
+
+            </article>
+
+
+        </section>
+
+
+        <section class="empresa-info">
+
+            <header>
+
+                <h2>
+                    Información de empleados
+                </h2>
+
+            </header>
+
+            <p>
+                Solo vas a poder acceder a la información
+                que cada empleado haya decidido compartir con tu empresa.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="empresa.js" defer></script>
+
+</body>
+
+</html>
