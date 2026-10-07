@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NeuroPassport - Hospitales</title>
+
+    <link
+        rel="stylesheet"
+        href="../../style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa">
+
+            <a
+                href="medico.html"
+                class="boton-menu-empresa"
+            >
+                Inicio
+            </a>
+
+            <a
+                href="pacientes.html"
+                class="boton-menu-empresa"
+            >
+                Pacientes
+            </a>
+
+            <a
+                href="agenda-medico.html"
+                class="boton-menu-empresa"
+            >
+                Agenda
+            </a>
+
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            title="Configuración"
+        >
+
+            <span class="perfil-cabeza"></span>
+
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1>
+                    Hospitales
+                </h1>
+
+                <p>
+                    Administrá tus vínculos con hospitales.
+                </p>
+
+            </header>
+
+        </section>
+
+
+        <section class="empresa-info">
+
+            <header>
+
+                <h2>
+                    Vincularse a un hospital
+                </h2>
+
+            </header>
+
+
+            <div class="formulario-sintomas">
+
+                <div class="campo-sintomas">
+
+                    <label for="codigoHospital">
+                        Código del hospital
+                    </label>
+
+                    <input
+                        type="text"
+                        id="codigoHospital"
+                        placeholder="Ingresá el código"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="botonVincularHospital"
+                >
+                    Vincular hospital
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="empresa-info">
+
+            <header>
+
+                <h2>
+                    Hospitales vinculados
+                </h2>
+
+            </header>
+
+
+            <div id="hospitalesVinculados">
+
+                <p>
+                    No hay hospitales vinculados todavía.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script
+        src="hospitales.js"
+        defer
+    ></script>
+
+</body>
+
+</html>

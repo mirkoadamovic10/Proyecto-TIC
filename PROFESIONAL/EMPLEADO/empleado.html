@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>NeuroPassport - Empleado</title>
+
+    <link
+        rel="stylesheet"
+        href="../../style.css">
+
+</head>
+
+
+<body>
+
+
+    <header class="barra-empresa">
+
+
+        <nav
+            class="menu-empresa"
+            aria-label="Navegación principal">
+
+
+            <a
+                href="empleado.html"
+                class="boton-menu-empresa">
+
+                Inicio
+
+            </a>
+
+
+            <a
+                href="configuracion.html"
+                class="boton-menu-empresa">
+
+                Configuración
+
+            </a>
+
+
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            title="Configuración"
+            aria-label="Configuración">
+
+            <span class="perfil-cabeza"></span>
+
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+
+    </header>
+
+
+
+    <main class="empresa-principal">
+
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1 id="saludoEmpleado">
+
+                    ¡Hola! Bienvenido a NeuroPassport
+
+                </h1>
+
+
+                <p>
+
+                    Desde este espacio podés administrar
+                    tu información y tus preferencias
+                    en el trabajo.
+
+                </p>
+
+            </header>
+
+        </section>
+
+
+
+        <section class="empresa-acciones">
+
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Preferencias de trabajo
+                    </h2>
+
+                </header>
+
+
+                <p>
+
+                    Indicá qué condiciones, formas de
+                    comunicación y adaptaciones te ayudan
+                    en tu entorno laboral.
+
+                </p>
+
+
+                <button
+                    type="button"
+                    id="botonPreferencias">
+
+                    Editar preferencias
+
+                </button>
+
+            </article>
+
+
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Vincular institución
+                    </h2>
+
+                </header>
+
+
+                <p>
+
+                    Ingresá el código de tu empresa,
+                    escuela o universidad para vincular
+                    tu cuenta.
+
+                </p>
+
+
+                <input
+                    type="text"
+                    id="codigoInstitucion"
+                    placeholder="Código de institución">
+
+
+                <button
+                    type="button"
+                    id="botonVincular">
+
+                    Vincularme
+
+                </button>
+
+
+                <p id="institucionVinculada">
+
+                </p>
+
+            </article>
+
+
+        </section>
+
+
+
+        <section class="empresa-info">
+
+            <header>
+
+                <h2>
+                    Mis preferencias
+                </h2>
+
+            </header>
+
+
+            <p>
+                Comunicación:
+                <span id="comunicacion">
+                    No especificado
+                </span>
+            </p>
+
+
+            <p>
+                Ambiente:
+                <span id="ambiente">
+                    No especificado
+                </span>
+            </p>
+
+
+            <p>
+                Organización:
+                <span id="organizacion">
+                    No especificado
+                </span>
+            </p>
+
+
+            <p>
+                Adaptaciones:
+                <span id="adaptaciones">
+                    No especificado
+                </span>
+            </p>
+
+
+            <p>
+                Otras preferencias:
+                <span id="otrasPreferencias">
+                    No especificado
+                </span>
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script
+        src="empleado.js"
+        defer>
+    </script>
+
+
+</body>
+
+</html>

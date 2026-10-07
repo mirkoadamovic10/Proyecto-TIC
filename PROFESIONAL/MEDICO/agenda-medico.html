@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NeuroPassport - Agenda médica</title>
+
+    <link
+        rel="stylesheet"
+        href="../../style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ===================================== -->
+    <!-- BARRA SUPERIOR -->
+    <!-- ===================================== -->
+
+    <header class="barra-empresa">
+
+        <nav
+            class="menu-empresa"
+            aria-label="Navegación principal"
+        >
+
+            <a
+                href="medico.html"
+                class="boton-menu-empresa"
+            >
+                Inicio
+            </a>
+
+
+            <a
+                href="pacientes.html"
+                class="boton-menu-empresa"
+            >
+                Pacientes
+            </a>
+
+
+            <a
+                href="agenda-medico.html"
+                class="boton-menu-empresa"
+            >
+                Agenda
+            </a>
+
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            title="Configuración"
+            aria-label="Configuración"
+        >
+
+            <span class="perfil-cabeza"></span>
+
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+
+    <!-- ===================================== -->
+    <!-- CONTENIDO -->
+    <!-- ===================================== -->
+
+    <main class="empresa-principal">
+
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1>
+                    Agenda
+                </h1>
+
+                <p>
+                    Organizá tus turnos y consultas.
+                </p>
+
+            </header>
+
+        </section>
+
+
+
+        <!-- ================================= -->
+        <!-- CALENDARIO -->
+        <!-- ================================= -->
+
+        <section class="calendario-medico">
+
+            <div class="calendario-cabecera">
+
+                <button
+                    type="button"
+                    id="mesAnterior"
+                >
+                    ‹
+                </button>
+
+
+                <h2 id="mesActual">
+                    Mes
+                </h2>
+
+
+                <button
+                    type="button"
+                    id="mesSiguiente"
+                >
+                    ›
+                </button>
+
+            </div>
+
+
+
+            <div class="calendario-semana">
+
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mié</div>
+                <div>Jue</div>
+                <div>Vie</div>
+                <div>Sáb</div>
+                <div>Dom</div>
+
+            </div>
+
+
+
+            <div
+                class="calendario-dias"
+                id="calendarioDias"
+            >
+            </div>
+
+        </section>
+
+
+
+    </main>
+
+
+
+    <!-- ===================================== -->
+    <!-- MODAL NUEVO TURNO -->
+    <!-- ===================================== -->
+
+    <div
+        class="modal-agenda"
+        id="modalAgenda"
+        hidden
+    >
+
+        <div class="modal-agenda-contenido">
+
+
+            <button
+                type="button"
+                class="cerrar-modal-agenda"
+                id="cerrarModal"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+
+            <h2>
+                Nuevo turno
+            </h2>
+
+
+            <p id="fechaSeleccionada">
+                Fecha
+            </p>
+
+
+
+            <!-- PACIENTE -->
+
+            <div class="campo-agenda">
+
+                <label for="nombrePaciente">
+                    Nombre del paciente
+                </label>
+
+                <input
+                    type="text"
+                    id="nombrePaciente"
+                    placeholder="Ingresá el nombre"
+                >
+
+            </div>
+
+
+
+            <!-- HORA -->
+
+            <div class="campo-agenda">
+
+                <label for="horaTurno">
+                    Hora
+                </label>
+
+                <input
+                    type="time"
+                    id="horaTurno"
+                >
+
+            </div>
+
+
+
+            <!-- MOTIVO -->
+
+            <div class="campo-agenda">
+
+                <label for="motivoConsulta">
+                    Motivo de consulta
+                </label>
+
+                <textarea
+                    id="motivoConsulta"
+                    placeholder="Ingresá el motivo de la consulta"
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- TIPO -->
+
+            <div class="campo-agenda">
+
+                <label for="tipoTurno">
+                    Tipo de turno
+                </label>
+
+                <select id="tipoTurno">
+
+                    <option value="">
+                        Seleccioná una opción
+                    </option>
+
+                    <option value="Consulta">
+                        Consulta
+                    </option>
+
+                    <option value="Control">
+                        Control
+                    </option>
+
+                    <option value="Seguimiento">
+                        Seguimiento
+                    </option>
+
+                    <option value="Estudio">
+                        Estudio
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <button
+                type="button"
+                class="boton-guardar-agenda"
+                id="guardarTurno"
+            >
+                Guardar turno
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script
+        src="agenda-medico.js"
+        defer
+    ></script>
+
+</body>
+
+</html>

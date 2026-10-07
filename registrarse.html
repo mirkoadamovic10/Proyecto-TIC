@@ -10,20 +10,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
     <main class="register-container">
 
-        <section class="register-card" aria-labelledby="titulo-registro">
+        <section class="register-card">
 
             <header>
-                <h1 id="titulo-registro">Crear una cuenta</h1>
+
+                <h1>
+                    Crear una cuenta
+                </h1>
+
             </header>
 
 
             <form>
 
+
+                <!-- ========================= -->
                 <!-- NOMBRE -->
+                <!-- ========================= -->
 
                 <div class="campo">
 
@@ -41,7 +49,9 @@
                 </div>
 
 
+                <!-- ========================= -->
                 <!-- EMAIL -->
+                <!-- ========================= -->
 
                 <div class="campo">
 
@@ -59,7 +69,9 @@
                 </div>
 
 
+                <!-- ========================= -->
                 <!-- CONTRASEÑA -->
+                <!-- ========================= -->
 
                 <div class="campo">
 
@@ -77,7 +89,9 @@
                 </div>
 
 
-                <!-- ROL -->
+                <!-- ========================= -->
+                <!-- ROL PRINCIPAL -->
+                <!-- ========================= -->
 
                 <div class="campo">
 
@@ -85,7 +99,10 @@
                         Rol
                     </label>
 
-                    <select id="rol" name="rol">
+                    <select
+                        id="rol"
+                        name="rol"
+                    >
 
                         <option value="">
                             Seleccioná tu rol
@@ -95,16 +112,8 @@
                             Personal
                         </option>
 
-                        <option value="medico">
-                            Médico
-                        </option>
-
                         <option value="familia">
                             Familia
-                        </option>
-
-                        <option value="terapista">
-                            Terapista ocupacional / kinesiólogo
                         </option>
 
                         <option value="hospital">
@@ -115,12 +124,18 @@
                             Institución
                         </option>
 
+                        <option value="profesional">
+                            Profesional
+                        </option>
+
                     </select>
 
                 </div>
 
 
+                <!-- ========================= -->
                 <!-- TIPO DE INSTITUCIÓN -->
+                <!-- ========================= -->
 
                 <div
                     class="campo"
@@ -154,18 +169,65 @@
                 </div>
 
 
+                <!-- ========================= -->
+                <!-- TIPO DE PROFESIONAL -->
+                <!-- ========================= -->
+
+                <div
+                    class="campo"
+                    id="contenedorTipoProfesional"
+                    style="display: none;"
+                >
+
+                    <label for="tipoProfesional">
+                        Tipo de profesional
+                    </label>
+
+                    <select
+                        id="tipoProfesional"
+                        name="tipoProfesional"
+                    >
+
+                        <option value="">
+                            Seleccioná una opción
+                        </option>
+
+                        <option value="medico">
+                            Médico
+                        </option>
+
+                        <option value="terapista">
+                            Terapista ocupacional / kinesiólogo
+                        </option>
+
+                        <option value="psicologo">
+                            Psicólogo / Psiquiatra
+                        </option>
+
+                        <option value="empleado">
+                            Empleado
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- ========================= -->
                 <!-- BOTÓN -->
+                <!-- ========================= -->
 
                 <footer>
 
                     <button
-                        class="register-button"
                         type="button"
+                        class="register-button"
                     >
                         Registrarse
                     </button>
 
                 </footer>
+
 
             </form>
 
@@ -174,7 +236,9 @@
     </main>
 
 
+    <!-- ========================= -->
     <!-- JAVASCRIPT -->
+    <!-- ========================= -->
 
     <script src="registrarse.js"></script>
 

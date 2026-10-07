@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Paciente - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa">
+
+            <a
+                href="terapista.html"
+                class="boton-menu-empresa"
+            >
+                Inicio
+            </a>
+
+            <a
+                href="pacientes.html"
+                class="boton-menu-empresa"
+            >
+                Pacientes
+            </a>
+
+            <a
+                href="agenda-terapista.html"
+                class="boton-menu-empresa"
+            >
+                Agenda
+            </a>
+
+        </nav>
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            title="Configuración"
+        >
+
+            <span class="perfil-cabeza"></span>
+
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1 id="nombrePaciente">
+                    Paciente
+                </h1>
+
+                <p>
+                    Información y objetivos de trabajo.
+                </p>
+
+            </header>
+
+        </section>
+
+
+        <section class="empresa-info">
+
+            <header>
+
+                <h2>
+                    Objetivos
+                </h2>
+
+            </header>
+
+
+            <div class="formulario-linkear">
+
+                <div class="campo-linkear">
+
+                    <label for="nuevoObjetivo">
+                        Nuevo objetivo
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nuevoObjetivo"
+                        placeholder="Ej: Mejorar coordinación"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="boton-linkear"
+                    id="botonAgregarObjetivo"
+                >
+                    Agregar objetivo
+                </button>
+
+            </div>
+
+
+            <div
+                id="listaObjetivos"
+                class="lista-pacientes"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <script src="paciente.js" defer></script>
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pacientes - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa" aria-label="Navegación principal">
+
+            <a href="terapista.html" class="boton-menu-empresa">
+                Inicio
+            </a>
+
+            <a href="pacientes.html" class="boton-menu-empresa">
+                Pacientes
+            </a>
+
+            <a href="agenda-terapista.html" class="boton-menu-empresa">
+                Agenda
+            </a>
+
+        </nav>
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            title="Configuración"
+            aria-label="Configuración"
+        >
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+        </a>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1>Mis pacientes</h1>
+
+                <p>
+                    Vinculá pacientes y gestioná sus objetivos
+                    de trabajo.
+                </p>
+
+            </header>
+
+        </section>
+
+
+        <section class="empresa-info">
+
+            <header>
+                <h2>Vincular paciente</h2>
+            </header>
+
+            <div class="formulario-linkear">
+
+                <div class="campo-linkear">
+
+                    <label for="codigoPaciente">
+                        Código del paciente
+                    </label>
+
+                    <input
+                        type="text"
+                        id="codigoPaciente"
+                        placeholder="Ingresá el código del paciente"
+                    >
+
+                </div>
+
+                <button
+                    type="button"
+                    class="boton-linkear"
+                    id="botonLinkearPaciente"
+                >
+                    Vincular paciente
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="empresa-info">
+
+            <header>
+                <h2>Pacientes vinculados</h2>
+            </header>
+
+            <div
+                id="pacientesVinculados"
+                class="lista-pacientes"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <script src="pacientes.js" defer></script>
+
+</body>
+
+</html>

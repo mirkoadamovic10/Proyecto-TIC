@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NeuroPassport - Configuración</title>
+
+    <link
+        rel="stylesheet"
+        href="../../style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa">
+
+            <a
+                href="medico.html"
+                class="boton-menu-empresa"
+            >
+                Inicio
+            </a>
+
+            <a
+                href="pacientes.html"
+                class="boton-menu-empresa"
+            >
+                Pacientes
+            </a>
+
+            <a
+                href="agenda-medico.html"
+                class="boton-menu-empresa"
+            >
+                Agenda
+            </a>
+
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            title="Configuración"
+        >
+
+            <span class="perfil-cabeza"></span>
+
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1>
+                    Configuración
+                </h1>
+
+                <p>
+                    Administrá la información de tu cuenta.
+                </p>
+
+            </header>
+
+        </section>
+
+
+        <section class="empresa-info">
+
+            <header>
+
+                <h2>
+                    Información personal
+                </h2>
+
+            </header>
+
+
+            <p>
+                Nombre:
+                <strong id="nombreUsuario">
+                    -
+                </strong>
+            </p>
+
+
+            <p>
+                Correo:
+                <strong id="emailUsuario">
+                    -
+                </strong>
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+        const nombre =
+            localStorage.getItem(
+                "nombreUsuario"
+            );
+
+        const email =
+            localStorage.getItem(
+                "emailUsuario"
+            );
+
+
+        document.getElementById(
+            "nombreUsuario"
+        ).textContent =
+            nombre || "No especificado";
+
+
+        document.getElementById(
+            "emailUsuario"
+        ).textContent =
+            email || "No especificado";
+
+    </script>
+
+</body>
+
+</html>

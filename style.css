@@ -5715,3 +5715,312 @@ a {
     }
 
 }
+/* ==========================================
+   AGENDA MÉDICA
+========================================== */
+
+.calendario-medico {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(40, 88, 102, 0.08);
+}
+
+
+/* ==========================================
+   CABECERA DEL CALENDARIO
+========================================== */
+
+.calendario-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+
+.calendario-cabecera h2 {
+    margin: 0;
+    color: var(--azul-oscuro);
+}
+
+
+.calendario-cabecera button {
+    border: none;
+    background: var(--celeste);
+    color: var(--azul-oscuro);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+.calendario-cabecera button:hover {
+    background: var(--azul-claro);
+}
+
+
+/* ==========================================
+   DÍAS DE LA SEMANA
+========================================== */
+
+.calendario-semana {
+    display: grid;
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    text-align: center;
+    font-weight: bold;
+    color: var(--azul-oscuro);
+    margin-bottom: 10px;
+}
+
+
+.calendario-semana div {
+    padding: 10px;
+}
+
+
+/* ==========================================
+   DÍAS
+========================================== */
+
+.calendario-dias {
+    display: grid;
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap: 8px;
+}
+
+
+.dia-calendario {
+    min-height: 100px;
+    border: 1px solid #e1eeee;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    color: var(--texto);
+    transition: 0.2s;
+}
+
+
+.dia-calendario:hover {
+    background: var(--celeste);
+    border-color: var(--azul-claro);
+}
+
+
+.numero-dia {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.dia-vacio {
+    min-height: 100px;
+}
+
+
+/* ==========================================
+   INDICADOR DE TURNOS
+========================================== */
+
+.indicador-turno {
+    margin-top: 15px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    background: var(--verde);
+    color: var(--texto);
+    font-size: 12px;
+    text-align: center;
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal-agenda {
+    position: fixed;
+    inset: 0;
+    background: rgba(41, 77, 87, 0.35);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    z-index: 1000;
+}
+
+
+.modal-agenda[hidden] {
+    display: none;
+}
+
+
+.modal-agenda-contenido {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(40, 88, 102, 0.2);
+}
+
+
+.modal-agenda-contenido h2 {
+    color: var(--azul-oscuro);
+    margin-bottom: 8px;
+}
+
+
+#fechaSeleccionada {
+    color: var(--azul);
+    margin-bottom: 25px;
+}
+
+
+/* ==========================================
+   CERRAR MODAL
+========================================== */
+
+.cerrar-modal-agenda {
+    position: absolute;
+
+    top: 15px;
+    right: 18px;
+
+    border: none;
+    background: transparent;
+
+    font-size: 28px;
+    color: var(--texto);
+
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   CAMPOS
+========================================== */
+
+.campo-agenda {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+
+.campo-agenda label {
+    font-weight: bold;
+    color: var(--texto);
+}
+
+
+.campo-agenda input,
+.campo-agenda textarea,
+.campo-agenda select {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #cfe1e3;
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+.campo-agenda textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+
+.campo-agenda input:focus,
+.campo-agenda textarea:focus,
+.campo-agenda select:focus {
+    border-color: var(--azul-claro);
+}
+
+
+/* ==========================================
+   BOTÓN GUARDAR
+========================================== */
+
+.boton-guardar-agenda {
+    width: 100%;
+
+    border: none;
+
+    background: var(--verde);
+    color: var(--texto);
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.boton-guardar-agenda:hover {
+    opacity: 0.85;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .calendario-medico {
+        width: 95%;
+        padding: 15px;
+    }
+
+
+    .dia-calendario,
+    .dia-vacio {
+        min-height: 70px;
+    }
+
+
+    .calendario-semana div {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+
+    .dia-calendario {
+        padding: 6px;
+    }
+
+
+    .indicador-turno {
+        font-size: 10px;
+        margin-top: 8px;
+    }
+
+}

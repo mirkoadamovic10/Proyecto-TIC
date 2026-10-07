@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NeuroPassport - Psicólogo</title>
+
+    <link
+        rel="stylesheet"
+        href="../../style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ===================================== -->
+    <!-- BARRA SUPERIOR -->
+    <!-- ===================================== -->
+
+    <header class="barra-empresa">
+
+        <nav
+            class="menu-empresa"
+            aria-label="Navegación principal"
+        >
+
+            <a
+                href="psicologo.html"
+                class="boton-menu-empresa"
+            >
+                Inicio
+            </a>
+
+
+            <a
+                href="pacientes.html"
+                class="boton-menu-empresa"
+            >
+                Pacientes
+            </a>
+
+
+            <a
+                href="agenda-psicologo.html"
+                class="boton-menu-empresa"
+            >
+                Agenda
+            </a>
+
+
+            <a
+                href="sintomas.html"
+                class="boton-menu-empresa"
+            >
+                Síntomas
+            </a>
+
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            id="perfilPsicologo"
+            title="Configuración"
+            aria-label="Configuración"
+        >
+
+            <span class="perfil-cabeza"></span>
+
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+
+    <!-- ===================================== -->
+    <!-- CONTENIDO PRINCIPAL -->
+    <!-- ===================================== -->
+
+    <main class="empresa-principal">
+
+
+        <!-- ================================= -->
+        <!-- BIENVENIDA -->
+        <!-- ================================= -->
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1 id="saludoPsicologo">
+
+                    ¡Hola! Bienvenido a NeuroPassport
+
+                </h1>
+
+
+                <p>
+
+                    Desde este espacio podés acceder
+                    a la información de tus pacientes
+                    y realizar un seguimiento de su
+                    bienestar emocional.
+
+                </p>
+
+            </header>
+
+        </section>
+
+
+
+        <!-- ================================= -->
+        <!-- ACCIONES -->
+        <!-- ================================= -->
+
+        <section class="empresa-acciones">
+
+
+            <!-- PACIENTES -->
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Pacientes
+                    </h2>
+
+                </header>
+
+
+                <p>
+
+                    Consultá las personas vinculadas
+                    a tu cuenta y accedé a la información
+                    que hayan decidido compartir.
+
+                </p>
+
+
+                <button
+                    type="button"
+                    onclick="window.location.href='pacientes.html'"
+                >
+
+                    Ver pacientes
+
+                </button>
+
+            </article>
+
+
+
+            <!-- AGENDA -->
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Agenda
+                    </h2>
+
+                </header>
+
+
+                <p>
+
+                    Organizá tus consultas, turnos
+                    y encuentros con tus pacientes.
+
+                </p>
+
+
+                <button
+                    type="button"
+                    onclick="window.location.href='agenda-psicologo.html'"
+                >
+
+                    Ver agenda
+
+                </button>
+
+            </article>
+
+
+
+            <!-- SÍNTOMAS -->
+
+            <article class="tarjeta-empresa">
+
+                <header>
+
+                    <h2>
+                        Seguimiento emocional
+                    </h2>
+
+                </header>
+
+
+                <p>
+
+                    Registrá y consultá el historial
+                    diario de síntomas emocionales
+                    de tus pacientes.
+
+                </p>
+
+
+                <button
+                    type="button"
+                    onclick="window.location.href='sintomas.html'"
+                >
+
+                    Ver seguimiento
+
+                </button>
+
+            </article>
+
+
+
+        </section>
+
+
+
+        <!-- ================================= -->
+        <!-- INFORMACIÓN -->
+        <!-- ================================= -->
+
+        <section class="empresa-info">
+
+            <header>
+
+                <h2>
+                    Información de pacientes
+                </h2>
+
+            </header>
+
+
+            <p>
+
+                Solo vas a poder acceder a la información
+                que cada paciente haya decidido compartir
+                con vos.
+
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ===================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ===================================== -->
+
+    <script
+        src="psicologo.js"
+        defer
+    ></script>
+
+
+</body>
+
+</html>

@@ -1,77 +1,127 @@
-const nombre = document.getElementById("nombre");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const rol = document.getElementById("rol");
+// ==========================================
+// ELEMENTOS DEL FORMULARIO
+// ==========================================
+
+const nombre =
+    document.getElementById("nombre");
+
+const email =
+    document.getElementById("email");
+
+const password =
+    document.getElementById("password");
+
+const rol =
+    document.getElementById("rol");
 
 const botonRegistrarse =
     document.querySelector(".register-button");
 
+
+// ==========================================
+// INSTITUCIÓN
+// ==========================================
+
 const contenedorTipoInstitucion =
-    document.getElementById("contenedorTipoInstitucion");
+    document.getElementById(
+        "contenedorTipoInstitucion"
+    );
 
 const tipoInstitucion =
-    document.getElementById("tipoInstitucion");
+    document.getElementById(
+        "tipoInstitucion"
+    );
 
 
 // ==========================================
-// MOSTRAR TIPO DE INSTITUCIÓN
+// PROFESIONAL
 // ==========================================
 
-rol.addEventListener("change", function () {
+const contenedorTipoProfesional =
+    document.getElementById(
+        "contenedorTipoProfesional"
+    );
 
-    if (rol.value === "institucion") {
+const tipoProfesional =
+    document.getElementById(
+        "tipoProfesional"
+    );
 
-        contenedorTipoInstitucion.style.display = "block";
 
-    } else {
+// ==========================================
+// CAMBIO DE ROL
+// ==========================================
 
-        contenedorTipoInstitucion.style.display = "none";
+rol.addEventListener(
+    "change",
+    function () {
 
-        tipoInstitucion.value = "";
+
+        // ======================================
+        // INSTITUCIÓN
+        // ======================================
+
+        if (rol.value === "institucion") {
+
+            contenedorTipoInstitucion.style.display =
+                "block";
+
+        } else {
+
+            contenedorTipoInstitucion.style.display =
+                "none";
+
+            tipoInstitucion.value = "";
+
+        }
+
+
+        // ======================================
+        // PROFESIONAL
+        // ======================================
+
+        if (rol.value === "profesional") {
+
+            contenedorTipoProfesional.style.display =
+                "block";
+
+        } else {
+
+            contenedorTipoProfesional.style.display =
+                "none";
+
+            tipoProfesional.value = "";
+
+        }
 
     }
-
-});
+);
 
 
 // ==========================================
-// REGISTRARSE
+// BOTÓN REGISTRARSE
 // ==========================================
 
-botonRegistrarse.addEventListener("click", function (event) {
+botonRegistrarse.addEventListener(
+    "click",
+    function (event) {
 
-    event.preventDefault();
-
-
-    // Comprobar datos básicos
-
-    if (
-        nombre.value.trim() === "" ||
-        email.value.trim() === "" ||
-        password.value.trim() === "" ||
-        rol.value === ""
-    ) {
-
-        alert("Por favor, completá todos los datos.");
-
-        return;
-
-    }
+        event.preventDefault();
 
 
-    // ==========================================
-    // INSTITUCIÓN
-    // ==========================================
+        // ======================================
+        // COMPROBAR DATOS GENERALES
+        // ======================================
 
-    if (rol.value === "institucion") {
-
-        // Comprobar que haya elegido
-        // Escuela/Universidad o Empresa
-
-        if (tipoInstitucion.value === "") {
+        if (
+            nombre.value.trim() === "" ||
+            email.value.trim() === "" ||
+            password.value.trim() === "" ||
+            rol.value === ""
+        ) {
 
             alert(
-                "Seleccioná si sos una Escuela / Universidad o una Empresa."
+                "Por favor, completá todos los datos."
             );
 
             return;
@@ -79,7 +129,47 @@ botonRegistrarse.addEventListener("click", function (event) {
         }
 
 
-        // Guardar datos de institución
+        // ======================================
+        // COMPROBAR INSTITUCIÓN
+        // ======================================
+
+        if (rol.value === "institucion") {
+
+            if (tipoInstitucion.value === "") {
+
+                alert(
+                    "Seleccioná Escuela / Universidad o Empresa."
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        // ======================================
+        // COMPROBAR PROFESIONAL
+        // ======================================
+
+        if (rol.value === "profesional") {
+
+            if (tipoProfesional.value === "") {
+
+                alert(
+                    "Seleccioná el tipo de profesional."
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        // ======================================
+        // GUARDAR DATOS GENERALES
+        // ======================================
 
         localStorage.setItem(
             "nombreUsuario",
@@ -91,110 +181,177 @@ botonRegistrarse.addEventListener("click", function (event) {
             email.value.trim()
         );
 
-        localStorage.setItem(
-            "tipoInstitucion",
-            tipoInstitucion.value
-        );
 
+        // ======================================
+        // PERSONAL
+        // ======================================
 
-        // EMPRESA
-
-        if (tipoInstitucion.value === "empresa") {
+        if (rol.value === "personal") {
 
             window.location.href =
-                "INSTITUCION/empresa.html";
+                "PERSONAL/personal.html";
 
             return;
 
         }
 
 
-        // ESCUELA / UNIVERSIDAD
+        // ======================================
+        // FAMILIA
+        // ======================================
 
-        if (tipoInstitucion.value === "escuela") {
+        if (rol.value === "familia") {
 
             window.location.href =
-                "INSTITUCION/escuela.html";
+                "FAMILIA/familia.html";
 
             return;
 
         }
 
+
+        // ======================================
+        // HOSPITAL
+        // ======================================
+
+        if (rol.value === "hospital") {
+
+            window.location.href =
+                "HOSPITAL/hospital.html";
+
+            return;
+
+        }
+
+
+        // ======================================
+        // INSTITUCIÓN
+        // ======================================
+
+        if (rol.value === "institucion") {
+
+            localStorage.setItem(
+                "tipoInstitucion",
+                tipoInstitucion.value
+            );
+
+
+            // ==================================
+            // EMPRESA
+            // ==================================
+
+            if (
+                tipoInstitucion.value ===
+                "empresa"
+            ) {
+
+                window.location.href =
+                    "INSTITUCION/empresa.html";
+
+                return;
+
+            }
+
+
+            // ==================================
+            // ESCUELA / UNIVERSIDAD
+            // ==================================
+
+            if (
+                tipoInstitucion.value ===
+                "escuela"
+            ) {
+
+                window.location.href =
+                    "INSTITUCION/escuela.html";
+
+                return;
+
+            }
+
+        }
+
+
+        // ======================================
+        // PROFESIONAL
+        // ======================================
+
+        if (rol.value === "profesional") {
+
+            localStorage.setItem(
+                "tipoProfesional",
+                tipoProfesional.value
+            );
+
+
+            // ==================================
+            // MÉDICO
+            // ==================================
+
+            if (
+                tipoProfesional.value ===
+                "medico"
+            ) {
+
+                window.location.href =
+                    "PROFESIONAL/MEDICO/medico.html";
+
+                return;
+
+            }
+
+
+            // ==================================
+            // TERAPISTA / KINESIÓLOGO
+            // ==================================
+
+            if (
+                tipoProfesional.value ===
+                "terapista"
+            ) {
+
+                window.location.href =
+                    "PROFESIONAL/TERAPISTA/terapista.html";
+
+                return;
+
+            }
+
+
+            // ==================================
+            // PSICÓLOGO / PSIQUIATRA
+            // ==================================
+
+            if (
+                tipoProfesional.value ===
+                "psicologo"
+            ) {
+
+                window.location.href =
+                    "PROFESIONAL/PSICOLOGO/psicologo.html";
+
+                return;
+
+            }
+
+
+            // ==================================
+            // EMPLEADO
+            // ==================================
+
+            if (
+                tipoProfesional.value ===
+                "empleado"
+            ) {
+
+                window.location.href =
+                    "PROFESIONAL/EMPLEADO/empleado.html";
+
+                return;
+
+            }
+
+        }
+
     }
-
-
-    // ==========================================
-    // GUARDAR DATOS DE LOS OTROS ROLES
-    // ==========================================
-
-    localStorage.setItem(
-        "nombreUsuario",
-        nombre.value.trim()
-    );
-
-    localStorage.setItem(
-        "emailUsuario",
-        email.value.trim()
-    );
-
-
-    // PERSONAL
-
-    if (rol.value === "personal") {
-
-        window.location.href =
-            "PERSONAL/personal.html";
-
-        return;
-
-    }
-
-
-    // FAMILIA
-
-    if (rol.value === "familia") {
-
-        window.location.href =
-            "FAMILIA/familia.html";
-
-        return;
-
-    }
-
-
-    // MÉDICO
-
-    if (rol.value === "medico") {
-
-        window.location.href =
-            "MEDICO/medico.html";
-
-        return;
-
-    }
-
-
-    // TERAPISTA
-
-    if (rol.value === "terapista") {
-
-        window.location.href =
-            "TERAPISTA/terapista.html";
-
-        return;
-
-    }
-
-
-    // HOSPITAL
-
-    if (rol.value === "hospital") {
-
-        window.location.href =
-            "HOSPITAL/hospital.html";
-
-        return;
-
-    }
-
-});
+);

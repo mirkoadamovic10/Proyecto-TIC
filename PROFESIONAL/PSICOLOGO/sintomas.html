@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NeuroPassport - Seguimiento emocional</title>
+
+    <link
+        rel="stylesheet"
+        href="../../style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ===================================== -->
+    <!-- BARRA SUPERIOR -->
+    <!-- ===================================== -->
+
+    <header class="barra-empresa">
+
+        <nav
+            class="menu-empresa"
+            aria-label="Navegación principal"
+        >
+
+            <a
+                href="psicologo.html"
+                class="boton-menu-empresa"
+            >
+                Inicio
+            </a>
+
+
+            <a
+                href="pacientes.html"
+                class="boton-menu-empresa"
+            >
+                Pacientes
+            </a>
+
+
+            <a
+                href="agenda-psicologo.html"
+                class="boton-menu-empresa"
+            >
+                Agenda
+            </a>
+
+
+            <a
+                href="sintomas.html"
+                class="boton-menu-empresa"
+            >
+                Síntomas
+            </a>
+
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            title="Configuración"
+            aria-label="Configuración"
+        >
+
+            <span class="perfil-cabeza"></span>
+
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+
+    <!-- ===================================== -->
+    <!-- CONTENIDO -->
+    <!-- ===================================== -->
+
+    <main class="empresa-principal">
+
+
+        <!-- ================================= -->
+        <!-- TÍTULO -->
+        <!-- ================================= -->
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1>
+                    Seguimiento emocional
+                </h1>
+
+                <p>
+                    Registrá y consultá el estado emocional
+                    y los síntomas de tus pacientes.
+                </p>
+
+            </header>
+
+        </section>
+
+
+
+        <!-- ================================= -->
+        <!-- FORMULARIO -->
+        <!-- ================================= -->
+
+        <section class="empresa-info">
+
+            <header>
+
+                <h2>
+                    Nuevo registro
+                </h2>
+
+            </header>
+
+
+            <div class="formulario-sintomas">
+
+
+                <!-- PACIENTE -->
+
+                <div class="campo-sintomas">
+
+                    <label for="nombrePaciente">
+                        Paciente
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombrePaciente"
+                        placeholder="Nombre del paciente"
+                    >
+
+                </div>
+
+
+
+                <!-- FECHA -->
+
+                <div class="campo-sintomas">
+
+                    <label for="fechaSintoma">
+                        Fecha
+                    </label>
+
+                    <input
+                        type="date"
+                        id="fechaSintoma"
+                    >
+
+                </div>
+
+
+
+                <!-- ESTADO EMOCIONAL -->
+
+                <div class="campo-sintomas">
+
+                    <label for="estadoEmocional">
+                        Estado emocional
+                    </label>
+
+                    <select id="estadoEmocional">
+
+                        <option value="">
+                            Seleccioná una opción
+                        </option>
+
+                        <option value="Muy bueno">
+                            Muy bueno
+                        </option>
+
+                        <option value="Bueno">
+                            Bueno
+                        </option>
+
+                        <option value="Regular">
+                            Regular
+                        </option>
+
+                        <option value="Malo">
+                            Malo
+                        </option>
+
+                        <option value="Muy malo">
+                            Muy malo
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- SÍNTOMAS -->
+
+                <div class="campo-sintomas">
+
+                    <label for="sintomas">
+                        Síntomas observados
+                    </label>
+
+                    <textarea
+                        id="sintomas"
+                        placeholder="Escribí los síntomas observados..."
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- OBSERVACIONES -->
+
+                <div class="campo-sintomas">
+
+                    <label for="observaciones">
+                        Observaciones
+                    </label>
+
+                    <textarea
+                        id="observaciones"
+                        placeholder="Agregá observaciones..."
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- BOTÓN -->
+
+                <button
+                    type="button"
+                    id="botonGuardarSintoma"
+                >
+                    Guardar registro
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================= -->
+        <!-- REGISTROS GUARDADOS -->
+        <!-- ================================= -->
+
+        <section class="empresa-info">
+
+            <header>
+
+                <h2>
+                    Registros anteriores
+                </h2>
+
+            </header>
+
+
+            <div id="listaSintomas">
+
+                <p>
+                    Todavía no hay registros.
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ===================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ===================================== -->
+
+    <script
+        src="sintomas.js"
+        defer
+    ></script>
+
+
+</body>
+
+</html>
