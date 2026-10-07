@@ -10,8 +10,8 @@ const mesAnterior =
 const mesSiguiente =
     document.getElementById("mesSiguiente");
 
-const modalSeguimiento =
-    document.getElementById("modalSeguimiento");
+const modalAgenda =
+    document.getElementById("modalAgenda");
 
 const cerrarModal =
     document.getElementById("cerrarModal");
@@ -22,23 +22,17 @@ const fechaSeleccionada =
 const nombrePaciente =
     document.getElementById("nombrePaciente");
 
-const estadoAnimo =
-    document.getElementById("estadoAnimo");
+const horaTurno =
+    document.getElementById("horaTurno");
 
-const nivelAnsiedad =
-    document.getElementById("nivelAnsiedad");
+const motivoConsulta =
+    document.getElementById("motivoConsulta");
 
-const nivelEstres =
-    document.getElementById("nivelEstres");
+const tipoTurno =
+    document.getElementById("tipoTurno");
 
-const calidadSueno =
-    document.getElementById("calidadSueno");
-
-const observaciones =
-    document.getElementById("observaciones");
-
-const guardarSeguimiento =
-    document.getElementById("guardarSeguimiento");
+const guardarTurno =
+    document.getElementById("guardarTurno");
 
 
 let fechaCalendario =
@@ -48,11 +42,9 @@ let fechaElegida =
     "";
 
 
-let seguimientos =
+let turnos =
     JSON.parse(
-        localStorage.getItem(
-            "seguimientosEmocionales"
-        )
+        localStorage.getItem("turnosPsicologo")
     ) || [];
 
 
@@ -114,8 +106,6 @@ function mostrarCalendario() {
         ultimoDia.getDate();
 
 
-    // Espacios iniciales
-
     for (
         let i = 1;
         i < diaInicio;
@@ -134,8 +124,6 @@ function mostrarCalendario() {
 
     }
 
-
-    // Días
 
     for (
         let dia = 1;
@@ -163,11 +151,11 @@ function mostrarCalendario() {
             `<span class="numero-dia">${dia}</span>`;
 
 
-        const registrosDelDia =
-            seguimientos.filter(
-                function (registro) {
+        const turnosDelDia =
+            turnos.filter(
+                function (turno) {
 
-                    return registro.fecha ===
+                    return turno.fecha ===
                         celda.dataset.fecha;
 
                 }
@@ -175,7 +163,7 @@ function mostrarCalendario() {
 
 
         if (
-            registrosDelDia.length > 0
+            turnosDelDia.length > 0
         ) {
 
             const indicador =
@@ -187,7 +175,7 @@ function mostrarCalendario() {
 
 
             indicador.textContent =
-                "Registrado";
+                `${turnosDelDia.length} turno${turnosDelDia.length > 1 ? "s" : ""}`;
 
 
             celda.appendChild(
@@ -239,71 +227,29 @@ function abrirModal(fecha) {
     nombrePaciente.value =
         "";
 
-    estadoAnimo.value =
+    horaTurno.value =
         "";
 
-    nivelAnsiedad.value =
+    motivoConsulta.value =
         "";
 
-    nivelEstres.value =
-        "";
-
-    calidadSueno.value =
-        "";
-
-    observaciones.value =
+    tipoTurno.value =
         "";
 
 
-    // Si ya existe un registro ese día,
-    // cargarlo para poder modificarlo.
-
-    const registroExistente =
-        seguimientos.find(
-            function (registro) {
-
-                return registro.fecha === fecha;
-
-            }
-        );
-
-
-    if (registroExistente) {
-
-        nombrePaciente.value =
-            registroExistente.paciente || "";
-
-        estadoAnimo.value =
-            registroExistente.estadoAnimo || "";
-
-        nivelAnsiedad.value =
-            registroExistente.ansiedad || "";
-
-        nivelEstres.value =
-            registroExistente.estres || "";
-
-        calidadSueno.value =
-            registroExistente.sueno || "";
-
-        observaciones.value =
-            registroExistente.observaciones || "";
-
-    }
-
-
-    modalSeguimiento.hidden =
+    modalAgenda.hidden =
         false;
 
 }
 
 
 // ==========================================
-// CERRAR MODAL
+// CERRAR
 // ==========================================
 
 function cerrarVentana() {
 
-    modalSeguimiento.hidden =
+    modalAgenda.hidden =
         true;
 
 }
@@ -316,10 +262,10 @@ cerrarModal.addEventListener(
 
 
 // ==========================================
-// GUARDAR SEGUIMIENTO
+// GUARDAR TURNO
 // ==========================================
 
-guardarSeguimiento.addEventListener(
+guardarTurno.addEventListener(
     "click",
     function () {
 
@@ -327,25 +273,23 @@ guardarSeguimiento.addEventListener(
 
             nombrePaciente.value.trim() === "" ||
 
-            estadoAnimo.value === "" ||
+            horaTurno.value === "" ||
 
-            nivelAnsiedad.value === "" ||
+            motivoConsulta.value.trim() === "" ||
 
-            nivelEstres.value === "" ||
-
-            calidadSueno.value === ""
+            tipoTurno.value === ""
 
         ) {
 
             alert(
-                "Completá los datos del seguimiento."
+                "Completá todos los datos del turno."
             );
 
             return;
         }
 
 
-        const nuevoRegistro = {
+        const nuevoTurno = {
 
             id:
                 Date.now(),
@@ -356,66 +300,36 @@ guardarSeguimiento.addEventListener(
             paciente:
                 nombrePaciente.value.trim(),
 
-            estadoAnimo:
-                estadoAnimo.value,
+            hora:
+                horaTurno.value,
 
-            ansiedad:
-                nivelAnsiedad.value,
+            motivo:
+                motivoConsulta.value.trim(),
 
-            estres:
-                nivelEstres.value,
-
-            sueno:
-                calidadSueno.value,
-
-            observaciones:
-                observaciones.value.trim()
+            tipo:
+                tipoTurno.value
 
         };
 
 
-        // Si ya existe un registro para ese día,
-        // lo reemplazamos.
-
-        const posicion =
-            seguimientos.findIndex(
-                function (registro) {
-
-                    return registro.fecha ===
-                        fechaElegida;
-
-                }
-            );
-
-
-        if (posicion !== -1) {
-
-            seguimientos[posicion] =
-                nuevoRegistro;
-
-        } else {
-
-            seguimientos.push(
-                nuevoRegistro
-            );
-
-        }
+        turnos.push(
+            nuevoTurno
+        );
 
 
         localStorage.setItem(
-            "seguimientosEmocionales",
-            JSON.stringify(seguimientos)
+            "turnosPsicologo",
+            JSON.stringify(turnos)
         );
 
 
         cerrarVentana();
 
-
         mostrarCalendario();
 
 
         alert(
-            "Seguimiento guardado correctamente."
+            "Turno guardado correctamente."
         );
 
     }

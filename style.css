@@ -6024,3 +6024,265 @@ a {
     }
 
 }
+/* Achicar cuadro de seguimiento emocional */
+
+#modalSeguimiento .modal-agenda-contenido {
+    width: 360px;
+    max-width: 90%;
+    padding: 20px;
+}
+
+#modalSeguimiento .modal-agenda-contenido h2 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+#modalSeguimiento .campo-agenda {
+    margin-bottom: 12px;
+}
+
+#modalSeguimiento .campo-agenda input,
+#modalSeguimiento .campo-agenda select,
+#modalSeguimiento .campo-agenda textarea {
+    padding: 9px 11px;
+    font-size: 14px;
+}
+
+#modalSeguimiento .campo-agenda textarea {
+    min-height: 70px;
+}
+
+#modalSeguimiento .boton-guardar-agenda {
+    padding: 10px 16px;
+    font-size: 14px;
+}
+/* =================================
+   PREFERENCIAS DE TRABAJO
+================================= */
+
+.formulario-preferencias-trabajo {
+    width: 700px;
+    max-width: 90%;
+    margin: 30px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 8px 25px rgba(40, 88, 102, 0.08);
+}
+
+.campo-preferencia {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+.campo-preferencia label {
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.campo-preferencia input,
+.campo-preferencia select,
+.campo-preferencia textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 13px;
+    border: 1px solid #c9dddd;
+    border-radius: 12px;
+    background: #f8fcfc;
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.campo-preferencia textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.campo-preferencia input:focus,
+.campo-preferencia select:focus,
+.campo-preferencia textarea:focus {
+    outline: none;
+    border-color: var(--azul-claro);
+}
+
+.formulario-preferencias-trabajo
+button {
+    width: 100%;
+    margin-top: 5px;
+}
+/* =====================================================
+   PREFERENCIAS DE TRABAJO - EMPLEADO
+   ===================================================== */
+
+   main.empresa-principal {
+    min-height: calc(100vh - 80px);
+}
+
+
+/* CONTENEDOR DEL FORMULARIO */
+
+.formulario-preferencias-trabajo {
+    width: 700px !important;
+    max-width: calc(100% - 40px) !important;
+
+    margin: 30px auto 50px !important;
+    padding: 30px !important;
+
+    box-sizing: border-box;
+
+    background: #ffffff !important;
+
+    border-radius: 22px !important;
+
+    box-shadow:
+        0 8px 25px rgba(40, 88, 102, 0.10) !important;
+}
+
+
+/* CADA CAMPO */
+
+.formulario-preferencias-trabajo .campo-preferencia {
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 7px !important;
+
+    margin-bottom: 20px !important;
+}
+
+
+/* TEXTOS DE LOS CAMPOS */
+
+.formulario-preferencias-trabajo
+.campo-preferencia label {
+
+    display: block;
+
+    margin-bottom: 0;
+
+    color: var(--texto);
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* SELECTS Y TEXTAREAS */
+
+.formulario-preferencias-trabajo
+.campo-preferencia select,
+
+.formulario-preferencias-trabajo
+.campo-preferencia textarea {
+
+    width: 100% !important;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px !important;
+
+    border: 1px solid #cbdfe1 !important;
+
+    border-radius: 12px !important;
+
+    background: #f8fcfc !important;
+
+    color: var(--texto);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition: 0.2s ease;
+}
+
+
+/* TEXTAREA */
+
+.formulario-preferencias-trabajo
+.campo-preferencia textarea {
+
+    min-height: 100px !important;
+
+    resize: vertical;
+}
+
+
+/* CUANDO TOCÁS UN CAMPO */
+
+.formulario-preferencias-trabajo
+.campo-preferencia select:focus,
+
+.formulario-preferencias-trabajo
+.campo-preferencia textarea:focus {
+
+    outline: none;
+
+    border-color: var(--azul-claro) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(143, 203, 208, 0.18);
+}
+
+
+/* BOTÓN GUARDAR */
+
+.formulario-preferencias-trabajo
+#guardarPreferencias {
+
+    width: 100% !important;
+
+    padding: 13px 18px !important;
+
+    margin-top: 5px;
+
+    border: none !important;
+
+    border-radius: 12px !important;
+
+    background: var(--verde) !important;
+
+    color: var(--texto) !important;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.formulario-preferencias-trabajo
+#guardarPreferencias:hover {
+
+    transform: translateY(-1px);
+
+    filter: brightness(0.97);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .formulario-preferencias-trabajo {
+
+        width: calc(100% - 24px) !important;
+
+        max-width: none !important;
+
+        padding: 20px !important;
+
+        margin: 20px auto 30px !important;
+
+    }
+
+}

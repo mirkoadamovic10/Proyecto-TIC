@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Preferencias de trabajo - NeuroPassport</title>
+
+    <link
+        rel="stylesheet"
+        href="../../style.css"
+    >
+
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa">
+
+            <a
+                href="empleado.html"
+                class="boton-menu-empresa"
+            >
+                Inicio
+            </a>
+
+            <a
+                href="preferencias-trabajo.html"
+                class="boton-menu-empresa"
+            >
+                Preferencias de trabajo
+            </a>
+
+        </nav>
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            title="Configuración"
+        >
+
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+
+            <h1>
+                Preferencias de trabajo
+            </h1>
+
+            <p>
+                Completá tus preferencias para que tu entorno
+                de trabajo pueda adaptarse mejor a vos.
+            </p>
+
+        </section>
+
+
+        <section class="formulario-preferencias-trabajo">
+
+            <div class="campo-preferencia">
+
+                <label for="ambienteTrabajo">
+                    Ambiente de trabajo
+                </label>
+
+                <select id="ambienteTrabajo">
+
+                    <option value="">
+                        Seleccioná una opción
+                    </option>
+
+                    <option value="tranquilo">
+                        Ambiente tranquilo
+                    </option>
+
+                    <option value="dinamico">
+                        Ambiente dinámico
+                    </option>
+
+                    <option value="indiferente">
+                        Me es indiferente
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="campo-preferencia">
+
+                <label for="trabajoEquipo">
+                    Forma de trabajo
+                </label>
+
+                <select id="trabajoEquipo">
+
+                    <option value="">
+                        Seleccioná una opción
+                    </option>
+
+                    <option value="solo">
+                        Prefiero trabajar solo/a
+                    </option>
+
+                    <option value="equipo">
+                        Prefiero trabajar en equipo
+                    </option>
+
+                    <option value="ambos">
+                        Me adapto a ambas
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="campo-preferencia">
+
+                <label for="comunicacion">
+                    Forma de comunicación
+                </label>
+
+                <select id="comunicacion">
+
+                    <option value="">
+                        Seleccioná una opción
+                    </option>
+
+                    <option value="escrita">
+                        Comunicación escrita
+                    </option>
+
+                    <option value="oral">
+                        Comunicación oral
+                    </option>
+
+                    <option value="ambas">
+                        Ambas
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="campo-preferencia">
+
+                <label for="horario">
+                    Preferencia de horario
+                </label>
+
+                <select id="horario">
+
+                    <option value="">
+                        Seleccioná una opción
+                    </option>
+
+                    <option value="manana">
+                        Mañana
+                    </option>
+
+                    <option value="tarde">
+                        Tarde
+                    </option>
+
+                    <option value="noche">
+                        Noche
+                    </option>
+
+                    <option value="flexible">
+                        Horario flexible
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="campo-preferencia">
+
+                <label for="adaptaciones">
+                    Adaptaciones o necesidades
+                </label>
+
+                <textarea
+                    id="adaptaciones"
+                    placeholder="Contá qué necesitás para trabajar cómodamente..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="campo-preferencia">
+
+                <label for="otrasPreferencias">
+                    Otras preferencias
+                </label>
+
+                <textarea
+                    id="otrasPreferencias"
+                    placeholder="Agregá cualquier otra preferencia..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="guardarPreferencias"
+                class="boton-guardar-agenda"
+            >
+                Guardar preferencias
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <script src="preferencias-trabajo.js"></script>
+
+</body>
+
+</html>

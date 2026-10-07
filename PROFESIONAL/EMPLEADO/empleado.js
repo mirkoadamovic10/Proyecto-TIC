@@ -1,237 +1,201 @@
-// ==========================================
-// NOMBRE DEL USUARIO
-// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
 
-const nombreUsuario =
-    localStorage.getItem("nombreUsuario");
+    // ==========================
+    // SALUDO
+    // ==========================
 
+    const saludoEmpleado =
+        document.getElementById("saludoEmpleado");
 
-const saludoEmpleado =
-    document.getElementById("saludoEmpleado");
+    const nombreUsuario =
+        localStorage.getItem("nombreUsuario");
 
+    if (nombreUsuario && saludoEmpleado) {
 
-if (
-    nombreUsuario &&
-    saludoEmpleado
-) {
+        saludoEmpleado.textContent =
+            `¡Hola ${nombreUsuario}! Bienvenido a NeuroPassport`;
 
-    saludoEmpleado.textContent =
-        `¡Hola ${nombreUsuario}! Bienvenido a NeuroPassport`;
-
-}
+    }
 
 
+    // ==========================
+    // VINCULAR INSTITUCIÓN
+    // ==========================
 
-// ==========================================
-// ELEMENTOS
-// ==========================================
+    const botonVincular =
+        document.getElementById("botonVincular");
 
-const codigoInstitucion =
-    document.getElementById("codigoInstitucion");
+    const codigoInstitucion =
+        document.getElementById("codigoInstitucion");
 
-
-const botonVincular =
-    document.getElementById("botonVincular");
-
-
-const institucionVinculada =
-    document.getElementById(
-        "institucionVinculada"
-    );
+    const institucionVinculada =
+        document.getElementById("institucionVinculada");
 
 
-// ==========================================
-// VINCULAR INSTITUCIÓN
-// ==========================================
+    if (botonVincular) {
 
-botonVincular.addEventListener(
-    "click",
-    function() {
+        botonVincular.addEventListener("click", () => {
 
-
-        const codigo =
-            codigoInstitucion.value.trim();
+            const codigo =
+                codigoInstitucion.value.trim();
 
 
-        if (codigo === "") {
+            if (codigo === "") {
 
-            alert(
-                "Ingresá el código de la institución."
+                mostrarToast(
+                    "Ingresá el código de la institución"
+                );
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "codigoInstitucion",
+                codigo
             );
 
-            return;
+
+            institucionVinculada.textContent =
+                `Institución vinculada: ${codigo}`;
+
+
+            mostrarToast(
+                "✓ Institución vinculada correctamente"
+            );
+
+        });
+
+    }
+
+
+    // ==========================
+    // MOSTRAR INSTITUCIÓN GUARDADA
+    // ==========================
+
+    const codigoGuardado =
+        localStorage.getItem("codigoInstitucion");
+
+
+    if (codigoGuardado && institucionVinculada) {
+
+        institucionVinculada.textContent =
+            `Institución vinculada: ${codigoGuardado}`;
+
+    }
+
+
+    // ==========================
+    // MOSTRAR PREFERENCIAS
+    // ==========================
+
+    const preferenciasGuardadas =
+        localStorage.getItem("preferenciasTrabajo");
+
+
+    if (preferenciasGuardadas) {
+
+        const preferencias =
+            JSON.parse(preferenciasGuardadas);
+
+
+        const comunicacion =
+            document.getElementById("comunicacion");
+
+        const ambiente =
+            document.getElementById("ambiente");
+
+        const organizacion =
+            document.getElementById("organizacion");
+
+        const adaptaciones =
+            document.getElementById("adaptaciones");
+
+        const otrasPreferencias =
+            document.getElementById("otrasPreferencias");
+
+
+        if (
+            comunicacion &&
+            preferencias.comunicacion
+        ) {
+
+            comunicacion.textContent =
+                preferencias.comunicacion;
 
         }
 
 
-        localStorage.setItem(
-            "institucionEmpleado",
-            codigo
-        );
+        if (
+            ambiente &&
+            preferencias.ambiente
+        ) {
+
+            ambiente.textContent =
+                preferencias.ambiente;
+
+        }
 
 
-        institucionVinculada.textContent =
-            `Institución vinculada: ${codigo}`;
+        if (
+            organizacion &&
+            preferencias.organizacion
+        ) {
+
+            organizacion.textContent =
+                preferencias.organizacion;
+
+        }
 
 
-        codigoInstitucion.value = "";
+        if (
+            adaptaciones &&
+            preferencias.adaptaciones
+        ) {
+
+            adaptaciones.textContent =
+                preferencias.adaptaciones;
+
+        }
+
+
+        if (
+            otrasPreferencias &&
+            preferencias.otrasPreferencias
+        ) {
+
+            otrasPreferencias.textContent =
+                preferencias.otrasPreferencias;
+
+        }
 
     }
-);
+
+});
 
 
+// ==========================
+// TOAST
+// ==========================
 
-// ==========================================
-// MOSTRAR INSTITUCIÓN GUARDADA
-// ==========================================
+function mostrarToast(mensaje) {
 
-const institucionGuardada =
-    localStorage.getItem(
-        "institucionEmpleado"
-    );
+    const toast =
+        document.createElement("div");
+
+    toast.className =
+        "toast-neuropassport";
+
+    toast.textContent =
+        mensaje;
+
+    document.body.appendChild(toast);
 
 
-if (
-    institucionGuardada &&
-    institucionVinculada
-) {
+    setTimeout(() => {
 
-    institucionVinculada.textContent =
-        `Institución vinculada: ${institucionGuardada}`;
+        toast.remove();
+
+    }, 3000);
 
 }
-
-
-
-// ==========================================
-// PREFERENCIAS
-// ==========================================
-
-const botonPreferencias =
-    document.getElementById(
-        "botonPreferencias"
-    );
-
-
-botonPreferencias.addEventListener(
-    "click",
-    function() {
-
-        const comunicacion =
-            prompt(
-                "¿Cómo preferís que se comuniquen con vos?"
-            );
-
-
-        const ambiente =
-            prompt(
-                "¿Qué tipo de ambiente de trabajo te resulta más cómodo?"
-            );
-
-
-        const organizacion =
-            prompt(
-                "¿Qué forma de organización te ayuda?"
-            );
-
-
-        const adaptaciones =
-            prompt(
-                "¿Necesitás alguna adaptación en tu trabajo?"
-            );
-
-
-        const otras =
-            prompt(
-                "¿Querés agregar alguna otra preferencia?"
-            );
-
-
-        const preferencias = {
-
-            comunicacion:
-                comunicacion || "No especificado",
-
-            ambiente:
-                ambiente || "No especificado",
-
-            organizacion:
-                organizacion || "No especificado",
-
-            adaptaciones:
-                adaptaciones || "No especificado",
-
-            otras:
-                otras || "No especificado"
-
-        };
-
-
-        localStorage.setItem(
-            "preferenciasTrabajo",
-            JSON.stringify(preferencias)
-        );
-
-
-        mostrarPreferencias();
-
-    }
-);
-
-
-
-// ==========================================
-// MOSTRAR PREFERENCIAS
-// ==========================================
-
-function mostrarPreferencias() {
-
-
-    const guardadas =
-        localStorage.getItem(
-            "preferenciasTrabajo"
-        );
-
-
-    if (!guardadas) {
-        return;
-    }
-
-
-    const preferencias =
-        JSON.parse(guardadas);
-
-
-    document.getElementById(
-        "comunicacion"
-    ).textContent =
-        preferencias.comunicacion;
-
-
-    document.getElementById(
-        "ambiente"
-    ).textContent =
-        preferencias.ambiente;
-
-
-    document.getElementById(
-        "organizacion"
-    ).textContent =
-        preferencias.organizacion;
-
-
-    document.getElementById(
-        "adaptaciones"
-    ).textContent =
-        preferencias.adaptaciones;
-
-
-    document.getElementById(
-        "otrasPreferencias"
-    ).textContent =
-        preferencias.otras;
-
-}
-
-
-mostrarPreferencias();

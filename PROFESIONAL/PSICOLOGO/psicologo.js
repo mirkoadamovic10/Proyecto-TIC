@@ -1,24 +1,8 @@
-// ==========================================
-// NOMBRE DEL USUARIO
-// ==========================================
-
 const nombreUsuario =
     localStorage.getItem("nombreUsuario");
 
-
-// ==========================================
-// SALUDO
-// ==========================================
-
 const saludoPsicologo =
-    document.getElementById(
-        "saludoPsicologo"
-    );
-
-
-// ==========================================
-// MOSTRAR NOMBRE
-// ==========================================
+    document.getElementById("saludoPsicologo");
 
 if (
     nombreUsuario &&

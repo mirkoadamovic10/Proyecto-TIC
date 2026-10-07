@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Agenda - NeuroPassport</title>
+
+    <link
+        rel="stylesheet"
+        href="../../style.css"
+    >
+
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav class="menu-empresa">
+
+            <a
+                href="psicologo.html"
+                class="boton-menu-empresa"
+            >
+                Inicio
+            </a>
+
+            <a
+                href="pacientes.html"
+                class="boton-menu-empresa"
+            >
+                Pacientes
+            </a>
+
+            <a
+                href="agenda-psicologo.html"
+                class="boton-menu-empresa"
+            >
+                Agenda
+            </a>
+
+            <a
+                href="sintomas.html"
+                class="boton-menu-empresa"
+            >
+                Seguimiento emocional
+            </a>
+
+        </nav>
+
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            title="Configuración"
+        >
+
+            <span class="perfil-cabeza"></span>
+
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+    </header>
+
+
+    <main class="empresa-principal">
+
+        <section class="empresa-bienvenida">
+
+            <header>
+
+                <h1>
+                    Agenda
+                </h1>
+
+                <p>
+                    Organizá tus sesiones y consultas.
+                </p>
+
+            </header>
+
+        </section>
+
+
+        <section class="calendario-medico">
+
+            <div class="calendario-cabecera">
+
+                <button
+                    type="button"
+                    id="mesAnterior"
+                >
+                    ‹
+                </button>
+
+
+                <h2 id="mesActual"></h2>
+
+
+                <button
+                    type="button"
+                    id="mesSiguiente"
+                >
+                    ›
+                </button>
+
+            </div>
+
+
+            <div class="calendario-semana">
+
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mié</div>
+                <div>Jue</div>
+                <div>Vie</div>
+                <div>Sáb</div>
+                <div>Dom</div>
+
+            </div>
+
+
+            <div
+                id="calendarioDias"
+                class="calendario-dias"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="modalAgenda"
+        class="modal-agenda"
+        hidden
+    >
+
+        <div class="modal-agenda-contenido">
+
+            <button
+                type="button"
+                id="cerrarModal"
+                class="cerrar-modal-agenda"
+            >
+                ×
+            </button>
+
+
+            <h2>
+                Agregar sesión
+            </h2>
+
+
+            <p id="fechaSeleccionada"></p>
+
+
+            <div class="campo-agenda">
+
+                <label for="nombrePaciente">
+                    Paciente
+                </label>
+
+                <input
+                    type="text"
+                    id="nombrePaciente"
+                    placeholder="Nombre del paciente"
+                >
+
+            </div>
+
+
+            <div class="campo-agenda">
+
+                <label for="horaTurno">
+                    Hora
+                </label>
+
+                <input
+                    type="time"
+                    id="horaTurno"
+                >
+
+            </div>
+
+
+            <div class="campo-agenda">
+
+                <label for="motivoConsulta">
+                    Motivo de consulta
+                </label>
+
+                <textarea
+                    id="motivoConsulta"
+                    placeholder="Escribí el motivo de la consulta"
+                ></textarea>
+
+            </div>
+
+
+            <div class="campo-agenda">
+
+                <label for="tipoTurno">
+                    Tipo de turno
+                </label>
+
+                <select id="tipoTurno">
+
+                    <option value="">
+                        Seleccioná una opción
+                    </option>
+
+                    <option value="primera-consulta">
+                        Primera consulta
+                    </option>
+
+                    <option value="sesion">
+                        Sesión
+                    </option>
+
+                    <option value="seguimiento">
+                        Seguimiento
+                    </option>
+
+                    <option value="control">
+                        Control
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="guardarTurno"
+                class="boton-guardar-agenda"
+            >
+                Guardar turno
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="agenda-psicologo.js"
+        defer
+    ></script>
+
+</body>
+
+</html>
