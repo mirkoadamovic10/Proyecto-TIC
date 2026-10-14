@@ -6286,3 +6286,165 @@ button {
     }
 
 }
+/* =========================================
+   SEGUIMIENTO EMOCIONAL - FORMULARIO
+   ========================================= */
+
+   .formulario-sintomas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    padding: 25px;
+    width: 100%;
+}
+
+.campo-sintomas {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.campo-sintomas label {
+    color: var(--azul-oscuro, #285866);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.campo-sintomas input,
+.campo-sintomas select,
+.campo-sintomas textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #cbd8df;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #263943;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo-sintomas input,
+.campo-sintomas select {
+    min-height: 45px;
+}
+
+.campo-sintomas textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.campo-sintomas input:focus,
+.campo-sintomas select:focus,
+.campo-sintomas textarea:focus {
+    border-color: var(--azul, #397d8c);
+    box-shadow: 0 0 0 3px rgba(57, 125, 140, 0.15);
+}
+
+.campo-sintomas input::placeholder,
+.campo-sintomas textarea::placeholder {
+    color: #8a9ba5;
+}
+
+#botonGuardarSintoma {
+    grid-column: 1 / -1;
+    justify-self: start;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--azul-oscuro, #285866);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+#botonGuardarSintoma:hover {
+    background-color: var(--azul, #397d8c);
+    transform: translateY(-1px);
+}
+
+#listaSintomas {
+    padding: 20px 25px;
+    color: #526570;
+    overflow-wrap: anywhere;
+}
+
+#listaSintomas p {
+    margin: 0;
+}
+
+@media (max-width: 650px) {
+    .formulario-sintomas {
+        grid-template-columns: 1fr;
+        padding: 18px;
+        gap: 16px;
+    }
+
+    #botonGuardarSintoma {
+        grid-column: 1;
+        width: 100%;
+    }
+
+    #listaSintomas {
+        padding: 18px;
+    }
+}
+/* =========================================
+   PROFESIONAL / EMPLEADO
+   Código para vincular institución
+   ========================================= */
+
+   .codigo-vincular,
+   .codigo-institucion,
+   .codigo-empleado {
+       box-sizing: border-box;
+       max-width: 100%;
+       border: 1px solid #d5e1e6;
+       border-radius: 12px;
+       padding: 18px;
+       background-color: #ffffff;
+       color: #285866;
+   }
+   
+   /* Editar preferencias: aspecto de botón */
+   
+   a[href*="preferencias"],
+   .boton-preferencias,
+   #editarPreferencias {
+       display: inline-flex;
+       align-items: center;
+       justify-content: center;
+       box-sizing: border-box;
+       padding: 12px 18px;
+       border: 1px solid #d5e1e6;
+       border-radius: 10px;
+       background-color: #ffffff;
+       color: #285866;
+       font-family: inherit;
+       font-size: 15px;
+       font-weight: 600;
+       text-decoration: none;
+       cursor: pointer;
+       box-shadow: none;
+       transition: background-color 0.2s, border-color 0.2s;
+   }
+   
+   a[href*="preferencias"]:hover,
+   .boton-preferencias:hover,
+   #editarPreferencias:hover {
+       background-color: #eef7f8;
+       border-color: #8fcbd0;
+   }
+   
+   /* Evita la línea inferior de los enlaces */
+   
+   a[href*="preferencias"]:visited,
+   a[href*="preferencias"]:focus {
+       text-decoration: none;
+   }
