@@ -6448,3 +6448,868 @@ button {
    a[href*="preferencias"]:focus {
        text-decoration: none;
    }
+   /* ========================================= */
+/* ESTILOS PARA EL HEADER DE LA PÁGINA INICIAL */
+/* ========================================= */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 45px;
+    background: var(--blanco);
+    border-bottom: 1px solid var(--borde);
+    box-shadow: 0 4px 20px rgba(40, 88, 102, 0.05);
+}
+
+header h2 {
+    color: var(--azul-oscuro);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+header .botones {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Estilo común para ambos botones/enlaces del header */
+header .botones a,
+header .botones button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Botón de Iniciar sesión (estilo secundario / lila) */
+header .botones a {
+    background: var(--lila);
+    color: var(--azul-oscuro);
+    border: none;
+}
+
+header .botones a:hover {
+    background: #cdb2dd;
+    transform: translateY(-1px);
+}
+
+/* Botón de Registrarse (estilo principal / verde o azul) */
+header .botones button {
+    background: var(--verde);
+    color: var(--azul-oscuro);
+    border: none;
+    box-shadow: 0 4px 12px rgba(40, 88, 102, 0.08);
+}
+
+header .botones button:hover {
+    background: #a4d5bc;
+    transform: translateY(-1px);
+
+}
+/* ========================================= */
+/* CORRECCIÓN EXCLUSIVA PARA EL HEADER DEL INICIO */
+/* ========================================= */
+
+body > header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 45px;
+    background: var(--blanco);
+    border-bottom: 1px solid var(--borde);
+    box-shadow: 0 4px 20px rgba(40, 88, 102, 0.05);
+}
+
+body > header h2 {
+    color: var(--azul-oscuro);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+body > header .botones {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+body > header .botones a,
+body > header .botones button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+body > header .botones a {
+    background: var(--lila);
+    color: var(--azul-oscuro);
+    border: none;
+}
+
+body > header .botones a:hover {
+    background: #cdb2dd;
+    transform: translateY(-1px);
+}
+
+body > header .botones button {
+    background: var(--verde);
+    color: var(--azul-oscuro);
+    border: none;
+    box-shadow: 0 4px 12px rgba(40, 88, 102, 0.08);
+}
+
+body > header .botones button:hover {
+    background: #a4d5bc;
+    transform: translateY(-1px);
+}
+
+/* ========================================= */
+/* LIMPIEZA DEL CUADRO BLANCO EN REGISTRO */
+/* ========================================= */
+
+.register-card header {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+.register-card header h1 {
+    text-align: center !important;
+    width: 100% !important;
+}
+/* ========================================= */
+/* LIMPIEZA DEL CUADRO BLANCO EN INICIAR SESIÓN */
+/* ========================================= */
+
+.login-card header {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+.login-card header h1 {
+    text-align: center !important;
+    width: 100% !important;
+}
+/* ========================================= */
+/* CORRECCIÓN PARA EL HOME DE MÉDICO / HOSPITAL */
+/* ========================================= */
+
+.hospital-bienvenida,
+.tarjeta-hospital-accion,
+.tarjeta-hospital,
+.tarjeta-paciente,
+.tarjeta-escuela,
+.tarjeta-empresa,
+.tarjeta-familia {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* Limpiar cabeceras internas dentro de las tarjetas del home */
+.hospital-bienvenida header,
+.tarjeta-hospital-accion header,
+.tarjeta-hospital header,
+.tarjeta-paciente header,
+.tarjeta-escuela header,
+.tarjeta-empresa header,
+.tarjeta-familia header {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+/* ========================================= */
+/* ESTILO DEFINITIVO PARA LOS HOMES PROFESIONALES */
+/* ========================================= */
+
+/* Limpiar fondos extraños en los contenedores principales de bienvenida */
+.hospital-bienvenida,
+.escuela-bienvenida,
+.familia-bienvenida,
+.empresa-bienvenida {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 20px 0 !important;
+}
+
+/* Estilo consistente para las tarjetas de acciones principales */
+.hospital-acciones,
+.escuela-acciones,
+.familia-acciones,
+.empresa-acciones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Tarjetas individuales con fondo blanco, bordes redondeados y sombra suave */
+.tarjeta-hospital-accion,
+.tarjeta-escuela,
+.tarjeta-empresa,
+.tarjeta-familia {
+    background: #ffffff !important;
+    border: 2px solid #397d8c !important; /* Borde azul principal */
+    border-radius: 25px !important;
+    padding: 35px 30px !important;
+    box-shadow: 0 10px 30px rgba(40, 88, 102, 0.08) !important;
+    text-align: center;
+    position: relative;
+}
+
+/* Darle variedad de color alternativo a la segunda tarjeta (estilo lila como en tu foto) */
+.tarjeta-hospital-accion:nth-child(2),
+.tarjeta-escuela:nth-child(2),
+.tarjeta-empresa:nth-child(2),
+.tarjeta-familia:nth-child(2) {
+    border-color: #a98abb !important; /* Borde lila */
+}
+
+/* Tipografías y espacios internos de las tarjetas */
+.tarjeta-hospital-accion h2,
+.tarjeta-escuela h2,
+.tarjeta-empresa h2,
+.tarjeta-familia h2 {
+    color: var(--azul-oscuro) !important;
+    font-size: 26px !important;
+    font-weight: 800 !important;
+    margin-bottom: 12px !important;
+}
+
+.tarjeta-hospital-accion p,
+.tarjeta-escuela p,
+.tarjeta-empresa p,
+.tarjeta-familia p {
+    color: var(--gris) !important;
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 25px !important;
+    min-height: 45px;
+}
+
+/* Botones centrados y estilizados dentro de las tarjetas */
+.tarjeta-hospital-accion button,
+.tarjeta-hospital-accion a,
+.tarjeta-escuela button,
+.tarjeta-escuela a,
+.tarjeta-empresa button,
+.tarjeta-empresa a,
+.tarjeta-familia button,
+.tarjeta-familia a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px !important;
+    border-radius: 14px !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Primer botón (Ver pacientes / etc) en tono verde */
+.tarjeta-hospital-accion:nth-child(1) button,
+.tarjeta-hospital-accion:nth-child(1) a,
+.tarjeta-escuela:nth-child(1) button,
+.tarjeta-escuela:nth-child(1) a {
+    background: var(--verde) !important;
+    color: var(--azul-oscuro) !important;
+    border: none !important;
+}
+
+/* Segundo botón (Ver agenda / etc) en tono lila armónico */
+.tarjeta-hospital-accion:nth-child(2) button,
+.tarjeta-hospital-accion:nth-child(2) a,
+.tarjeta-escuela:nth-child(2) button,
+.tarjeta-escuela:nth-child(2) a {
+    background: var(--lila) !important;
+    color: #4d4560 !important;
+    border: none !important;
+}
+
+/* Sección inferior informativa (como el bloque de seguimiento de pacientes) */
+.hospital-info,
+.escuela-info,
+.familia-info,
+.empresa-info {
+    margin-top: 30px !important;
+    background: var(--verde-claro) !important;
+    border: 1px solid rgba(185, 223, 204, 0.8) !important;
+    border-radius: 20px !important;
+    padding: 25px 30px !important;
+    text-align: center;
+}
+
+.hospital-info h2,
+.escuela-info h2,
+.familia-info h2,
+.empresa-info h2 {
+    color: var(--azul-oscuro) !important;
+    font-size: 18px !important;
+    margin-bottom: 6px !important;
+}
+
+.hospital-info p,
+.escuela-info p,
+.familia-info p,
+.empresa-info p {
+    color: var(--gris) !important;
+    font-size: 14px !important;
+    margin: 0 !important;
+}
+/* ========================================= */
+/* ESTILO EXACTO BASADO EN LA IMAGEN (MARRÓN Y TONOS) */
+/* ========================================= */
+
+/* Barra superior institucional en color marrón */
+.barra-escuela,
+.barra-empresa,
+.barra-institucion {
+    background: #8b734b !important; /* Color marrón exacto de la barra superior */
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.barra-escuela h2,
+.barra-empresa h2,
+.barra-institucion h2,
+.link-nav-institucion {
+    color: #ffffff !important;
+}
+
+.escuela-principal, 
+.empresa-principal, 
+.hospital-principal {
+    width: 90% !important;
+    max-width: 1100px !important;
+    margin: 40px auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.escuela-bienvenida, 
+.empresa-bienvenida, 
+.hospital-bienvenida {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 0 35px 0 !important;
+    text-align: center !important;
+}
+
+.escuela-bienvenida h1, 
+.empresa-bienvenida h1, 
+.hospital-bienvenida h1 {
+    color: #000000 !important;
+    font-size: 38px !important;
+    font-weight: 800 !important;
+    margin-bottom: 8px !important;
+}
+
+.escuela-bienvenida p, 
+.empresa-bienvenida p, 
+.hospital-bienvenida p {
+    color: #000000 !important;
+    font-size: 15px !important;
+}
+
+.escuela-acciones, 
+.empresa-acciones, 
+.hospital-acciones {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 30px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 30px !important;
+}
+
+/* Tarjeta 1: Borde verde claro */
+.tarjeta-escuela:nth-child(1), 
+.tarjeta-empresa:nth-child(1), 
+.tarjeta-hospital-accion:nth-child(1) {
+    background: #ffffff !important;
+    border-radius: 25px !important;
+    padding: 40px 30px !important;
+    box-shadow: 0 10px 30px rgba(40, 88, 102, 0.08) !important;
+    text-align: center !important;
+    border: 3px solid #7be88e !important;
+}
+
+/* Tarjeta 2: Borde azul oscuro / petróleo */
+.tarjeta-escuela:nth-child(2), 
+.tarjeta-empresa:nth-child(2), 
+.tarjeta-hospital-accion:nth-child(2) {
+    background: #ffffff !important;
+    border-radius: 25px !important;
+    padding: 40px 30px !important;
+    box-shadow: 0 10px 30px rgba(40, 88, 102, 0.08) !important;
+    text-align: center !important;
+    border: 3px solid #3c6e7a !important;
+}
+
+.tarjeta-escuela h2, 
+.tarjeta-empresa h2, 
+.tarjeta-hospital-accion h2 {
+    color: #000000 !important;
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    margin-bottom: 15px !important;
+}
+
+.tarjeta-escuela p, 
+.tarjeta-empresa p, 
+.tarjeta-hospital-accion p {
+    color: #000000 !important;
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 30px !important;
+}
+
+.tarjeta-escuela button, 
+.tarjeta-escuela a, 
+.tarjeta-empresa button, 
+.tarjeta-empresa a, 
+.tarjeta-hospital-accion button, 
+.tarjeta-hospital-accion a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 13px 30px !important;
+    border-radius: 14px !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+/* Botón 1: Verde claro de la imagen */
+.tarjeta-escuela:nth-child(1) a, 
+.tarjeta-empresa:nth-child(1) a, 
+.tarjeta-hospital-accion:nth-child(1) button,
+.tarjeta-escuela:nth-child(1) button {
+    background: #7be88e !important;
+    color: #000000 !important;
+    border: none !important;
+}
+
+/* Botón 2: Verde agua suave de la imagen */
+.tarjeta-escuela:nth-child(2) a, 
+.tarjeta-empresa:nth-child(2) a, 
+.tarjeta-hospital-accion:nth-child(2) button,
+.tarjeta-escuela:nth-child(2) button {
+    background: #a3d9cb !important;
+    color: #285866 !important;
+    border: none !important;
+}
+
+/* Franja inferior informativa en tono verde claro de la imagen */
+.escuela-info, 
+.empresa-info, 
+.hospital-info {
+    background: #bce3cb !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 18px 25px !important;
+    text-align: center !important;
+}
+
+.escuela-info h2, 
+.empresa-info h2, 
+.hospital-info h2 {
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    margin-bottom: 4px !important;
+}
+
+.escuela-info p, 
+.empresa-info p, 
+.hospital-info p {
+    color: #ffffff !important;
+    font-size: 13px !important;
+    margin: 0 !important;
+}
+/* ========================================= */
+/* CORRECCIÓN DE COLORES DE BOTONES SEGÚN IMAGEN */
+/* ========================================= */
+
+/* Botón 1: Verde brillante con texto negro */
+.tarjeta-escuela:nth-child(1) a, 
+.tarjeta-empresa:nth-child(1) a, 
+.tarjeta-hospital-accion:nth-child(1) button,
+.tarjeta-escuela:nth-child(1) button {
+    background: #62d87e !important;
+    color: #000000 !important;
+    border: none !important;
+}
+
+/* Botón 2: Verde agua pastel suave con texto negro */
+.tarjeta-escuela:nth-child(2) a, 
+.tarjeta-empresa:nth-child(2) a, 
+.tarjeta-hospital-accion:nth-child(2) button,
+.tarjeta-escuela:nth-child(2) button {
+    background: #a9dad0 !important;
+    color: #000000 !important;
+    border: none !important;
+}
+/* ========================================= */
+/* ESTILO DEFINITIVO HOMES INSTITUCIONALES (IDÉNTICO A LA IMAGEN) */
+/* ========================================= */
+
+/* Barra superior marrón */
+.barra-escuela,
+.barra-empresa,
+.barra-institucion,
+header {
+    background: #8b734b !important;
+}
+
+/* Contenedor principal */
+.escuela-principal, 
+.empresa-principal, 
+.hospital-principal {
+    width: 90% !important;
+    max-width: 1100px !important;
+    margin: 40px auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+/* Encabezado de bienvenida */
+.escuela-bienvenida, 
+.empresa-bienvenida, 
+.hospital-bienvenida {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 0 35px 0 !important;
+    text-align: center !important;
+}
+
+.escuela-bienvenida h1, 
+.empresa-bienvenida h1, 
+.hospital-bienvenida h1 {
+    color: #000000 !important;
+    font-size: 38px !important;
+    font-weight: 800 !important;
+    margin-bottom: 8px !important;
+}
+
+.escuela-bienvenida p, 
+.empresa-bienvenida p, 
+.hospital-bienvenida p {
+    color: #000000 !important;
+    font-size: 15px !important;
+}
+
+/* Grilla de tarjetas */
+.escuela-acciones, 
+.empresa-acciones, 
+.hospital-acciones {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 30px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 30px !important;
+}
+
+/* Tarjeta 1: Borde verde claro */
+.tarjeta-escuela:nth-child(1), 
+.tarjeta-empresa:nth-child(1), 
+.tarjeta-hospital-accion:nth-child(1) {
+    background: #ffffff !important;
+    border-radius: 25px !important;
+    padding: 40px 30px !important;
+    box-shadow: 0 10px 30px rgba(40, 88, 102, 0.08) !important;
+    text-align: center !important;
+    border: 3px solid #85e896 !important;
+}
+
+/* Tarjeta 2: Borde azul petróleo */
+.tarjeta-escuela:nth-child(2), 
+.tarjeta-empresa:nth-child(2), 
+.tarjeta-hospital-accion:nth-child(2) {
+    background: #ffffff !important;
+    border-radius: 25px !important;
+    padding: 40px 30px !important;
+    box-shadow: 0 10px 30px rgba(40, 88, 102, 0.08) !important;
+    text-align: center !important;
+    border: 3px solid #3c6e7a !important;
+}
+
+/* Textos de las tarjetas */
+.tarjeta-escuela h2, 
+.tarjeta-empresa h2, 
+.tarjeta-hospital-accion h2 {
+    color: #000000 !important;
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    margin-bottom: 15px !important;
+}
+
+.tarjeta-escuela p, 
+.tarjeta-empresa p, 
+.tarjeta-hospital-accion p {
+    color: #000000 !important;
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 30px !important;
+}
+
+/* Estilo general de los botones */
+.tarjeta-escuela button, 
+.tarjeta-escuela a, 
+.tarjeta-empresa button, 
+.tarjeta-empresa a, 
+.tarjeta-hospital-accion button, 
+.tarjeta-hospital-accion a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 12px 32px !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+}
+
+/* Botón 1: Verde vivo exacto de la imagen */
+.tarjeta-escuela:nth-child(1) a, 
+.tarjeta-empresa:nth-child(1) a, 
+.tarjeta-hospital-accion:nth-child(1) button,
+.tarjeta-escuela:nth-child(1) button {
+    background: #72e472 !important;
+    color: #1a1a1a !important;
+    border: none !important;
+}
+
+/* Botón 2: Verde agua / grisáceo exacto de la imagen */
+.tarjeta-escuela:nth-child(2) a, 
+.tarjeta-empresa:nth-child(2) a, 
+.tarjeta-hospital-accion:nth-child(2) button,
+.tarjeta-escuela:nth-child(2) button {
+    background: #9ed3bd !important;
+    color: #1a1a1a !important;
+    border: none !important;
+}
+
+/* Franja inferior de información compartida */
+.escuela-info, 
+.empresa-info, 
+.hospital-info {
+    background: #a9dfbc !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 16px 25px !important;
+    text-align: center !important;
+}
+
+.escuela-info h2, 
+.empresa-info h2, 
+.hospital-info h2 {
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    margin-bottom: 2px !important;
+}
+
+.escuela-info p, 
+.empresa-info p, 
+.hospital-info p {
+    color: #ffffff !important;
+    font-size: 13px !important;
+    margin: 0 !important;
+}
+/* ========================================= */
+/* BOTONES INSTITUCIONALES - COLORES EXACTOS */
+/* ========================================= */
+
+/* Botón izquierdo (Linkear): Verde claro brillante con texto oscuro */
+.tarjeta-escuela:nth-child(1) a, 
+.tarjeta-empresa:nth-child(1) a, 
+.tarjeta-hospital-accion:nth-child(1) button,
+.tarjeta-escuela:nth-child(1) button,
+.tarjeta-empresa:nth-child(1) button,
+.tarjeta-hospital-accion:nth-child(1) a {
+    background: #65e87a !important;
+    color: #1f2d3d !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+}
+
+/* Botón derecho (Ver usuarios/estudiantes/empleados): Verde pastel suave con texto oscuro */
+.tarjeta-escuela:nth-child(2) a, 
+.tarjeta-empresa:nth-child(2) a, 
+.tarjeta-hospital-accion:nth-child(2) button,
+.tarjeta-escuela:nth-child(2) button,
+.tarjeta-empresa:nth-child(2) button,
+.tarjeta-hospital-accion:nth-child(2) a {
+    background: #93d4b6 !important;
+    color: #1f2d3d !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+}
+/* ========================================= */
+/* COLORES ESPECÍFICOS PARA BOTONES DE ACCIÓN */
+/* ========================================= */
+
+/* 1. Botones de LINKEAR (Primera tarjeta / Estudiante o Empleado): Verde claro brillante */
+.tarjeta-escuela:nth-child(1) a, 
+.tarjeta-escuela:nth-child(1) button,
+.tarjeta-empresa:nth-child(1) a, 
+.tarjeta-empresa:nth-child(1) button,
+.tarjeta-hospital-accion:nth-child(1) a, 
+.tarjeta-hospital-accion:nth-child(1) button,
+a[class*="linkear"], 
+button[class*="linkear"],
+.btn-linkear {
+    background: #65e87a !important;
+    color: #1f2d3d !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+}
+
+/* 2. Botones de VER / GESTIONAR (Segunda tarjeta / Estudiante o Empleado): Celeste / Verde agua suave */
+.tarjeta-escuela:nth-child(2) a, 
+.tarjeta-escuela:nth-child(2) button,
+.tarjeta-empresa:nth-child(2) a, 
+.tarjeta-empresa:nth-child(2) button,
+.tarjeta-hospital-accion:nth-child(2) a, 
+.tarjeta-hospital-accion:nth-child(2) button,
+a[class*="ver"], 
+button[class*="ver"],
+.btn-ver,
+.btn-usuarios {
+    background: #93d4b6 !important;
+    color: #1f2d3d !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+}
+/* ========================================= */
+/* CORRECCIÓN DEFINITIVA: NAVBAR Y LIMPIEZA TOTAL */
+/* ========================================= */
+
+/* 1. Forzar que la barra superior (navbar / header) sea terracota */
+header,
+.navbar,
+nav,
+.header-principal,
+.barra-hospital {
+    background-color: #9b5151 !important;
+    background: #9b5151 !important;
+}
+
+/* 2. Eliminar cualquier fondo o rectángulo en la zona de bienvenida */
+.hospital-bienvenida,
+.escuela-bienvenida,
+div[class*="bienvenida"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 20px 0 !important;
+}
+
+/* Asegurar que los textos de bienvenida vuelvan a ser negros y legibles */
+.hospital-bienvenida h1,
+.hospital-bienvenida p,
+.escuela-bienvenida h1,
+.escuela-bienvenida p,
+div[class*="bienvenida"] h1,
+div[class*="bienvenida"] p {
+    color: #000000 !important;
+    background: transparent !important;
+}
+
+/* 3. Estilo limpio para las tarjetas de la grilla */
+.tarjeta-hospital-accion:nth-child(1),
+div[class*="card"]:nth-child(1),
+div[class*="tarjeta"]:nth-child(1) {
+    background: #ffffff !important;
+    border: 3px solid #7be88e !important; /* Borde verde claro */
+    border-radius: 25px !important;
+    padding: 35px 25px !important;
+    text-align: center !important;
+}
+
+.tarjeta-hospital-accion:nth-child(2),
+div[class*="card"]:nth-child(2),
+div[class*="tarjeta"]:nth-child(2) {
+    background: #ffffff !important;
+    border: 3px solid #3c6e7a !important; /* Borde azul petróleo */
+    border-radius: 25px !important;
+    padding: 35px 25px !important;
+    text-align: center !important;
+}
+
+/* 4. Botones de acción */
+.tarjeta-hospital-accion:nth-child(1) button,
+.tarjeta-hospital-accion:nth-child(1) a,
+div[class*="card"]:nth-child(1) button,
+div[class*="card"]:nth-child(1) a {
+    background-color: #65e87a !important;
+    background: #65e87a !important;
+    color: #1f2d3d !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 12px 30px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    cursor: pointer !important;
+}
+
+.tarjeta-hospital-accion:nth-child(2) button,
+.tarjeta-hospital-accion:nth-child(2) a,
+div[class*="card"]:nth-child(2) button,
+div[class*="card"]:nth-child(2) a {
+    background-color: #93d4b6 !important;
+    background: #93d4b6 !important;
+    color: #1f2d3d !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 12px 30px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    cursor: pointer !important;
+}
