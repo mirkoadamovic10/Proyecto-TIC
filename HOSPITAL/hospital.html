@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,11 +9,129 @@
     <title>NeuroPassport - Hospital</title>
 
     <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Color de la navbar */
+        .barra-empresa {
+            background-color: #A34C4C !important;
+        }
+
+        /* Quitar el rectángulo de la bienvenida */
+        .empresa-bienvenida {
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        .empresa-bienvenida header {
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        /* Borde rosado de la tarjeta Médicos */
+        .empresa-acciones .tarjeta-empresa:first-child {
+            border-color: #E4B7D2 !important;
+        }
+
+        /* Botón Ver médicos */
+        .empresa-acciones .tarjeta-empresa:first-child button {
+            background-color: #E4B7D2 !important;
+            border-color: #E4B7D2 !important;
+            color: #000000 !important;
+        }
+
+        /* Mantener el rosado al pasar el mouse */
+        .empresa-acciones .tarjeta-empresa:first-child button:hover {
+            background-color: #D69DBF !important;
+            border-color: #D69DBF !important;
+        }/* Color del texto del botón Ver pacientes */
+.empresa-acciones .tarjeta-empresa:nth-child(2) button {
+    color: #2F7185 !important;
+}
+/* Quitar el rectángulo marrón de Red de hospitales */
+.empresa-info,
+.empresa-info header,
+.empresa-info h2,
+.empresa-info p {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+.empresa-info {
+    width: 100vw;
+    height: 88px;
+    min-height: 88px;
+    max-width: none;
+    margin: 10px 0 10px calc(50% - 50vw);
+    padding: 8px 30px;
+    box-sizing: border-box;
+
+    background-color: #B7E4C7 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+}
+
+/* Título centrado */
+.empresa-info header,
+.empresa-info h2 {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Descripción centrada */
+.empresa-info p {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.logo-hospital {
+    color: #D9E2E3 !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    padding-left: 25px;
+    white-space: nowrap;
+}.barra-empresa {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.barra-empresa,
+.barra-empresa a,
+.barra-empresa h1,
+.barra-empresa button {
+    font-family: 'Inter', sans-serif !important;
+}
+    </style>
 </head>
 
 <body>
 
     <header class="barra-empresa">
+        <h1 class="logo-hospital">NeuroPassport</h1>
 
         <nav class="menu-empresa" aria-label="Navegación principal">
 
@@ -45,109 +163,64 @@
 
     </header>
 
-
     <main class="empresa-principal">
 
         <section class="empresa-bienvenida">
 
             <header>
-
-                <h1 id="saludoHospital">
+                <h1 style="text-align: center;">
                     ¡Hola! Bienvenido a NeuroPassport
                 </h1>
-
-                <p>
-                    Administrá tus médicos, pacientes y la información
-                    clínica compartida desde un solo lugar.
-                </p>
-
             </header>
 
         </section>
-
 
         <section class="empresa-acciones">
 
             <article class="tarjeta-empresa">
 
                 <header>
-
                     <h2>Médicos</h2>
-
                 </header>
 
                 <p>
-                    Vinculá médicos al hospital para que puedan trabajar
-                    con los pacientes y utilizar las funciones profesionales.
+                    Vinculá médicos al hospital para que accedan a la informacion y trabajen con sus pacientes.
                 </p>
 
                 <button
                     type="button"
                     onclick="window.location.href='medicos.html'">
-
                     Ver médicos
-
                 </button>
 
             </article>
 
-
             <article class="tarjeta-empresa">
 
                 <header>
-
                     <h2>Pacientes</h2>
-
                 </header>
 
                 <p>
-                    Vinculá pacientes al hospital y accedé a la información
-                    que tengan habilitada para compartir.
+                    Consultá las personas vinculadas a tu cuenta y accedé a la informacion que hayan habilitado.
                 </p>
 
                 <button
                     type="button"
                     onclick="window.location.href='pacientes.html'">
-
                     Ver pacientes
-
                 </button>
 
             </article>
 
-
-            <article class="tarjeta-empresa">
-
-                <header>
-
-                    <h2>Información compartida</h2>
-
-                </header>
-
-                <p>
-                    Consultá estudios, diagnósticos, recetas e información
-                    agregada por profesionales de otros hospitales.
-                </p>
-
-                <button
-                    type="button"
-                    onclick="window.location.href='pacientes.html'">
-
-                    Ver información
-
-                </button>
-
-            </article>
+            
 
         </section>
-
 
         <section class="empresa-info">
 
             <header>
-
                 <h2>Red de hospitales</h2>
-
             </header>
 
             <p>
@@ -160,10 +233,8 @@
 
     </main>
 
-
     <script src="hospital.js" defer></script>
 
 </body>
 
 </html>
-```
