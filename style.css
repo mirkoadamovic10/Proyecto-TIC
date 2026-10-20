@@ -7223,18 +7223,21 @@ button[class*="ver"],
     border-radius: 12px !important;
     font-weight: 700 !important;
 }
-/* ========================================= */
-/* CORRECCIÓN DEFINITIVA: NAVBAR Y LIMPIEZA TOTAL */
-/* ========================================= */
 
-/* 1. Forzar que la barra superior (navbar / header) sea terracota */
-header,
-.navbar,
-nav,
-.header-principal,
-.barra-hospital {
-    background-color: #9b5151 !important;
-    background: #9b5151 !important;
+/* Corrección de la barra superior de la home */
+
+body > header {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body > header nav.botones {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 /* 2. Eliminar cualquier fondo o rectángulo en la zona de bienvenida */
@@ -7312,4 +7315,77 @@ div[class*="card"]:nth-child(2) a {
     text-decoration: none !important;
     display: inline-block !important;
     cursor: pointer !important;
+
+/* Línea superior gris en la pantalla inicial de NeuroPassport */
+body > header {
+    border-top: 4px solid #6C757D !important;
 }
+
+/* Línea divisoria de la home principal */
+body > header {
+    border-bottom: 2px solid #6C757D !important;
+}
+
+/* Línea gris de la home principal */
+body > header {
+    position: relative !important;
+    border-bottom: none !important;
+}
+
+
+/* Línea divisoria de la home principal */
+body > header {
+    border-bottom: 3px solid #6C757D !important;
+    box-shadow: none !important;
+}
+
+/* Evitar que la navegación tape la línea */
+body > header nav.botones {
+    position: relative;
+    z-index: 1;
+}
+
+/* Línea divisoria de la home principal */
+body > header {
+    border-bottom: none !important;
+    box-shadow: inset 0 -3px 0 #6C757D !important;
+}
+
+/* Navbar principal de NeuroPassport */
+body > header {
+    width: 100%;
+    min-height: 85px;
+    padding: 20px 5%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #6C757D !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Logo */
+body > header h2 {
+    color: #FFFFFF;
+    margin: 0;
+}
+
+/* Botones de la navbar */
+body > header .botones {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: transparent !important;
+}
+
+/* Enlace y botón */
+body > header .botones a,
+body > header .botones button {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+

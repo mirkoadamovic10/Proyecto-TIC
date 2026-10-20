@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,6 +9,126 @@
     <title>NeuroPassport</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ==========================
+           NAVBAR PRINCIPAL
+        ========================== */
+
+        body > header {
+            width: 100%;
+            min-height: 85px;
+            padding: 18px 5%;
+            box-sizing: border-box;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            background: #6C757D !important;
+            border: none !important;
+            box-shadow: none !important;
+
+            position: relative;
+            z-index: 10;
+        }
+
+        /* LOGO */
+
+        body > header h2 {
+            color: #FFFFFF !important;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        /* CONTENEDOR DE BOTONES */
+
+        body > header nav.botones {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+
+            margin: 0;
+            padding: 0;
+
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* BOTÓN INICIAR SESIÓN */
+
+        body > header nav.botones a {
+            display: inline-block;
+            padding: 12px 20px;
+
+            background-color: #CDB4DB !important;
+            color: #000000 !important;
+
+            border: 1px solid #CDB4DB;
+            border-radius: 8px;
+
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        body > header nav.botones a:hover {
+            background-color: #BFA0D0 !important;
+        }
+
+        /* BOTÓN REGISTRARSE */
+
+        body > header nav.botones button {
+            display: inline-block;
+            padding: 12px 20px;
+
+            background-color: #CDB4DB !important;
+            color: #000000 !important;
+
+            border: 1px solid #CDB4DB;
+            border-radius: 8px;
+
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        body > header nav.botones button:hover {
+            background-color: #BFA0D0 !important;
+        }
+
+        /* ADAPTACIÓN A PANTALLAS PEQUEÑAS */
+
+        @media (max-width: 520px) {
+            body > header {
+                padding: 15px 4%;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            body > header nav.botones {
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            body > header nav.botones a,
+            body > header nav.botones button {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -37,7 +158,7 @@
         </p>
 
         <h1>
-            NeuroPassport
+            NEUROPASSPORT
         </h1>
 
         <p class="subtitulo">
@@ -111,11 +232,9 @@
                         longitud: longitud,
                         grosor: Math.random() * 1.8 + 0.6
                     });
-
                 }
 
                 return {
-
                     x: x,
                     y: y,
 
@@ -129,9 +248,7 @@
                     brillo: Math.random() * Math.PI * 2,
 
                     fase: Math.random() * Math.PI * 2
-
                 };
-
             }
 
             function crearRed() {
@@ -139,11 +256,8 @@
                 neuronas.length = 0;
 
                 for (let i = 0; i < cantidadNeuronas; i++) {
-
                     neuronas.push(crearNeurona());
-
                 }
-
             }
 
             function distancia(a, b) {
@@ -152,7 +266,6 @@
                 const dy = a.y - b.y;
 
                 return Math.sqrt(dx * dx + dy * dy);
-
             }
 
             function dibujarRama(neurona, rama) {
@@ -175,7 +288,6 @@
                     y1 + Math.sin(rama.angulo) * rama.longitud;
 
                 ctx.beginPath();
-
                 ctx.moveTo(x1, y1);
 
                 ctx.quadraticCurveTo(
@@ -185,27 +297,21 @@
                     y2
                 );
 
-                ctx.strokeStyle =
-                    "rgba(255,255,255,0.42)";
-
-                ctx.lineWidth =
-                    rama.grosor;
-
+                ctx.strokeStyle = "rgba(255,255,255,0.42)";
+                ctx.lineWidth = rama.grosor;
                 ctx.stroke();
 
                 return {
                     x: x2,
                     y: y2
                 };
-
             }
 
             function dibujarNeurona(neurona, tiempo) {
 
                 const pulso =
                     (Math.sin(
-                        tiempo * 0.002 +
-                        neurona.brillo
+                        tiempo * 0.002 + neurona.brillo
                     ) + 1) / 2;
 
                 neurona.ramas.forEach(function (rama) {
@@ -218,49 +324,38 @@
                             rama.angulo +
                             (i === 0 ? 0.45 : -0.45);
 
-                        const largo =
-                            rama.longitud * 0.45;
+                        const largo = rama.longitud * 0.45;
 
                         const xInicio =
                             neurona.x +
                             Math.cos(rama.angulo) *
-                            rama.longitud *
-                            0.55;
+                            rama.longitud * 0.55;
 
                         const yInicio =
                             neurona.y +
                             Math.sin(rama.angulo) *
-                            rama.longitud *
-                            0.55;
+                            rama.longitud * 0.55;
 
                         const xControl =
                             xInicio +
                             Math.cos(angulo) *
-                            largo *
-                            0.45;
+                            largo * 0.45;
 
                         const yControl =
                             yInicio +
                             Math.sin(angulo) *
-                            largo *
-                            0.45;
+                            largo * 0.45;
 
                         const xFinal =
                             xInicio +
-                            Math.cos(angulo) *
-                            largo;
+                            Math.cos(angulo) * largo;
 
                         const yFinal =
                             yInicio +
-                            Math.sin(angulo) *
-                            largo;
+                            Math.sin(angulo) * largo;
 
                         ctx.beginPath();
-
-                        ctx.moveTo(
-                            xInicio,
-                            yInicio
-                        );
+                        ctx.moveTo(xInicio, yInicio);
 
                         ctx.quadraticCurveTo(
                             xControl,
@@ -273,11 +368,8 @@
                             "rgba(255,255,255,0.25)";
 
                         ctx.lineWidth = 0.8;
-
                         ctx.stroke();
-
                     }
-
                 });
 
                 const gradiente =
@@ -306,7 +398,6 @@
                 );
 
                 ctx.fillStyle = gradiente;
-
                 ctx.beginPath();
 
                 ctx.arc(
@@ -329,19 +420,12 @@
                     Math.PI * 2
                 );
 
-                ctx.fillStyle =
-                    "rgba(220,255,255,0.95)";
-
-                ctx.shadowBlur =
-                    15 + pulso * 12;
-
-                ctx.shadowColor =
-                    "rgba(200,255,255,0.9)";
-
+                ctx.fillStyle = "rgba(220,255,255,0.95)";
+                ctx.shadowBlur = 15 + pulso * 12;
+                ctx.shadowColor = "rgba(200,255,255,0.9)";
                 ctx.fill();
 
                 ctx.shadowBlur = 0;
-
             }
 
             function conectarNeuronas() {
@@ -353,39 +437,24 @@
                         const a = neuronas[i];
                         const b = neuronas[j];
 
-                        const d =
-                            distancia(a, b);
+                        const d = distancia(a, b);
 
                         if (d < 180) {
 
-                            const opacidad =
-                                (1 - d / 180) * 0.28;
+                            const opacidad = (1 - d / 180) * 0.28;
 
                             ctx.beginPath();
-
-                            ctx.moveTo(
-                                a.x,
-                                a.y
-                            );
-
-                            ctx.lineTo(
-                                b.x,
-                                b.y
-                            );
+                            ctx.moveTo(a.x, a.y);
+                            ctx.lineTo(b.x, b.y);
 
                             ctx.strokeStyle =
                                 `rgba(210,250,250,${opacidad})`;
 
                             ctx.lineWidth = 0.7;
-
                             ctx.stroke();
-
                         }
-
                     }
-
                 }
-
             }
 
             function crearImpulso() {
@@ -397,15 +466,12 @@
                 const inicio =
                     neuronas[
                         Math.floor(
-                            Math.random() *
-                            neuronas.length
+                            Math.random() * neuronas.length
                         )
                     ];
 
                 let destino = null;
-
-                let distanciaMinima =
-                    Infinity;
+                let distanciaMinima = Infinity;
 
                 neuronas.forEach(function (n) {
 
@@ -413,76 +479,45 @@
                         return;
                     }
 
-                    const d =
-                        distancia(inicio, n);
+                    const d = distancia(inicio, n);
 
-                    if (
-                        d < distanciaMinima &&
-                        d < 180
-                    ) {
-
+                    if (d < distanciaMinima && d < 180) {
                         distanciaMinima = d;
-
                         destino = n;
-
                     }
-
                 });
 
                 if (destino) {
 
                     impulsos.push({
-
                         inicio: inicio,
-
                         destino: destino,
-
                         progreso: 0,
-
-                        velocidad:
-                            Math.random() *
-                            0.008 +
-                            0.004
-
+                        velocidad: Math.random() * 0.008 + 0.004
                     });
-
                 }
-
             }
 
             function dibujarImpulsos() {
 
                 impulsos.forEach(function (impulso) {
 
-                    impulso.progreso +=
-                        impulso.velocidad;
+                    impulso.progreso += impulso.velocidad;
 
-                    const p =
-                        impulso.progreso;
+                    const p = impulso.progreso;
 
                     const x =
                         impulso.inicio.x +
-                        (
-                            impulso.destino.x -
-                            impulso.inicio.x
-                        ) * p;
+                        (impulso.destino.x - impulso.inicio.x) * p;
 
                     const y =
                         impulso.inicio.y +
-                        (
-                            impulso.destino.y -
-                            impulso.inicio.y
-                        ) * p;
+                        (impulso.destino.y - impulso.inicio.y) * p;
 
-                    const brillo =
-                        ctx.createRadialGradient(
-                            x,
-                            y,
-                            0,
-                            x,
-                            y,
-                            14
-                        );
+                    const brillo = ctx.createRadialGradient(
+                        x, y, 0,
+                        x, y, 14
+                    );
 
                     brillo.addColorStop(
                         0,
@@ -500,19 +535,9 @@
                     );
 
                     ctx.fillStyle = brillo;
-
                     ctx.beginPath();
-
-                    ctx.arc(
-                        x,
-                        y,
-                        14,
-                        0,
-                        Math.PI * 2
-                    );
-
+                    ctx.arc(x, y, 14, 0, Math.PI * 2);
                     ctx.fill();
-
                 });
 
                 for (
@@ -521,36 +546,24 @@
                     i--
                 ) {
 
-                    if (
-                        impulsos[i].progreso >= 1
-                    ) {
-
+                    if (impulsos[i].progreso >= 1) {
                         impulsos.splice(i, 1);
-
                     }
-
                 }
-
             }
 
             function animar(tiempo) {
 
-                ctx.clearRect(
-                    0,
-                    0,
-                    ancho,
-                    alto
-                );
+                ctx.clearRect(0, 0, ancho, alto);
 
-                const fondo =
-                    ctx.createRadialGradient(
-                        ancho / 2,
-                        alto / 2,
-                        0,
-                        ancho / 2,
-                        alto / 2,
-                        Math.max(ancho, alto)
-                    );
+                const fondo = ctx.createRadialGradient(
+                    ancho / 2,
+                    alto / 2,
+                    0,
+                    ancho / 2,
+                    alto / 2,
+                    Math.max(ancho, alto)
+                );
 
                 fondo.addColorStop(
                     0,
@@ -568,13 +581,7 @@
                 );
 
                 ctx.fillStyle = fondo;
-
-                ctx.fillRect(
-                    0,
-                    0,
-                    ancho,
-                    alto
-                );
+                ctx.fillRect(0, 0, ancho, alto);
 
                 neuronas.forEach(function (neurona) {
 
@@ -596,48 +603,30 @@
                     if (neurona.y > alto + 40) {
                         neurona.y = -40;
                     }
-
                 });
 
                 conectarNeuronas();
 
                 neuronas.forEach(function (neurona) {
-
-                    dibujarNeurona(
-                        neurona,
-                        tiempo
-                    );
-
+                    dibujarNeurona(neurona, tiempo);
                 });
 
                 dibujarImpulsos();
 
                 requestAnimationFrame(animar);
-
             }
 
             ajustarCanvas();
-
             crearRed();
 
-            window.addEventListener(
-                "resize",
-                function () {
+            window.addEventListener("resize", function () {
+                ajustarCanvas();
+                crearRed();
+            });
 
-                    ajustarCanvas();
-
-                    crearRed();
-
-                }
-            );
-
-            setInterval(
-                crearImpulso,
-                350
-            );
+            setInterval(crearImpulso, 350);
 
             requestAnimationFrame(animar);
-
         });
     </script>
 
