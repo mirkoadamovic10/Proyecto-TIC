@@ -61,6 +61,7 @@ botonesPasaporte.forEach(function (boton) {
         const pagina = pantallas[nombrePantalla];
 
         if (pagina) {
+            submenuPasaporte.hidden = true;
             window.location.href = pagina;
         }
 
@@ -136,4 +137,31 @@ if (botonPerfil && fotoPerfil) {
         cuerpo.style.display = "none";
     }
 
+}
+
+if (botonPasaporte && submenuPasaporte && cerrarPasaporte) {
+
+    botonPasaporte.addEventListener("click", () => {
+        submenuPasaporte.hidden = false;
+        botonPasaporte.setAttribute("aria-expanded", "true");
+    });
+
+    cerrarPasaporte.addEventListener("click", () => {
+        submenuPasaporte.hidden = true;
+        botonPasaporte.setAttribute("aria-expanded", "false");
+    });
+
+    submenuPasaporte.addEventListener("click", (evento) => {
+        if (evento.target === submenuPasaporte) {
+            submenuPasaporte.hidden = true;
+            botonPasaporte.setAttribute("aria-expanded", "false");
+        }
+    });
+
+    document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape" && !submenuPasaporte.hidden) {
+            submenuPasaporte.hidden = true;
+            botonPasaporte.setAttribute("aria-expanded", "false");
+        }
+    });
 }

@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,6 +9,304 @@
     <title>NeuroPassport - Inicio</title>
 
     <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* NAVBAR */
+        body > header.barra-personal {
+            width: 100%;
+            min-height: 85px;
+            padding: 18px 5%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: #7C7878 !important;
+            background-image: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* MENÚ PRINCIPAL */
+        body > header.barra-personal .menu-personal {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* BOTONES INICIO, PASAPORTE Y AGENDA */
+        body > header.barra-personal .menu-personal > a.boton-menu,
+        body > header.barra-personal .menu-personal > .contenedor-pasaporte > button.boton-menu {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            background: #CDB4DB !important;
+            color: #000000 !important;
+            border: 1px solid #CDB4DB;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.2;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        body > header.barra-personal .menu-personal > a.boton-menu:hover,
+        body > header.barra-personal .menu-personal > .contenedor-pasaporte > button.boton-menu:hover {
+            background: #BFA0D0 !important;
+            color: #000000 !important;
+        }
+
+        .contenedor-pasaporte {
+            position: relative;
+        }
+
+        /* PANEL DE PASAPORTE */
+        .modal-pasaporte {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .modal-pasaporte[hidden] {
+            display: none !important;
+        }
+
+        .panel-pasaporte {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 35px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .panel-pasaporte h2 {
+            margin: 0 40px 8px;
+            color: #2F7185;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .descripcion-pasaporte {
+            margin: 0 0 28px;
+            color: #555555;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .opciones-pasaporte {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .opciones-pasaporte .boton-pasaporte {
+            width: 100%;
+            min-height: 85px;
+            padding: 18px 12px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #E1E8E9;
+            color: #2F7185;
+            border: none;
+            border-radius: 14px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .opciones-pasaporte .boton-pasaporte:hover {
+            background: #CCDDE0;
+            transform: translateY(-2px);
+        }
+
+        .cerrar-pasaporte {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: #2F7185;
+            border: none;
+            border-radius: 50%;
+            font-size: 30px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .cerrar-pasaporte:hover {
+            background: #E1E8E9;
+        }
+
+        /* ICONO DE PERFIL */
+        .contenedor-perfil {
+            position: relative;
+        }
+
+        body > header.barra-personal .perfil {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #CDB4DB;
+            color: #000000;
+            border: 1px solid #CDB4DB;
+            border-radius: 50%;
+            font-size: 29px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        body > header.barra-personal .perfil .cabeza,
+        body > header.barra-personal .perfil .cuerpo {
+            display: none;
+        }
+
+        /* RECTÁNGULO BLANCO DEL PERFIL */
+        body > header.barra-personal .submenu-perfil {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            width: 280px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+            z-index: 200;
+        }
+
+        /* MOSTRAR EL MENÚ AL TOCAR EL PERFIL */
+        body > header.barra-personal .submenu-perfil.activo {
+            display: flex;
+        }
+
+        /* RECTÁNGULOS DE CONFIGURACIÓN E INFORMACIÓN PERSONAL */
+        body > header.barra-personal .submenu-perfil button {
+            width: 100%;
+            min-height: 65px;
+            padding: 16px 12px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #E1E8E9;
+            color: #2F7185;
+            border: none;
+            border-radius: 14px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        body > header.barra-personal .submenu-perfil button:hover {
+            background: #CCDDE0;
+            transform: translateY(-2px);
+        }
+
+        /* TABLETS */
+        @media (max-width: 700px) {
+            .panel-pasaporte {
+                padding: 28px 20px;
+            }
+
+            .opciones-pasaporte {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .opciones-pasaporte .boton-pasaporte {
+                min-height: 75px;
+                font-size: 14px;
+            }
+        }
+
+        /* CELULARES */
+        @media (max-width: 600px) {
+            body > header.barra-personal {
+                padding: 15px 4%;
+                flex-wrap: wrap;
+            }
+
+            body > header.barra-personal .menu-personal {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            body > header.barra-personal .menu-personal > a.boton-menu,
+            body > header.barra-personal .menu-personal > .contenedor-pasaporte > button.boton-menu {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .panel-pasaporte {
+                padding: 25px 15px;
+            }
+
+            .opciones-pasaporte {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .opciones-pasaporte .boton-pasaporte {
+                min-height: 75px;
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+
+            .panel-pasaporte h2 {
+                font-size: 23px;
+            }
+
+            body > header.barra-personal .submenu-perfil {
+                width: 250px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .opciones-pasaporte {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -20,8 +319,7 @@
                 Inicio
             </a>
 
-            <section class="contenedor-pasaporte">
-
+            <div class="contenedor-pasaporte">
                 <button
                     type="button"
                     class="boton-menu"
@@ -30,68 +328,7 @@
                     aria-controls="submenuPasaporte">
                     Pasaporte
                 </button>
-
-                <nav
-                    id="submenuPasaporte"
-                    class="submenu-pasaporte"
-                    hidden
-                    aria-label="Opciones del pasaporte">
-
-                    <button type="button" class="boton-pasaporte">
-                        Diagnósticos
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Medicación
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Alergias
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Estudios
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Terapias
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Cirugías
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Contactos
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Cobertura médica
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Certificados
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Adaptaciones
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Objetivos
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Preferencias de aprendizaje
-                    </button>
-
-                    <button type="button" class="boton-pasaporte">
-                        Formas de comunicación
-                    </button>
-
-                </nav>
-
-            </section>
+            </div>
 
             <a href="./agenda.html" class="boton-menu">
                 Agenda
@@ -100,43 +337,80 @@
         </nav>
 
         <aside>
-
             <div class="contenedor-perfil">
 
                 <button
                     type="button"
                     class="perfil"
                     aria-label="Perfil"
-                    id="botonPerfil">
-
-                    <span class="cabeza"></span>
-                    <span class="cuerpo"></span>
-
+                    id="botonPerfil"
+                    aria-expanded="false"
+                    aria-controls="submenuPerfil">
+                    <span aria-hidden="true">👤</span>
                 </button>
 
                 <div
                     class="submenu-perfil"
                     id="submenuPerfil">
 
-                    <button
-                        type="button"
-                        data-pagina="configuracion.html">
+                    <button type="button" data-pagina="configuracion.html">
                         Configuración
                     </button>
 
-                    <button
-                        type="button"
-                        data-pagina="informacion-personal.html">
+                    <button type="button" data-pagina="informacion-personal.html">
                         Información personal
                     </button>
 
                 </div>
 
             </div>
-
         </aside>
 
     </header>
+
+    <!-- PANEL DE PASAPORTE -->
+    <div
+        id="submenuPasaporte"
+        class="modal-pasaporte"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tituloPasaporte"
+        hidden>
+
+        <section class="panel-pasaporte">
+
+            <button
+                type="button"
+                class="cerrar-pasaporte"
+                id="cerrarPasaporte"
+                aria-label="Cerrar menú">
+                &times;
+            </button>
+
+            <h2 id="tituloPasaporte">Mi Pasaporte</h2>
+
+            <p class="descripcion-pasaporte">
+                Seleccioná una opción
+            </p>
+
+            <div class="opciones-pasaporte">
+                <button type="button" class="boton-pasaporte">Diagnósticos</button>
+                <button type="button" class="boton-pasaporte">Medicación</button>
+                <button type="button" class="boton-pasaporte">Alergias</button>
+                <button type="button" class="boton-pasaporte">Estudios</button>
+                <button type="button" class="boton-pasaporte">Terapias</button>
+                <button type="button" class="boton-pasaporte">Cirugías</button>
+                <button type="button" class="boton-pasaporte">Contactos</button>
+                <button type="button" class="boton-pasaporte">Cobertura médica</button>
+                <button type="button" class="boton-pasaporte">Certificados</button>
+                <button type="button" class="boton-pasaporte">Adaptaciones</button>
+                <button type="button" class="boton-pasaporte">Objetivos</button>
+                <button type="button" class="boton-pasaporte">Preferencias de aprendizaje</button>
+                <button type="button" class="boton-pasaporte">Formas de comunicación</button>
+            </div>
+
+        </section>
+    </div>
 
     <main class="inicio-personal">
 
@@ -153,7 +427,6 @@
                 aria-label="Ilustración de un pasaporte">
 
                 <div class="pasaporte-dibujo">
-
                     <div class="pasaporte-tapa">
 
                         <span class="texto-pasaporte">
@@ -161,19 +434,13 @@
                         </span>
 
                         <span class="globo-pasaporte">
-
                             <span class="linea-horizontal"></span>
-
                             <span class="linea-vertical"></span>
-
                             <span class="linea-curva-1"></span>
-
                             <span class="linea-curva-2"></span>
-
                         </span>
 
                     </div>
-
                 </div>
 
             </figure>
@@ -184,6 +451,44 @@
 
     <script src="./personal.js"></script>
 
+    <script>
+        /* CERRAR EL PANEL DE PASAPORTE */
+        (() => {
+            const botonPasaporte = document.getElementById("botonPasaporte");
+            const submenuPasaporte = document.getElementById("submenuPasaporte");
+            const cerrarPasaporte = document.getElementById("cerrarPasaporte");
+
+            if (!botonPasaporte || !submenuPasaporte) {
+                return;
+            }
+
+            if (cerrarPasaporte) {
+                cerrarPasaporte.addEventListener("click", () => {
+                    submenuPasaporte.hidden = true;
+                    botonPasaporte.setAttribute("aria-expanded", "false");
+                    botonPasaporte.focus();
+                });
+            }
+
+            submenuPasaporte.addEventListener("click", (evento) => {
+                if (evento.target === submenuPasaporte) {
+                    submenuPasaporte.hidden = true;
+                    botonPasaporte.setAttribute("aria-expanded", "false");
+                    botonPasaporte.focus();
+                }
+            });
+
+            document.addEventListener("keydown", (evento) => {
+                if (evento.key === "Escape" && !submenuPasaporte.hidden) {
+                    submenuPasaporte.hidden = true;
+                    botonPasaporte.setAttribute("aria-expanded", "false");
+                    botonPasaporte.focus();
+                }
+            });
+        })();
+    </script>
+
 </body>
 
 </html>
+```
