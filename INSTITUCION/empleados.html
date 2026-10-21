@@ -1,69 +1,424 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Empleados - NeuroPassport</title>
 
     <link rel="stylesheet" href="../style.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #F0F8ED !important;
+            color: #111;
+        }
+
+        .barra-empresa {
+            min-height: 54px;
+            background: #785D2A;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 8px 24px;
+        }
+
+        .menu-empresa {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .boton-menu-empresa {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 120px;
+            min-height: 32px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: #D6B5E2;
+            color: #111;
+            text-decoration: none;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .boton-menu-empresa:hover {
+            background: #C7A0D6;
+        }
+
+        .empresa-principal {
+            width: 100%;
+            padding: 58px 20px 40px;
+        }
+
+        .empresa-bienvenida {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 26px;
+        }
+
+        .empresa-bienvenida h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .boton-agregar-empleado {
+            min-width: 209px;
+            min-height: 61px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 15px;
+            background: #B7E4C7;
+            color: #285866;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .lista-empleados {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        /* Tarjetas iguales a las de estudiantes */
+        .tarjeta-hospital {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            min-height: 58px;
+            padding: 10px 16px;
+            background: #fff;
+            border: 1px solid #D6E9D9;
+            border-radius: 6px;
+        }
+
+        .avatar-medico {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #D9D9D9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .avatar-medico img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .datos-medico {
+            flex: 1;
+        }
+
+        .datos-medico h2 {
+            margin: 0 0 3px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .estado-vinculado {
+            font-size: 12px;
+        }
+
+        /* MISMA ESTRUCTURA DE VENTANA QUE ESTUDIANTES */
+        .ventana-hospital {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .ventana-hospital.mostrar {
+            display: flex;
+        }
+
+        .formulario-hospital {
+            width: 100%;
+            max-width: 440px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .encabezado-hospital {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .encabezado-hospital h2 {
+            margin: 0;
+            font-size: 23px;
+        }
+
+        .cerrar-hospital {
+            border: none;
+            background: transparent;
+            font-size: 27px;
+            cursor: pointer;
+        }
+
+        .campo-hospital {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-top: 17px;
+        }
+
+        .campo-hospital label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .campo-hospital input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbdfe1;
+            border-radius: 10px;
+            background: #f8fcfc;
+            font-size: 14px;
+        }
+
+        .boton-guardar-hospital {
+            width: 100%;
+            margin-top: 22px;
+            padding: 13px;
+            border: none;
+            border-radius: 10px;
+            background: #785D2A;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .mensaje-hospital {
+            margin-top: 14px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Solicitudes */
+        .seccion-solicitudes {
+            margin-top: 24px;
+        }
+
+        .solicitud-hospital {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 16px;
+            margin-bottom: 10px;
+            background: #fff;
+            border: 1px solid #D6E9D9;
+            border-radius: 8px;
+        }
+
+        .datos-solicitud {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        .acciones-solicitud {
+            display: flex;
+            gap: 8px;
+        }
+
+        .aceptar-solicitud,
+        .rechazar-solicitud {
+            padding: 9px 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .aceptar-solicitud {
+            background: #B7E4C7;
+        }
+
+        .rechazar-solicitud {
+            background: #f1d4d4;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            .barra-empresa {
+                padding: 8px 12px;
+            }
+
+            .empresa-principal {
+                padding: 32px 14px;
+            }
+
+            .empresa-bienvenida {
+                flex-direction: column;
+            }
+
+            .empresa-bienvenida h1 {
+                font-size: 36px;
+            }
+
+            .boton-agregar-empleado {
+                width: 100%;
+            }
+
+            .formulario-hospital {
+                padding: 22px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <header class="barra">
-
-        <nav class="menu">
-
-            <a href="empresa.html">Inicio</a>
-            <a href="empleados.html">Empleados</a>
-
+    <header class="barra-empresa">
+        <nav class="menu-empresa" aria-label="Navegación principal">
+            <a class="boton-menu-empresa" href="empresa.html">Inicio</a>
+            <a class="boton-menu-empresa" href="empleados.html">Empleados</a>
         </nav>
-
     </header>
 
+    <main class="empresa-principal">
 
-    <main>
+        <section class="empresa-bienvenida">
+            <h1>Empleados</h1>
 
-        <h1>Empleados</h1>
-
-        <section class="linkear-empleado">
-
-            <h2>Linkear empleado</h2>
-
-            <p>
-                Ingresá el código que te proporcionó el empleado.
-            </p>
-
-            <input
-                type="text"
-                id="codigoEmpleado"
-                placeholder="Código del empleado"
-            >
-
-            <button id="botonLinkearEmpleado">
-                Linkear empleado
+            <button
+                type="button"
+                class="boton-agregar-empleado"
+                id="botonLinkearEmpleado">
+                + Linkear empleado
             </button>
-
         </section>
 
+        <div class="lista-empleados" id="empleadosVinculados"></div>
 
-        <section>
-
-            <h2>Empleados vinculados</h2>
-
-            <div id="empleadosVinculados"></div>
-
+        <section
+            class="seccion-solicitudes"
+            id="seccionSolicitudesEmpleados"
+            hidden>
+            <h2>Solicitudes de vinculación</h2>
+            <div id="listaSolicitudesEmpleados"></div>
         </section>
 
     </main>
 
+    <!-- Ventana con el mismo diseño de estudiantes -->
+    <div
+        class="ventana-hospital"
+        id="ventanaEmpleado"
+        aria-hidden="true">
 
-    <script src="empleados.js"></script>
+        <section
+            class="formulario-hospital"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="titulo-modal-empleado">
+
+            <div class="encabezado-hospital">
+                <h2 id="titulo-modal-empleado">Linkear empleado</h2>
+
+                <button
+                    type="button"
+                    class="cerrar-hospital"
+                    id="cerrarModalEmpleado"
+                    aria-label="Cerrar ventana">
+                    &times;
+                </button>
+            </div>
+
+            <p>Ingresá los datos del empleado para enviar una solicitud de vinculación.</p>
+
+            <form id="formularioEmpleado">
+
+                <div class="campo-hospital">
+                    <label for="nombreEmpleado">Nombre del empleado</label>
+                    <input
+                        type="text"
+                        id="nombreEmpleado"
+                        name="nombreEmpleado"
+                        placeholder="Ingresá el nombre"
+                        required>
+                </div>
+
+                <div class="campo-hospital">
+                    <label for="dniEmpleado">DNI del empleado</label>
+                    <input
+                        type="text"
+                        id="dniEmpleado"
+                        name="dniEmpleado"
+                        placeholder="Ingresá el DNI"
+                        required>
+                </div>
+
+                <div class="campo-hospital">
+                    <label for="codigoEmpleado">Código del empleado</label>
+                    <input
+                        type="text"
+                        id="codigoEmpleado"
+                        name="codigoEmpleado"
+                        placeholder="Ingresá el código"
+                        required>
+                </div>
+
+                <button
+                    type="submit"
+                    class="boton-guardar-hospital">
+                    Enviar solicitud
+                </button>
+
+                <p
+                    class="mensaje-hospital"
+                    id="mensajeEmpleado"
+                    role="status"
+                    aria-live="polite">
+                </p>
+
+            </form>
+        </section>
+    </div>
+
+    <script src="empleados.js" defer></script>
 
 </body>
-
 </html>
+```
