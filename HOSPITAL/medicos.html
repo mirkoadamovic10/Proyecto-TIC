@@ -3,143 +3,591 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Médicos - NeuroPassport</title>
 
     <link rel="stylesheet" href="../style.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #F0F8ED !important;
+            color: #111;
+        }
+
+        /* NAVBAR */
+        .barra-empresa {
+            width: 100%;
+            min-height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 8px 24px;
+            background: #A34C4C !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .menu-empresa {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .boton-menu-empresa {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 120px;
+            min-height: 32px;
+            padding: 6px 18px;
+            border: none !important;
+            border-radius: 8px;
+            background: #D6B5E2 !important;
+            color: #111 !important;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: none !important;
+        }
+
+        .boton-menu-empresa:hover {
+            background: #C7A0D6 !important;
+        }
+
+        /* CONTENIDO */
+        .empresa-principal {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 58px 20px 40px;
+        }
+
+        .empresa-bienvenida {
+            width: 100%;
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            align-items: flex-start !important;
+            gap: 20px;
+            margin: 0 0 26px !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .empresa-bienvenida header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* TÍTULO MÉDICOS */
+        .empresa-bienvenida h1 {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 48px !important;
+            line-height: 1.2 !important;
+            font-weight: 700 !important;
+            color: #111 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* TEXTO DEBAJO DEL TÍTULO */
+        .empresa-bienvenida p {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 20px !important;
+            line-height: 1.5 !important;
+            color: #222 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* BOTÓN LINKEAR PERSONA */
+        .boton-agregar-hospital {
+            flex: 0 0 209px;
+            width: 209px !important;
+            min-width: 209px !important;
+            height: 61px !important;
+            min-height: 61px !important;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: 0 !important;
+            padding: 0 12px !important;
+
+            border: none !important;
+            border-radius: 15px !important;
+
+            background: #B7E4C7 !important;
+            color: #285866 !important;
+
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+
+            box-shadow: none !important;
+            position: static !important;
+        }
+
+        .boton-agregar-hospital:hover {
+            background: #A5D9B8 !important;
+        }
+
+        /* TARJETAS BLANCAS */
+        .lista-hospital {
+            width: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch;
+            gap: 7px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .tarjeta-hospital {
+            width: 100% !important;
+            min-height: 58px !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 13px !important;
+            margin: 0 !important;
+            padding: 9px 14px !important;
+            background: #FFFFFF !important;
+            border: 1px solid #D6E9D9 !important;
+            border-radius: 6px !important;
+            box-shadow: none !important;
+        }
+
+        .avatar-medico {
+            flex: 0 0 42px !important;
+            width: 42px !important;
+            height: 42px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 50% !important;
+            background: #D9D9D9 !important;
+            color: #555;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .avatar-medico img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .datos-medico {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start;
+            gap: 4px;
+            min-width: 0;
+        }
+
+        .datos-medico h2 {
+            margin: 0 !important;
+            padding: 0 !important;
+            color: #111 !important;
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            overflow-wrap: anywhere;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .datos-medico p,
+        .datos-medico .estado-vinculado {
+            margin: 0 !important;
+            padding: 0 !important;
+            color: #555 !important;
+            font-size: 12px !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* MENSAJE CUANDO NO HAY PERSONAS */
+        .mensaje-vacio {
+            margin: 0;
+            padding: 0;
+            color: #444;
+            font-size: 16px !important;
+            line-height: 1.5;
+        }
+
+        /* SOLICITUDES DE PRUEBA */
+        .seccion-solicitudes {
+            margin-top: 30px;
+        }
+
+        .seccion-solicitudes h2 {
+            margin: 0 0 12px;
+            font-size: 19px;
+        }
+
+        .solicitud-hospital {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px;
+            margin-bottom: 8px;
+            background: #FFFFFF;
+            border: 1px solid #D6E9D9;
+            border-radius: 8px;
+        }
+
+        .datos-solicitud {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            min-width: 0;
+        }
+
+        .datos-solicitud strong {
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .datos-solicitud span {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .acciones-solicitud {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .acciones-solicitud button {
+            padding: 8px 11px;
+            border: none;
+            border-radius: 7px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .aceptar-solicitud {
+            background: #B7E4C7;
+            color: #285866;
+        }
+
+        .rechazar-solicitud {
+            background: #F3DADA;
+            color: #803D3D;
+        }
+
+        /* VENTANA DE VINCULACIÓN */
+        .ventana-hospital {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.38);
+        }
+
+        .ventana-hospital.mostrar {
+            display: flex !important;
+        }
+
+        .formulario-hospital {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            border: 1px solid #D6E9D9 !important;
+            border-radius: 15px;
+            background: #FFFFFF !important;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .formulario-hospital header {
+            margin: 0 0 22px;
+            padding: 0;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .formulario-hospital h2 {
+            margin: 0 0 8px;
+            font-size: 22px;
+            color: #111;
+        }
+
+        .formulario-hospital header p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .cerrar-hospital {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            padding: 0;
+            border: none !important;
+            background: transparent !important;
+            color: #555 !important;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: none !important;
+        }
+
+        .formulario-hospital form {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .formulario-hospital label {
+            margin-top: 5px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .formulario-hospital input {
+            width: 100%;
+            min-height: 42px;
+            padding: 10px 12px;
+            border: 1px solid #CBDDD0;
+            border-radius: 8px;
+            background: #FFFFFF;
+            color: #111;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .formulario-hospital input:focus {
+            outline: 2px solid #B7E4C7;
+            border-color: #77B894;
+        }
+
+        .boton-guardar-hospital {
+            margin-top: 12px;
+            padding: 12px 14px;
+            border: none !important;
+            border-radius: 8px;
+            background: #A34C4C !important;
+            color: #FFFFFF !important;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: none !important;
+        }
+
+        .mensaje-hospital {
+            display: block;
+            margin-top: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* PANTALLAS PEQUEÑAS */
+        @media (max-width: 600px) {
+            .barra-empresa {
+                padding: 8px 10px;
+            }
+
+            .menu-empresa {
+                width: 100%;
+                justify-content: flex-end;
+                gap: 6px;
+            }
+
+            .boton-menu-empresa {
+                min-width: 0;
+                min-height: 32px;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .empresa-principal {
+                padding: 38px 14px 30px;
+            }
+
+            .empresa-bienvenida {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .empresa-bienvenida h1 {
+                font-size: 48px !important;
+            }
+
+            .empresa-bienvenida p {
+                font-size: 20px !important;
+            }
+
+            .boton-agregar-hospital {
+                width: 209px !important;
+                min-width: 209px !important;
+                height: 61px !important;
+                min-height: 61px !important;
+                flex-basis: 209px;
+            }
+
+            .solicitud-hospital {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <header class="barra-empresa">
-
         <nav class="menu-empresa" aria-label="Navegación principal">
-
-            <a href="hospital.html" class="boton-menu-empresa">
-                Inicio
-            </a>
-
-            <a href="medicos.html" class="boton-menu-empresa">
-                Médicos
-            </a>
-
-            <a href="pacientes.html" class="boton-menu-empresa">
-                Pacientes
-            </a>
-
+            <a href="hospital.html" class="boton-menu-empresa">Inicio</a>
+            <a href="medicos.html" class="boton-menu-empresa" aria-current="page">Médicos</a>
+            <a href="pacientes.html" class="boton-menu-empresa">Pacientes</a>
         </nav>
-
     </header>
-
 
     <main class="empresa-principal">
 
         <section class="empresa-bienvenida">
-
             <header>
-
                 <h1>Médicos</h1>
-
-                <p>
-                    Profesionales vinculados a este hospital.
-                </p>
-
+                <p>Profesionales vinculados a este hospital.</p>
             </header>
-
 
             <button
                 type="button"
                 id="botonAgregarMedico"
                 class="boton-agregar-hospital">
-
-                + Agregar médico
-
+                + Linkear persona
             </button>
-
         </section>
-
 
         <section
             id="listaMedicos"
             class="lista-hospital"
-            aria-label="Lista de médicos">
+            aria-label="Personas vinculadas">
+        </section>
 
+        <section class="seccion-solicitudes" id="seccionSolicitudes" hidden>
+            <h2>Solicitudes de vinculación (prueba)</h2>
+            <div id="listaSolicitudes"></div>
         </section>
 
     </main>
 
-
     <aside
         id="ventanaMedico"
-        class="ventana-hospital">
+        class="ventana-hospital"
+        aria-hidden="true">
 
-        <section class="formulario-hospital">
+        <section
+            class="formulario-hospital"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="tituloVinculacion">
 
             <button
                 type="button"
                 id="cerrarMedico"
                 class="cerrar-hospital"
                 aria-label="Cerrar">
-
                 ×
-
             </button>
 
-
             <header>
-
-                <h2>
-                    Agregar médico
-                </h2>
-
-                <p>
-                    Ingresá el correo profesional del médico.
-                </p>
-
+                <h2 id="tituloVinculacion">Linkear persona</h2>
+                <p>Ingresá los datos de la persona que querés vincular.</p>
             </header>
 
-
-            <form>
-
-                <label for="emailMedico">
-                    Correo electrónico
-                </label>
-
+            <form id="formularioMedico">
+                <label for="nombrePersona">Nombre y apellido</label>
                 <input
-                    type="email"
-                    id="emailMedico"
-                    placeholder="medico@email.com">
+                    type="text"
+                    id="nombrePersona"
+                    autocomplete="name"
+                    placeholder="Ej.: Ana Pérez"
+                    required>
 
+                <label for="dniPersona">DNI</label>
+                <input
+                    type="text"
+                    id="dniPersona"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    placeholder="Ingresá el DNI"
+                    required>
+
+                <label for="codigoPersona">Código de la persona</label>
+                <input
+                    type="text"
+                    id="codigoPersona"
+                    autocomplete="off"
+                    placeholder="Ingresá el código"
+                    required>
 
                 <button
-                    type="button"
+                    type="submit"
                     id="guardarMedico"
                     class="boton-guardar-hospital">
-
-                    Agregar médico
-
+                    Enviar solicitud
                 </button>
-
             </form>
-
 
             <output
                 id="mensajeMedico"
-                class="mensaje-hospital">
+                class="mensaje-hospital"
+                aria-live="polite">
             </output>
 
         </section>
-
     </aside>
 
-
-    <script src="medicos.js"></script>
+    <script src="medicos.js" defer></script>
 
 </body>
-
 </html>
 ```

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,237 +9,323 @@
     <title>NeuroPassport - Escuela / Universidad</title>
 
     <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* Configuración general */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Navbar superior */
+        .navbar-escuela {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            width: 100%;
+            height: 80px;
+            background: #785D2A !important;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 9999;
+        }
+
+        /* Nombre de NeuroPassport */
+        .nombre-neuropassport-escuela {
+            color: #D9E2E3 !important;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        /* Perfil circular a la derecha */
+        .perfil-escuela {
+            width: 44px;
+            height: 44px;
+            border: 3px solid #D9E2E3;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            overflow: hidden;
+            box-sizing: border-box;
+            background: transparent;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .perfil-escuela .perfil-cabeza {
+            display: block;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #D9E2E3;
+            margin-bottom: 2px;
+        }
+
+        .perfil-escuela .perfil-cuerpo {
+            display: block;
+            width: 23px;
+            height: 13px;
+            border-radius: 12px 12px 0 0;
+            background: #D9E2E3;
+        }
+
+        /* Bienvenida sin rectángulo de fondo */
+        .empresa-bienvenida,
+        .empresa-bienvenida > header {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Borde de la tarjeta Estudiantes */
+        .empresa-acciones .tarjeta-empresa:first-child {
+            border: 8px solid #B9E4AE !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Botón Ver estudiantes */
+        .empresa-acciones .tarjeta-empresa:first-child button {
+            background-color: #B9E4AE !important;
+            border-color: #B9E4AE !important;
+            color: #000000 !important;
+        }
+
+        /* Borde de la tarjeta Empleados */
+        .empresa-acciones .tarjeta-empresa:nth-child(2) {
+            border: 8px solid #E4B7D2 !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Botón Ver empleados */
+        .empresa-acciones .tarjeta-empresa:nth-child(2) button {
+            background-color: #E4B7D2 !important;
+            border-color: #E4B7D2 !important;
+            color: #000000 !important;
+        }
+
+        /* Toda la bienvenida centrada */
+        .empresa-bienvenida {
+            display: flex !important;
+            justify-content: center !important;
+            width: 100% !important;
+            margin: 40px auto !important;
+            text-align: center !important;
+        }
+
+        .empresa-bienvenida > header {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            width: 100% !important;
+            text-align: center !important;
+        }
+
+        /* Primero: INSTITUCIONAL */
+        .empresa-bienvenida > header::before {
+            content: "INSTITUCIONAL";
+            display: block !important;
+            font-size: 20px !important;
+            font-weight: 700 !important;
+            text-align: center !important;
+            margin-bottom: 12px !important;
+        }
+
+        /* Segundo: título grande */
+        .empresa-bienvenida h1 {
+            font-size: 48px !important;
+            text-align: center !important;
+            margin: 0 0 15px !important;
+        }
+
+        /* Tercero: descripción */
+        .empresa-bienvenida p {
+            font-size: 20px !important;
+            text-align: center !important;
+            margin: 0 auto !important;
+            max-width: 900px !important;
+        }
+
+        /* Rectángulo verde de información, de esquina a esquina */
+        .empresa-info {
+            width: 100vw !important;
+            max-width: none !important;
+            min-width: 0 !important;
+            height: 88px !important;
+            min-height: 88px !important;
+            max-height: 88px !important;
+
+            background-color: #B7E4C7 !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+
+            padding: 8px 20px !important;
+            box-sizing: border-box !important;
+            margin: 30px 0 0 calc(50% - 50vw) !important;
+        }
+
+        /* Textos dentro del rectángulo */
+        .empresa-info > header,
+        .empresa-info h2,
+        .empresa-info p {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+
+        .empresa-info > header {
+            margin: 0 !important;
+        }
+
+        .empresa-info h2 {
+            font-size: 20px !important;
+            margin: 0 0 4px !important;
+        }
+
+        .empresa-info p {
+            font-size: 16px !important;
+            margin: 0 !important;
+        }
+
+        /* Ajustes para pantallas chicas */
+        @media (max-width: 600px) {
+            .navbar-escuela {
+                padding: 0 16px;
+            }
+
+            .nombre-neuropassport-escuela {
+                font-size: 23px;
+            }
+
+            .empresa-bienvenida h1 {
+                font-size: 36px !important;
+            }
+
+            .empresa-bienvenida p {
+                font-size: 18px !important;
+                padding: 0 15px;
+            }
+
+            .empresa-info {
+                padding: 6px 10px !important;
+            }
+
+            .empresa-info h2 {
+                font-size: 16px !important;
+            }
+
+            .empresa-info p {
+                font-size: 13px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <header class="barra-empresa">
+    <!-- Navbar nueva -->
+    <header class="navbar-escuela">
+        <span class="nombre-neuropassport-escuela">
+            NeuroPassport
+        </span>
 
-        <nav class="menu-empresa" aria-label="Navegación principal">
-
-            <a
-                href="escuela.html"
-                class="boton-menu-empresa">
-
-                Inicio
-
-            </a>
-
-
-            <a
-                href="estudiantes.html"
-                class="boton-menu-empresa">
-
-                Estudiantes
-
-            </a>
-
-
-            <a
-                href="empleados.html"
-                class="boton-menu-empresa">
-
-                Empleados
-
-            </a>
-
-        </nav>
-
-
-        <a
-            href="configuracion.html"
-            class="perfil-empresa"
-            id="perfilInstitucion"
-            title="Configuración"
-            aria-label="Configuración">
+        <a href="configuracion.html"
+           class="perfil-escuela"
+           id="perfilInstitucion"
+           title="Configuración"
+           aria-label="Configuración">
 
             <span class="perfil-cabeza"></span>
             <span class="perfil-cuerpo"></span>
-
         </a>
-
     </header>
 
-
+    <!-- Contenido principal -->
     <main class="empresa-principal">
 
-
-        <!-- ========================= -->
-        <!-- BIENVENIDA -->
-        <!-- ========================= -->
-
+        <!-- Saludo -->
         <section class="empresa-bienvenida">
-
             <header>
-
                 <h1 id="saludoInstitucion">
                     ¡Hola! Bienvenido a NeuroPassport
                 </h1>
 
                 <p>
-                    Desde este espacio podés gestionar
-                    estudiantes y empleados de tu institución.
+                    Gestioná y acompañá a tus estudiantes respetando la información que cada uno decide compartir
                 </p>
-
             </header>
-
         </section>
 
-
-
-        <!-- ========================= -->
-        <!-- TARJETAS -->
-        <!-- ========================= -->
-
+        <!-- Tarjetas principales -->
         <section class="empresa-acciones">
 
-
-            <!-- ESTUDIANTES -->
-
+            <!-- Estudiantes -->
             <article class="tarjeta-empresa">
-
                 <header>
-
-                    <h2>
-                        Estudiantes
-                    </h2>
-
+                    <h2>Estudiantes</h2>
                 </header>
 
                 <p>
-                    Consultá los estudiantes vinculados
-                    a tu institución y accedé a las
-                    preferencias de aprendizaje que hayan decidido compartir.
+                    Consultá los estudiantes vinculados a tu institución y accedé a las preferencias de aprendizaje que hayan decidido compartir.
                 </p>
 
                 <button
                     type="button"
                     onclick="window.location.href='estudiantes.html'">
-
                     Ver estudiantes
-
                 </button>
-
             </article>
 
-
-
-            <!-- EMPLEADOS -->
-
+            <!-- Empleados -->
             <article class="tarjeta-empresa">
-
                 <header>
-
-                    <h2>
-                        Empleados
-                    </h2>
-
+                    <h2>Empleados</h2>
                 </header>
 
                 <p>
-                    Consultá los empleados vinculados
-                    a tu institución y accedé a las
-                    preferencias de trabajo que hayan decidido compartir.
+                    Consultá los empleados vinculados a tu institución y accedé a las preferencias de trabajo que hayan decidido compartir.
                 </p>
 
                 <button
                     type="button"
                     onclick="window.location.href='empleados.html'">
-
                     Ver empleados
-
                 </button>
-
             </article>
-
-
-
-            <!-- LINKEAR ESTUDIANTE -->
-
-            <article class="tarjeta-empresa">
-
-                <header>
-
-                    <h2>
-                        Linkear estudiante
-                    </h2>
-
-                </header>
-
-                <p>
-                    Vinculá un estudiante a tu institución
-                    utilizando su código de vinculación.
-                </p>
-
-                <button
-                    type="button"
-                    onclick="window.location.href='estudiantes.html'">
-
-                    Linkear estudiante
-
-                </button>
-
-            </article>
-
-
-
-            <!-- LINKEAR EMPLEADO -->
-
-            <article class="tarjeta-empresa">
-
-                <header>
-
-                    <h2>
-                        Linkear empleado
-                    </h2>
-
-                </header>
-
-                <p>
-                    Vinculá un empleado a tu institución
-                    utilizando su código de vinculación.
-                </p>
-
-                <button
-                    type="button"
-                    onclick="window.location.href='empleados.html'">
-
-                    Linkear empleado
-
-                </button>
-
-            </article>
-
 
         </section>
 
-
-
-        <!-- ========================= -->
-        <!-- INFORMACIÓN -->
-        <!-- ========================= -->
-
+        <!-- Información compartida -->
         <section class="empresa-info">
-
             <header>
-
-                <h2>
-                    Información de estudiantes y empleados
-                </h2>
-
+                <h2>Información compartida</h2>
             </header>
 
             <p>
-                Solo vas a poder acceder a la información
-                que cada estudiante o empleado haya decidido
-                compartir con tu institución.
+                Cada estudiante puede decidir qué información compartir con su institución.
             </p>
-
         </section>
 
-
     </main>
-
 
     <script src="escuela.js" defer></script>
 
