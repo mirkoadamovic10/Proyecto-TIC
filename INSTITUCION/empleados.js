@@ -1,35 +1,36 @@
-```javascript
+
 document.addEventListener("DOMContentLoaded", function () {
     const boton = document.getElementById("botonLinkearEmpleado");
     const ventana = document.getElementById("ventanaEmpleado");
     const cerrar = document.getElementById("cerrarModalEmpleado");
     const formulario = document.getElementById("formularioEmpleado");
-
     const nombreInput = document.getElementById("nombreEmpleado");
     const dniInput = document.getElementById("dniEmpleado");
     const codigoInput = document.getElementById("codigoEmpleado");
     const mensaje = document.getElementById("mensajeEmpleado");
-
     const lista = document.getElementById("empleadosVinculados");
     const seccionSolicitudes = document.getElementById("seccionSolicitudesEmpleados");
     const listaSolicitudes = document.getElementById("listaSolicitudesEmpleados");
 
-    if (
-        !boton || !ventana || !cerrar || !formulario ||
+    if (!boton || !ventana || !cerrar || !formulario ||
         !nombreInput || !dniInput || !codigoInput ||
-        !mensaje || !lista || !seccionSolicitudes || !listaSolicitudes
-    ) {
-        console.error("Faltan elementos necesarios en empleados.html.");
+        !mensaje || !lista || !seccionSolicitudes || !listaSolicitudes) {
+        console.error("Falta un elemento necesario en empleados.html.");
         return;
     }
 
-    let empleados = JSON.parse(
-        localStorage.getItem("empleadosInstitucion")
-    ) || [];
+    function leerLista(clave) {
+        try {
+            const datos = JSON.parse(localStorage.getItem(clave) || "[]");
+            return Array.isArray(datos) ? datos : [];
+        } catch (error) {
+            console.error("No se pudieron leer los datos:", clave, error);
+            return [];
+        }
+    }
 
-    let solicitudes = JSON.parse(
-        localStorage.getItem("solicitudesEmpleadosDemo")
-    ) || [];
+    let empleados = leerLista("empleadosInstitucion");
+    let solicitudes = leerLista("solicitudesEmpleadosDemo");
 
     function guardar() {
         localStorage.setItem("empleadosInstitucion", JSON.stringify(empleados));
@@ -41,14 +42,20 @@ document.addEventListener("DOMContentLoaded", function () {
             .trim()
             .split(/\s+/)
             .slice(0, 2)
-            .map(function (parte) {
-                return parte.charAt(0).toUpperCase();
-            })
+            .map(parte => parte.charAt(0).toUpperCase())
             .join("");
     }
 
     function mostrarEmpleados() {
         lista.innerHTML = "";
+
+        if (empleados.length === 0) {
+            const vacio = document.createElement("p");
+            vacio.className = "mensaje-vacio";
+            vacio.textContent = "Todavía no hay empleados vinculados.";
+            lista.appendChild(vacio);
+            return;
+        }
 
         empleados.forEach(function (empleado) {
             const tarjeta = document.createElement("article");
@@ -60,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (empleado.foto) {
                 const img = document.createElement("img");
                 img.src = empleado.foto;
-                img.alt = "Foto de " + empleado.nombre;
+                img.alt = "Foto de " + (empleado.nombre || "empleado");
 
                 img.addEventListener("error", function () {
                     avatar.textContent = iniciales(empleado.nombre);
@@ -75,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
             datos.className = "datos-medico";
 
             const nombre = document.createElement("h2");
-            nombre.textContent = empleado.nombre;
+            nombre.textContent = empleado.nombre || "Empleado vinculado";
 
             const estado = document.createElement("span");
             estado.className = "estado-vinculado";
@@ -126,14 +133,10 @@ document.addEventListener("DOMContentLoaded", function () {
             aceptar.textContent = "Aceptar";
 
             aceptar.addEventListener("click", function () {
-                const actual = solicitudes.find(function (item) {
-                    return item.id === solicitud.id;
-                });
-
+                const actual = solicitudes.find(item => item.id === solicitud.id);
                 if (!actual || actual.estado !== "pendiente") return;
 
                 actual.estado = "aceptada";
-
                 empleados.push({
                     id: actual.id,
                     nombre: actual.nombre,
@@ -153,10 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
             rechazar.textContent = "Rechazar";
 
             rechazar.addEventListener("click", function () {
-                const actual = solicitudes.find(function (item) {
-                    return item.id === solicitud.id;
-                });
-
+                const actual = solicitudes.find(item => item.id === solicitud.id);
                 if (!actual || actual.estado !== "pendiente") return;
 
                 actual.estado = "rechazada";
@@ -184,27 +184,19 @@ document.addEventListener("DOMContentLoaded", function () {
         boton.focus();
     }
 
-    // El botón abre la ventana.
     boton.addEventListener("click", abrirVentana);
-
-    // Cerrar mediante la X.
     cerrar.addEventListener("click", cerrarVentana);
 
-    // Cerrar tocando fuera del formulario.
     ventana.addEventListener("click", function (evento) {
-        if (evento.target === ventana) {
-            cerrarVentana();
-        }
+        if (evento.target === ventana) cerrarVentana();
     });
 
-    // Cerrar con Escape.
     document.addEventListener("keydown", function (evento) {
         if (evento.key === "Escape" && ventana.classList.contains("mostrar")) {
             cerrarVentana();
         }
     });
 
-    // Enviar solicitud.
     formulario.addEventListener("submit", function (evento) {
         evento.preventDefault();
 
@@ -270,4 +262,3 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarEmpleados();
     mostrarSolicitudes();
 });
-```

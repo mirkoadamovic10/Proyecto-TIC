@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,144 +9,412 @@
     <title>NeuroPassport - Empresa</title>
 
     <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* CONFIGURACIÓN GENERAL */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: #F0F8ED;
+        }
+
+        /* NAVBAR */
+        .barra-empresa {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            width: 100%;
+            height: 80px !important;
+            min-height: 80px !important;
+            background: #785D2A !important;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px !important;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 9999;
+        }
+
+        .barra-empresa::before {
+            content: "NeuroPassport";
+            color: #D9E2E3;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .barra-empresa nav {
+            display: none !important;
+        }
+
+       
+/* PERFIL CIRCULAR */
+.barra-empresa .perfil {
+    width: 44px !important;
+    height: 44px !important;
+    border: 3px solid #D9E2E3 !important;
+    border-radius: 50% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+    flex-shrink: 0 !important;
+    padding: 0 !important;
+    text-decoration: none !important;
+}
+
+.barra-empresa .perfil .cabeza {
+    display: block !important;
+    width: 11px !important;
+    height: 11px !important;
+    border-radius: 50% !important;
+    background: #D9E2E3 !important;
+    margin-bottom: 2px !important;
+}
+
+.barra-empresa .perfil .cuerpo {
+    display: block !important;
+    width: 23px !important;
+    height: 13px !important;
+    border-radius: 12px 12px 0 0 !important;
+    background: #D9E2E3 !important;
+}
+
+
+        /* CONTENIDO PRINCIPAL */
+        .empresa-principal {
+            width: 100%;
+            padding: 0 20px 30px !important;
+            box-sizing: border-box;
+        }
+
+        /* BIENVENIDA SIN RECTÁNGULOS DE FONDO */
+        .empresa-bienvenida,
+        .empresa-bienvenida > header {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .empresa-bienvenida {
+            display: flex !important;
+            justify-content: center !important;
+            width: 100% !important;
+            margin: 40px auto !important;
+            text-align: center !important;
+        }
+
+        .empresa-bienvenida > header {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            width: 100% !important;
+            text-align: center !important;
+            padding: 0 !important;
+        }
+
+        .empresa-bienvenida > header::before {
+            content: "INSTITUCIONAL";
+            display: block;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .empresa-bienvenida h1 {
+            font-size: 48px !important;
+            line-height: 1.2 !important;
+            text-align: center !important;
+            margin: 0 0 15px !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .empresa-bienvenida p {
+            font-size: 20px !important;
+            line-height: 1.5 !important;
+            text-align: center !important;
+            margin: 0 auto !important;
+            max-width: 900px !important;
+            padding: 0 !important;
+        }
+
+        /* TARJETA DE EMPLEADOS */
+        .empresa-acciones {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: stretch !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            box-sizing: border-box;
+        }
+
+        .tarjeta-empresa {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100% !important;
+            max-width: 520px !important;
+            min-height: 210px !important;
+            padding: 22px 20px !important;
+            box-sizing: border-box !important;
+            background: #FFFFFF !important;
+            border: 8px solid #B9E4AE !important;
+            border-radius: 12px !important;
+            box-shadow: none !important;
+        }
+
+        .tarjeta-empresa > header {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .tarjeta-empresa h2 {
+            font-size: 24px !important;
+            line-height: 1.3 !important;
+            color: #000000;
+            margin: 0 0 18px !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .tarjeta-empresa p {
+            max-width: 450px;
+            font-size: 16px !important;
+            line-height: 1.5 !important;
+            color: #333333;
+            margin: 0 0 20px !important;
+            padding: 0 !important;
+        }
+
+        .tarjeta-empresa button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 209px !important;
+            min-height: 50px !important;
+            padding: 10px 18px !important;
+            box-sizing: border-box;
+            background-color: #B9E4AE !important;
+            border: 1px solid #B9E4AE !important;
+            border-radius: 15px !important;
+            color: #000000 !important;
+            font-family: inherit;
+            font-size: 16px !important;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .tarjeta-empresa button:hover {
+            filter: brightness(0.96);
+        }
+
+        /* FRANJA VERDE INFERIOR */
+        .empresa-info {
+            width: 100vw !important;
+            max-width: none !important;
+            min-width: 0 !important;
+            height: 88px !important;
+            min-height: 88px !important;
+            max-height: 88px !important;
+
+            background-color: #B7E4C7 !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+
+            padding: 8px 20px !important;
+            box-sizing: border-box !important;
+            margin: 30px 0 0 calc(50% - 50vw) !important;
+        }
+
+        .empresa-info > header,
+        .empresa-info h2,
+        .empresa-info p {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+
+        .empresa-info > header {
+            margin: 0 !important;
+        }
+
+        .empresa-info h2 {
+            font-size: 20px !important;
+            line-height: 1.3 !important;
+            color: #000000;
+            margin: 0 0 4px !important;
+        }
+
+        .empresa-info p {
+            font-size: 16px !important;
+            line-height: 1.4 !important;
+            color: #000000;
+            margin: 0 !important;
+        }
+
+        /* ADAPTACIÓN A CELULARES */
+        @media (max-width: 600px) {
+            .barra-empresa {
+                padding: 0 16px !important;
+            }
+
+            .barra-empresa::before {
+                font-size: 23px;
+            }
+
+            .empresa-principal {
+                padding: 0 14px 25px !important;
+            }
+
+            .empresa-bienvenida {
+                margin: 30px auto !important;
+            }
+
+            .empresa-bienvenida > header::before {
+                font-size: 16px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .empresa-bienvenida h1 {
+                font-size: 36px !important;
+            }
+
+            .empresa-bienvenida p {
+                font-size: 18px !important;
+                padding: 0 10px !important;
+            }
+
+            .tarjeta-empresa {
+                min-height: 0 !important;
+                padding: 20px 16px !important;
+            }
+
+            .tarjeta-empresa h2 {
+                font-size: 22px !important;
+            }
+
+            .tarjeta-empresa p {
+                font-size: 15px !important;
+            }
+
+            .tarjeta-empresa button {
+                max-width: 100% !important;
+            }
+
+            .empresa-info {
+                padding: 6px 10px !important;
+            }
+
+            .empresa-info h2 {
+                font-size: 16px !important;
+            }
+
+            .empresa-info p {
+                font-size: 13px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
+    <!-- NAVBAR -->
     <header class="barra-empresa">
-
-        <nav class="menu-empresa" aria-label="Navegación principal">
-
-            <a href="empresa.html" class="boton-menu-empresa">
-                Inicio
-            </a>
-
-            <a href="empleados.html" class="boton-menu-empresa">
-                Empleados
-            </a>
-
-        </nav>
-
-
         <a
             href="configuracion.html"
-            class="perfil-empresa"
+            class="perfil"
             id="perfilEmpresa"
             title="Configuración"
             aria-label="Configuración">
 
-            <span class="perfil-cabeza"></span>
-            <span class="perfil-cuerpo"></span>
-
+            <span class="cabeza"></span>
+            <span class="cuerpo"></span>
         </a>
-
     </header>
 
-
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="empresa-principal">
 
+        <!-- BIENVENIDA -->
         <section class="empresa-bienvenida">
-
             <header>
-
                 <h1 id="saludoEmpresa">
                     ¡Hola! Bienvenido a NeuroPassport
                 </h1>
 
                 <p>
-                    Desde este espacio podés gestionar
-                    los empleados vinculados a tu empresa.
+                    Gestioná y acompañá a tus empleados respetando la información que cada uno decide compartir.
                 </p>
-
             </header>
-
         </section>
 
-
+        <!-- TARJETA DE EMPLEADOS -->
         <section class="empresa-acciones">
 
-
-            <!-- EMPLEADOS -->
-
             <article class="tarjeta-empresa">
-
                 <header>
-
-                    <h2>
-                        Empleados
-                    </h2>
-
+                    <h2>Empleados</h2>
                 </header>
 
                 <p>
-                    Consultá los empleados vinculados a tu empresa
-                    y accedé a la información que hayan decidido compartir.
+                    Consultá los empleados vinculados a tu empresa y accedé a las preferencias de trabajo que hayan decidido compartir.
                 </p>
 
                 <button
                     type="button"
                     onclick="window.location.href='empleados.html'">
-
                     Ver empleados
-
                 </button>
-
             </article>
-
-
-            <!-- LINKEAR EMPLEADO -->
-
-            <article class="tarjeta-empresa">
-
-                <header>
-
-                    <h2>
-                        Linkear empleado
-                    </h2>
-
-                </header>
-
-                <p>
-                    Vinculá un empleado a tu empresa
-                    utilizando su código de vinculación.
-                </p>
-
-                <button
-                    type="button"
-                    onclick="window.location.href='empleados.html'">
-
-                    Linkear empleado
-
-                </button>
-
-            </article>
-
 
         </section>
 
-
+        <!-- INFORMACIÓN COMPARTIDA -->
         <section class="empresa-info">
-
             <header>
-
-                <h2>
-                    Información de empleados
-                </h2>
-
+                <h2>Información compartida</h2>
             </header>
 
             <p>
-                Solo vas a poder acceder a la información
-                que cada empleado haya decidido compartir con tu empresa.
+                Cada empleado puede decidir qué información compartir con su empresa.
             </p>
-
         </section>
 
     </main>
-
 
     <script src="empresa.js" defer></script>
 
 </body>
 
 </html>
+```
