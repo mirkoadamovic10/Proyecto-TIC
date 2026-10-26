@@ -1,61 +1,283 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>NeuroPassport - Médico</title>
 
-    <link
-        rel="stylesheet"
-        href="../../style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f1f9ed;
+            color: #294d57;
+        }
+
+        /* NAVBAR */
+
+        .barra-empresa {
+            width: 100%;
+            min-height: 48px;
+            padding: 9px 10px;
+            background: #2f7182;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .logo-empresa {
+            color: #e5eeee;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .menu-empresa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .boton-menu-empresa {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .perfil-empresa {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: #dfe8e9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .perfil-cabeza {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #294d57;
+        }
+
+        .perfil-cuerpo {
+            width: 14px;
+            height: 7px;
+            margin-top: 2px;
+            border-radius: 8px 8px 3px 3px;
+            background: #294d57;
+        }
+
+        /* CONTENIDO */
+
+        .empresa-principal {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 4.5% 24px;
+        }
+
+        /* BIENVENIDA SIN RECUADRO */
+
+        .empresa-bienvenida {
+            width: 100%;
+            padding: 22px 0 24px;
+            text-align: center;
+        }
+
+        .empresa-bienvenida header {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .empresa-etiqueta {
+            display: block;
+            margin-bottom: 3px;
+            color: #111;
+            font-size: 9px;
+        }
+
+        .empresa-bienvenida h1 {
+            margin: 0 0 5px;
+            color: #111;
+            font-size: clamp(18px, 3.6vw, 22px);
+            line-height: 1.2;
+        }
+
+        .empresa-bienvenida p {
+            margin: 0;
+            color: #111;
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
+        /* TARJETAS */
+
+        .empresa-acciones {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 5.5%;
+            align-items: stretch;
+        }
+
+        .tarjeta-empresa {
+            min-width: 0;
+            min-height: 188px;
+            padding: 18px 12px 12px;
+            border: 3px solid;
+            border-radius: 16px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .tarjeta-empresa:nth-child(1) {
+            border-color: #397d8c;
+        }
+
+        .tarjeta-empresa:nth-child(2) {
+            border-color: #c18be0;
+        }
+
+        .tarjeta-empresa:nth-child(3) {
+            border-color: #b9dfcc;
+        }
+
+        .tarjeta-empresa header {
+            margin-bottom: 12px;
+        }
+
+        .tarjeta-empresa h2 {
+            margin: 0;
+            color: #222;
+            font-size: 21px;
+        }
+
+        .tarjeta-empresa p {
+            margin: 16px 0;
+            color: #222;
+            font-size: 11px;
+            line-height: 1.35;
+        }
+
+        /* BOTONES */
+
+        .boton-tarjeta {
+            display: inline-block;
+            max-width: 100%;
+            margin-top: auto;
+            padding: 6px 17px;
+            border-radius: 7px;
+            background: #b9e4ca;
+            color: #397d8c;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+
+        .tarjeta-empresa:nth-child(2) .boton-tarjeta {
+            background: #c18be0;
+            color: #222;
+        }
+
+        .tarjeta-empresa:nth-child(3) .boton-tarjeta {
+            background: #b9dfcc;
+            color: #294d57;
+        }
+
+        /* INFORMACIÓN INFERIOR */
+
+        .empresa-info {
+            margin-top: 28px;
+            padding: 14px;
+            border-radius: 0;
+            background: #b9e4ca;
+            text-align: center;
+        }
+
+        .empresa-info h2 {
+            margin: 0 0 7px;
+            font-size: 15px;
+        }
+
+        .empresa-info p {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        /* PANTALLAS CHICAS */
+
+        @media (max-width: 480px) {
+            .barra-empresa {
+                gap: 8px;
+                padding: 10px;
+            }
+
+            .logo-empresa {
+                font-size: 18px;
+            }
+
+            .menu-empresa {
+                gap: 8px;
+            }
+
+            .boton-menu-empresa {
+                font-size: 11px;
+            }
+
+            .empresa-principal {
+                padding-right: 16px;
+                padding-left: 16px;
+            }
+
+            .empresa-bienvenida {
+                padding: 22px 0;
+            }
+
+            .empresa-acciones {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 16px;
+            }
+
+            .tarjeta-empresa {
+                min-height: 180px;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
     <header class="barra-empresa">
 
-        <nav
-            class="menu-empresa"
-            aria-label="Navegación principal">
+        <a href="medico.html" class="logo-empresa">
+            NeuroPassport
+        </a>
 
-
-            <a
-                href="medico.html"
-                class="boton-menu-empresa">
-
-                Inicio
-
-            </a>
-
-
-            <a
-                href="pacientes.html"
-                class="boton-menu-empresa">
-
-                Pacientes
-
-            </a>
-
-
-            <a
-                href="agenda-medico.html"
-                class="boton-menu-empresa">
-
-                Agenda
-
-            </a>
-
-
+        <nav class="menu-empresa" aria-label="Navegación principal">
+            <a href="medico.html" class="boton-menu-empresa">Inicio</a>
+            <a href="pacientes.html" class="boton-menu-empresa">Pacientes</a>
+            <a href="agenda-medico.html" class="boton-menu-empresa">Agenda</a>
         </nav>
-
 
         <a
             href="configuracion.html"
@@ -65,170 +287,106 @@
             aria-label="Configuración">
 
             <span class="perfil-cabeza"></span>
-
             <span class="perfil-cuerpo"></span>
 
         </a>
 
     </header>
 
-
     <main class="empresa-principal">
-
 
         <section class="empresa-bienvenida">
 
             <header>
+                <span class="empresa-etiqueta">PROFESIONAL</span>
 
                 <h1 id="saludoMedico">
-
                     ¡Hola! Bienvenido a NeuroPassport
-
                 </h1>
 
-
                 <p>
-
-                    Desde este espacio podés acceder
-                    a la información de tus pacientes.
-
+                    Desde este espacio podés acceder a la
+                    información de tus pacientes y realizar
+                    un seguimiento de su evolución.
                 </p>
-
             </header>
 
         </section>
 
-
-        <section class="empresa-acciones">
-
+        <section
+            class="empresa-acciones"
+            aria-label="Accesos principales">
 
             <article class="tarjeta-empresa">
 
                 <header>
-
-                    <h2>
-                        Pacientes
-                    </h2>
-
+                    <h2>Pacientes</h2>
                 </header>
 
-
                 <p>
-
-                    Consultá las personas vinculadas
-                    a tu cuenta y accedé a la información
-                    que hayan habilitado.
-
+                    Consultá las personas vinculadas a tu cuenta
+                    y accedé a la información que hayan habilitado.
                 </p>
 
-
-                <button
-                    type="button"
-                    onclick="window.location.href='pacientes.html'">
-
+                <a class="boton-tarjeta" href="pacientes.html">
                     Ver pacientes
-
-                </button>
+                </a>
 
             </article>
-
-
 
             <article class="tarjeta-empresa">
 
                 <header>
-
-                    <h2>
-                        Agenda
-                    </h2>
-
+                    <h2>Agenda</h2>
                 </header>
 
-
                 <p>
-
-                    Organizá tus consultas, controles
-                    y turnos con tus pacientes.
-
+                    Organizá tus consultas, controles y turnos
+                    con tus pacientes.
                 </p>
 
-
-                <button
-                    type="button"
-                    onclick="window.location.href='agenda-medico.html'">
-
+                <a class="boton-tarjeta" href="agenda-medico.html">
                     Ver agenda
-
-                </button>
+                </a>
 
             </article>
-
-
 
             <article class="tarjeta-empresa">
 
                 <header>
-
-                    <h2>
-                        Hospitales
-                    </h2>
-
+                    <h2>Hospitales</h2>
                 </header>
 
-
                 <p>
-
-                    Vinculate a un hospital para trabajar
-                    con tus pacientes desde su cuenta
-                    profesional.
-
+                    Vinculate a un hospital para trabajar con tus
+                    pacientes desde tu cuenta profesional.
                 </p>
 
-
-                <button
-                    type="button"
-                    onclick="window.location.href='hospitales.html'">
-
+                <a class="boton-tarjeta" href="hospitales.html">
                     Ver hospitales
-
-                </button>
+                </a>
 
             </article>
-
 
         </section>
 
-
-        <section class="empresa-info">
+        <aside class="empresa-info">
 
             <header>
-
-                <h2>
-                    Información de pacientes
-                </h2>
-
+                <h2>Información de pacientes</h2>
             </header>
 
-
             <p>
-
                 Solo vas a poder acceder a la información
                 que cada paciente haya decidido compartir
                 con vos.
-
             </p>
 
-        </section>
-
+        </aside>
 
     </main>
 
-
-    <script
-        src="medico.js"
-        defer>
-    </script>
+    <script src="medico.js" defer></script>
 
 </body>
-
 </html>
