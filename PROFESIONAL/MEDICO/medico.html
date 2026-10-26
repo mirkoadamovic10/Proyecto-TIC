@@ -24,8 +24,8 @@
 
         .barra-empresa {
             width: 100%;
-            min-height: 48px;
-            padding: 9px 10px;
+            min-height: 60px;
+            padding: 10px 12px;
             background: #2f7182;
             display: flex;
             align-items: center;
@@ -35,7 +35,7 @@
 
         .logo-empresa {
             color: #e5eeee;
-            font-size: 22px;
+            font-size: 26px;
             font-weight: bold;
             text-decoration: none;
             white-space: nowrap;
@@ -45,19 +45,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
         .boton-menu-empresa {
             color: white;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
         }
 
         .perfil-empresa {
-            width: 28px;
-            height: 28px;
+            width: 34px;
+            height: 34px;
             flex-shrink: 0;
             border-radius: 50%;
             background: #dfe8e9;
@@ -68,15 +68,15 @@
         }
 
         .perfil-cabeza {
-            width: 8px;
-            height: 8px;
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
             background: #294d57;
         }
 
         .perfil-cuerpo {
-            width: 14px;
-            height: 7px;
+            width: 16px;
+            height: 8px;
             margin-top: 2px;
             border-radius: 8px 8px 3px 3px;
             background: #294d57;
@@ -91,11 +91,11 @@
             padding: 0 4.5% 24px;
         }
 
-        /* BIENVENIDA SIN RECUADRO */
+        /* BIENVENIDA */
 
         .empresa-bienvenida {
             width: 100%;
-            padding: 22px 0 24px;
+            padding: 28px 0 32px;
             text-align: center;
         }
 
@@ -107,22 +107,22 @@
 
         .empresa-etiqueta {
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 5px;
             color: #111;
-            font-size: 9px;
+            font-size: 11px;
         }
 
         .empresa-bienvenida h1 {
-            margin: 0 0 5px;
+            margin: 0 0 6px;
             color: #111;
-            font-size: clamp(18px, 3.6vw, 22px);
+            font-size: clamp(22px, 3.6vw, 26px);
             line-height: 1.2;
         }
 
         .empresa-bienvenida p {
             margin: 0;
             color: #111;
-            font-size: 10px;
+            font-size: 12px;
             line-height: 1.4;
         }
 
@@ -132,15 +132,16 @@
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 5.5%;
+            row-gap: 24px;
             align-items: stretch;
         }
 
         .tarjeta-empresa {
             min-width: 0;
-            min-height: 188px;
-            padding: 18px 12px 12px;
-            border: 3px solid;
-            border-radius: 16px;
+            min-height: 230px;
+            padding: 24px 16px 14px;
+            border: 4px solid;
+            border-radius: 20px;
             background: #fff;
             display: flex;
             flex-direction: column;
@@ -161,20 +162,20 @@
         }
 
         .tarjeta-empresa header {
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .tarjeta-empresa h2 {
             margin: 0;
             color: #222;
-            font-size: 21px;
+            font-size: 27px;
         }
 
         .tarjeta-empresa p {
-            margin: 16px 0;
+            margin: 20px 0;
             color: #222;
-            font-size: 11px;
-            line-height: 1.35;
+            font-size: 13px;
+            line-height: 1.4;
         }
 
         /* BOTONES */
@@ -183,11 +184,11 @@
             display: inline-block;
             max-width: 100%;
             margin-top: auto;
-            padding: 6px 17px;
-            border-radius: 7px;
+            padding: 8px 22px;
+            border-radius: 8px;
             background: #b9e4ca;
             color: #397d8c;
-            font-size: 15px;
+            font-size: 20px;
             font-weight: bold;
             text-decoration: none;
             overflow-wrap: anywhere;
@@ -206,16 +207,18 @@
         /* INFORMACIÓN INFERIOR */
 
         .empresa-info {
-            margin-top: 28px;
-            padding: 14px;
+            width: 100vw;
+            margin-top: 36px;
+            margin-left: calc(50% - 50vw);
+            padding: 12px 5%;
             border-radius: 0;
             background: #b9e4ca;
             text-align: center;
         }
 
         .empresa-info h2 {
-            margin: 0 0 7px;
-            font-size: 15px;
+            margin: 0 0 4px;
+            font-size: 14px;
         }
 
         .empresa-info p {
@@ -233,7 +236,7 @@
             }
 
             .logo-empresa {
-                font-size: 18px;
+                font-size: 20px;
             }
 
             .menu-empresa {
@@ -250,16 +253,42 @@
             }
 
             .empresa-bienvenida {
-                padding: 22px 0;
+                padding: 24px 0 28px;
+            }
+
+            .empresa-bienvenida h1 {
+                font-size: 23px;
+            }
+
+            .empresa-bienvenida p {
+                font-size: 12px;
             }
 
             .empresa-acciones {
                 grid-template-columns: minmax(0, 1fr);
-                gap: 16px;
+                gap: 18px;
             }
 
             .tarjeta-empresa {
-                min-height: 180px;
+                min-height: 220px;
+                padding: 22px 14px 14px;
+            }
+
+            .tarjeta-empresa h2 {
+                font-size: 25px;
+            }
+
+            .tarjeta-empresa p {
+                font-size: 13px;
+            }
+
+            .boton-tarjeta {
+                font-size: 18px;
+                padding: 8px 20px;
+            }
+
+            .empresa-info {
+                margin-top: 28px;
             }
         }
     </style>
