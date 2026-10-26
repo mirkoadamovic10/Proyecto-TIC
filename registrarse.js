@@ -356,25 +356,22 @@ botonRegistrarse.addEventListener(
     }
 );
 
+JavaScript
 fetch('/api/auth/register', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json' 
-    },
-    body: JSON.stringify(datosUsuario) 
-  })
-  .then(respuesta => {
-    return respuesta.json().then(datos => {
-      if (!respuesta.ok) {
-        throw new Error(datos.message || 'Error en el servidor');
-      }
-      return datos;
-    });
-  })
-  .then(datos => {
-    console.log('Usuario registrado con éxito:', datos);
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(datosUsuario)
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log('Usuario registrado con éxito:');
+    console.log(data);
+    usuarios = data;
   })
   .catch(error => {
-    console.error('Hubo un problema al registrar:', error.message);
+    console.error('Hubo un problema al registrar:', error);
   });
 
+let usuarios = [];
