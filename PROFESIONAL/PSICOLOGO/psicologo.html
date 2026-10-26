@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,47 +9,379 @@
     <title>NeuroPassport - Psicólogo</title>
 
     <link rel="stylesheet" href="../../style.css">
+
+    <style>
+        /* CONFIGURACIÓN GENERAL */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+       
+         
+/* NAVBAR AZUL */
+.barra-empresa {
+    display: flex !important;
+    flex-direction: row !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    width: 1440px !important;
+    max-width: 100% !important;
+    height: 114px !important;
+    min-height: 114px !important;
+
+    margin-left: -1px !important;
+    margin-top: 0 !important;
+
+    background: #2F7185 !important;
+    background-image: none !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0 !important;
+
+    padding: 18px 20px !important;
+    box-sizing: border-box !important;
+
+    position: relative !important;
+    z-index: 9999 !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+
+        /* OCULTAR LOS BOTONES DE LA NAVBAR */
+        .barra-empresa .menu-empresa {
+            display: none !important;
+        }
+
+        /* CÍRCULO DEL PERFIL */
+        .barra-empresa .perfil-empresa {
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            min-height: 44px !important;
+            border: 3px solid #D9E2E3 !important;
+            border-radius: 50% !important;
+
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+            background: transparent !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            flex-shrink: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            text-decoration: none !important;
+        }
+
+        .barra-empresa .perfil-cabeza {
+            display: block !important;
+            width: 11px !important;
+            height: 11px !important;
+            min-width: 11px !important;
+            min-height: 11px !important;
+            border-radius: 50% !important;
+            background: #D9E2E3 !important;
+            margin: 0 0 2px !important;
+            padding: 0 !important;
+        }
+
+        .barra-empresa .perfil-cuerpo {
+            display: block !important;
+            width: 23px !important;
+            height: 13px !important;
+            min-width: 23px !important;
+            min-height: 13px !important;
+            border-radius: 12px 12px 0 0 !important;
+            background: #D9E2E3 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .empresa-principal {
+            width: 100%;
+            padding: 0 20px 30px !important;
+            box-sizing: border-box;
+        }
+
+        /* BIENVENIDA SIN RECTÁNGULO MARRÓN */
+        .empresa-bienvenida,
+        .empresa-bienvenida > header,
+        .empresa-bienvenida h1,
+        .empresa-bienvenida p {
+            background: transparent !important;
+            background-image: none !important;
+            box-shadow: none !important;
+        }
+
+        .empresa-bienvenida,
+        .empresa-bienvenida > header {
+            border: none !important;
+        }
+
+        .empresa-bienvenida {
+            display: flex !important;
+            justify-content: center !important;
+            width: 100% !important;
+            margin: 40px auto !important;
+            text-align: center !important;
+        }
+
+        .empresa-bienvenida > header {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            width: 100% !important;
+            text-align: center !important;
+            padding: 0 !important;
+        }
+
+        .empresa-bienvenida h1 {
+            font-size: 48px !important;
+            line-height: 1.2 !important;
+            text-align: center !important;
+            margin: 0 0 15px !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        .empresa-bienvenida p {
+            font-size: 20px !important;
+            line-height: 1.5 !important;
+            text-align: center !important;
+            margin: 0 auto !important;
+            max-width: 900px !important;
+            padding: 0 !important;
+        }
+
+        /* TARJETAS */
+        .empresa-acciones {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: stretch !important;
+            flex-wrap: wrap;
+            gap: 24px;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            box-sizing: border-box;
+        }
+
+        .tarjeta-empresa {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 1 1 280px;
+            max-width: 360px;
+            min-height: 210px;
+            padding: 22px 20px !important;
+            box-sizing: border-box !important;
+            background: #FFFFFF !important;
+            border-radius: 12px !important;
+            box-shadow: none !important;
+        }
+
+        .tarjeta-empresa > header {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .tarjeta-empresa h2 {
+            font-size: 24px !important;
+            line-height: 1.3 !important;
+            color: #000000;
+            margin: 0 0 18px !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .tarjeta-empresa p {
+            max-width: 450px;
+            font-size: 16px !important;
+            line-height: 1.5 !important;
+            color: #333333;
+            margin: 0 0 20px !important;
+            padding: 0 !important;
+        }
+
+        .tarjeta-empresa button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 209px !important;
+            min-height: 50px !important;
+            padding: 10px 18px !important;
+            box-sizing: border-box;
+            border-radius: 15px !important;
+            color: #000000 !important;
+            font-family: inherit;
+            font-size: 16px !important;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .tarjeta-empresa button:hover {
+            filter: brightness(0.96);
+        }
+
+        /* FRANJA INFERIOR DE INFORMACIÓN */
+        .empresa-info {
+            width: 100vw !important;
+            max-width: none !important;
+            min-width: 0 !important;
+            min-height: 88px !important;
+            box-sizing: border-box !important;
+            background: #B7E4C7 !important;
+            background-image: none !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+
+            padding: 8px 20px !important;
+            margin: 30px 0 0 calc(50% - 50vw) !important;
+        }
+
+        .empresa-info > header,
+        .empresa-info h2,
+        .empresa-info p {
+            background: transparent !important;
+            background-image: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+
+        .empresa-info > header {
+            margin: 0 !important;
+        }
+
+        .empresa-info h2 {
+            font-size: 20px !important;
+            line-height: 1.3 !important;
+            color: #000000;
+            margin: 0 0 4px !important;
+        }
+
+        .empresa-info p {
+            font-size: 16px !important;
+            line-height: 1.4 !important;
+            color: #000000;
+            margin: 0 !important;
+        }
+
+        /* ADAPTACIÓN A CELULARES */
+        @media (max-width: 600px) {
+            .barra-empresa {
+                height: 70px !important;
+                min-height: 70px !important;
+                padding: 0 16px !important;
+            }
+
+            .empresa-principal {
+                padding: 0 14px 25px !important;
+            }
+
+            .empresa-bienvenida {
+                margin: 30px auto !important;
+            }
+
+            .empresa-bienvenida h1 {
+                font-size: 36px !important;
+            }
+
+            .empresa-bienvenida p {
+                font-size: 18px !important;
+                padding: 0 10px !important;
+            }
+
+            .empresa-acciones {
+                gap: 16px;
+            }
+
+            .tarjeta-empresa {
+                flex: 1 1 100%;
+                max-width: 100%;
+                min-height: 0;
+                padding: 20px 16px !important;
+            }
+
+            .tarjeta-empresa h2 {
+                font-size: 22px !important;
+            }
+
+            .tarjeta-empresa p {
+                font-size: 15px !important;
+            }
+
+            .tarjeta-empresa button {
+                max-width: 100% !important;
+            }
+
+            .empresa-info {
+                padding: 8px 10px !important;
+            }
+
+            .empresa-info h2 {
+                font-size: 16px !important;
+            }
+
+            .empresa-info p {
+                font-size: 13px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
+    <!-- NAVBAR: SOLAMENTE EL PERFIL -->
     <header class="barra-empresa">
-
-        <nav class="menu-empresa" aria-label="Navegación principal">
-
-            <a href="psicologo.html" class="boton-menu-empresa">
-                Inicio
-            </a>
-
-            <a href="pacientes.html" class="boton-menu-empresa">
-                Pacientes
-            </a>
-
-            <a href="agenda-psicologo.html" class="boton-menu-empresa">
-                Agenda
-            </a>
-
-            <a href="sintomas.html" class="boton-menu-empresa">
-                Seguimiento emocional
-            </a>
-
-        </nav>
 
         <a
             href="configuracion.html"
             class="perfil-empresa"
             title="Configuración"
-            aria-label="Configuración"
-        >
+            aria-label="Configuración">
+
             <span class="perfil-cabeza"></span>
             <span class="perfil-cuerpo"></span>
         </a>
 
     </header>
 
-
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="empresa-principal">
 
+        <!-- BIENVENIDA -->
         <section class="empresa-bienvenida">
 
             <header>
@@ -66,7 +399,7 @@
 
         </section>
 
-
+        <!-- TARJETAS PRINCIPALES -->
         <section class="empresa-acciones">
 
             <article class="tarjeta-empresa">
@@ -82,13 +415,11 @@
 
                 <button
                     type="button"
-                    onclick="window.location.href='pacientes.html'"
-                >
+                    onclick="window.location.href='pacientes.html'">
                     Ver pacientes
                 </button>
 
             </article>
-
 
             <article class="tarjeta-empresa">
 
@@ -102,13 +433,11 @@
 
                 <button
                     type="button"
-                    onclick="window.location.href='agenda-psicologo.html'"
-                >
+                    onclick="window.location.href='agenda-psicologo.html'">
                     Ver agenda
                 </button>
 
             </article>
-
 
             <article class="tarjeta-empresa">
 
@@ -123,8 +452,7 @@
 
                 <button
                     type="button"
-                    onclick="window.location.href='sintomas.html'"
-                >
+                    onclick="window.location.href='sintomas.html'">
                     Ver seguimiento
                 </button>
 
@@ -132,7 +460,7 @@
 
         </section>
 
-
+        <!-- INFORMACIÓN DE PACIENTES -->
         <section class="empresa-info">
 
             <header>
@@ -148,9 +476,9 @@
 
     </main>
 
-
     <script src="psicologo.js" defer></script>
 
 </body>
 
 </html>
+```
