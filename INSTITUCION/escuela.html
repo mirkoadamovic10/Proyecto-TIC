@@ -1,123 +1,247 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>NeuroPassport - Escuela / Universidad</title>
 
     <style>
         /* Configuración general */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            background-color: #f1f7f0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-
-        /* Navbar superior */
-        .navbar-escuela {
-            display: flex;
-            width: 100%;
-            height: 80px;
-            background-color: #785d2a;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 35px;
+        * {
             box-sizing: border-box;
         }
 
-        /* Título NeuroPassport arriba a la izquierda */
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f1f9ef;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Barra superior */
+        .navbar-escuela {
+            display: flex;
+            width: 100%;
+            height: 56px;
+            background-color: #785d2a;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            flex-shrink: 0;
+        }
+
         .nombre-neuropassport-escuela {
             color: #ffffff;
-            font-size: 38px;
+            font-size: 24px;
             font-weight: 700;
             margin: 0;
             letter-spacing: -0.5px;
         }
 
-        /* Perfil circular a la derecha */
+        /* Icono de perfil */
         .perfil-escuela {
-            width: 44px;
-            height: 44px;
-            border: 3px solid #d9e2e3;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end;
-            overflow: hidden;
-            box-sizing: border-box;
-            background: transparent;
+            justify-content: center;
+            background-color: #ffffff;
             text-decoration: none;
+            flex-shrink: 0;
         }
 
-        .perfil-escuela .perfil-cabeza {
-            width: 11px;
-            height: 11px;
+        .perfil-cabeza {
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
-            background: #d9e2e3;
+            background-color: #111111;
             margin-bottom: 2px;
         }
 
-        .perfil-escuela .perfil-cuerpo {
-            width: 23px;
-            height: 13px;
-            border-radius: 12px 12px 0 0;
-            background: #d9e2e3;
+        .perfil-cuerpo {
+            width: 16px;
+            height: 8px;
+            border-radius: 9px 9px 4px 4px;
+            background-color: #111111;
         }
 
-        /* Sección principal Estudiantes */
-        .estudiantes-contenedor {
-            padding: 40px 60px;
-            box-sizing: border-box;
-        }
-
-        .estudiantes-header {
+        /* Contenido principal */
+        .contenido-principal {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            flex: 1 0 auto;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .estudiantes-titulo-box h1 {
-            font-size: 36px;
-            font-weight: 700;
-            color: #000000;
-            margin: 0 0 10px 0;
+        /* Presentación */
+        .bienvenida {
+            text-align: center;
+            margin-bottom: 35px;
         }
 
-        .estudiantes-titulo-box p {
-            font-size: 16px;
-            color: #333333;
+        .bienvenida-etiqueta {
+            display: block;
+            font-size: 11px;
+            line-height: 14px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: #444444;
+            margin-bottom: 6px;
+        }
+
+        .bienvenida h2 {
+            font-size: 30px;
+            line-height: 36px;
+            font-weight: 800;
+            color: #111111;
             margin: 0;
         }
 
-        .btn-linkear-estudiante {
-            background-color: #b8e2c8;
-            color: #2d5a3f;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
+        .bienvenida p {
+            font-size: 14px;
+            line-height: 20px;
+            color: #333333;
+            margin: 8px 0 0;
         }
 
-        @media (max-width: 600px) {
-            .navbar-escuela {
-                padding: 0 16px;
+        /* Tarjetas */
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 100%;
+        }
+
+        .tarjeta {
+            min-height: 280px;
+            background-color: #ffffff;
+            border: 5px solid;
+            border-radius: 22px;
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .tarjeta-estudiantes {
+            border-color: #b9e5ad;
+        }
+
+        .tarjeta-usuarios {
+            border-color: #e8b6d8;
+        }
+
+        .tarjeta h3 {
+            font-size: 28px;
+            line-height: 34px;
+            font-weight: 800;
+            margin: 0;
+            color: #111111;
+        }
+
+        .tarjeta p {
+            font-size: 14px;
+            line-height: 20px;
+            color: #222222;
+            margin: 15px 0;
+            max-width: 90%;
+        }
+
+        /* Botones de las tarjetas */
+        .boton-tarjeta {
+            display: inline-block;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 32px;
+            font-family: inherit;
+            font-size: 16px;
+            line-height: 22px;
+            font-weight: 700;
+            color: #111111;
+            text-decoration: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .boton-estudiantes {
+            background-color: #b9e5ad;
+        }
+
+        .boton-usuarios {
+            background-color: #e8b6d8;
+        }
+
+        .boton-tarjeta:hover {
+            filter: brightness(0.95);
+        }
+
+        /* Información inferior */
+        .informacion-compartida {
+            width: 100%;
+            background-color: #b5e4c8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 12px 15px;
+            color: #ffffff;
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        .informacion-compartida h4 {
+            font-size: 12px;
+            line-height: 16px;
+            font-weight: 700;
+            margin: 0 0 2px 0;
+        }
+
+        .informacion-compartida p {
+            font-size: 12px;
+            line-height: 16px;
+            margin: 0;
+        }
+
+        /* Adaptación a celulares */
+        @media (max-width: 768px) {
+            .contenido-principal {
+                padding: 20px 15px;
             }
-            .nombre-neuropassport-escuela {
-                font-size: 26px;
+
+            .bienvenida h2 {
+                font-size: 22px;
+                line-height: 28px;
             }
-            .estudiantes-contenedor {
-                padding: 20px;
-            }
-            .estudiantes-header {
-                flex-direction: column;
+
+            .tarjetas {
+                grid-template-columns: 1fr;
                 gap: 20px;
+            }
+
+            .tarjeta {
+                min-height: auto;
+                padding: 20px 16px;
+            }
+
+            .tarjeta h3 {
+                font-size: 22px;
             }
         }
     </style>
@@ -125,7 +249,7 @@
 
 <body>
 
-    <!-- Navbar con el texto NeuroPassport -->
+    <!-- Encabezado -->
     <header class="navbar-escuela">
         <h1 class="nombre-neuropassport-escuela">
             NeuroPassport
@@ -136,27 +260,83 @@
            id="perfilInstitucion"
            title="Configuración"
            aria-label="Configuración">
+
             <span class="perfil-cabeza"></span>
             <span class="perfil-cuerpo"></span>
         </a>
     </header>
 
-    <!-- Contenido principal -->
-    <main class="estudiantes-contenedor">
-        <header class="estudiantes-header">
-            <div class="estudiantes-titulo-box">
-                <h1>Estudiantes</h1>
-                <p>Estudiantes vinculados a esta institución.</p>
-            </div>
+    <!-- Contenido principal de la institución -->
+    <main class="contenido-principal">
 
-            <button type="button" class="btn-linkear-estudiante">
-                + Linkear estudiante
-            </button>
+        <!-- Bienvenida -->
+        <header class="bienvenida">
+            <span class="bienvenida-etiqueta">
+                INSTITUCIONAL
+            </span>
+
+            <h2>¡Hola ISA! Bienvenido a NeuroPassport</h2>
+
+            <p>
+                Gestioná y acompañá a tus estudiantes respetando
+                la información que cada uno decide compartir
+            </p>
         </header>
+
+        <!-- Opciones principales -->
+        <section class="tarjetas" aria-label="Opciones de la institución">
+
+            <!-- Tarjeta de estudiantes -->
+            <article class="tarjeta tarjeta-estudiantes">
+
+                <h3>Estudiantes</h3>
+
+                <p>
+                    Vinculá a un estudiante tu institución y
+                    accedé a la información que tenga habilitada
+                </p>
+
+                <a href="estudiantes.html"
+                   class="boton-tarjeta boton-estudiantes">
+                    Linkear estudiante
+                </a>
+
+            </article>
+
+            <!-- Tarjeta de usuarios -->
+            <article class="tarjeta tarjeta-usuarios">
+
+                <h3>Usuarios</h3>
+
+                <p>
+                    Vinculá usuarios para que puedan trabajar con
+                    los pacientes y utilizar las funciones
+                    profesionales
+                </p>
+
+                <a href="usuarios.html"
+                   class="boton-tarjeta boton-usuarios">
+                    Ver usuarios
+                </a>
+
+            </article>
+
+        </section>
+
     </main>
+
+    <!-- Información sobre privacidad -->
+    <footer class="informacion-compartida">
+
+        <h4>Información compartida</h4>
+
+        <p>
+            Cada estudiante puede decidir qué información compartir con su institución
+        </p>
+
+    </footer>
 
     <script src="escuela.js" defer></script>
 
 </body>
-
 </html>
