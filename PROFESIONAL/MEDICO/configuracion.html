@@ -1,148 +1,306 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Configuración - NeuroPassport</title>
 
-    <title>NeuroPassport - Configuración</title>
+    <link rel="stylesheet" href="../style.css">
 
-    <link
-        rel="stylesheet"
-        href="../../style.css"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #F0F8ED;
+            font-family: 'Inter', sans-serif;
+            color: #285866;
+        }
+
+        /* ENCABEZADO */
+        .encabezado-configuracion {
+            width: 100%;
+            min-height: 75px;
+            padding: 15px 35px;
+            background: #2F7185;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .volver-configuracion {
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: #CDB4DB;
+            color: #000000;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .encabezado-configuracion h1 {
+            margin: 0;
+            color: #FFFFFF;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        /* CONTENIDO */
+        .pagina-configuracion {
+            width: 100%;
+            padding: 50px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tarjeta-configuracion {
+            width: 100%;
+            max-width: 850px;
+            min-height: 350px;
+            padding: 40px;
+            background: #FFFFFF;
+            border-radius: 20px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+            display: flex;
+            align-items: center;
+            gap: 55px;
+        }
+
+        /* FOTO */
+        .perfil-configuracion {
+            min-width: 190px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .foto-configuracion {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #E1E8E9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            overflow: hidden;
+            position: relative;
+            border: 3px solid #D4E0E2;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .cabeza-configuracion {
+            position: absolute;
+            top: 27px;
+            width: 43px;
+            height: 43px;
+            background: #000000;
+            border-radius: 50%;
+        }
+
+        .cuerpo-configuracion {
+            width: 88px;
+            height: 57px;
+            background: #000000;
+            border-radius: 48px 48px 0 0;
+        }
+
+        .boton-cambiar-foto {
+            min-width: 140px;
+            padding: 11px 18px;
+            border: none;
+            border-radius: 12px;
+            background: #CDB4DB;
+            color: #000000;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .boton-cambiar-foto:hover {
+            opacity: 0.85;
+        }
+
+        /* NOMBRE Y GUARDADO */
+        .datos-configuracion {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .campo-configuracion {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .campo-configuracion label {
+            color: #285866;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .campo-configuracion input {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 15px;
+            border: 1px solid #CBDDE0;
+            border-radius: 10px;
+            background: #F8FCFC;
+            color: #294D57;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        .campo-configuracion input:focus {
+            outline: 2px solid #8FCBD0;
+            border-color: #397D8C;
+        }
+
+        .boton-guardar-configuracion {
+            padding: 13px 25px;
+            border: none;
+            border-radius: 18px;
+            background: #397D8C;
+            color: #FFFFFF;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .boton-guardar-configuracion:hover {
+            opacity: 0.9;
+        }
+
+        .mensaje-configuracion {
+            margin: 15px 0 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 650px) {
+            .encabezado-configuracion {
+                padding: 15px 18px;
+                flex-wrap: wrap;
+            }
+
+            .encabezado-configuracion h1 {
+                font-size: 25px;
+            }
+
+            .pagina-configuracion {
+                padding: 25px 15px;
+            }
+
+            .tarjeta-configuracion {
+                padding: 30px 22px;
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            .perfil-configuracion {
+                min-width: 0;
+            }
+
+            .datos-configuracion {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
-    <header class="barra-empresa">
-
-        <nav class="menu-empresa">
-
-            <a
-                href="medico.html"
-                class="boton-menu-empresa"
-            >
-                Inicio
-            </a>
-
-            <a
-                href="pacientes.html"
-                class="boton-menu-empresa"
-            >
-                Pacientes
-            </a>
-
-            <a
-                href="agenda-medico.html"
-                class="boton-menu-empresa"
-            >
-                Agenda
-            </a>
-
-        </nav>
-
-
-        <a
-            href="configuracion.html"
-            class="perfil-empresa"
-            title="Configuración"
-        >
-
-            <span class="perfil-cabeza"></span>
-
-            <span class="perfil-cuerpo"></span>
-
+    <header class="encabezado-configuracion">
+        <a href="medico.html" class="volver-configuracion">
+            ← Volver
         </a>
 
+        <h1>Configuración</h1>
     </header>
 
+    <main class="pagina-configuracion">
 
-    <main class="empresa-principal">
+        <section class="tarjeta-configuracion">
 
+            <div class="perfil-configuracion">
 
-        <section class="empresa-bienvenida">
+                <div class="foto-configuracion" id="fotoConfiguracion">
+                    <span class="cabeza-configuracion"></span>
+                    <span class="cuerpo-configuracion"></span>
+                </div>
 
-            <header>
+                <input
+                    type="file"
+                    id="inputFoto"
+                    accept="image/*"
+                    hidden
+                >
 
-                <h1>
-                    Configuración
-                </h1>
+                <button
+                    type="button"
+                    class="boton-cambiar-foto"
+                    id="botonCambiarFoto"
+                >
+                    Cambiar foto
+                </button>
 
-                <p>
-                    Administrá la información de tu cuenta.
-                </p>
+            </div>
 
-            </header>
+            <div class="datos-configuracion">
+
+                <div class="campo-configuracion">
+                    <label for="nombreConfiguracion">Nombre</label>
+
+                    <input
+                        type="text"
+                        id="nombreConfiguracion"
+                        placeholder="Tu nombre"
+                    >
+                </div>
+
+                <button
+                    type="button"
+                    class="boton-guardar-configuracion"
+                    id="botonGuardarConfiguracion"
+                >
+                    Guardar cambios
+                </button>
+
+                <p
+                    class="mensaje-configuracion"
+                    id="mensajeConfiguracion"
+                    aria-live="polite"
+                ></p>
+
+            </div>
 
         </section>
-
-
-        <section class="empresa-info">
-
-            <header>
-
-                <h2>
-                    Información personal
-                </h2>
-
-            </header>
-
-
-            <p>
-                Nombre:
-                <strong id="nombreUsuario">
-                    -
-                </strong>
-            </p>
-
-
-            <p>
-                Correo:
-                <strong id="emailUsuario">
-                    -
-                </strong>
-            </p>
-
-        </section>
-
 
     </main>
 
-
-    <script>
-
-        const nombre =
-            localStorage.getItem(
-                "nombreUsuario"
-            );
-
-        const email =
-            localStorage.getItem(
-                "emailUsuario"
-            );
-
-
-        document.getElementById(
-            "nombreUsuario"
-        ).textContent =
-            nombre || "No especificado";
-
-
-        document.getElementById(
-            "emailUsuario"
-        ).textContent =
-            email || "No especificado";
-
-    </script>
+    <script src="configuracion.js"></script>
 
 </body>
-
 </html>

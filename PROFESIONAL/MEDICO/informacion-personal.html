@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Información personal - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F8ED;
+            color: #294D57;
+        }
+
+        .encabezado-info {
+            background-color: #2F7185;
+            min-height: 75px;
+            padding: 0 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-sizing: border-box;
+        }
+
+        .encabezado-info h1 {
+            color: white;
+            font-size: 30px;
+            margin: 0;
+            text-align: right;
+        }
+
+        .volver {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #CDB4DB;
+            padding: 10px 18px;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+
+        .volver:hover {
+            opacity: 0.9;
+        }
+
+        .pagina-info {
+            padding: 35px 20px;
+            display: flex;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .tarjeta-info {
+            width: 100%;
+            max-width: 1050px;
+            background-color: white;
+            border-radius: 18px;
+            padding: 35px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+        }
+
+        .titulo-seccion {
+            margin-bottom: 30px;
+        }
+
+        .titulo-seccion h2 {
+            margin: 0 0 8px;
+            font-size: 26px;
+            color: #2F7185;
+        }
+
+        .titulo-seccion p {
+            margin: 0;
+            font-size: 16px;
+            color: #65747B;
+        }
+
+        .fila {
+            display: flex;
+            gap: 22px;
+            margin-bottom: 22px;
+            align-items: flex-start;
+        }
+
+        .campo {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .campo-grande {
+            flex: 2;
+        }
+
+        .campo label {
+            font-size: 15px;
+            font-weight: 600;
+            color: #294D57;
+        }
+
+        .campo input,
+        .campo select {
+            width: 100%;
+            min-height: 46px;
+            padding: 11px 13px;
+            border: 1px solid #CBDDE0;
+            border-radius: 10px;
+            background-color: #F8FCFC;
+            color: #294D57;
+            font-family: inherit;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .campo input:focus,
+        .campo select:focus {
+            outline: 2px solid #8FCBD0;
+            border-color: #397D8C;
+        }
+
+        .separador {
+            height: 2px;
+            background-color: #DFF2F3;
+            margin: 32px 0;
+        }
+
+        .titulo-contacto {
+            color: #2F7185;
+            font-size: 22px;
+            margin: 0 0 25px;
+        }
+
+        .acciones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .acciones button {
+            border: none;
+            border-radius: 18px;
+            padding: 12px 28px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .boton-guardar {
+            background-color: #397D8C;
+            color: white;
+        }
+
+        .boton-editar {
+            background-color: #CDB4DB;
+            color: #000;
+        }
+
+        .acciones button:hover {
+            opacity: 0.9;
+        }
+
+        .mensaje {
+            margin-top: 18px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 700px) {
+            .encabezado-info {
+                padding: 15px 18px;
+                flex-wrap: wrap;
+            }
+
+            .encabezado-info h1 {
+                font-size: 24px;
+            }
+
+            .tarjeta-info {
+                padding: 22px 18px;
+            }
+
+            .fila {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .campo,
+            .campo-grande {
+                width: 100%;
+                flex: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="encabezado-info">
+        <a href="medico.html" class="volver">← Volver</a>
+        <h1>Información personal</h1>
+    </header>
+
+    <main class="pagina-info">
+
+        <section class="tarjeta-info">
+
+            <div class="titulo-seccion">
+                <h2>Datos personales</h2>
+                <p>Completá tu información personal.</p>
+            </div>
+
+            <form id="formularioInfo">
+
+                <div class="fila">
+                    <div class="campo campo-grande">
+                        <label for="apellidoNombre">Apellido y nombre</label>
+                        <input type="text" id="apellidoNombre"
+                            placeholder="Ingresá tu apellido y nombre">
+                    </div>
+
+                    <div class="campo">
+                        <label for="documento">Documento</label>
+                        <input type="text" id="documento"
+                            placeholder="Ingresá tu documento">
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo">
+                        <label for="fechaNacimiento">Fecha de nacimiento</label>
+                        <input type="date" id="fechaNacimiento">
+                    </div>
+
+                    <div class="campo">
+                        <label for="edad">Edad</label>
+                        <input type="number" id="edad" min="0"
+                            placeholder="Edad">
+                    </div>
+
+                    <div class="campo">
+                        <label for="sexo">Sexo</label>
+                        <select id="sexo">
+                            <option value="">Seleccionar</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Otro">Otro</option>
+                            <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo campo-grande">
+                        <label for="domicilio">Domicilio</label>
+                        <input type="text" id="domicilio"
+                            placeholder="Ingresá tu domicilio">
+                    </div>
+
+                    <div class="campo">
+                        <label for="telFijo">Teléfono fijo</label>
+                        <input type="tel" id="telFijo"
+                            placeholder="Ingresá tu teléfono">
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo">
+                        <label for="grupoSanguineo">Grupo sanguíneo</label>
+                        <select id="grupoSanguineo">
+                            <option value="">Seleccionar</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="factorRh">Factor Rh</label>
+                        <select id="factorRh">
+                            <option value="">Seleccionar</option>
+                            <option value="+">Positivo (+)</option>
+                            <option value="-">Negativo (-)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="separador"></div>
+
+                <h2 class="titulo-contacto">Datos de contacto de los padres</h2>
+
+                <div class="fila">
+                    <div class="campo campo-grande">
+                        <label for="madre">Madre</label>
+                        <input type="text" id="madre"
+                            placeholder="Nombre y apellido">
+                    </div>
+
+                    <div class="campo">
+                        <label for="celularMadre">Celular</label>
+                        <input type="tel" id="celularMadre"
+                            placeholder="Número de celular">
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo campo-grande">
+                        <label for="padre">Padre</label>
+                        <input type="text" id="padre"
+                            placeholder="Nombre y apellido">
+                    </div>
+
+                    <div class="campo">
+                        <label for="celularPadre">Celular</label>
+                        <input type="tel" id="celularPadre"
+                            placeholder="Número de celular">
+                    </div>
+                </div>
+
+                <div class="acciones">
+                    <button type="submit" class="boton-guardar">
+                        Guardar información
+                    </button>
+
+                    <button type="button" class="boton-editar" id="botonEditar">
+                        Editar información
+                    </button>
+                </div>
+
+                <p class="mensaje" id="mensaje"></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="informacion-personal.js"></script>
+
+</body>
+
+</html>

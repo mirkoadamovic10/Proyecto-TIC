@@ -5,7 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Inicio - NeuroPassport</title>
 
     <link rel="stylesheet" href="../style.css">
@@ -41,22 +40,77 @@
 
         .nombre-neuropassport {
             color: #D9E2E3;
-            font-size: 23px;
+            font-size: 27px !important;
             font-weight: 600;
             text-decoration: none;
+        }
+
+        /* PERFIL */
+        .contenedor-perfil {
+            position: relative;
+            flex-shrink: 0;
         }
 
         .perfil-medico {
             width: 42px;
             height: 42px;
+            padding: 0;
+            border: none;
             border-radius: 50%;
             background: #D9E2E3;
             color: #2F7185;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .perfil-medico svg {
+            width: 27px !important;
+            height: 27px !important;
+        }
+
+        /* MENÚ DEL PERFIL */
+        .menu-perfil[hidden] {
+            display: none !important;
+        }
+
+        .menu-perfil {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            z-index: 10001;
+            width: 205px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+        }
+
+        .opcion-perfil {
+            width: 100%;
+            min-height: 39px;
+            padding: 10px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 8px;
+            background: #E1E8E9;
+            color: #2F7185;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
             text-decoration: none;
+            cursor: pointer;
+        }
+
+        .opcion-perfil:hover {
+            background: #D4E0E2;
         }
 
         /* CONTENIDO PRINCIPAL */
@@ -71,14 +125,14 @@
             font-size: 20px;
             font-weight: 600;
             letter-spacing: 1px;
-            color: #2F7185;
+            color: #000000 !important;
         }
 
         .titulo-medico {
             margin: 0 0 14px;
             font-size: 48px;
             font-weight: 700;
-            color: #285866;
+            color: #000000 !important;
         }
 
         .descripcion-medico {
@@ -86,7 +140,7 @@
             margin: 0 auto;
             font-size: 20px;
             line-height: 1.5;
-            color: #294D57;
+            color: #000000 !important;
         }
 
         /* TARJETAS */
@@ -170,14 +224,57 @@
         .franja-informativa h2 {
             margin: 0 0 5px;
             font-size: 21px;
-            color: #285866;
+            color: #FFFFFF !important;
         }
 
         .franja-informativa p {
             margin: 0;
             font-size: 16px;
             line-height: 1.5;
-            color: #294D57;
+            color: #FFFFFF !important;
+        }
+
+        /* COLORES DE LAS TARJETAS */
+        .tarjeta-empresa:first-child {
+            border-color: #2F7185 !important;
+        }
+
+        .tarjeta-empresa:first-child h2,
+        .tarjeta-empresa:first-child p {
+            color: #000000 !important;
+        }
+
+        .tarjeta-empresa:first-child .boton-tarjeta {
+            color: #2F7185 !important;
+        }
+
+        .tarjeta-empresa:nth-child(2) {
+            border-color: #BA8DDB !important;
+        }
+
+        .tarjeta-empresa:nth-child(2) h2,
+        .tarjeta-empresa:nth-child(2) p,
+        .tarjeta-empresa:nth-child(2) .boton-tarjeta {
+            color: #000000 !important;
+        }
+
+        .tarjeta-empresa:nth-child(2) .boton-tarjeta {
+            background-color: #BA8DDB !important;
+        }
+
+        .tarjeta-empresa:nth-child(3) {
+            border-color: #B9E4AE !important;
+            grid-column: 1 / -1;
+            justify-self: center;
+        }
+
+        .tarjeta-empresa:nth-child(3) h2,
+        .tarjeta-empresa:nth-child(3) p {
+            color: #000000 !important;
+        }
+
+        .tarjeta-empresa:nth-child(3) .boton-tarjeta {
+            background-color: #B9E4AE !important;
         }
 
         /* TABLETS */
@@ -217,7 +314,7 @@
             }
 
             .nombre-neuropassport {
-                font-size: 20px;
+                font-size: 20px !important;
             }
 
             .contenido-medico {
@@ -262,97 +359,70 @@
                 margin-top: 30px;
                 padding: 20px;
             }
+
+            .menu-perfil {
+                width: 195px;
+            }
         }
-        /* Borde de la tarjeta Pacientes */
-.tarjeta-empresa:first-child {
-    border-color: #2F7185 !important;
-}
-
-/* Texto del botón Ver pacientes */
-.tarjeta-empresa:first-child .boton-tarjeta {
-    color: #2F7185 !important;
-}
-/* Borde de la tarjeta Agenda */
-.tarjeta-empresa:nth-child(2) {
-    border-color: #BA8DDB !important;
-}
-
-/* Botón Ver agenda */
-.tarjeta-empresa:nth-child(2) .boton-tarjeta {
-    background-color: #BA8DDB !important;
-    color: #000000 !important;
-}
-/* Texto completo de la tarjeta Agenda en negro */
-.tarjeta-empresa:nth-child(2) h2,
-.tarjeta-empresa:nth-child(2) p,
-.tarjeta-empresa:nth-child(2) .boton-tarjeta {
-    color: #000000 !important;
-}
-/* Título y descripción de la tarjeta Pacientes en negro */
-.tarjeta-empresa:first-child h2,
-.tarjeta-empresa:first-child p {
-    color: #000000 !important;
-}
-/* Borde de la tarjeta Hospitales */
-.tarjeta-empresa:nth-child(3) {
-    border-color: #B9E4AE !important;
-}
-
-/* Botón Ver hospitales */
-.tarjeta-empresa:nth-child(3) .boton-tarjeta {
-    background-color: #B9E4AE !important;
-}
-/* Título y descripción de la tarjeta Hospitales en negro */
-.tarjeta-empresa:nth-child(3) h2,
-.tarjeta-empresa:nth-child(3) p {
-    color: #000000 !important;
-}
-/* Centrar la tarjeta Hospitales */
-.tarjeta-empresa:nth-child(3) {
-    grid-column: 1 / -1;
-    justify-self: center;
-}
-/* Texto de Seguimiento de pacientes en blanco */
-.franja-informativa h2,
-.franja-informativa p {
-    color: #FFFFFF !important;
-}
-/* Textos principales en negro */
-.etiqueta-medico,
-.titulo-medico,
-.descripcion-medico {
-    color: #000000 !important;
-}
-.nombre-neuropassport {
-    font-size: 27px !important;
-}
-.perfil-medico svg {
-    width: 27px !important;
-    height: 27px !important;
-}
-
     </style>
 </head>
 
 <body>
 
     <nav class="navbar-medico">
-        <a href="../index.html" class="nombre-neuropassport">NeuroPassport</a>
 
-        <a href="perfil.html" class="perfil-medico" aria-label="Perfil">
-            <svg viewBox="0 0 40 40" aria-hidden="true">
-                <circle cx="20" cy="13" r="7" fill="#000000" />
-                <path d="M7 35 C7 25, 12 21, 20 21 C28 21, 33 25, 33 35 Z"
-                      fill="#000000" />
-            </svg>
+        <a href="/index.html" class="nombre-neuropassport">
+            NeuroPassport
         </a>
+
+        <div class="contenedor-perfil">
+
+            <button
+                type="button"
+                class="perfil-medico"
+                id="botonPerfil"
+                aria-label="Abrir perfil"
+                aria-expanded="false">
+
+                <svg viewBox="0 0 40 40" aria-hidden="true">
+                    <circle cx="20" cy="13" r="7" fill="#000000" />
+                    <path
+                        d="M7 35 C7 25, 12 21, 20 21 C28 21, 33 25, 33 35 Z"
+                        fill="#000000" />
+                </svg>
+
+            </button>
+
+            <div class="menu-perfil" id="menuPerfil" hidden>
+
+                <a href="configuracion.html" class="opcion-perfil">
+                    Configuración
+                </a>
+
+                <a href="informacion-personal.html" class="opcion-perfil">
+                    Información personal
+                </a>
+
+                <button
+                    type="button"
+                    class="opcion-perfil"
+                    id="cerrarSesion">
+                    Cerrar sesión
+                </button>
+
+            </div>
+
+        </div>
+
     </nav>
 
     <main class="contenido-medico">
 
         <p class="etiqueta-medico">PROFESIONAL</p>
 
-        <h1 class="titulo-medico">¡Hola! Bienvenido a NeuroPassport</h1>
+        <h1 class="titulo-medico">
+            ¡Hola! Bienvenido a NeuroPassport
+        </h1>
 
         <p class="descripcion-medico">
             Desde este espacio podés acceder a la informacion de tus pacientes y realizar un seguimiento de sus objetivos
@@ -364,8 +434,7 @@
                 <h2>Pacientes</h2>
 
                 <p>
-                    Consultá las personas vinculadas  
-y accedé a la informacion que hayan habilitado
+                    Consultá las personas vinculadas y accedé a la informacion que hayan habilitado
                 </p>
 
                 <a href="pacientes.html" class="boton-tarjeta">
@@ -402,16 +471,53 @@ y accedé a la informacion que hayan habilitado
     </main>
 
     <section class="franja-informativa">
-        <h2>Seguimineto de pacientes</h2>
+
+        <h2>Seguimiento de pacientes</h2>
 
         <p>
-        
-            Desde el perfil de cada paciente vas a poder agregar objetivos y marcar si fueron cumplidos o todavia estan pendientes 
+            Desde el perfil de cada paciente vas a poder agregar objetivos y marcar si fueron cumplidos o todavía están pendientes.
         </p>
+
     </section>
 
     <script src="medico.js"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const botonPerfil = document.getElementById("botonPerfil");
+            const menuPerfil = document.getElementById("menuPerfil");
+            const cerrarSesion = document.getElementById("cerrarSesion");
+
+            // Abrir y cerrar el menú del perfil.
+            botonPerfil.addEventListener("click", (evento) => {
+                evento.stopPropagation();
+
+                menuPerfil.hidden = !menuPerfil.hidden;
+
+                botonPerfil.setAttribute(
+                    "aria-expanded",
+                    String(!menuPerfil.hidden)
+                );
+            });
+
+            // Evitar que el menú se cierre al tocar sus opciones.
+            menuPerfil.addEventListener("click", (evento) => {
+                evento.stopPropagation();
+            });
+
+            // Cerrar el menú al tocar fuera.
+            document.addEventListener("click", () => {
+                menuPerfil.hidden = true;
+                botonPerfil.setAttribute("aria-expanded", "false");
+            });
+
+            // Cerrar sesión y volver al inicio.
+            cerrarSesion.addEventListener("click", () => {
+                localStorage.removeItem("token");
+                window.location.href = "/index.html";
+            });
+        });
+    </script>
+
 </body>
 </html>
-```
