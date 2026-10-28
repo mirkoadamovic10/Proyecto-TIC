@@ -1,141 +1,477 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Agenda - NeuroPassport</title>
 
-    <title>NeuroPassport - Agenda médica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link
-        rel="stylesheet"
-        href="../../style.css"
-    >
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #F0F8ED;
+            color: #294d57;
+        }
+
+        /* BARRA DE NAVEGACIÓN */
+
+        .barra-empresa {
+            width: 100%;
+            min-height: 70px;
+            padding: 12px 35px;
+            background: #A34C4C;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 25px;
+        }
+
+        .menu-empresa {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .boton-menu-empresa {
+            min-width: 120px;
+            height: 38px;
+            padding: 0 16px;
+            border-radius: 8px;
+            background: #D6B5E2;
+            color: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .boton-menu-empresa:hover {
+            background: #c8a0d8;
+        }
+
+        /* PERFIL */
+
+        .perfil-empresa {
+            width: 42px;
+            height: 42px;
+            border: 2px solid #D9E2E3;
+            border-radius: 50%;
+            position: relative;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .perfil-cabeza {
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            top: 7px;
+            left: 13px;
+            border-radius: 50%;
+            background: #D9E2E3;
+        }
+
+        .perfil-cuerpo {
+            width: 23px;
+            height: 12px;
+            position: absolute;
+            bottom: 5px;
+            left: 7px;
+            border-radius: 13px 13px 8px 8px;
+            background: #D9E2E3;
+        }
+
+        /* ENCABEZADO */
+
+        .empresa-principal {
+            width: 100%;
+            min-height: calc(100vh - 70px);
+            padding: 45px 20px 60px;
+        }
+
+        .empresa-bienvenida {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto 35px;
+        }
+
+        .empresa-bienvenida header {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+        }
+
+        .empresa-bienvenida h1 {
+            margin: 0 0 12px;
+            color: #285866;
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .empresa-bienvenida p {
+            margin: 0;
+            color: #65747b;
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        /* CALENDARIO */
+
+        .calendario-medico {
+            width: min(100%, 1000px);
+            margin: 0 auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 18px rgba(40, 88, 102, 0.10);
+        }
+
+        .calendario-cabecera {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .calendario-cabecera h2 {
+            margin: 0;
+            color: #285866;
+            font-size: 25px;
+            font-weight: 600;
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        .calendario-cabecera button {
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 8px;
+            background: #D6B5E2;
+            color: #000000;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .calendario-cabecera button:hover {
+            background: #c8a0d8;
+        }
+
+        .calendario-semana,
+        .calendario-dias {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .calendario-semana {
+            margin-bottom: 10px;
+        }
+
+        .calendario-semana div {
+            padding: 12px 0;
+            color: #285866;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .dia-calendario {
+            min-width: 0;
+            min-height: 90px;
+            padding: 10px;
+            border: 1px solid #dce8e8;
+            border-radius: 9px;
+            background: #f8fcfc;
+            color: #294d57;
+            text-align: left;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            overflow-wrap: anywhere;
+        }
+
+        .dia-calendario:hover {
+            border-color: #397d8c;
+            background: #dff2f3;
+        }
+
+        .dia-calendario.vacio {
+            border: none;
+            background: transparent;
+            cursor: default;
+        }
+
+        .dia-calendario.hoy {
+            border: 2px solid #397d8c;
+        }
+
+        .numero-dia {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .indicador-turno {
+            display: block;
+            margin-top: 4px;
+            padding: 4px;
+            border-radius: 5px;
+            background: #B9DFCC;
+            color: #285866;
+            font-size: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        /* MODAL PARA AGREGAR SESIONES */
+
+        .modal-agenda[hidden] {
+            display: none !important;
+        }
+
+        .modal-agenda {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.45);
+            overflow-y: auto;
+        }
+
+        .modal-agenda-contenido {
+            position: relative;
+            width: min(480px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .modal-agenda-contenido h2 {
+            margin: 0 35px 10px 0;
+            color: #285866;
+            font-size: 25px;
+        }
+
+        #fechaSeleccionada {
+            margin: 0 0 22px;
+            color: #65747b;
+            font-size: 14px;
+        }
+
+        .cerrar-modal-agenda {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 8px;
+            background: #E1E8E9;
+            color: #294d57;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        .campo-agenda {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .campo-agenda label {
+            color: #285866;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .campo-agenda input,
+        .campo-agenda textarea,
+        .campo-agenda select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cbdfe1;
+            border-radius: 9px;
+            outline-color: #397d8c;
+            background: #f8fcfc;
+            color: #294d57;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .campo-agenda textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .boton-guardar-agenda {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #B9DFCC;
+            color: #285866;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .boton-guardar-agenda:hover {
+            background: #a5d5ba;
+        }
+
+        .turno-guardado {
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            background: #dff2f3;
+            color: #285866;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .turno-guardado p {
+            margin: 7px 0 0;
+        }
+
+        .eliminar-turno {
+            float: right;
+            margin-left: 8px;
+            padding: 5px 8px;
+            border: none;
+            border-radius: 5px;
+            background: #f1dada;
+            color: #633333;
+            cursor: pointer;
+        }
+
+        /* ADAPTACIÓN A CELULARES */
+
+        @media (max-width: 650px) {
+            .barra-empresa {
+                padding: 12px;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .menu-empresa {
+                gap: 6px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .boton-menu-empresa {
+                min-width: auto;
+                padding: 0 10px;
+                font-size: 12px;
+            }
+
+            .empresa-principal {
+                padding: 35px 10px;
+            }
+
+            .empresa-bienvenida h1 {
+                font-size: 36px;
+            }
+
+            .empresa-bienvenida p {
+                font-size: 16px;
+            }
+
+            .calendario-medico {
+                padding: 12px;
+            }
+
+            .calendario-semana,
+            .calendario-dias {
+                gap: 3px;
+            }
+
+            .calendario-semana div {
+                font-size: 11px;
+            }
+
+            .dia-calendario {
+                min-height: 60px;
+                padding: 5px 3px;
+                font-size: 11px;
+            }
+
+            .indicador-turno {
+                padding: 3px;
+                font-size: 9px;
+            }
+
+            .calendario-cabecera h2 {
+                font-size: 20px;
+            }
+
+            .modal-agenda-contenido {
+                padding: 23px;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
-
-    <!-- ===================================== -->
-    <!-- BARRA SUPERIOR -->
-    <!-- ===================================== -->
-
     <header class="barra-empresa">
 
-        <nav
-            class="menu-empresa"
-            aria-label="Navegación principal"
-        >
-
-            <a
-                href="medico.html"
-                class="boton-menu-empresa"
-            >
-                Inicio
-            </a>
-
-
-            <a
-                href="pacientes.html"
-                class="boton-menu-empresa"
-            >
-                Pacientes
-            </a>
-
-
-            <a
-                href="agenda-medico.html"
-                class="boton-menu-empresa"
-            >
-                Agenda
-            </a>
-
+        <nav class="menu-empresa">
+            <a href="medico.html" class="boton-menu-empresa">Inicio</a>
+            <a href="pacientes.html" class="boton-menu-empresa">Pacientes</a>
+            <a href="agenda-medico.html" class="boton-menu-empresa">Agenda</a>
         </nav>
 
-
-        <a
-            href="configuracion.html"
-            class="perfil-empresa"
-            title="Configuración"
-            aria-label="Configuración"
-        >
-
+        <a href="configuracion.html"
+           class="perfil-empresa"
+           title="Configuración"
+           aria-label="Configuración">
             <span class="perfil-cabeza"></span>
-
             <span class="perfil-cuerpo"></span>
-
         </a>
 
     </header>
 
-
-
-    <!-- ===================================== -->
-    <!-- CONTENIDO -->
-    <!-- ===================================== -->
-
     <main class="empresa-principal">
 
-
         <section class="empresa-bienvenida">
-
             <header>
-
-                <h1>
-                    Agenda
-                </h1>
-
-                <p>
-                    Organizá tus turnos y consultas.
-                </p>
-
+                <h1>Agenda</h1>
+                <p>Organizá tus sesiones y consultas.</p>
             </header>
-
         </section>
-
-
-
-        <!-- ================================= -->
-        <!-- CALENDARIO -->
-        <!-- ================================= -->
 
         <section class="calendario-medico">
 
             <div class="calendario-cabecera">
-
-                <button
-                    type="button"
-                    id="mesAnterior"
-                >
-                    ‹
-                </button>
-
-
-                <h2 id="mesActual">
-                    Mes
-                </h2>
-
-
-                <button
-                    type="button"
-                    id="mesSiguiente"
-                >
-                    ›
-                </button>
-
+                <button type="button" id="mesAnterior" aria-label="Mes anterior">‹</button>
+                <h2 id="mesActual"></h2>
+                <button type="button" id="mesSiguiente" aria-label="Mes siguiente">›</button>
             </div>
 
-
-
             <div class="calendario-semana">
-
                 <div>Lun</div>
                 <div>Mar</div>
                 <div>Mié</div>
@@ -143,167 +479,70 @@
                 <div>Vie</div>
                 <div>Sáb</div>
                 <div>Dom</div>
-
             </div>
 
-
-
-            <div
-                class="calendario-dias"
-                id="calendarioDias"
-            >
-            </div>
+            <div id="calendarioDias" class="calendario-dias"></div>
 
         </section>
 
-
-
     </main>
 
-
-
-    <!-- ===================================== -->
-    <!-- MODAL NUEVO TURNO -->
-    <!-- ===================================== -->
-
-    <div
-        class="modal-agenda"
-        id="modalAgenda"
-        hidden
-    >
+    <div id="modalAgenda" class="modal-agenda" hidden>
 
         <div class="modal-agenda-contenido">
 
-
-            <button
-                type="button"
-                class="cerrar-modal-agenda"
-                id="cerrarModal"
-                aria-label="Cerrar"
-            >
+            <button type="button"
+                    id="cerrarModal"
+                    class="cerrar-modal-agenda">
                 ×
             </button>
 
+            <h2>Agregar sesión</h2>
 
-            <h2>
-                Nuevo turno
-            </h2>
+            <p id="fechaSeleccionada"></p>
 
+            <div id="turnosDelDia"></div>
 
-            <p id="fechaSeleccionada">
-                Fecha
-            </p>
+            <form id="formularioTurno">
 
+                <div class="campo-agenda">
+                    <label for="nombrePaciente">Paciente</label>
+                    <input type="text" id="nombrePaciente" placeholder="Nombre del paciente" required>
+                </div>
 
+                <div class="campo-agenda">
+                    <label for="horaTurno">Hora</label>
+                    <input type="time" id="horaTurno" required>
+                </div>
 
-            <!-- PACIENTE -->
+                <div class="campo-agenda">
+                    <label for="motivoConsulta">Motivo de consulta</label>
+                    <textarea id="motivoConsulta" placeholder="Escribí el motivo de la consulta"></textarea>
+                </div>
 
-            <div class="campo-agenda">
+                <div class="campo-agenda">
+                    <label for="tipoTurno">Tipo de turno</label>
+                    <select id="tipoTurno" required>
+                        <option value="">Seleccioná una opción</option>
+                        <option value="primera-consulta">Primera consulta</option>
+                        <option value="sesion">Sesión</option>
+                        <option value="seguimiento">Seguimiento</option>
+                        <option value="control">Control</option>
+                    </select>
+                </div>
 
-                <label for="nombrePaciente">
-                    Nombre del paciente
-                </label>
+                <button type="submit" id="guardarTurno" class="boton-guardar-agenda">
+                    Guardar turno
+                </button>
 
-                <input
-                    type="text"
-                    id="nombrePaciente"
-                    placeholder="Ingresá el nombre"
-                >
-
-            </div>
-
-
-
-            <!-- HORA -->
-
-            <div class="campo-agenda">
-
-                <label for="horaTurno">
-                    Hora
-                </label>
-
-                <input
-                    type="time"
-                    id="horaTurno"
-                >
-
-            </div>
-
-
-
-            <!-- MOTIVO -->
-
-            <div class="campo-agenda">
-
-                <label for="motivoConsulta">
-                    Motivo de consulta
-                </label>
-
-                <textarea
-                    id="motivoConsulta"
-                    placeholder="Ingresá el motivo de la consulta"
-                ></textarea>
-
-            </div>
-
-
-
-            <!-- TIPO -->
-
-            <div class="campo-agenda">
-
-                <label for="tipoTurno">
-                    Tipo de turno
-                </label>
-
-                <select id="tipoTurno">
-
-                    <option value="">
-                        Seleccioná una opción
-                    </option>
-
-                    <option value="Consulta">
-                        Consulta
-                    </option>
-
-                    <option value="Control">
-                        Control
-                    </option>
-
-                    <option value="Seguimiento">
-                        Seguimiento
-                    </option>
-
-                    <option value="Estudio">
-                        Estudio
-                    </option>
-
-                </select>
-
-            </div>
-
-
-
-            <button
-                type="button"
-                class="boton-guardar-agenda"
-                id="guardarTurno"
-            >
-                Guardar turno
-            </button>
-
+            </form>
 
         </div>
 
     </div>
 
-
-
-    <script
-        src="agenda-medico.js"
-        defer
-    ></script>
+    <script src="agenda-medico.js" defer></script>
 
 </body>
-
 </html>
+```

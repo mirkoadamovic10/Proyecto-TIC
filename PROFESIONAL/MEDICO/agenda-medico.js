@@ -1,460 +1,270 @@
-// ==========================================
-// ELEMENTOS
-// ==========================================
 
-const calendarioDias =
-    document.getElementById(
-        "calendarioDias"
-    );
+document.addEventListener("DOMContentLoaded", () => {
+    const mesActual = document.getElementById("mesActual");
+    const calendarioDias = document.getElementById("calendarioDias");
+    const mesAnterior = document.getElementById("mesAnterior");
+    const mesSiguiente = document.getElementById("mesSiguiente");
 
-const mesActual =
-    document.getElementById(
-        "mesActual"
-    );
+    const modalAgenda = document.getElementById("modalAgenda");
+    const cerrarModal = document.getElementById("cerrarModal");
+    const fechaSeleccionada = document.getElementById("fechaSeleccionada");
+    const turnosDelDia = document.getElementById("turnosDelDia");
+    const formularioTurno = document.getElementById("formularioTurno");
 
-const mesAnterior =
-    document.getElementById(
-        "mesAnterior"
-    );
+    const nombrePaciente = document.getElementById("nombrePaciente");
+    const horaTurno = document.getElementById("horaTurno");
+    const motivoConsulta = document.getElementById("motivoConsulta");
+    const tipoTurno = document.getElementById("tipoTurno");
 
-const mesSiguiente =
-    document.getElementById(
-        "mesSiguiente"
-    );
+    const CLAVE_TURNOS = "agendaTurnosMedico";
 
-const modalAgenda =
-    document.getElementById(
-        "modalAgenda"
-    );
+    let fechaVisible = new Date();
+    let fechaElegida = "";
 
-const cerrarModal =
-    document.getElementById(
-        "cerrarModal"
-    );
+    function obtenerTurnos() {
+        try {
+            return JSON.parse(localStorage.getItem(CLAVE_TURNOS)) || {};
+        } catch (error) {
+            return {};
+        }
+    }
 
-const fechaSeleccionada =
-    document.getElementById(
-        "fechaSeleccionada"
-    );
+    function guardarTurnos(turnos) {
+        localStorage.setItem(CLAVE_TURNOS, JSON.stringify(turnos));
+    }
 
-const nombrePaciente =
-    document.getElementById(
-        "nombrePaciente"
-    );
+    function fechaISO(anio, mes, dia) {
+        return [
+            anio,
+            String(mes + 1).padStart(2, "0"),
+            String(dia).padStart(2, "0")
+        ].join("-");
+    }
 
-const horaTurno =
-    document.getElementById(
-        "horaTurno"
-    );
+    function renderizarCalendario() {
+        const anio = fechaVisible.getFullYear();
+        const mes = fechaVisible.getMonth();
 
-const motivoConsulta =
-    document.getElementById(
-        "motivoConsulta"
-    );
+        mesActual.textContent = new Date(anio, mes, 1)
+            .toLocaleDateString("es-AR", {
+                month: "long",
+                year: "numeric"
+            });
 
-const tipoTurno =
-    document.getElementById(
-        "tipoTurno"
-    );
+        calendarioDias.replaceChildren();
 
-const guardarTurno =
-    document.getElementById(
-        "guardarTurno"
-    );
+        // JavaScript usa domingo = 0. El calendario comienza el lunes.
+        const primerDia = (new Date(anio, mes, 1).getDay() + 6) % 7;
+        const cantidadDias = new Date(anio, mes + 1, 0).getDate();
 
+        for (let i = 0; i < primerDia; i++) {
+            const espacio = document.createElement("div");
+            espacio.className = "dia-calendario vacio";
+            espacio.setAttribute("aria-hidden", "true");
+            calendarioDias.appendChild(espacio);
+        }
 
-// ==========================================
-// FECHA ACTUAL
-// ==========================================
+        const hoy = new Date();
+        const claveHoy = fechaISO(
+            hoy.getFullYear(),
+            hoy.getMonth(),
+            hoy.getDate()
+        );
 
-let fechaCalendario = new Date();
+        const turnos = obtenerTurnos();
 
-let fechaElegida = "";
+        for (let dia = 1; dia <= cantidadDias; dia++) {
+            const claveFecha = fechaISO(anio, mes, dia);
+            const botonDia = document.createElement("button");
 
+            botonDia.type = "button";
+            botonDia.className = "dia-calendario";
 
-// ==========================================
-// TURNOS GUARDADOS
-// ==========================================
+            if (claveFecha === claveHoy) {
+                botonDia.classList.add("hoy");
+            }
 
-let turnos =
-    JSON.parse(
-        localStorage.getItem(
-            "turnosMedico"
-        )
-    ) || [];
+            const numero = document.createElement("span");
+            numero.className = "numero-dia";
+            numero.textContent = dia;
+            botonDia.appendChild(numero);
 
+            const turnosFecha = turnos[claveFecha] || [];
 
-// ==========================================
-// NOMBRES DE LOS MESES
-// ==========================================
+            turnosFecha.forEach((turno) => {
+                const indicador = document.createElement("span");
+                indicador.className = "indicador-turno";
+                indicador.textContent = `${turno.hora} ${turno.paciente}`;
+                botonDia.appendChild(indicador);
+            });
 
-const nombresMeses = [
+            botonDia.addEventListener("click", () => {
+                abrirModal(claveFecha);
+            });
 
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre"
+            calendarioDias.appendChild(botonDia);
+        }
+    }
 
-];
+    function abrirModal(claveFecha) {
+        fechaElegida = claveFecha;
 
+        const [anio, mes, dia] = claveFecha.split("-").map(Number);
+        const fecha = new Date(anio, mes - 1, dia);
 
-// ==========================================
-// MOSTRAR CALENDARIO
-// ==========================================
+        fechaSeleccionada.textContent = fecha.toLocaleDateString("es-AR", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
 
-function mostrarCalendario() {
+        formularioTurno.reset();
+        renderizarTurnosDelDia();
 
-    calendarioDias.innerHTML = "";
+        modalAgenda.hidden = false;
+        nombrePaciente.focus();
+    }
 
+    function cerrarVentana() {
+        modalAgenda.hidden = true;
+        fechaElegida = "";
+    }
 
-    const año =
-        fechaCalendario.getFullYear();
+    function renderizarTurnosDelDia() {
+        turnosDelDia.replaceChildren();
 
-    const mes =
-        fechaCalendario.getMonth();
+        const turnos = obtenerTurnos();
+        const lista = turnos[fechaElegida] || [];
 
+        if (lista.length === 0) {
+            const mensaje = document.createElement("p");
+            mensaje.textContent = "No hay turnos para este día.";
+            turnosDelDia.appendChild(mensaje);
+            return;
+        }
 
-    mesActual.textContent =
-        `${nombresMeses[mes]} ${año}`;
+        lista.forEach((turno, indice) => {
+            const tarjeta = document.createElement("div");
+            tarjeta.className = "turno-guardado";
 
+            const detalle = document.createElement("div");
+            const titulo = document.createElement("strong");
+            titulo.textContent = `${turno.hora} — ${turno.paciente}`;
 
-    // Primer día del mes
+            const motivo = document.createElement("p");
+            motivo.textContent = turno.motivo || "Sin motivo especificado.";
 
-    const primerDia =
-        new Date(
-            año,
-            mes,
+            const tipo = document.createElement("p");
+            tipo.textContent = `Tipo: ${etiquetaTipo(turno.tipo)}`;
+
+            detalle.append(titulo, motivo, tipo);
+
+            const eliminar = document.createElement("button");
+            eliminar.type = "button";
+            eliminar.className = "eliminar-turno";
+            eliminar.textContent = "Eliminar";
+            eliminar.setAttribute("aria-label", `Eliminar turno de ${turno.paciente}`);
+
+            eliminar.addEventListener("click", () => {
+                const turnosActuales = obtenerTurnos();
+                turnosActuales[fechaElegida].splice(indice, 1);
+
+                if (turnosActuales[fechaElegida].length === 0) {
+                    delete turnosActuales[fechaElegida];
+                }
+
+                guardarTurnos(turnosActuales);
+                renderizarCalendario();
+                renderizarTurnosDelDia();
+            });
+
+            tarjeta.append(eliminar, detalle);
+            turnosDelDia.appendChild(tarjeta);
+        });
+    }
+
+    function etiquetaTipo(tipo) {
+        const etiquetas = {
+            "primera-consulta": "Primera consulta",
+            "sesion": "Sesión",
+            "seguimiento": "Seguimiento",
+            "control": "Control"
+        };
+
+        return etiquetas[tipo] || tipo;
+    }
+
+    mesAnterior.addEventListener("click", () => {
+        fechaVisible = new Date(
+            fechaVisible.getFullYear(),
+            fechaVisible.getMonth() - 1,
             1
         );
 
+        renderizarCalendario();
+    });
 
-    // Último día del mes
-
-    const ultimoDia =
-        new Date(
-            año,
-            mes + 1,
-            0
+    mesSiguiente.addEventListener("click", () => {
+        fechaVisible = new Date(
+            fechaVisible.getFullYear(),
+            fechaVisible.getMonth() + 1,
+            1
         );
 
+        renderizarCalendario();
+    });
 
-    let diaInicio =
-        primerDia.getDay();
+    cerrarModal.addEventListener("click", cerrarVentana);
 
-
-    // Convertimos domingo = 0
-    // a domingo = 7
-
-    if (diaInicio === 0) {
-
-        diaInicio = 7;
-
-    }
-
-
-    const cantidadDias =
-        ultimoDia.getDate();
-
-
-    // ======================================
-    // ESPACIOS ANTES DEL PRIMER DÍA
-    // ======================================
-
-    for (
-        let i = 1;
-        i < diaInicio;
-        i++
-    ) {
-
-        const espacio =
-            document.createElement(
-                "div"
-            );
-
-        espacio.className =
-            "dia-vacio";
-
-        calendarioDias.appendChild(
-            espacio
-        );
-
-    }
-
-
-    // ======================================
-    // CREAR DÍAS
-    // ======================================
-
-    for (
-        let dia = 1;
-        dia <= cantidadDias;
-        dia++
-    ) {
-
-        const celda =
-            document.createElement(
-                "button"
-            );
-
-
-        celda.type =
-            "button";
-
-
-        celda.className =
-            "dia-calendario";
-
-
-        celda.dataset.fecha =
-            `${año}-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
-
-
-        celda.innerHTML = `
-            <span class="numero-dia">
-                ${dia}
-            </span>
-        `;
-
-
-        // ==================================
-        // TURNOS DE ESE DÍA
-        // ==================================
-
-        const turnosDelDia =
-            turnos.filter(
-                function (turno) {
-
-                    return (
-                        turno.fecha ===
-                        celda.dataset.fecha
-                    );
-
-                }
-            );
-
-
-        if (
-            turnosDelDia.length > 0
-        ) {
-
-            const indicador =
-                document.createElement(
-                    "div"
-                );
-
-
-            indicador.className =
-                "indicador-turno";
-
-
-            indicador.textContent =
-                `${turnosDelDia.length} turno${turnosDelDia.length > 1 ? "s" : ""}`;
-
-
-            celda.appendChild(
-                indicador
-            );
-
+    modalAgenda.addEventListener("click", (evento) => {
+        if (evento.target === modalAgenda) {
+            cerrarVentana();
         }
+    });
 
+    document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape" && !modalAgenda.hidden) {
+            cerrarVentana();
+        }
+    });
 
-        // ==================================
-        // CLICK EN DÍA
-        // ==================================
+    formularioTurno.addEventListener("submit", (evento) => {
+        evento.preventDefault();
 
-        celda.addEventListener(
-            "click",
-            function () {
+        if (!fechaElegida) return;
 
-                abrirModal(
-                    celda.dataset.fecha
-                );
+        const paciente = nombrePaciente.value.trim();
+        const hora = horaTurno.value;
+        const tipo = tipoTurno.value;
 
-            }
-        );
-
-
-        calendarioDias.appendChild(
-            celda
-        );
-
-    }
-
-}
-
-
-// ==========================================
-// ABRIR MODAL
-// ==========================================
-
-function abrirModal(fecha) {
-
-    fechaElegida =
-        fecha;
-
-
-    const partes =
-        fecha.split("-");
-
-
-    fechaSeleccionada.textContent =
-        `Fecha: ${partes[2]}/${partes[1]}/${partes[0]}`;
-
-
-    nombrePaciente.value = "";
-
-    horaTurno.value = "";
-
-    motivoConsulta.value = "";
-
-    tipoTurno.value = "";
-
-
-    modalAgenda.hidden =
-        false;
-
-}
-
-
-// ==========================================
-// CERRAR MODAL
-// ==========================================
-
-function cerrarVentana() {
-
-    modalAgenda.hidden =
-        true;
-
-}
-
-
-cerrarModal.addEventListener(
-    "click",
-    cerrarVentana
-);
-
-
-// ==========================================
-// GUARDAR TURNO
-// ==========================================
-
-guardarTurno.addEventListener(
-    "click",
-    function () {
-
-
-        if (
-            nombrePaciente.value.trim() === "" ||
-            horaTurno.value === "" ||
-            motivoConsulta.value.trim() === "" ||
-            tipoTurno.value === ""
-        ) {
-
-            alert(
-                "Completá todos los datos del turno."
-            );
-
+        if (!paciente || !hora || !tipo) {
+            alert("Completá el paciente, la hora y el tipo de turno.");
             return;
-
         }
 
+        const turnos = obtenerTurnos();
 
-        const nuevoTurno = {
+        if (!turnos[fechaElegida]) {
+            turnos[fechaElegida] = [];
+        }
 
-            id:
-                Date.now(),
+        turnos[fechaElegida].push({
+            paciente,
+            hora,
+            motivo: motivoConsulta.value.trim(),
+            tipo
+        });
 
-            fecha:
-                fechaElegida,
-
-            paciente:
-                nombrePaciente.value.trim(),
-
-            hora:
-                horaTurno.value,
-
-            motivo:
-                motivoConsulta.value.trim(),
-
-            tipo:
-                tipoTurno.value
-
-        };
-
-
-        turnos.push(
-            nuevoTurno
+        turnos[fechaElegida].sort((a, b) =>
+            a.hora.localeCompare(b.hora)
         );
 
+        guardarTurnos(turnos);
+        renderizarCalendario();
+        renderizarTurnosDelDia();
+        formularioTurno.reset();
+    });
 
-        localStorage.setItem(
-            "turnosMedico",
-            JSON.stringify(
-                turnos
-            )
-        );
-
-
-        cerrarVentana();
-
-
-        mostrarCalendario();
-
-
-        alert(
-            "Turno guardado correctamente."
-        );
-
-    }
-);
-
-
-// ==========================================
-// MES ANTERIOR
-// ==========================================
-
-mesAnterior.addEventListener(
-    "click",
-    function () {
-
-        fechaCalendario.setMonth(
-            fechaCalendario.getMonth() - 1
-        );
-
-        mostrarCalendario();
-
-    }
-);
-
-
-// ==========================================
-// MES SIGUIENTE
-// ==========================================
-
-mesSiguiente.addEventListener(
-    "click",
-    function () {
-
-        fechaCalendario.setMonth(
-            fechaCalendario.getMonth() + 1
-        );
-
-        mostrarCalendario();
-
-    }
-);
-
-
-// ==========================================
-// INICIAR
-// ==========================================
-
-mostrarCalendario();
+    renderizarCalendario();
+});
