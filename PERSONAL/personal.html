@@ -1,25 +1,26 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>NeuroPassport - Inicio</title>
 
     <link rel="stylesheet" href="../style.css">
 
     <style>
-        /* NAVBAR */
+        body {
+            background: #F1FAEE !important;
+        }
+
         body > header.barra-personal {
             width: 100%;
-            min-height: 85px;
-            padding: 18px 5%;
+            min-height: 75px;
+            padding: 13px 5%;
             box-sizing: border-box;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-end;
             gap: 20px;
             background: #7C7878 !important;
             background-image: none !important;
@@ -29,11 +30,21 @@
             z-index: 100;
         }
 
-        /* MENÚ PRINCIPAL */
+        .nombre-neuropassport {
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0;
+            color: #D9E2E3;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
         body > header.barra-personal .menu-personal {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             margin: 0;
             padding: 0;
             background: transparent !important;
@@ -41,13 +52,12 @@
             box-shadow: none !important;
         }
 
-        /* BOTONES INICIO, PASAPORTE Y AGENDA */
         body > header.barra-personal .menu-personal > a.boton-menu,
         body > header.barra-personal .menu-personal > .contenedor-pasaporte > button.boton-menu {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 20px;
+            padding: 9px 15px;
             background: #CDB4DB !important;
             color: #000000 !important;
             border: 1px solid #CDB4DB;
@@ -70,7 +80,6 @@
             position: relative;
         }
 
-        /* PANEL DE PASAPORTE */
         .modal-pasaporte {
             position: fixed;
             inset: 0;
@@ -167,32 +176,41 @@
             background: #E1E8E9;
         }
 
-        /* ICONO DE PERFIL */
+        /* PERFIL AGRANDADO */
         .contenedor-perfil {
             position: relative;
         }
 
         body > header.barra-personal .perfil {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #CDB4DB;
-            color: #000000;
-            border: 1px solid #CDB4DB;
+            background: #e0e0e0;
+            border: none;
             border-radius: 50%;
-            font-size: 29px;
-            line-height: 1;
             cursor: pointer;
+            text-decoration: none;
+            flex-shrink: 0;
         }
 
-        body > header.barra-personal .perfil .cabeza,
-        body > header.barra-personal .perfil .cuerpo {
-            display: none;
+        .perfil-cabeza {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background-color: #111111;
+            margin-bottom: 3px;
         }
 
-        /* RECTÁNGULO BLANCO DEL PERFIL */
+        .perfil-cuerpo {
+            width: 20px;
+            height: 10px;
+            border-radius: 10px 10px 5px 5px;
+            background-color: #111111;
+        }
+
         body > header.barra-personal .submenu-perfil {
             position: absolute;
             top: calc(100% + 12px);
@@ -210,12 +228,10 @@
             z-index: 200;
         }
 
-        /* MOSTRAR EL MENÚ AL TOCAR EL PERFIL */
         body > header.barra-personal .submenu-perfil.activo {
             display: flex;
         }
 
-        /* RECTÁNGULOS DE CONFIGURACIÓN E INFORMACIÓN PERSONAL */
         body > header.barra-personal .submenu-perfil button {
             width: 100%;
             min-height: 65px;
@@ -241,7 +257,129 @@
             transform: translateY(-2px);
         }
 
-        /* TABLETS */
+        .etiqueta-personal {
+            margin: 42px 0 12px;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        #saludoUsuario {
+            text-align: center;
+            margin-top: -15px;
+        }
+
+        /* ILUSTRACIÓN DEL PASAPORTE */
+        .ilustracion-pasaporte {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 45px auto 0;
+        }
+
+        .pasaporte-dibujo {
+            width: 310px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            transform: rotate(-12deg);
+        }
+
+        .pasaporte-tapa {
+            position: relative;
+            width: 260px;
+            height: 300px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 0;
+            background: linear-gradient(145deg, #397D8C, #285866);
+            border-radius: 12px 20px 20px 12px;
+            border-left: none;
+            box-shadow: 12px 15px 25px rgba(0, 0, 0, 0.25),
+                        inset 3px 0 5px rgba(255,255,255,0.15);
+        }
+
+        .texto-pasaporte {
+            color: #CDB4DB;
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 30px;
+            transform: translateY(-90px);
+        }
+
+        /* MUNDITO (según la foto): globo inclinado con meridianos y paralelos curvos */
+        .globo-pasaporte {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 110px;
+            height: 110px;
+            display: block;
+            margin: 0;
+            box-sizing: border-box;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            border: 3px solid #CDB4DB;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        /* Meridiano central */
+        .linea-vertical {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 3px;
+            height: 100%;
+            background: #CDB4DB;
+            transform: translateX(-50%);
+        }
+
+        /* Meridiano curvo */
+        .linea-curva-1 {
+            position: absolute;
+            top: -3px;
+            left: 28%;
+            width: 44%;
+            height: calc(100% + 6px);
+            box-sizing: border-box;
+            border: 3px solid #CDB4DB;
+            border-radius: 50%;
+        }
+
+        /* Paralelos curvos */
+        .linea-horizontal,
+        .linea-curva-2,
+        .linea-curva-3 {
+            position: absolute;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: 18px;
+            box-sizing: border-box;
+            border-bottom: 3px solid #CDB4DB;
+            border-radius: 0 0 50% 50% / 0 0 100% 100%;
+        }
+
+        .linea-curva-2 {
+            top: 12%;
+        }
+
+        .linea-horizontal {
+            top: 38%;
+        }
+
+        .linea-curva-3 {
+            top: 64%;
+        }
+
         @media (max-width: 700px) {
             .panel-pasaporte {
                 padding: 28px 20px;
@@ -258,7 +396,6 @@
             }
         }
 
-        /* CELULARES */
         @media (max-width: 600px) {
             body > header.barra-personal {
                 padding: 15px 4%;
@@ -267,13 +404,13 @@
 
             body > header.barra-personal .menu-personal {
                 flex-wrap: wrap;
-                gap: 8px;
+                gap: 10px;
             }
 
             body > header.barra-personal .menu-personal > a.boton-menu,
             body > header.barra-personal .menu-personal > .contenedor-pasaporte > button.boton-menu {
-                padding: 10px 12px;
-                font-size: 13px;
+                padding: 8px 10px;
+                font-size: 12px;
             }
 
             .panel-pasaporte {
@@ -299,6 +436,24 @@
                 width: 250px;
                 padding: 15px;
             }
+
+            .pasaporte-dibujo {
+                width: 260px;
+                height: 300px;
+                transform: rotate(-12deg);
+            }
+
+            .pasaporte-tapa {
+                width: 220px;
+                height: 260px;
+                padding-top: 0;
+            }
+
+            .texto-pasaporte {
+                font-size: 15px;
+                margin-bottom: 25px;
+                transform: translateY(-90px);
+            }
         }
 
         @media (max-width: 360px) {
@@ -313,10 +468,14 @@
 
     <header class="barra-personal">
 
+        <p class="nombre-neuropassport">
+            NeuroPassport
+        </p>
+
         <nav class="menu-personal" aria-label="Menú principal">
 
             <a href="./personal.html" class="boton-menu">
-                Inicio
+                Familia
             </a>
 
             <div class="contenedor-pasaporte">
@@ -346,7 +505,10 @@
                     id="botonPerfil"
                     aria-expanded="false"
                     aria-controls="submenuPerfil">
-                    <span aria-hidden="true">👤</span>
+
+                    <span class="perfil-cabeza"></span>
+                    <span class="perfil-cuerpo"></span>
+
                 </button>
 
                 <div
@@ -368,7 +530,6 @@
 
     </header>
 
-    <!-- PANEL DE PASAPORTE -->
     <div
         id="submenuPasaporte"
         class="modal-pasaporte"
@@ -414,9 +575,11 @@
 
     <main class="inicio-personal">
 
-        <section
-            class="contenido-inicio"
-            aria-label="Página de inicio">
+        <section class="contenido-inicio" aria-label="Página de inicio">
+
+            <p class="etiqueta-personal">
+                PERSONAL
+            </p>
 
             <h1 id="saludoUsuario">
                 ¡Hola! Bienvenido a NeuroPassport
@@ -424,20 +587,21 @@
 
             <figure
                 class="ilustracion-pasaporte"
-                aria-label="Ilustración de un pasaporte">
+                aria-label="Pasaporte NeuroPassport">
 
                 <div class="pasaporte-dibujo">
                     <div class="pasaporte-tapa">
 
                         <span class="texto-pasaporte">
-                            PASSPORT
+                            NEUROPASSPORT
                         </span>
 
-                        <span class="globo-pasaporte">
-                            <span class="linea-horizontal"></span>
+                        <span class="globo-pasaporte" aria-hidden="true">
                             <span class="linea-vertical"></span>
                             <span class="linea-curva-1"></span>
                             <span class="linea-curva-2"></span>
+                            <span class="linea-horizontal"></span>
+                            <span class="linea-curva-3"></span>
                         </span>
 
                     </div>
@@ -452,7 +616,6 @@
     <script src="./personal.js"></script>
 
     <script>
-        /* CERRAR EL PANEL DE PASAPORTE */
         (() => {
             const botonPasaporte = document.getElementById("botonPasaporte");
             const submenuPasaporte = document.getElementById("submenuPasaporte");
@@ -491,4 +654,3 @@
 </body>
 
 </html>
-```
