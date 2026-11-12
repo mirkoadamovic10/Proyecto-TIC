@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,7 +23,7 @@
             align-items: center;
             justify-content: flex-end;
             gap: 20px;
-            background: #7C7878 !important;
+            background: #8A7090 !important;
             background-image: none !important;
             border: none !important;
             box-shadow: none !important;
@@ -78,6 +79,15 @@
 
         .contenedor-pasaporte {
             position: relative;
+        }
+
+        /* LOGO */
+        .logo-menu {
+            width: 32px;
+            height: 37px;
+            object-fit: contain;
+            display: block;
+            flex-shrink: 0;
         }
 
         .modal-pasaporte {
@@ -176,7 +186,7 @@
             background: #E1E8E9;
         }
 
-        /* PERFIL AGRANDADO */
+        /* PERFIL */
         .contenedor-perfil {
             position: relative;
         }
@@ -316,7 +326,6 @@
             transform: translateY(-90px);
         }
 
-        /* MUNDITO (según la foto): globo inclinado con meridianos y paralelos curvos */
         .globo-pasaporte {
             position: absolute;
             top: 50%;
@@ -332,7 +341,6 @@
             overflow: hidden;
         }
 
-        /* Meridiano central */
         .linea-vertical {
             position: absolute;
             top: 0;
@@ -343,7 +351,6 @@
             transform: translateX(-50%);
         }
 
-        /* Meridiano curvo */
         .linea-curva-1 {
             position: absolute;
             top: -3px;
@@ -355,7 +362,6 @@
             border-radius: 50%;
         }
 
-        /* Paralelos curvos */
         .linea-horizontal,
         .linea-curva-2,
         .linea-curva-3 {
@@ -492,6 +498,11 @@
             <a href="./agenda.html" class="boton-menu">
                 Agenda
             </a>
+
+            <img
+                class="logo-menu"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAlCAYAAAAjt+tHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALgSURBVFhH7ZfPaxNBFMefjZpgKym2ZKuHLR4Sf0Ajtam9lCBS8VAU7UEveulBKfQPqOChh4I966EHDwVvIkUozUGhhdQerKmNNErV1Fb3oEnowYDIRg063+mEmM3sbja2RCEfGHZmsrvvO2/fvDfZdWtk5BfVkAZxrRl1AXUB/6+AVCZD05EIfdA0MbPFnt176ZjaSV2BMG+q4he/yKlaQE7XaSWRoGw2K2aI2pmxc6ErdFQ9SarPz1uXP8zn9nmaxF2luMK9vaOib4vOjC7H4zQXjdJiLEb5fJ4+Mg+sb2zQAW8rXTx9jVwNLnF3EXilubGFtExSzBSp2ANw+b3JSXoyO0updJqavV5qV1VqUxQu4rByXNwpp9V7kDcjFaXit8kkTc/M8H5PdzedCoXI4/HwMYBnznReIqXlkJiRs6ot0xstLkZb2HrgC/vGMA6D1wcHiX2yEuMA46bG/WLkDFsB8wsLlMvl6EJ/P3mZ283YzH4WPXM2synRK2IpAKtHpAc7Ovj3tkLLrImenG/6V6lISwEILnCCCbADL3/xbl6MSoHxp68iYlSKpYA0i3yg+Hz8age22eOlB7T26TUtJRYpvhqjlfVnNPfyERchw1IAohsYg84KGEowozduXqU792/Teybmx8/v4tdybINwp/m3BfyZ56uhkudNBWD/Yxf0sKxXDdg5eB4V0wqpABhHw0vO9vWJWWecZ4kLzyOPoH6YUSZAZ1kPxhVWZPCSvwHPBwIBes4qJ5KajDIBqPPgiN/6IFEpbTY5pKwaInDuTkyI0fYxPDTES7gRaTlG4MgiGG7EPDKjMTkh4NxuNz8fGHGzey8PDIhRKY7+mhWCU7aasfFxXrRQNZ1gmQeMeNgKgdE7OC0BmYvtcCQgGAxyN+MTFaIa14dTU7xfSdU04vjfMfZ1IblgxQUhOCmhOcWxAIBPEGWxgCtOSVi53YHFjKoEbCeOYmAnqAuosQCi3xaSIgq0RFQFAAAAAElFTkSuQmCC"
+                alt="Logo de NeuroPassport">
 
         </nav>
 
