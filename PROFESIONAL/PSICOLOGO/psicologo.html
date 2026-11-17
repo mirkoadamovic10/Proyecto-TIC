@@ -17,10 +17,10 @@
 
         html,
         body {
-            width: 100%;
+            width: 100% !important;
             min-height: 100%;
-            margin: 0;
-            padding: 0;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         body {
@@ -36,17 +36,15 @@
         /* BARRA SUPERIOR */
         .barra-empresa {
             width: 100% !important;
+            max-width: none !important;
             height: 51px !important;
             min-height: 51px !important;
             flex-shrink: 0;
-
             display: flex !important;
             align-items: center !important;
             justify-content: space-between !important;
-
             margin: 0 !important;
             padding: 0 10px !important;
-
             background: #2F7185 !important;
             border: none !important;
             border-radius: 0 !important;
@@ -74,16 +72,13 @@
             height: 27px !important;
             min-width: 27px !important;
             min-height: 27px !important;
-
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
             justify-content: flex-end !important;
-
             margin: 0 !important;
             padding: 0 !important;
             overflow: hidden !important;
-
             background: #D9E2E3 !important;
             border: none !important;
             border-radius: 50% !important;
@@ -117,27 +112,27 @@
 
         /* CONTENIDO PRINCIPAL */
         .empresa-principal {
-            width: 100% !important;
+            width: 100vw !important;
+            max-width: none !important;
             flex: 1 0 auto;
-
-            display: flex;
+            display: flex !important;
             flex-direction: column;
-
+            align-items: center !important;
+            align-self: stretch !important;
             margin: 0 !important;
             padding: 0 !important;
-
             background: #F1FAEE !important;
         }
 
         /* BIENVENIDA */
         .empresa-bienvenida {
             width: 100% !important;
+            max-width: none !important;
             margin: 22px auto 24px !important;
             padding: 0 20px !important;
-
             display: flex !important;
             justify-content: center !important;
-
+            align-items: center !important;
             text-align: center !important;
             background: transparent !important;
             border: none !important;
@@ -149,10 +144,8 @@
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
-
-            margin: 0 !important;
+            margin: 0 auto !important;
             padding: 0 !important;
-
             text-align: center !important;
             background: transparent !important;
             border: none !important;
@@ -169,41 +162,40 @@
         }
 
         .empresa-bienvenida h1 {
+            width: 100%;
             margin: 0 0 5px !important;
             padding: 0 !important;
-
             font-size: 22px !important;
             line-height: 1.2 !important;
             font-weight: 700 !important;
-
             color: #000 !important;
             background: transparent !important;
             border: none !important;
+            text-align: center !important;
         }
 
         .empresa-bienvenida p:last-child {
-            margin: 0 !important;
+            width: 100%;
+            margin: 0 auto !important;
             padding: 0 !important;
             max-width: 100% !important;
-
             font-size: 11px !important;
             line-height: 1.4 !important;
             color: #000 !important;
             background: transparent !important;
+            text-align: center !important;
         }
 
-        /* TARJETAS: MISMO TAMAÑO EN ESCRITORIO */
+        /* TARJETAS */
         .empresa-acciones {
             width: calc(100% - 56px) !important;
             max-width: 896px !important;
-
             display: grid !important;
             grid-template-columns: repeat(2, minmax(0, 436px)) !important;
             justify-content: center !important;
+            justify-items: center !important;
             align-items: stretch !important;
-
             gap: 24px !important;
-
             margin: 0 auto 28px !important;
             padding: 0 !important;
         }
@@ -213,22 +205,19 @@
             max-width: 436px !important;
             height: 300px !important;
             min-height: 300px !important;
-
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
+            justify-content: flex-start !important;
             text-align: center !important;
-
-            margin: 0 !important;
+            margin: 0 auto !important;
             padding: 24px 20px 14px !important;
-
             background: #FFFFFF !important;
             border: 3px solid #78E895 !important;
             border-radius: 25px !important;
             box-shadow: none !important;
         }
 
-        /* BORDE DE AGENDA */
         .tarjeta-empresa:nth-child(2) {
             border-color: #BA8DDB !important;
         }
@@ -237,7 +226,7 @@
             width: 100% !important;
             margin: 0 0 30px !important;
             padding: 0 !important;
-
+            text-align: center !important;
             background: transparent !important;
             border: none !important;
             box-shadow: none !important;
@@ -246,28 +235,25 @@
         .tarjeta-empresa h2 {
             margin: 0 !important;
             padding: 0 !important;
-
             font-size: 30px !important;
             line-height: 1.2 !important;
             font-weight: 600 !important;
-
             color: #111 !important;
             background: transparent !important;
             border: none !important;
+            text-align: center !important;
         }
 
         .tarjeta-empresa p {
             width: 100% !important;
             max-width: 380px !important;
-
             margin: 0 auto !important;
             padding: 0 !important;
-
             font-size: 15px !important;
             line-height: 1.35 !important;
-
             color: #111 !important;
             background: transparent !important;
+            text-align: center !important;
         }
 
         /* BOTONES */
@@ -276,21 +262,16 @@
             max-width: 100% !important;
             height: 44px !important;
             min-height: 44px !important;
-
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-
-            margin: auto 0 0 !important;
+            margin: auto auto 0 !important;
             padding: 0 12px !important;
-
             border: none !important;
             border-radius: 10px !important;
-
             font-family: Arial, Helvetica, sans-serif !important;
             font-size: 19px !important;
             font-weight: 600 !important;
-
             cursor: pointer;
             box-shadow: none !important;
         }
@@ -307,20 +288,18 @@
 
         /* FRANJA INFERIOR */
         .empresa-info {
-            width: 100% !important;
+            width: 100vw !important;
+            max-width: none !important;
             min-height: 39px !important;
             flex-shrink: 0;
-
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
             justify-content: center !important;
-
+            align-self: stretch !important;
             margin: auto 0 0 !important;
             padding: 5px 10px !important;
-
             text-align: center !important;
-
             background: #B7E4C7 !important;
             border: none !important;
             border-radius: 0 !important;
@@ -337,11 +316,9 @@
         .empresa-info h2 {
             margin: 0 0 2px !important;
             padding: 0 !important;
-
             font-size: 10px !important;
             line-height: 1.2 !important;
             font-weight: 400 !important;
-
             color: #FFFFFF !important;
             background: transparent !important;
             border: none !important;
@@ -350,7 +327,6 @@
         .empresa-info p {
             margin: 0 !important;
             padding: 0 !important;
-
             font-size: 10px !important;
             line-height: 1.25 !important;
             color: #FFFFFF !important;
@@ -403,6 +379,7 @@
                 width: calc(100% - 28px) !important;
                 max-width: 436px !important;
                 grid-template-columns: 1fr !important;
+                justify-content: center !important;
                 gap: 18px !important;
             }
 
@@ -511,13 +488,6 @@
                     onclick="window.location.href='agenda-psicologo.html'">
                     Ver agenda
                 </button>
-
-            </article>
-
-            
-
-                
-
             </article>
 
         </section>
