@@ -49,105 +49,146 @@
         .empresa-acciones .tarjeta-empresa:first-child button:hover {
             background-color: #D69DBF !important;
             border-color: #D69DBF !important;
-        }/* Color del texto del botón Ver pacientes */
-.empresa-acciones .tarjeta-empresa:nth-child(2) button {
-    color: #2F7185 !important;
-}
-/* Quitar el rectángulo marrón de Red de hospitales */
-.empresa-info,
-.empresa-info header,
-.empresa-info h2,
-.empresa-info p {
-    background: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-}
-.empresa-info {
-    width: 100vw;
-    height: 88px;
-    min-height: 88px;
-    max-width: none;
-    margin: 10px 0 10px calc(50% - 50vw);
-    padding: 8px 30px;
-    box-sizing: border-box;
+        }
 
-    background-color: #B7E4C7 !important;
-    border: none !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
+        /* Color del texto del botón Ver pacientes */
+        .empresa-acciones .tarjeta-empresa:nth-child(2) button {
+            color: #2F7185 !important;
+        }
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    text-align: center;
-}
+        /* Quitar el rectángulo marrón de Red de hospitales */
+        .empresa-info,
+        .empresa-info header,
+        .empresa-info h2,
+        .empresa-info p {
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
 
-/* Título centrado */
-.empresa-info header,
-.empresa-info h2 {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
+        .empresa-info {
+            width: 100vw;
+            height: 88px;
+            min-height: 88px;
+            max-width: none;
+            margin: 10px 0 10px calc(50% - 50vw);
+            padding: 8px 30px;
+            box-sizing: border-box;
 
-/* Descripción centrada */
-.empresa-info p {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-.logo-hospital {
-    color: #D9E2E3 !important;
-    font-family: 'Inter', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0;
-    padding-left: 25px;
-    white-space: nowrap;
-}.barra-empresa {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.barra-empresa,
-.barra-empresa a,
-.barra-empresa h1,
-.barra-empresa button {
-    font-family: 'Inter', sans-serif !important;
-}
+            background-color: #B7E4C7 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            text-align: center;
+        }
+
+        /* Título centrado */
+        .empresa-info header,
+        .empresa-info h2 {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Descripción centrada */
+        .empresa-info p {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .logo-hospital {
+            color: #D9E2E3 !important;
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            padding-left: 25px;
+            white-space: nowrap;
+        }
+
+        .barra-empresa {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .barra-empresa,
+        .barra-empresa a,
+        .barra-empresa h1,
+        .barra-empresa button {
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        /* BOTÓN DE PERFIL */
+        .barra-empresa .perfil-empresa {
+            width: 46px !important;
+            height: 46px !important;
+            min-width: 46px;
+            padding: 0 !important;
+            margin: -4px 8px 0 0;
+            box-sizing: border-box;
+
+            background-color: #E8E8E8 !important;
+            border: none !important;
+            border-radius: 50% !important;
+            box-shadow: none !important;
+
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+
+            text-decoration: none;
+            position: relative;
+        }
+
+        /* Cabeza de la persona */
+        .barra-empresa .perfil-empresa .perfil-cabeza {
+            width: 12px !important;
+            height: 12px !important;
+            min-height: 12px;
+            background-color: #000000 !important;
+            border-radius: 50% !important;
+            display: block !important;
+            position: static !important;
+            margin: 0 !important;
+        }
+
+        /* Cuerpo de la persona */
+        .barra-empresa .perfil-empresa .perfil-cuerpo {
+            width: 22px !important;
+            height: 12px !important;
+            min-height: 12px;
+            background-color: #000000 !important;
+            border-radius: 10px 10px 6px 6px !important;
+            display: block !important;
+            position: static !important;
+            margin: 0 !important;
+        }
     </style>
 </head>
 
 <body>
 
     <header class="barra-empresa">
+
         <h1 class="logo-hospital">NeuroPassport</h1>
-
-        <nav class="menu-empresa" aria-label="Navegación principal">
-
-            <a href="hospital.html" class="boton-menu-empresa">
-                Inicio
-            </a>
-
-            <a href="medicos.html" class="boton-menu-empresa">
-                Médicos
-            </a>
-
-            <a href="pacientes.html" class="boton-menu-empresa">
-                Pacientes
-            </a>
-
-        </nav>
 
         <a
             href="configuracion.html"
@@ -212,8 +253,6 @@
                 </button>
 
             </article>
-
-            
 
         </section>
 
