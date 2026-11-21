@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -71,12 +70,144 @@
             background: #C7A0D6 !important;
         }
 
+        /* BOTÓN DE PERFIL */
+        .barra-empresa .perfil-empresa,
+        .barra-empresa .perfil-empresa:hover,
+        .barra-empresa .perfil-empresa:focus,
+        .barra-empresa .perfil-empresa:active {
+            width: 50px !important;
+            height: 50px !important;
+            min-width: 50px;
+            margin: -6px 0 !important;
+            padding: 0 !important;
+
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3px;
+
+            background: #D9D9D9 !important;
+            border: none !important;
+            border-radius: 50% !important;
+            box-shadow: none !important;
+
+            text-decoration: none;
+            transform: translateY(-12px) !important;
+            transition: none !important;
+            animation: none !important;
+        }
+
+        /* Cabeza de la persona */
+        .barra-empresa .perfil-empresa .perfil-cabeza {
+            display: block !important;
+            width: 13px !important;
+            height: 13px !important;
+            margin: 0 !important;
+            background: #000000 !important;
+            border-radius: 50% !important;
+        }
+
+        /* Cuerpo de la persona */
+        .barra-empresa .perfil-empresa .perfil-cuerpo {
+            display: block !important;
+            width: 24px !important;
+            height: 12px !important;
+            margin: 0 !important;
+            background: #000000 !important;
+            border-radius: 12px 12px 6px 6px !important;
+        }
+
+        /* DESPLEGABLE DEL PERFIL */
+        .barra-empresa {
+            position: relative;
+        }
+
+        .menu-perfil {
+            position: absolute;
+            top: 100%;
+            right: 16px;
+            z-index: 1000;
+            width: 210px;
+            margin-top: 6px;
+            padding: 14px;
+            background: #FFFFFF;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+        }
+
+        .menu-perfil[hidden] {
+            display: none;
+        }
+
+        .menu-perfil ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .menu-perfil li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-perfil button,
+        .menu-perfil button:hover {
+            width: 100%;
+            min-height: 64px;
+            padding: 12px 16px;
+            background: #DCE6E8 !important;
+            color: #2F7185 !important;
+            border: none !important;
+            border-radius: 16px;
+            box-shadow: none !important;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transform: none !important;
+        }
+
         /* CONTENIDO */
         .empresa-principal {
             width: 100%;
             max-width: none;
             margin: 0;
             padding: 58px 20px 40px;
+        }
+
+        /* BOTÓN VOLVER */
+        .boton-volver,
+        .boton-volver:hover,
+        .boton-volver:focus,
+        .boton-volver:active {
+            display: flex;
+            width: fit-content;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 14px;
+            padding: 9px 14px;
+            background: #B7E4C7 !important;
+            color: #2F7185 !important;
+            border: none !important;
+            border-radius: 14px;
+            box-shadow: none !important;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transform: none !important;
+        }
+
+        .boton-volver:hover {
+            background: #A5D9B8 !important;
+        }
+
+        .boton-volver .flecha-volver {
+            font-size: 20px;
+            line-height: 1;
         }
 
         .empresa-bienvenida {
@@ -483,14 +614,54 @@
 <body>
 
     <header class="barra-empresa">
-        <nav class="menu-empresa" aria-label="Navegación principal">
-            <a href="hospital.html" class="boton-menu-empresa">Inicio</a>
-            <a href="medicos.html" class="boton-menu-empresa" aria-current="page">Médicos</a>
-            <a href="pacientes.html" class="boton-menu-empresa">Pacientes</a>
+
+        <a
+            href="configuracion.html"
+            class="perfil-empresa"
+            id="botonPerfilMedicos"
+            title="Perfil"
+            aria-label="Abrir menú de perfil"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="menuPerfilMedicos">
+
+            <span class="perfil-cabeza"></span>
+            <span class="perfil-cuerpo"></span>
+
+        </a>
+
+        <nav class="menu-perfil" id="menuPerfilMedicos" aria-label="Menú de perfil" hidden>
+
+            <ul>
+                <li>
+                    <button type="button" onclick="window.location.href='configuracion.html'">
+                        Configuración
+                    </button>
+                </li>
+
+                <li>
+                    <button type="button" onclick="window.location.href='informacion-personal.html'">
+                        Información personal
+                    </button>
+                </li>
+
+                <li>
+                    <button type="button" onclick="window.location.href='../index.html'">
+                        Cerrar sesión
+                    </button>
+                </li>
+            </ul>
+
         </nav>
+
     </header>
 
     <main class="empresa-principal">
+
+        <a href="hospital.html" class="boton-volver">
+            <span class="flecha-volver" aria-hidden="true">←</span>
+            Volver
+        </a>
 
         <section class="empresa-bienvenida">
             <header>
@@ -586,8 +757,26 @@
         </section>
     </aside>
 
+    <script>
+        (function () {
+            var botonPerfilMedicos = document.getElementById('botonPerfilMedicos');
+            var menuPerfilMedicos = document.getElementById('menuPerfilMedicos');
+
+            botonPerfilMedicos.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                menuPerfilMedicos.hidden = !menuPerfilMedicos.hidden;
+                botonPerfilMedicos.setAttribute('aria-expanded', String(!menuPerfilMedicos.hidden));
+            });
+
+            document.addEventListener('click', function () {
+                menuPerfilMedicos.hidden = true;
+                botonPerfilMedicos.setAttribute('aria-expanded', 'false');
+            });
+        })();
+    </script>
+
     <script src="medicos.js" defer></script>
 
 </body>
 </html>
-```

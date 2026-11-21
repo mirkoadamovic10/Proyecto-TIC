@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -35,28 +34,30 @@
 
         /* BARRA SUPERIOR */
         .barra-empresa {
+            position: relative;
             width: 100% !important;
             max-width: none !important;
-            height: 51px !important;
-            min-height: 51px !important;
+            height: 72px !important;
+            min-height: 72px !important;
             flex-shrink: 0;
             display: flex !important;
             align-items: center !important;
             justify-content: space-between !important;
             margin: 0 !important;
-            padding: 0 10px !important;
+            padding: 0 24px !important;
             background: #2F7185 !important;
             border: none !important;
             border-radius: 0 !important;
             box-shadow: none !important;
+            z-index: 100;
         }
 
         .barra-empresa h2 {
             margin: 0 !important;
             padding: 0 !important;
-            font-size: 20px !important;
+            font-size: 30px !important;
             line-height: 1.2 !important;
-            font-weight: 600 !important;
+            font-weight: 700 !important;
             color: #D9E2E3 !important;
             background: transparent !important;
             border: none !important;
@@ -66,12 +67,23 @@
             display: none !important;
         }
 
-        /* ICONO DE PERFIL */
-        .perfil-empresa {
-            width: 27px !important;
-            height: 27px !important;
-            min-width: 27px !important;
-            min-height: 27px !important;
+        .contenedor-perfil {
+            position: relative;
+            display: flex;
+            align-items: center;
+            align-self: center !important;
+            margin-top: -4px !important;
+        }
+
+        /* ICONO DE PERFIL FIJO SIN MOVIMIENTO */
+        .perfil-empresa,
+        .perfil-empresa:hover,
+        .perfil-empresa:focus,
+        .perfil-empresa:active {
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            min-height: 44px !important;
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
@@ -83,16 +95,19 @@
             border: none !important;
             border-radius: 50% !important;
             box-shadow: none !important;
-            text-decoration: none !important;
+            transform: translateY(-10px) !important;
+            transition: none !important;
+            animation: none !important;
+            cursor: pointer;
         }
 
         .perfil-cabeza {
             display: block !important;
-            width: 7px !important;
-            height: 7px !important;
-            min-width: 7px !important;
-            min-height: 7px !important;
-            margin: 4px 0 2px !important;
+            width: 12px !important;
+            height: 12px !important;
+            min-width: 12px !important;
+            min-height: 12px !important;
+            margin: 6px 0 3px !important;
             padding: 0 !important;
             border-radius: 50% !important;
             background: #222 !important;
@@ -100,14 +115,69 @@
 
         .perfil-cuerpo {
             display: block !important;
-            width: 15px !important;
-            height: 9px !important;
-            min-width: 15px !important;
-            min-height: 9px !important;
+            width: 24px !important;
+            height: 14px !important;
+            min-width: 24px !important;
+            min-height: 14px !important;
             margin: 0 !important;
             padding: 0 !important;
-            border-radius: 8px 8px 0 0 !important;
+            border-radius: 12px 12px 0 0 !important;
             background: #222 !important;
+        }
+
+        /* DESPLEGABLE DE PERFIL */
+        .menu-desplegable-perfil {
+            display: none;
+            position: absolute;
+            top: calc(100% + 2px);
+            right: 0;
+            width: 185px;
+            padding: 10px;
+            background: #FFFFFF !important;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            z-index: 200;
+        }
+
+        .menu-desplegable-perfil.abierto {
+            display: block;
+        }
+
+        .menu-desplegable-perfil ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .menu-desplegable-perfil a,
+        .menu-desplegable-perfil a:hover,
+        .menu-desplegable-perfil a:focus,
+        .menu-desplegable-perfil button,
+        .menu-desplegable-perfil button:hover,
+        .menu-desplegable-perfil button:focus {
+            width: 100%;
+            min-height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            background: #E2EAEA !important;
+            color: #2B6E82 !important;
+            border: none !important;
+            border-radius: 10px !important;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.15;
+            text-align: center;
+            text-decoration: none !important;
+            box-shadow: none !important;
+            transform: none !important;
+            transition: none !important;
+            cursor: pointer;
         }
 
         /* CONTENIDO PRINCIPAL */
@@ -153,9 +223,9 @@
         }
 
         .empresa-bienvenida p:first-child {
-            margin: 0 0 4px !important;
+            margin: 0 0 8px !important;
             padding: 0 !important;
-            font-size: 11px !important;
+            font-size: 16px !important;
             line-height: 1.2 !important;
             color: #000 !important;
             background: transparent !important;
@@ -163,10 +233,10 @@
 
         .empresa-bienvenida h1 {
             width: 100%;
-            margin: 0 0 5px !important;
+            margin: 0 0 10px !important;
             padding: 0 !important;
-            font-size: 22px !important;
-            line-height: 1.2 !important;
+            font-size: 46px !important;
+            line-height: 1.15 !important;
             font-weight: 700 !important;
             color: #000 !important;
             background: transparent !important;
@@ -179,7 +249,7 @@
             margin: 0 auto !important;
             padding: 0 !important;
             max-width: 100% !important;
-            font-size: 11px !important;
+            font-size: 18px !important;
             line-height: 1.4 !important;
             color: #000 !important;
             background: transparent !important;
@@ -335,6 +405,18 @@
 
         /* TABLETS */
         @media (max-width: 950px) {
+            .empresa-bienvenida p:first-child {
+                font-size: 14px !important;
+            }
+
+            .empresa-bienvenida h1 {
+                font-size: 36px !important;
+            }
+
+            .empresa-bienvenida p:last-child {
+                font-size: 15px !important;
+            }
+
             .empresa-acciones {
                 width: calc(100% - 40px) !important;
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -362,17 +444,72 @@
 
         /* CELULARES */
         @media (max-width: 600px) {
+            .barra-empresa {
+                height: 62px !important;
+                min-height: 62px !important;
+                padding: 0 16px !important;
+            }
+
+            .barra-empresa h2 {
+                font-size: 24px !important;
+            }
+
+            .contenedor-perfil {
+                margin-top: -3px !important;
+            }
+
+            .perfil-empresa,
+            .perfil-empresa:hover,
+            .perfil-empresa:focus,
+            .perfil-empresa:active {
+                width: 38px !important;
+                height: 38px !important;
+                min-width: 38px !important;
+                min-height: 38px !important;
+                transform: translateY(-8px) !important;
+            }
+
+            .perfil-cabeza {
+                width: 10px !important;
+                height: 10px !important;
+                min-width: 10px !important;
+                min-height: 10px !important;
+                margin: 5px 0 2px !important;
+            }
+
+            .perfil-cuerpo {
+                width: 20px !important;
+                height: 12px !important;
+                min-width: 20px !important;
+                min-height: 12px !important;
+            }
+
+            .menu-desplegable-perfil {
+                width: 168px;
+                padding: 8px;
+            }
+
+            .menu-desplegable-perfil a,
+            .menu-desplegable-perfil button {
+                min-height: 48px;
+                font-size: 14px;
+            }
+
             .empresa-bienvenida {
                 margin: 22px auto !important;
                 padding: 0 12px !important;
             }
 
+            .empresa-bienvenida p:first-child {
+                font-size: 12px !important;
+            }
+
             .empresa-bienvenida h1 {
-                font-size: 20px !important;
+                font-size: 26px !important;
             }
 
             .empresa-bienvenida p:last-child {
-                font-size: 10px !important;
+                font-size: 13px !important;
             }
 
             .empresa-acciones {
@@ -428,14 +565,30 @@
     <header class="barra-empresa">
         <h2>NeuroPassport</h2>
 
-        <a
-            href="configuracion.html"
-            class="perfil-empresa"
-            title="Configuración"
-            aria-label="Configuración">
-            <span class="perfil-cabeza"></span>
-            <span class="perfil-cuerpo"></span>
-        </a>
+        <div class="contenedor-perfil">
+            <button
+                type="button"
+                id="botonPerfil"
+                class="perfil-empresa"
+                title="Perfil"
+                aria-label="Perfil"
+                aria-expanded="false"
+                aria-controls="menuDesplegablePerfil">
+                <span class="perfil-cabeza"></span>
+                <span class="perfil-cuerpo"></span>
+            </button>
+
+            <nav
+                id="menuDesplegablePerfil"
+                class="menu-desplegable-perfil"
+                aria-label="Opciones de perfil">
+                <ul>
+                    <li><a href="configuracion.html">Configuración</a></li>
+                    <li><a href="informacion-personal.html">Información personal</a></li>
+                    <li><button type="button" id="botonCerrarSesion">Cerrar sesión</button></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="empresa-principal">
@@ -504,6 +657,35 @@
         </section>
 
     </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const botonPerfil = document.getElementById("botonPerfil");
+            const menuPerfil = document.getElementById("menuDesplegablePerfil");
+            const botonCerrarSesion = document.getElementById("botonCerrarSesion");
+
+            if (botonPerfil && menuPerfil) {
+                botonPerfil.addEventListener("click", function (evento) {
+                    evento.stopPropagation();
+                    const estaAbierto = menuPerfil.classList.toggle("abierto");
+                    botonPerfil.setAttribute("aria-expanded", String(estaAbierto));
+                });
+
+                document.addEventListener("click", function (evento) {
+                    if (!menuPerfil.contains(evento.target) && !botonPerfil.contains(evento.target)) {
+                        menuPerfil.classList.remove("abierto");
+                        botonPerfil.setAttribute("aria-expanded", "false");
+                    }
+                });
+            }
+
+            if (botonCerrarSesion) {
+                botonCerrarSesion.addEventListener("click", function () {
+                    window.location.href = "../../index.html";
+                });
+            }
+        });
+    </script>
 
     <script src="psicologo.js" defer></script>
 

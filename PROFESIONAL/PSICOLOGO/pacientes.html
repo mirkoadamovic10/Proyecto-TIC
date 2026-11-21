@@ -1,161 +1,397 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Pacientes - NeuroPassport</title>
 
-    <link
-        rel="stylesheet"
-        href="../../style.css"
-    >
+    <link rel="stylesheet" href="../../style.css">
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100% !important;
+            min-height: 100%;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #F1FAEE !important;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        /* BARRA SUPERIOR */
+        .barra-empresa {
+            width: 100% !important;
+            max-width: none !important;
+            height: 74px !important;
+            min-height: 74px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin: 0 !important;
+            padding: 0 24px !important;
+            background: #2F7185 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .barra-empresa h2 {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 32px !important;
+            line-height: 1.15 !important;
+            font-weight: 700 !important;
+            color: #D9E2E3 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .barra-empresa .menu-empresa {
+            display: none !important;
+        }
+
+        /* BOTÓN DE PERFIL */
+        .perfil-empresa,
+        .perfil-empresa:hover,
+        .perfil-empresa:focus,
+        .perfil-empresa:active {
+            width: 48px !important;
+            height: 48px !important;
+            min-width: 48px !important;
+            min-height: 48px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            margin: -6px 0 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            background: #C8CECF !important;
+            border: none !important;
+            border-radius: 50% !important;
+            box-shadow: none !important;
+            text-decoration: none !important;
+            transform: translateY(-12px) !important;
+            transition: none !important;
+            animation: none !important;
+        }
+
+        .perfil-cabeza {
+            display: block !important;
+            width: 13px !important;
+            height: 13px !important;
+            min-width: 13px !important;
+            min-height: 13px !important;
+            margin: 0 0 3px !important;
+            padding: 0 !important;
+            border-radius: 50% !important;
+            background: #1E1E1E !important;
+        }
+
+        .perfil-cuerpo {
+            display: block !important;
+            width: 26px !important;
+            height: 15px !important;
+            min-width: 26px !important;
+            min-height: 15px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border-radius: 13px 13px 0 0 !important;
+            background: #1E1E1E !important;
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .empresa-principal {
+            position: relative;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 58px 42px 40px !important;
+            background: transparent !important;
+            text-align: left !important;
+        }
+
+        /* BOTÓN VOLVER */
+        .boton-volver,
+        .boton-volver:hover,
+        .boton-volver:focus,
+        .boton-volver:active {
+            position: absolute !important;
+            top: 18px !important;
+            left: 18px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: 30px !important;
+            margin: 0 !important;
+            padding: 0 12px !important;
+            background: #B7E4C7 !important;
+            color: #2B6E82 !important;
+            border: none !important;
+            border-radius: 10px !important;
+            box-shadow: none !important;
+            font-size: 13px !important;
+            font-weight: 500 !important;
+            line-height: 1 !important;
+            text-decoration: none !important;
+            transform: none !important;
+        }
+
+        /* ENCABEZADO Y BOTÓN + LINKEAR PACIENTE */
+        .empresa-bienvenida {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 0 28px !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            text-align: left !important;
+        }
+
+        .encabezado-pacientes {
+            width: 100% !important;
+            display: flex !important;
+            align-items: flex-end !important;
+            justify-content: space-between !important;
+            gap: 20px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            text-align: left !important;
+        }
+
+        .encabezado-pacientes > div {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: left !important;
+        }
+
+        .empresa-bienvenida h1 {
+            margin: 0 0 10px !important;
+            padding: 0 !important;
+            font-size: 40px !important;
+            line-height: 1.15 !important;
+            font-weight: 700 !important;
+            color: #000000 !important;
+            background: transparent !important;
+            border: none !important;
+            text-align: left !important;
+        }
+
+        .empresa-bienvenida p {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 15px !important;
+            line-height: 1.3 !important;
+            font-weight: 400 !important;
+            color: #000000 !important;
+            background: transparent !important;
+            text-align: left !important;
+        }
+
+        /* BOTÓN LINKEAR PACIENTE: COLOR FORZADO */
+        .empresa-principal .empresa-bienvenida .encabezado-pacientes button.boton-linkear-paciente,
+        .empresa-principal .empresa-bienvenida .encabezado-pacientes button.boton-linkear-paciente:hover,
+        .empresa-principal .empresa-bienvenida .encabezado-pacientes button.boton-linkear-paciente:focus,
+        .empresa-principal .empresa-bienvenida .encabezado-pacientes button.boton-linkear-paciente:active {
+            flex-shrink: 0 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-width: 156px !important;
+            height: 46px !important;
+            margin: 0 !important;
+            padding: 0 18px !important;
+            background: #B7E4C7 !important;
+            background-color: #B7E4C7 !important;
+            color: #2B6E82 !important;
+            border: none !important;
+            border-radius: 10px !important;
+            box-shadow: none !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            line-height: 1 !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+            transform: none !important;
+        }
+
+        /* SECCIÓN DE TARJETAS / PACIENTES */
+        .empresa-info {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .lista-pacientes {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 14px !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .tarjeta-paciente {
+            width: 100% !important;
+            height: 76px !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 16px !important;
+            margin: 0 !important;
+            padding: 12px 16px !important;
+            background: #F6FBF4 !important;
+            border: 1px solid #C8DDD0 !important;
+            border-radius: 8px !important;
+            box-shadow: none !important;
+        }
+
+        .avatar-paciente {
+            flex-shrink: 0 !important;
+            width: 52px !important;
+            height: 52px !important;
+            border-radius: 50% !important;
+            background: #D4D4D4 !important;
+        }
+
+        .datos-paciente {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 4px !important;
+            min-width: 0 !important;
+        }
+
+        .datos-paciente h2 {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            color: #000000 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .datos-paciente p {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 13px !important;
+            color: #444444 !important;
+            background: transparent !important;
+        }
+
+        @media (max-width: 650px) {
+            .barra-empresa {
+                padding: 0 14px !important;
+            }
+
+            .barra-empresa h2 {
+                font-size: 24px !important;
+            }
+
+            .perfil-empresa,
+            .perfil-empresa:hover,
+            .perfil-empresa:focus,
+            .perfil-empresa:active {
+                transform: translateY(-10px) !important;
+            }
+
+            .empresa-principal {
+                padding: 54px 18px 30px !important;
+            }
+
+            .encabezado-pacientes {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+            }
+
+            .empresa-bienvenida h1 {
+                font-size: 32px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <header class="barra-empresa">
+        <h2>NeuroPassport</h2>
 
         <nav class="menu-empresa">
-
-            <a
-                href="psicologo.html"
-                class="boton-menu-empresa"
-            >
-                Inicio
-            </a>
-
-            <a
-                href="pacientes.html"
-                class="boton-menu-empresa"
-            >
-                Pacientes
-            </a>
-
-            <a
-                href="agenda-psicologo.html"
-                class="boton-menu-empresa"
-            >
-                Agenda
-            </a>
-
-            <a
-                href="sintomas.html"
-                class="boton-menu-empresa"
-            >
-                Seguimiento emocional
-            </a>
-
+            <a href="psicologo.html" class="boton-menu-empresa">Inicio</a>
+            <a href="pacientes.html" class="boton-menu-empresa">Pacientes</a>
+            <a href="agenda-psicologo.html" class="boton-menu-empresa">Agenda</a>
+            <a href="sintomas.html" class="boton-menu-empresa">Seguimiento emocional</a>
         </nav>
 
-
-        <a
-            href="configuracion.html"
-            class="perfil-empresa"
-            title="Configuración"
-        >
-
+        <a href="configuracion.html" class="perfil-empresa" title="Configuración" aria-label="Configuración">
             <span class="perfil-cabeza"></span>
-
             <span class="perfil-cuerpo"></span>
-
         </a>
-
     </header>
-
 
     <main class="empresa-principal">
 
-        <section class="empresa-bienvenida">
+        <a href="psicologo.html" class="boton-volver">← Volver</a>
 
-            <header>
-
-                <h1>
-                    Mis pacientes
-                </h1>
-
-                <p>
-                    Vinculá pacientes y accedé a su información.
-                </p>
-
-            </header>
-
-        </section>
-
-
-        <section class="empresa-info">
-
-            <header>
-
-                <h2>
-                    Vincular paciente
-                </h2>
-
-            </header>
-
-
-            <div class="formulario-linkear">
-
-                <div class="campo-linkear">
-
-                    <label for="codigoPaciente">
-                        Código del paciente
-                    </label>
-
-                    <input
-                        type="text"
-                        id="codigoPaciente"
-                        placeholder="Ingresá el código del paciente"
-                    >
-
+        <section class="empresa-bienvenida" aria-labelledby="tituloPacientes">
+            <header class="encabezado-pacientes">
+                <div>
+                    <h1 id="tituloPacientes">Pacientes</h1>
+                    <p>Profesionales vinculados a este hospital.</p>
                 </div>
 
-
-                <button
-                    type="button"
-                    class="boton-linkear"
-                    id="botonLinkearPaciente"
-                >
-                    Vincular paciente
+                <button type="button" class="boton-linkear-paciente" id="botonLinkearPaciente">
+                    + Linkear paciente
                 </button>
-
-            </div>
-
+            </header>
         </section>
 
+        <section class="empresa-info" aria-label="Lista de pacientes">
+            <div id="pacientesVinculados" class="lista-pacientes">
+                <article class="tarjeta-paciente" aria-label="Paciente 1">
+                    <span class="avatar-paciente" aria-hidden="true"></span>
+                    <div class="datos-paciente"></div>
+                </article>
 
-        <section class="empresa-info">
+                <article class="tarjeta-paciente" aria-label="Paciente 2">
+                    <span class="avatar-paciente" aria-hidden="true"></span>
+                    <div class="datos-paciente"></div>
+                </article>
 
-            <header>
-
-                <h2>
-                    Pacientes vinculados
-                </h2>
-
-            </header>
-
-
-            <div
-                id="pacientesVinculados"
-                class="lista-pacientes"
-            ></div>
-
+                <article class="tarjeta-paciente" aria-label="Paciente 3">
+                    <span class="avatar-paciente" aria-hidden="true"></span>
+                    <div class="datos-paciente"></div>
+                </article>
+            </div>
         </section>
 
     </main>
 
-
-    <script
-        src="pacientes.js"
-        defer
-    ></script>
+    <script src="pacientes.js" defer></script>
 
 </body>
 
