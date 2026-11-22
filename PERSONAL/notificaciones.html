@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones - NeuroPassport</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #F0F8ED;
+            color: #000000;
+        }
+
+        /* NAVBAR */
+        .barra-personal {
+            position: relative;
+            z-index: 100;
+            width: 100%;
+            height: 66px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 29px;
+            margin: 0;
+            padding: 0 7px 0 12px;
+            background: #8A7090;
+        }
+
+        .nombre-neuropassport {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0;
+            color: #D9E2E3;
+            font-size: 28px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .menu-personal {
+            display: flex;
+            align-items: center;
+            gap: 29px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-personal > a.boton-menu {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding: 0 24px;
+            background: #CDB4DB;
+            color: #000000;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1;
+            text-decoration: none;
+        }
+
+        .menu-personal > a.boton-menu:hover {
+            background: #BFA0D0;
+        }
+
+        /* CAMPANA */
+        .boton-notificaciones {
+            position: relative;
+            width: 30px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .boton-notificaciones svg {
+            width: 30px;
+            height: 32px;
+            display: block;
+        }
+
+        .punto-notificacion {
+            position: absolute;
+            top: 0;
+            right: -1px;
+            width: 11px;
+            height: 11px;
+            background: #CDB4DB;
+            border-radius: 50%;
+        }
+
+        .punto-notificacion[hidden] {
+            display: none;
+        }
+
+        /* PERFIL */
+        .contenedor-perfil {
+            position: relative;
+        }
+
+        .boton-perfil {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            margin: 0;
+            padding: 0;
+            background: #E0E0E0;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .perfil-cabeza {
+            display: block;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #111111;
+        }
+
+        .perfil-cuerpo {
+            display: block;
+            width: 20px;
+            height: 10px;
+            border-radius: 10px 10px 5px 5px;
+            background: #111111;
+        }
+
+        .submenu-perfil {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            z-index: 200;
+            width: 250px;
+            padding: 16px;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            background: #FFFFFF;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .submenu-perfil.activo {
+            display: flex;
+        }
+
+        .submenu-perfil button {
+            width: 100%;
+            min-height: 60px;
+            padding: 14px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #E1E8E9;
+            color: #2F7185;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .submenu-perfil button:hover {
+            background: #CCDDE0;
+        }
+
+        /* CONTENIDO */
+        .pagina-notificaciones {
+            width: 100%;
+            margin: 0;
+            padding: 47px 29px 40px;
+        }
+
+        .encabezado-notificaciones {
+            margin: 0 0 28px;
+            padding: 0;
+            text-align: left;
+        }
+
+        .encabezado-notificaciones h1 {
+            margin: 0 0 10px;
+            padding: 0;
+            font-size: 50px;
+            line-height: 58px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .encabezado-notificaciones p {
+            margin: 0;
+            padding: 0;
+            font-size: 21px;
+            line-height: 26px;
+            font-weight: 400;
+            color: #000000;
+        }
+
+        /* PANEL VERDE (centrado) */
+        .panel-notificaciones {
+            width: 100%;
+            max-width: 698px;
+            margin: 0 auto;
+            padding: 10px 16px;
+            background: #CFE8DA;
+            border-radius: 10px;
+        }
+
+        .lista-notificaciones {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .lista-notificaciones li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .item-notificacion {
+            width: 100%;
+            min-height: 54px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin: 0;
+            padding: 6px 12px 6px 6px;
+            background: #FFFFFF;
+            border-radius: 5px;
+        }
+
+        .item-icono {
+            flex: 0 0 42px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+        }
+
+        .item-icono.urgente {
+            background: #DD7A38;
+        }
+
+        .item-icono.turno {
+            background: #2D7289;
+        }
+
+        .item-icono.familiar {
+            background: #739582;
+        }
+
+        .item-texto {
+            flex: 1;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 500;
+            color: #000000;
+        }
+
+        .item-acciones {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .item-acciones button,
+        .item-acciones a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 149px;
+            height: 27px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1;
+            color: #000000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .boton-marcar-leido {
+            background: #DCDCDC;
+        }
+
+        .boton-marcar-leido:hover {
+            background: #CFCFCF;
+        }
+
+        .boton-ver-agenda {
+            background: #BD8CDD;
+        }
+
+        .boton-ver-agenda:hover {
+            background: #B07BD3;
+        }
+
+        /* Notificación ya leída */
+        .item-notificacion.leida {
+            opacity: 0.55;
+        }
+
+        .item-notificacion.leida .boton-marcar-leido {
+            cursor: default;
+        }
+
+        /* CELULARES */
+        @media (max-width: 760px) {
+            .barra-personal {
+                height: auto;
+                min-height: 66px;
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 12px 10px;
+            }
+
+            .nombre-neuropassport {
+                position: static;
+                transform: none;
+                margin-right: auto;
+                font-size: 22px;
+            }
+
+            .menu-personal {
+                gap: 10px;
+            }
+
+            .menu-personal > a.boton-menu {
+                padding: 0 12px;
+                font-size: 14px;
+            }
+
+            .pagina-notificaciones {
+                padding: 30px 14px;
+            }
+
+            .encabezado-notificaciones h1 {
+                font-size: 36px;
+                line-height: 42px;
+            }
+
+            .encabezado-notificaciones p {
+                font-size: 17px;
+                line-height: 22px;
+            }
+
+            .item-notificacion {
+                flex-wrap: wrap;
+            }
+
+            .item-texto {
+                flex: 1 1 calc(100% - 60px);
+            }
+
+            .item-acciones {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="barra-personal">
+
+        <p class="nombre-neuropassport">NeuroPassport</p>
+
+        <nav class="menu-personal" aria-label="Menú principal">
+
+            <a href="./personal.html" class="boton-menu">Familia</a>
+
+            <a href="./personal.html" class="boton-menu">Pasaporte</a>
+
+            <a href="./agenda.html" class="boton-menu">Agenda</a>
+
+            <a
+                href="./notificaciones.html"
+                class="boton-notificaciones"
+                title="Notificaciones"
+                aria-label="Notificaciones"
+                aria-current="page">
+
+                <svg viewBox="0 0 30 32" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M15 3.5c-4.6 0-8 3.5-8 8v5.5L4.5 22h21L23 17v-5.5c0-4.5-3.4-8-8-8z"/>
+                    <path d="M12 26c0.6 1.6 1.8 2.5 3 2.5s2.4-0.9 3-2.5"/>
+                </svg>
+
+                <span class="punto-notificacion" id="puntoNotificacion"></span>
+
+            </a>
+
+        </nav>
+
+        <aside>
+            <div class="contenedor-perfil">
+
+                <button
+                    type="button"
+                    class="boton-perfil"
+                    id="botonPerfil"
+                    aria-label="Perfil"
+                    aria-expanded="false"
+                    aria-controls="submenuPerfil">
+
+                    <span class="perfil-cabeza"></span>
+                    <span class="perfil-cuerpo"></span>
+
+                </button>
+
+                <div class="submenu-perfil" id="submenuPerfil">
+
+                    <button type="button" data-pagina="configuracion.html">
+                        Configuración
+                    </button>
+
+                    <button type="button" data-pagina="informacion-personal.html">
+                        Información personal
+                    </button>
+
+                    <button type="button" data-pagina="cerrar-sesion.html">
+                        Cerrar Sesión
+                    </button>
+
+                </div>
+
+            </div>
+        </aside>
+
+    </header>
+
+    <main class="pagina-notificaciones">
+
+        <header class="encabezado-notificaciones">
+            <h1>Notificaciones</h1>
+            <p>Mirá las alertas de tu NeuroPassport</p>
+        </header>
+
+        <section class="panel-notificaciones" aria-label="Lista de notificaciones">
+
+            <ul class="lista-notificaciones">
+
+                <li>
+                    <article class="item-notificacion" data-id="medicacion">
+                        <span class="item-icono urgente" aria-hidden="true"></span>
+
+                        <p class="item-texto">Medicación / Vencimiento urgente</p>
+
+                        <div class="item-acciones">
+                            <button type="button" class="boton-marcar-leido">Marcar como leido</button>
+                            <a href="./agenda.html" class="boton-ver-agenda">Ver en la agenda</a>
+                        </div>
+                    </article>
+                </li>
+
+                <li>
+                    <article class="item-notificacion" data-id="turno">
+                        <span class="item-icono turno" aria-hidden="true"></span>
+
+                        <p class="item-texto">Turno próximo</p>
+
+                        <div class="item-acciones">
+                            <button type="button" class="boton-marcar-leido">Marcar como leido</button>
+                            <a href="./agenda.html" class="boton-ver-agenda">Ver en la agenda</a>
+                        </div>
+                    </article>
+                </li>
+
+                <li>
+                    <article class="item-notificacion" data-id="familiar">
+                        <span class="item-icono familiar" aria-hidden="true"></span>
+
+                        <p class="item-texto">Aviso familiar</p>
+
+                        <div class="item-acciones">
+                            <button type="button" class="boton-marcar-leido">Marcar como leido</button>
+                            <a href="./agenda.html" class="boton-ver-agenda">Ver en la agenda</a>
+                        </div>
+                    </article>
+                </li>
+
+            </ul>
+
+        </section>
+
+    </main>
+
+    <script>
+        (function () {
+            /* ---------- DESPLEGABLE DEL PERFIL ---------- */
+            var botonPerfil = document.getElementById("botonPerfil");
+            var submenuPerfil = document.getElementById("submenuPerfil");
+
+            botonPerfil.addEventListener("click", function (e) {
+                e.stopPropagation();
+                var abierto = submenuPerfil.classList.toggle("activo");
+                botonPerfil.setAttribute("aria-expanded", String(abierto));
+            });
+
+            document.addEventListener("click", function () {
+                submenuPerfil.classList.remove("activo");
+                botonPerfil.setAttribute("aria-expanded", "false");
+            });
+
+            submenuPerfil.querySelectorAll("button[data-pagina]").forEach(function (boton) {
+                boton.addEventListener("click", function () {
+                    window.location.href = boton.getAttribute("data-pagina");
+                });
+            });
+
+            /* ---------- MARCAR COMO LEÍDO ---------- */
+            var CLAVE = "notificacionesLeidas";
+            var punto = document.getElementById("puntoNotificacion");
+            var notificaciones = document.querySelectorAll(".item-notificacion");
+            var leidas = [];
+
+            try {
+                leidas = JSON.parse(localStorage.getItem(CLAVE)) || [];
+            } catch (error) {
+                leidas = [];
+            }
+
+            function actualizarPunto() {
+                punto.hidden = document.querySelectorAll(".item-notificacion:not(.leida)").length === 0;
+            }
+
+            function marcarLeida(notificacion) {
+                notificacion.classList.add("leida");
+
+                var boton = notificacion.querySelector(".boton-marcar-leido");
+                boton.textContent = "Leido";
+                boton.disabled = true;
+            }
+
+            notificaciones.forEach(function (notificacion) {
+                var id = notificacion.getAttribute("data-id");
+
+                if (leidas.indexOf(id) !== -1) {
+                    marcarLeida(notificacion);
+                }
+
+                notificacion.querySelector(".boton-marcar-leido").addEventListener("click", function () {
+                    marcarLeida(notificacion);
+
+                    if (leidas.indexOf(id) === -1) {
+                        leidas.push(id);
+                        localStorage.setItem(CLAVE, JSON.stringify(leidas));
+                    }
+
+                    actualizarPunto();
+                });
+            });
+
+            actualizarPunto();
+        })();
+    </script>
+
+</body>
+
+</html>
