@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,6 +15,490 @@
         rel="stylesheet"
         href="../../style.css">
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100% !important;
+            min-height: 100%;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #F1FAEE !important;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        /* BARRA SUPERIOR */
+        .barra-empresa {
+            position: relative;
+            z-index: 50;
+            width: 100% !important;
+            max-width: none !important;
+            height: 74px !important;
+            min-height: 74px !important;
+            flex-shrink: 0;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin: 0 !important;
+            padding: 0 24px !important;
+            background: #2F7185 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .barra-empresa h2 {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 32px !important;
+            line-height: 1.15 !important;
+            font-weight: 700 !important;
+            color: #D9E2E3 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .barra-empresa .menu-empresa {
+            display: none !important;
+        }
+
+        /* CONTENEDOR Y BOTÓN DE PERFIL */
+        .contenedor-perfil {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .perfil-empresa,
+        .perfil-empresa:hover,
+        .perfil-empresa:focus,
+        .perfil-empresa:active {
+            width: 48px !important;
+            height: 48px !important;
+            min-width: 48px !important;
+            min-height: 48px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            margin: -6px 0 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            background: #C8CECF !important;
+            border: none !important;
+            border-radius: 50% !important;
+            box-shadow: none !important;
+            text-decoration: none !important;
+            cursor: pointer;
+            transform: translateY(-12px) !important;
+            transition: none !important;
+            animation: none !important;
+        }
+
+        .perfil-cabeza {
+            display: block !important;
+            width: 13px !important;
+            height: 13px !important;
+            min-width: 13px !important;
+            min-height: 13px !important;
+            margin: 0 0 3px !important;
+            padding: 0 !important;
+            border-radius: 50% !important;
+            background: #1E1E1E !important;
+        }
+
+        .perfil-cuerpo {
+            display: block !important;
+            width: 26px !important;
+            height: 15px !important;
+            min-width: 26px !important;
+            min-height: 15px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border-radius: 13px 13px 0 0 !important;
+            background: #1E1E1E !important;
+        }
+
+        /* MENÚ DESPLEGABLE DE PERFIL */
+        .menu-perfil-desplegable {
+            display: none;
+            position: absolute;
+            top: 46px;
+            right: 0;
+            z-index: 100;
+            width: 210px;
+            padding: 10px;
+            background: #FFFFFF;
+            border-radius: 18px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+        }
+
+        .menu-perfil-desplegable.abierto {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu-perfil-desplegable a,
+        .menu-perfil-desplegable button {
+            width: 100% !important;
+            min-height: 68px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 !important;
+            padding: 12px 16px !important;
+            background: #E2EBEF !important;
+            color: #2B6E82 !important;
+            border: none !important;
+            border-radius: 14px !important;
+            box-shadow: none !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 20px !important;
+            font-weight: 500 !important;
+            line-height: 1.15 !important;
+            text-align: center !important;
+            text-decoration: none !important;
+            cursor: pointer;
+            transform: none !important;
+        }
+
+        .menu-perfil-desplegable a:hover,
+        .menu-perfil-desplegable a:focus,
+        .menu-perfil-desplegable a:active,
+        .menu-perfil-desplegable button:hover,
+        .menu-perfil-desplegable button:focus,
+        .menu-perfil-desplegable button:active {
+            background: #D4E1E6 !important;
+            color: #2B6E82 !important;
+            transform: none !important;
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .empresa-principal {
+            width: 100% !important;
+            max-width: none !important;
+            flex: 1 0 auto;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+        }
+
+        /* BIENVENIDA */
+        .empresa-bienvenida {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 24px auto 26px !important;
+            padding: 0 20px !important;
+            display: flex !important;
+            justify-content: center !important;
+            text-align: center !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .empresa-bienvenida > header {
+            width: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            text-align: center !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .rol-empleado {
+            margin: 0 0 6px !important;
+            padding: 0 !important;
+            font-size: 13px !important;
+            line-height: 1.2 !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.4px;
+            color: #000000 !important;
+            background: transparent !important;
+            text-align: center !important;
+        }
+
+        .empresa-bienvenida h1 {
+            width: 100%;
+            margin: 0 0 8px !important;
+            padding: 0 !important;
+            font-size: 38px !important;
+            line-height: 1.15 !important;
+            font-weight: 700 !important;
+            color: #000000 !important;
+            background: transparent !important;
+            border: none !important;
+            text-align: center !important;
+        }
+
+        .empresa-bienvenida p:last-child {
+            width: 100%;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            font-size: 15px !important;
+            line-height: 1.35 !important;
+            font-weight: 400 !important;
+            color: #000000 !important;
+            background: transparent !important;
+            text-align: center !important;
+        }
+
+        /* TARJETAS */
+        .empresa-acciones {
+            width: calc(100% - 64px) !important;
+            max-width: 1036px !important;
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 32px !important;
+            align-items: stretch !important;
+            margin: 0 auto 36px !important;
+            padding: 0 !important;
+        }
+
+        .tarjeta-empresa {
+            width: 100% !important;
+            min-height: 310px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            text-align: center !important;
+            margin: 0 !important;
+            padding: 30px 28px 28px !important;
+            background: #FFFFFF !important;
+            border: 32px solid #78E895 !important;
+            border-radius: 26px !important;
+            box-shadow: none !important;
+        }
+
+        .tarjeta-empresa:nth-child(2) {
+            border: 5px solid #2F7185 !important;
+        }
+
+        .tarjeta-empresa > header {
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            text-align: center !important;
+        }
+
+        .tarjeta-empresa h2 {
+            margin: 0 !important;
+            padding: 0 0 0 36px !important;
+            font-size: 32px !important;
+            line-height: 1.2 !important;
+            font-weight: 700 !important;
+            color: #000000 !important;
+            background: transparent !important;
+            border: none !important;
+            text-align: center !important;
+        }
+
+        .tarjeta-empresa p {
+            width: 100% !important;
+            max-width: 390px !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            font-size: 16px !important;
+            line-height: 1.35 !important;
+            font-weight: 400 !important;
+            color: #000000 !important;
+            background: transparent !important;
+            text-align: center !important;
+        }
+
+        .boton-accion,
+        .boton-accion:link,
+        .boton-accion:visited,
+        .boton-accion:hover,
+        .boton-accion:focus,
+        .boton-accion:focus-visible,
+        .boton-accion:active {
+            width: 290px !important;
+            max-width: 100% !important;
+            height: 54px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 auto !important;
+            padding: 0 18px !important;
+            background: #B7E4C7 !important;
+            color: #111111 !important;
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: none !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 26px !important;
+            font-weight: 800 !important;
+            line-height: 1 !important;
+            text-decoration: none !important;
+            transform: none !important;
+            transition: none !important;
+            animation: none !important;
+        }
+
+        .controles-vincular {
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 14px !important;
+            margin: 0 !important;
+        }
+
+        .controles-vincular input {
+            flex: 1 1 auto !important;
+            max-width: 245px !important;
+            height: 50px !important;
+            margin: 0 !important;
+            padding: 0 16px !important;
+            background: #F1F2F2 !important;
+            color: #222222 !important;
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: none !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 16px !important;
+        }
+
+        .controles-vincular input::placeholder {
+            color: #8E9294 !important;
+            opacity: 1;
+        }
+
+        #botonVincular,
+        #botonVincular:hover,
+        #botonVincular:focus,
+        #botonVincular:active {
+            flex-shrink: 0 !important;
+            min-width: 168px !important;
+            height: 50px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 !important;
+            padding: 0 18px !important;
+            background: #B7E4C7 !important;
+            color: #2B6E82 !important;
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: none !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 22px !important;
+            font-weight: 600 !important;
+            line-height: 1 !important;
+            cursor: pointer;
+            transform: none !important;
+        }
+
+        #institucionVinculada {
+            min-height: 20px !important;
+            margin: 8px 0 0 !important;
+            padding: 0 !important;
+            font-size: 15px !important;
+            line-height: 1.3 !important;
+            color: #000000 !important;
+            background: transparent !important;
+            text-align: center !important;
+        }
+
+        /* RESUMEN DE PREFERENCIAS */
+        .empresa-info {
+            width: 100% !important;
+            max-width: none !important;
+            margin: auto 0 0 !important;
+            padding: 18px 20px 22px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            background: #B7E4C7 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .empresa-info > header {
+            margin: 0 0 6px !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .empresa-info h2 {
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 14px !important;
+            line-height: 1.3 !important;
+            font-weight: 700 !important;
+            color: #FFFFFF !important;
+            background: transparent !important;
+            border: none !important;
+            text-align: center !important;
+        }
+
+        .empresa-info p {
+            margin: 4px 0 !important;
+            padding: 0 !important;
+            font-size: 13px !important;
+            line-height: 1.35 !important;
+            font-weight: 400 !important;
+            color: #FFFFFF !important;
+            background: transparent !important;
+            text-align: center !important;
+        }
+
+        @media (max-width: 820px) {
+            .empresa-acciones {
+                width: calc(100% - 32px) !important;
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            .controles-vincular {
+                flex-direction: column !important;
+            }
+
+            .controles-vincular input {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            #botonVincular {
+                width: 100% !important;
+            }
+
+            .empresa-bienvenida h1 {
+                font-size: 30px !important;
+            }
+        }
+    </style>
+
 </head>
 
 
@@ -24,11 +507,11 @@
 
     <header class="barra-empresa">
 
+        <h2>NeuroPassport</h2>
 
         <nav
             class="menu-empresa"
             aria-label="Navegación principal">
-
 
             <a
                 href="empleado.html"
@@ -38,7 +521,6 @@
 
             </a>
 
-
             <a
                 href="configuracion.html"
                 class="boton-menu-empresa">
@@ -47,22 +529,39 @@
 
             </a>
 
-
         </nav>
 
+        <div class="contenedor-perfil">
 
-        <a
-            href="configuracion.html"
-            class="perfil-empresa"
-            title="Configuración"
-            aria-label="Configuración">
+            <button
+                type="button"
+                id="botonPerfil"
+                class="perfil-empresa"
+                title="Perfil"
+                aria-label="Abrir menú de perfil"
+                aria-expanded="false"
+                aria-controls="menuPerfilDesplegable">
 
-            <span class="perfil-cabeza"></span>
+                <span class="perfil-cabeza"></span>
 
-            <span class="perfil-cuerpo"></span>
+                <span class="perfil-cuerpo"></span>
 
-        </a>
+            </button>
 
+            <nav
+                id="menuPerfilDesplegable"
+                class="menu-perfil-desplegable"
+                aria-label="Opciones de perfil">
+
+                <a href="configuracion.html">Configuración</a>
+
+                <a href="informacion-personal.html">Información personal</a>
+
+                <button type="button" id="botonCerrarSesion">Cerrar sesión</button>
+
+            </nav>
+
+        </div>
 
     </header>
 
@@ -75,18 +574,17 @@
 
             <header>
 
+                <p class="rol-empleado">PROFESIONAL</p>
+
                 <h1 id="saludoEmpleado">
 
                     ¡Hola! Bienvenido a NeuroPassport
 
                 </h1>
 
-
                 <p>
 
-                    Desde este espacio podés administrar
-                    tu información y tus preferencias
-                    en el trabajo.
+                    Desde este espacio podés administrar tu información y tus preferencias en el trabajo.
 
                 </p>
 
@@ -111,15 +609,11 @@
 
                 </header>
 
-
                 <p>
 
-                    Indicá qué condiciones, formas de
-                    comunicación y adaptaciones te ayudan
-                    en tu entorno laboral.
+                    Indicá qué condiciones, comunicación y adaptaciones te ayudan en tu entorno laboral.
 
                 </p>
-
 
                 <a
                     href="preferencias-trabajo.html"
@@ -145,30 +639,29 @@
 
                 </header>
 
-
                 <p>
 
-                    Ingresá el código de tu empresa,
-                    escuela o universidad para vincular
-                    tu cuenta.
+                    Ingresá el código de tu empresa, escuela o universidad para vincular tu cuenta.
 
                 </p>
 
+                <div class="controles-vincular">
 
-                <input
-                    type="text"
-                    id="codigoInstitucion"
-                    placeholder="Código de institución">
+                    <input
+                        type="text"
+                        id="codigoInstitucion"
+                        aria-label="Código de institución"
+                        placeholder="Código de institución">
 
+                    <button
+                        type="button"
+                        id="botonVincular">
 
-                <button
-                    type="button"
-                    id="botonVincular">
+                        Vincularme
 
-                    Vincularme
+                    </button>
 
-                </button>
-
+                </div>
 
                 <p id="institucionVinculada">
 
@@ -193,7 +686,6 @@
 
             </header>
 
-
             <p>
 
                 Comunicación:
@@ -203,7 +695,6 @@
                 </span>
 
             </p>
-
 
             <p>
 
@@ -215,7 +706,6 @@
 
             </p>
 
-
             <p>
 
                 Organización:
@@ -226,7 +716,6 @@
 
             </p>
 
-
             <p>
 
                 Adaptaciones:
@@ -236,7 +725,6 @@
                 </span>
 
             </p>
-
 
             <p>
 
@@ -255,6 +743,30 @@
     </main>
 
 
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const botonPerfil = document.getElementById("botonPerfil");
+            const menuPerfil = document.getElementById("menuPerfilDesplegable");
+
+            if (!botonPerfil || !menuPerfil) {
+                return;
+            }
+
+            botonPerfil.addEventListener("click", function (evento) {
+                evento.stopPropagation();
+                const estaAbierto = menuPerfil.classList.toggle("abierto");
+                botonPerfil.setAttribute("aria-expanded", String(estaAbierto));
+            });
+
+            document.addEventListener("click", function (evento) {
+                if (!menuPerfil.contains(evento.target) && !botonPerfil.contains(evento.target)) {
+                    menuPerfil.classList.remove("abierto");
+                    botonPerfil.setAttribute("aria-expanded", "false");
+                }
+            });
+        });
+    </script>
 
     <script
         src="empleado.js"
