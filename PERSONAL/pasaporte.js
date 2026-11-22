@@ -6,7 +6,13 @@ const formulario = document.getElementById("formularioAgregar");
 const formularioContenido = document.getElementById("formularioContenido");
 const listaItems = document.getElementById("listaItems");
 
+const API_URL = "http://localhost:3000";
+const idUsuario = localStorage.getItem("idUsuario");
+
 const claveStorage = "neuropassport_" + tipo;
+
+// Pasaporte completo del usuario: { diagnosticos: [...], medicacion: [...], ... }
+let pasaporte = {};
 
 
 
@@ -282,6 +288,94 @@ const campos = {
 
 
 
+/* ---------- API ---------- */
+
+// GET /api/pasaportes/:idUsuario -> carga los datos del pasaporte
+async function cargarPasaporte() {
+
+    // Copia local por si el servidor no responde
+    try {
+        const local = JSON.parse(localStorage.getItem("neuropassport_datos"));
+        if (local && typeof local === "object") {
+            pasaporte = local;
+        }
+    } catch (error) {
+        pasaporte = {};
+    }
+
+    if (!idUsuario) {
+        return;
+    }
+
+    try {
+
+        const respuesta = await fetch(
+            API_URL + "/api/pasaportes/" + encodeURIComponent(idUsuario)
+        );
+
+        // 404 = el usuario todavía no tiene pasaporte, se crea al guardar
+        if (respuesta.status === 404) {
+            return;
+        }
+
+        if (!respuesta.ok) {
+            throw new Error("Error " + respuesta.status);
+        }
+
+        const data = await respuesta.json();
+
+        // Acepta tanto { datos: {...} } como el objeto directo
+        pasaporte = data.datos || data;
+
+        localStorage.setItem("neuropassport_datos", JSON.stringify(pasaporte));
+
+    } catch (error) {
+
+        console.error("No se pudo cargar el pasaporte:", error);
+
+    }
+
+}
+
+
+// POST /api/pasaportes -> crea o guarda el pasaporte
+async function guardarPasaporte() {
+
+    localStorage.setItem("neuropassport_datos", JSON.stringify(pasaporte));
+
+    if (!idUsuario) {
+        return;
+    }
+
+    try {
+
+        const respuesta = await fetch(API_URL + "/api/pasaportes", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                datos: pasaporte
+            })
+        });
+
+        if (!respuesta.ok) {
+            throw new Error("Error " + respuesta.status);
+        }
+
+    } catch (error) {
+
+        console.error("No se pudo guardar el pasaporte:", error);
+        alert("No se pudo guardar en el servidor. Se guardó solo en este dispositivo.");
+
+    }
+
+}
+
+
+
+
+/* ---------- FORMULARIO ---------- */
+
 function crearFormulario() {
 
     const listaCampos = campos[tipo];
@@ -330,7 +424,7 @@ function crearFormulario() {
 
 
 
-function guardarItem() {
+async function guardarItem() {
 
     const inputs = formularioContenido.querySelectorAll("input, textarea");
 
@@ -358,11 +452,13 @@ function guardarItem() {
 
     item.id = Date.now();
 
-    let items = JSON.parse(localStorage.getItem(claveStorage)) || [];
+    if (!Array.isArray(pasaporte[tipo])) {
+        pasaporte[tipo] = [];
+    }
 
-    items.push(item);
+    pasaporte[tipo].push(item);
 
-    localStorage.setItem(claveStorage, JSON.stringify(items));
+    await guardarPasaporte();
 
     formularioContenido.innerHTML = "";
 
@@ -381,7 +477,7 @@ function mostrarItems() {
 
     listaItems.innerHTML = "";
 
-    const items = JSON.parse(localStorage.getItem(claveStorage)) || [];
+    const items = Array.isArray(pasaporte[tipo]) ? pasaporte[tipo] : [];
 
     if (items.length === 0) {
 
@@ -445,17 +541,17 @@ function mostrarItems() {
 
 
 
-function eliminarItem(id) {
+async function eliminarItem(id) {
 
-    let items = JSON.parse(localStorage.getItem(claveStorage)) || [];
+    const items = Array.isArray(pasaporte[tipo]) ? pasaporte[tipo] : [];
 
-    items = items.filter(function (item) {
+    pasaporte[tipo] = items.filter(function (item) {
 
         return item.id !== id;
 
     });
 
-    localStorage.setItem(claveStorage, JSON.stringify(items));
+    await guardarPasaporte();
 
     mostrarItems();
 
@@ -464,9 +560,21 @@ function eliminarItem(id) {
 
 
 
-crearFormulario();
+async function iniciar() {
 
-mostrarItems();
+    await cargarPasaporte();
+
+    crearFormulario();
+
+    mostrarItems();
+
+}
+
+iniciar();
+
+
+/* ---------- FOTO DE PERFIL ---------- */
+
 const perfil = document.getElementById("botonPerfil");
 const fotoPerfil = localStorage.getItem("fotoPerfil");
 
