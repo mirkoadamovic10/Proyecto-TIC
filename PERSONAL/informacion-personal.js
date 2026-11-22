@@ -1,3 +1,10 @@
+const API_URL = "http://localhost:3000/api/info-personal";
+
+// Obtener el ID del usuario que inició sesión
+const usuarioGuardado = localStorage.getItem("usuario");
+const usuarioLogueado = usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
+const idUsuario = usuarioLogueado ? usuarioLogueado.idUsuario : 1;
+
 const formulario = document.getElementById("formularioInfo");
 const botonGuardar = document.getElementById("botonGuardar");
 const botonEditar = document.getElementById("botonEditar");
@@ -19,73 +26,142 @@ const campos = [
     "celularPadre"
 ];
 
-function guardarDatos() {
-    const datos = {};
+// Al entrar a la página, cargar los datos guardados
+async function cargarDatos() {
+    activarCampos();
 
-    campos.forEach(function(campo) {
-        datos[campo] = document.getElementById(campo).value;
-    });
+    if (botonGuardar) botonGuardar.style.display = "block";
+    if (botonEditar) botonEditar.style.display = "none";
 
-    localStorage.setItem("informacionPersonal", JSON.stringify(datos));
+    try {
+        const respuesta = await fetch(`${API_URL}/${idUsuario}`);
+
+        if (!respuesta.ok) {
+            console.log("Todavía no hay información personal guardada.");
+            return;
+        }
+
+        const datos = await respuesta.json();
+
+        campos.forEach(function(campo) {
+            const elemento = document.getElementById(campo);
+
+            if (elemento && datos[campo] !== undefined && datos[campo] !== null) {
+                elemento.value = datos[campo];
+            }
+        });
+
+        // Los campos quedan habilitados para poder escribir
+        activarCampos();
+
+        if (botonGuardar) botonGuardar.style.display = "block";
+        if (botonEditar) botonEditar.style.display = "none";
+
+        if (mensaje) {
+            mensaje.textContent = "Información cargada correctamente.";
+        }
+
+    } catch (error) {
+        console.error("Error al cargar la información:", error);
+
+        activarCampos();
+
+        if (botonGuardar) botonGuardar.style.display = "block";
+        if (botonEditar) botonEditar.style.display = "none";
+    }
 }
 
-function cargarDatos() {
-    const datosGuardados = localStorage.getItem("informacionPersonal");
-
-    if (!datosGuardados) {
-        return;
-    }
-
-    const datos = JSON.parse(datosGuardados);
+// Guardar la información en el backend
+async function guardarDatos() {
+    const datos = {
+        idUsuario: idUsuario
+    };
 
     campos.forEach(function(campo) {
         const elemento = document.getElementById(campo);
 
-        if (elemento && datos[campo] !== undefined) {
-            elemento.value = datos[campo];
+        if (elemento) {
+            if (campo === "edad") {
+                datos[campo] = elemento.value ? Number(elemento.value) : 0;
+            } else {
+                datos[campo] = elemento.value;
+            }
         }
     });
 
-    desactivarCampos();
+    try {
+        const respuesta = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        });
 
-    botonGuardar.style.display = "none";
-    botonEditar.style.display = "block";
+        const resultado = await respuesta.json();
 
-    mensaje.textContent = "Tu información está guardada.";
+        if (!respuesta.ok) {
+            alert("Error al guardar: " + (resultado.error || "No se pudo guardar la información."));
+            return;
+        }
+
+        if (mensaje) {
+            mensaje.textContent = "Información guardada correctamente.";
+        }
+
+        // Después de guardar, se pueden seguir editando los campos
+        activarCampos();
+
+        if (botonGuardar) botonGuardar.style.display = "block";
+        if (botonEditar) botonEditar.style.display = "none";
+
+    } catch (error) {
+        console.error("Error al guardar la información:", error);
+        alert("No se pudo conectar con el servidor.");
+    }
 }
 
-function desactivarCampos() {
-    campos.forEach(function(campo) {
-        document.getElementById(campo).disabled = true;
-    });
-}
-
+// Habilitar todos los campos
 function activarCampos() {
     campos.forEach(function(campo) {
-        document.getElementById(campo).disabled = false;
+        const elemento = document.getElementById(campo);
+
+        if (elemento) {
+            elemento.disabled = false;
+        }
     });
 }
 
-formulario.addEventListener("submit", function(event) {
-    event.preventDefault();
+// Deshabilitar todos los campos
+function desactivarCampos() {
+    campos.forEach(function(campo) {
+        const elemento = document.getElementById(campo);
 
-    guardarDatos();
+        if (elemento) {
+            elemento.disabled = true;
+        }
+    });
+}
 
-    desactivarCampos();
+// Cuando se envía el formulario, guardar los datos
+if (formulario) {
+    formulario.addEventListener("submit", async function(evento) {
+        evento.preventDefault();
+        await guardarDatos();
+    });
+}
 
-    botonGuardar.style.display = "none";
-    botonEditar.style.display = "block";
+// Cuando se aprieta Editar, habilitar los campos
+if (botonEditar) {
+    botonEditar.addEventListener("click", function() {
+        activarCampos();
 
-    mensaje.textContent = "Información guardada correctamente.";
-});
+        if (botonGuardar) botonGuardar.style.display = "block";
+        if (botonEditar) botonEditar.style.display = "none";
 
-botonEditar.addEventListener("click", function() {
-    activarCampos();
+        if (mensaje) mensaje.textContent = "";
+    });
+}
 
-    botonGuardar.style.display = "block";
-    botonEditar.style.display = "none";
-
-    mensaje.textContent = "";
-});
-
+// Cargar los datos al entrar
 cargarDatos();
