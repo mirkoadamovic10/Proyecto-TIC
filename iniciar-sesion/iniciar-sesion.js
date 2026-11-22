@@ -45,6 +45,9 @@ formulario?.addEventListener("submit", (evento) => {
 
         if (data.usuario) {
             localStorage.setItem("usuario", JSON.stringify(data.usuario));
+
+            // Guardar el ID del usuario para las demás APIs
+            localStorage.setItem("idUsuario", data.usuario.idUsuario);
             
             if (data.usuario.nombre) {
                 localStorage.setItem("nombreUsuario", data.usuario.nombre);
@@ -56,7 +59,6 @@ formulario?.addEventListener("submit", (evento) => {
 
         alert(data.mensaje || "¡Bienvenido/a!");
 
-      
         const usuarioLogueado = data.usuario;
 
         if (usuarioLogueado && usuarioLogueado.rol) {

@@ -17,6 +17,29 @@ if (fotoGuardada) {
     fotoConfiguracion.classList.add("tiene-foto");
 }
 
+// Cargar los datos del usuario desde el backend
+let idUsuario = localStorage.getItem("idUsuario");
+
+if (idUsuario) {
+    fetch(`http://localhost:3000/api/usuarios/${idUsuario}`)
+        .then(function(respuesta) {
+            if (!respuesta.ok) {
+                throw new Error("No se pudieron cargar los datos del usuario.");
+            }
+
+            return respuesta.json();
+        })
+        .then(function(usuario) {
+            nombreConfiguracion.value = usuario.nombre;
+            localStorage.setItem("nombreUsuario", usuario.nombre);
+        })
+        .catch(function(error) {
+            mensajeConfiguracion.textContent = error.message;
+        });
+} else {
+    mensajeConfiguracion.textContent = "No se encontró el usuario.";
+}
+
 botonCambiarFoto.addEventListener("click", function() {
     inputFoto.click();
 });
@@ -46,6 +69,7 @@ inputFoto.addEventListener("change", function() {
     lector.readAsDataURL(archivo);
 });
 
+// Guardar los cambios del usuario en el backend
 botonGuardarConfiguracion.addEventListener("click", function() {
 
     const nuevoNombre = nombreConfiguracion.value.trim();
@@ -55,7 +79,32 @@ botonGuardarConfiguracion.addEventListener("click", function() {
         return;
     }
 
-    localStorage.setItem("nombreUsuario", nuevoNombre);
+    if (!idUsuario) {
+        mensajeConfiguracion.textContent = "No se encontró el usuario.";
+        return;
+    }
 
-    mensajeConfiguracion.textContent = "Cambios guardados correctamente.";
+    fetch(`http://localhost:3000/api/usuarios/${idUsuario}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nombre: nuevoNombre
+        })
+    })
+        .then(function(respuesta) {
+            if (!respuesta.ok) {
+                throw new Error("No se pudieron guardar los cambios.");
+            }
+
+            return respuesta.json();
+        })
+        .then(function(datos) {
+            localStorage.setItem("nombreUsuario", nuevoNombre);
+            mensajeConfiguracion.textContent = "Cambios guardados correctamente.";
+        })
+        .catch(function(error) {
+            mensajeConfiguracion.textContent = error.message;
+        });
 });
