@@ -7,10 +7,16 @@
 
     <title>NeuroPassport - Escuela / Universidad</title>
 
+    <!-- Tipografía Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         /* Configuración general */
         * {
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
         html,
@@ -20,8 +26,7 @@
             width: 100%;
             height: 100%;
             background-color: #f1f9ef;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
             display: flex;
             flex-direction: column;
         }
@@ -30,7 +35,7 @@
         .navbar-escuela {
             display: flex;
             width: 100%;
-            height: 56px;
+            height: 68px;
             background-color: #705E32;
             align-items: center;
             justify-content: space-between;
@@ -40,39 +45,93 @@
 
         .nombre-neuropassport-escuela {
             color: #ffffff;
-            font-size: 24px;
+            font-size: 27px;
             font-weight: 700;
             margin: 0;
             letter-spacing: -0.5px;
         }
 
+        /* Contenedor del perfil y menú */
+        .contenedor-perfil {
+            position: relative;
+        }
+
         /* Icono de perfil */
         .perfil-escuela {
-            width: 34px;
-            height: 34px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             background-color: #ffffff;
+            border: none;
             text-decoration: none;
+            cursor: pointer;
             flex-shrink: 0;
         }
 
         .perfil-cabeza {
-            width: 9px;
-            height: 9px;
+            width: 11px;
+            height: 11px;
             border-radius: 50%;
             background-color: #111111;
             margin-bottom: 2px;
         }
 
         .perfil-cuerpo {
-            width: 16px;
-            height: 8px;
+            width: 19px;
+            height: 10px;
             border-radius: 9px 9px 4px 4px;
             background-color: #111111;
+        }
+
+        /* Menú desplegable */
+        .menu-perfil {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 210px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+            z-index: 1000;
+        }
+
+        .menu-perfil.activo {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .opcion-menu {
+            width: 100%;
+            padding: 12px 14px;
+            border: none;
+            border-radius: 8px;
+            background-color: transparent;
+            color: #222222;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
+            text-decoration: none;
+            cursor: pointer;
+            display: block;
+        }
+
+        .opcion-menu:hover {
+            background-color: #f1f9ef;
+        }
+
+        .opcion-cerrar-sesion {
+            color: #222222;
+        }
+
+        .opcion-cerrar-sesion:hover {
+            background-color: #f1f9ef;
         }
 
         /* Contenido principal */
@@ -127,7 +186,7 @@
         }
 
         .tarjeta {
-            min-height: 280px;
+            min-height: 300px;
             background-color: #ffffff;
             border: 5px solid;
             border-radius: 22px;
@@ -169,7 +228,7 @@
             border: none;
             border-radius: 12px;
             padding: 12px 32px;
-            font-family: inherit;
+            font-family: 'Inter', sans-serif;
             font-size: 16px;
             line-height: 22px;
             font-weight: 700;
@@ -255,15 +314,41 @@
             NeuroPassport
         </h1>
 
-        <a href="configuracion.html"
-           class="perfil-escuela"
-           id="perfilInstitucion"
-           title="Configuración"
-           aria-label="Configuración">
+        <!-- Perfil con menú desplegable -->
+        <div class="contenedor-perfil">
 
-            <span class="perfil-cabeza"></span>
-            <span class="perfil-cuerpo"></span>
-        </a>
+            <button
+                type="button"
+                class="perfil-escuela"
+                id="perfilInstitucion"
+                title="Abrir menú de perfil"
+                aria-label="Abrir menú de perfil"
+                aria-expanded="false">
+
+                <span class="perfil-cabeza"></span>
+                <span class="perfil-cuerpo"></span>
+            </button>
+
+            <nav class="menu-perfil" id="menuPerfil">
+
+                <a href="configuracion.html" class="opcion-menu">
+                    Configuración
+                </a>
+
+                <a href="informacion-personal.html" class="opcion-menu">
+                    Información personal
+                </a>
+
+                <button
+                    type="button"
+                    class="opcion-menu opcion-cerrar-sesion"
+                    id="cerrarSesion">
+                    Cerrar sesión
+                </button>
+
+            </nav>
+
+        </div>
     </header>
 
     <!-- Contenido principal de la institución -->
@@ -335,6 +420,35 @@
         </p>
 
     </footer>
+
+    <script>
+        const perfilInstitucion = document.getElementById("perfilInstitucion");
+        const menuPerfil = document.getElementById("menuPerfil");
+        const cerrarSesion = document.getElementById("cerrarSesion");
+
+        // Abrir y cerrar el menú al tocar el perfil
+        perfilInstitucion.addEventListener("click", function () {
+            menuPerfil.classList.toggle("activo");
+
+            const menuAbierto = menuPerfil.classList.contains("activo");
+            perfilInstitucion.setAttribute("aria-expanded", menuAbierto);
+        });
+
+        // Cerrar el menú al tocar fuera
+        document.addEventListener("click", function (evento) {
+            if (!evento.target.closest(".contenedor-perfil")) {
+                menuPerfil.classList.remove("activo");
+                perfilInstitucion.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        // Cerrar sesión
+        cerrarSesion.addEventListener("click", function () {
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.href = "../index.html";
+        });
+    </script>
 
     <script src="escuela.js" defer></script>
 

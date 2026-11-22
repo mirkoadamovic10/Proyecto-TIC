@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -26,59 +25,178 @@
             color: #111;
         }
 
-        /* NAVBAR: igual a Médicos */
+        /* NAVBAR */
 
         .barra-empresa {
             width: 100%;
             min-height: 54px;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: space-between;
             padding: 8px 24px;
             background: #705E32 !important;
             border: none !important;
             box-shadow: none !important;
         }
 
-        .menu-empresa {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .texto-navbar {
+            color: #D9E2E3;
+            font-size: 28px;
+            font-weight: 700;
             margin: 0;
-            padding: 0;
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
+            letter-spacing: -0.5px;
         }
 
-        .boton-menu-empresa {
+        /* BOTÓN DE PERFIL */
+
+        .contenedor-perfil {
+            position: relative;
+        }
+
+        .boton-perfil-empresa {
+            width: 48px;
+            height: 48px;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-width: 120px;
-            min-height: 32px;
-            padding: 6px 18px;
-            border: none !important;
-            border-radius: 8px;
-            background: #D6B5E2 !important;
-            color: #111 !important;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background: #D9E2E3;
+            cursor: pointer;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .boton-perfil-empresa:hover,
+        .boton-perfil-empresa:focus,
+        .boton-perfil-empresa:active {
+            background: #D9E2E3 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .icono-perfil {
+            position: relative;
+            width: 26px;
+            height: 26px;
+        }
+
+        .icono-perfil::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 7px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #000000;
+        }
+
+        .icono-perfil::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 2px;
+            width: 22px;
+            height: 11px;
+            border-radius: 10px 10px 5px 5px;
+            background: #000000;
+        }
+
+        /* DESPLEGABLE DEL PERFIL */
+
+        .menu-perfil {
+            display: none;
+            position: absolute;
+            top: 58px;
+            right: 0;
+            width: 210px;
+            padding: 7px;
+            background: #FFFFFF;
+            border: 1px solid #D6E9D9;
+            border-radius: 10px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.13);
+            z-index: 1000;
+        }
+
+        .menu-perfil.mostrar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .opcion-perfil {
+            width: 100%;
+            padding: 12px 13px;
+            border: none;
+            border-radius: 7px;
+            background: transparent;
+            color: #222;
             font-size: 13px;
             font-weight: 500;
-            text-decoration: none;
-            box-shadow: none !important;
+            text-align: left;
+            cursor: pointer;
+            transition: none !important;
+            transform: none !important;
         }
 
-        .boton-menu-empresa:hover {
-            background: #C7A0D6 !important;
+        .opcion-perfil:hover {
+            background: #F0F8ED !important;
+            color: #285866 !important;
+            transform: none !important;
         }
 
-        /* CONTENIDO: igual a Médicos */
+        .opcion-cerrar-sesion {
+            color: #222;
+        }
+
+        .opcion-cerrar-sesion:hover {
+            background: #F0F8ED !important;
+            color: #285866 !important;
+        }
+
+        /* CONTENIDO */
 
         .empresa-principal {
             width: 100%;
             max-width: none;
             margin: 0;
             padding: 58px 20px 40px;
+        }
+
+        /* BOTÓN VOLVER */
+
+        .boton-volver {
+            width: 85px;
+            min-width: 85px;
+            height: 36px;
+            min-height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin: 0 0 25px -15px;
+            padding: 0 8px;
+            border: none;
+            border-radius: 10px;
+            background: #B7E4C7 !important;
+            color: #285866;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: none;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .boton-volver:hover {
+            background: #B7E4C7 !important;
+            transform: none !important;
+        }
+
+        .flecha-volver {
+            font-size: 16px;
+            line-height: 1;
         }
 
         .empresa-bienvenida {
@@ -130,7 +248,7 @@
             box-shadow: none !important;
         }
 
-        /* BOTÓN: mismas dimensiones y color que Médicos */
+        /* BOTÓN LINKEAR ESTUDIANTE */
 
         .boton-agregar-hospital {
             flex: 0 0 209px;
@@ -148,17 +266,17 @@
             background: #B7E4C7 !important;
             color: #285866 !important;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 700;
             cursor: pointer;
             box-shadow: none !important;
             position: static !important;
         }
 
         .boton-agregar-hospital:hover {
-            background: #A5D9B8 !important;
+            background: #B7E4C7 !important;
         }
 
-        /* RECTÁNGULOS: igual a la lista de Médicos */
+        /* LISTA DE ESTUDIANTES */
 
         .lista-hospital {
             width: 100% !important;
@@ -268,7 +386,7 @@
             background: #A5D9B8;
         }
 
-        /* VENTANA DE VINCULACIÓN: igual a Médicos */
+        /* VENTANA DE VINCULACIÓN */
 
         .ventana-hospital {
             display: none;
@@ -386,19 +504,6 @@
                 padding: 8px 10px;
             }
 
-            .menu-empresa {
-                width: 100%;
-                justify-content: flex-end;
-                gap: 6px;
-            }
-
-            .boton-menu-empresa {
-                min-width: 0;
-                min-height: 32px;
-                padding: 6px 12px;
-                font-size: 12px;
-            }
-
             .empresa-principal {
                 padding: 38px 14px 30px;
             }
@@ -432,20 +537,66 @@
                 margin-left: 55px;
             }
         }
+
+        /* FORZAR EL COLOR EXACTO DE LOS DOS BOTONES */
+
+        button.boton-volver,
+        button.boton-agregar-hospital {
+            background-color: #B7E4C7 !important;
+            background: #B7E4C7 !important;
+            border: none !important;
+        }
+
+        button.boton-volver:hover,
+        button.boton-agregar-hospital:hover {
+            background-color: #B7E4C7 !important;
+            background: #B7E4C7 !important;
+        }
     </style>
 </head>
 
 <body>
 
     <header class="barra-empresa">
-        <nav class="menu-empresa" aria-label="Navegación principal">
-            <a href="escuela.html" class="boton-menu-empresa">Inicio</a>
-            <a href="empleados.html" class="boton-menu-empresa">Empleados</a>
-            <a href="estudiantes.html" class="boton-menu-empresa" aria-current="page">Estudiantes</a>
-        </nav>
+        <p class="texto-navbar">NeuroPassport</p>
+
+        <div class="contenedor-perfil">
+
+            <button
+                type="button"
+                class="boton-perfil-empresa"
+                id="botonPerfil"
+                aria-label="Perfil"
+                aria-expanded="false"
+                aria-controls="menuPerfil">
+                <span class="icono-perfil"></span>
+            </button>
+
+            <nav class="menu-perfil" id="menuPerfil">
+
+                <button type="button" class="opcion-perfil">
+                    Configuración
+                </button>
+
+                <button type="button" class="opcion-perfil">
+                    Información personal
+                </button>
+
+                <button type="button" class="opcion-perfil opcion-cerrar-sesion">
+                    Cerrar sesión
+                </button>
+
+            </nav>
+
+        </div>
     </header>
 
     <main class="empresa-principal">
+
+        <button type="button" class="boton-volver" onclick="history.back()">
+            <span class="flecha-volver">←</span>
+            Volver
+        </button>
 
         <section class="empresa-bienvenida">
             <header>
@@ -539,6 +690,36 @@
 
         </section>
     </aside>
+
+    <script>
+        // DESPLEGABLE DEL PERFIL
+
+        const botonPerfil = document.getElementById("botonPerfil");
+        const menuPerfil = document.getElementById("menuPerfil");
+
+        botonPerfil.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            menuPerfil.classList.toggle("mostrar");
+
+            const estaAbierto = menuPerfil.classList.contains("mostrar");
+            botonPerfil.setAttribute("aria-expanded", estaAbierto);
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!menuPerfil.contains(event.target) && !botonPerfil.contains(event.target)) {
+                menuPerfil.classList.remove("mostrar");
+                botonPerfil.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                menuPerfil.classList.remove("mostrar");
+                botonPerfil.setAttribute("aria-expanded", "false");
+            }
+        });
+    </script>
 
     <script src="estudiantes.js" defer></script>
 

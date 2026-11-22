@@ -2,229 +2,578 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Preferencias de trabajo - NeuroPassport</title>
 
-    <link
-        rel="stylesheet"
-        href="../../style.css"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html,
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #F0F8ED !important;
+            color: #000000;
+        }
+
+        /* NAVBAR */
+        .barra-superior {
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0;
+            padding: 0 12px 0 16px;
+            background: #2D7289 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .barra-superior .titulo-barra {
+            margin: 0;
+            padding: 0;
+            font-size: 25px;
+            line-height: 1;
+            font-weight: 600;
+            color: #D9E2E3 !important;
+            background: transparent !important;
+            border: none !important;
+            white-space: nowrap;
+        }
+
+        /* CONTENEDOR DEL PERFIL */
+        .contenedor-perfil {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* BOTÓN DE PERFIL */
+        .barra-superior .boton-perfil,
+        .barra-superior .boton-perfil:hover,
+        .barra-superior .boton-perfil:focus,
+        .barra-superior .boton-perfil:active {
+            width: 38px !important;
+            height: 38px !important;
+            min-width: 38px !important;
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: #D9D9D9 !important;
+            border: none !important;
+            border-radius: 50% !important;
+            box-shadow: none !important;
+            text-decoration: none;
+            transform: none !important;
+            transition: none !important;
+            animation: none !important;
+            cursor: pointer;
+        }
+
+        .boton-perfil .perfil-cabeza {
+            display: block;
+            width: 10px;
+            height: 10px;
+            margin: 0;
+            background: #000000;
+            border-radius: 50%;
+        }
+
+        .boton-perfil .perfil-cuerpo {
+            display: block;
+            width: 19px;
+            height: 9px;
+            margin: 0;
+            background: #000000;
+            border-radius: 8px 8px 4px 4px;
+        }
+
+        /* MENÚ DESPLEGABLE DEL PERFIL */
+        .menu-perfil {
+            display: none;
+            position: absolute;
+            top: 48px;
+            right: 0;
+            width: 190px;
+            padding: 8px;
+            background: #FFFFFF;
+            border: 1px solid #D9E2E3;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+
+        .menu-perfil.abierto {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu-perfil button {
+            width: 100%;
+            min-height: 40px;
+            padding: 9px 12px;
+            background: #FFFFFF;
+            color: #2D7289;
+            border: none;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .menu-perfil button:hover {
+            background: #F0F8ED;
+        }
+
+        /* CONTENIDO */
+        .pagina-preferencias {
+            width: 100%;
+            margin: 0;
+            padding: 15px 16px 27px;
+        }
+
+        /* TÍTULO Y SUBTÍTULO */
+        .encabezado-preferencias {
+            margin: 0 0 38px;
+            padding: 0;
+            text-align: center;
+            background: transparent;
+            border: none;
+        }
+
+        .encabezado-preferencias h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 25px;
+            line-height: 30px;
+            font-weight: 700;
+            color: #000000;
+            background: transparent;
+            border: none;
+        }
+
+        .encabezado-preferencias p {
+            margin: 0;
+            padding: 0;
+            font-size: 15px;
+            line-height: 21px;
+            font-weight: 400;
+            color: #000000;
+        }
+
+        /* TARJETA BLANCA */
+        .formulario-preferencias-trabajo {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            gap: 25px !important;
+            width: 580px !important;
+            height: 1142px !important;
+            max-width: none !important;
+            margin: 0 auto !important;
+            padding: 40px 35px !important;
+            box-sizing: border-box !important;
+            opacity: 1;
+            background: #FFFFFF !important;
+            border: 2px solid #2B2B2B !important;
+            border-radius: 25px !important;
+            box-shadow: none !important;
+        }
+
+        /* CAMPOS */
+        .formulario-preferencias-trabajo .campo-preferencia {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            background-color: transparent !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            filter: none !important;
+            backdrop-filter: none !important;
+        }
+
+        /* TÍTULOS DE CADA CAMPO */
+        .formulario-preferencias-trabajo .campo-preferencia label {
+            display: block !important;
+            margin: 0 0 9px !important;
+            padding: 0 !important;
+            background: transparent !important;
+            color: #2F7185 !important;
+            font-size: 17px !important;
+            line-height: 23px !important;
+            font-weight: 600 !important;
+            text-align: center !important;
+        }
+
+        /* DESPLEGABLES PERSONALIZADOS */
+        .desplegable-personalizado {
+            position: relative;
+            width: 100%;
+        }
+
+        .boton-desplegable {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 44px;
+            margin: 0;
+            padding: 0 17px;
+            background: #F8F8F8;
+            color: #333333;
+            border: 1px solid #DDF0E8;
+            border-radius: 9px;
+            box-shadow: none;
+            font-size: 15px;
+            font-weight: 400;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .boton-desplegable.sin-seleccion {
+            color: #A3A3A3;
+        }
+
+        .flecha-desplegable {
+            width: 10px;
+            height: 7px;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        .desplegable-personalizado.abierto .flecha-desplegable {
+            transform: rotate(180deg);
+        }
+
+        .opciones-desplegable {
+            display: none;
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            width: 100%;
+            padding: 5px;
+            background: #FFFFFF;
+            border: 1px solid #DDF0E8;
+            border-radius: 9px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            z-index: 100;
+        }
+
+        .desplegable-personalizado.abierto .opciones-desplegable {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .opcion-desplegable {
+            display: block;
+            width: 100%;
+            min-height: 36px;
+            margin: 0;
+            padding: 8px 12px;
+            background: #FFFFFF;
+            color: #333333;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        /* COLOR Y BORDE NEGRO AL PASAR EL MOUSE */
+        .opcion-desplegable:hover,
+        .opcion-desplegable:focus-visible {
+            background: #91ACD5;
+            color: #FFFFFF;
+            border: 1px solid #000000;
+            outline: none;
+        }
+
+        .opcion-desplegable.seleccionada {
+            font-weight: 600;
+        }
+
+        /* ÁREAS DE TEXTO */
+        .formulario-preferencias-trabajo .campo-preferencia textarea {
+            display: block !important;
+            width: 100% !important;
+            height: 90px !important;
+            min-height: 90px !important;
+            margin: 0 !important;
+            padding: 12px !important;
+            resize: none !important;
+            background: #F8F8F8 !important;
+            color: #333333 !important;
+            border: 1px solid #DDF0E8 !important;
+            border-radius: 9px !important;
+            box-shadow: none !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            line-height: 20px !important;
+        }
+
+        .formulario-preferencias-trabajo .campo-preferencia textarea::placeholder {
+            color: #A3A3A3 !important;
+            opacity: 1;
+        }
+
+        .formulario-preferencias-trabajo .campo-preferencia textarea:focus {
+            outline: 2px solid #B7E4C7 !important;
+            border-color: #77B894 !important;
+        }
+
+        /* BOTÓN GUARDAR */
+        .formulario-preferencias-trabajo .boton-guardar-preferencias,
+        .formulario-preferencias-trabajo .boton-guardar-preferencias:hover,
+        .formulario-preferencias-trabajo .boton-guardar-preferencias:focus,
+        .formulario-preferencias-trabajo .boton-guardar-preferencias:active {
+            display: block !important;
+            width: 100% !important;
+            height: 42px !important;
+            min-height: 42px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: #B7E4C7 !important;
+            color: #2F7185 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            box-shadow: none !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            line-height: 42px !important;
+            text-align: center !important;
+            cursor: pointer;
+            transform: none !important;
+        }
+
+        .formulario-preferencias-trabajo .boton-guardar-preferencias:hover {
+            background: #A5D9B8 !important;
+        }
+
+        /* CELULARES */
+        @media (max-width: 680px) {
+            .barra-superior .titulo-barra {
+                font-size: 20px;
+            }
+
+            .pagina-preferencias {
+                padding: 15px 10px 27px;
+            }
+
+            .encabezado-preferencias {
+                margin-bottom: 24px;
+            }
+
+            .formulario-preferencias-trabajo {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                min-height: 1142px !important;
+                padding: 30px 20px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <header class="barra-empresa">
+    <header class="barra-superior">
+        <h2 class="titulo-barra">NeuroPassport</h2>
 
-        <nav class="menu-empresa">
+        <div class="contenedor-perfil">
 
-            <a
-                href="empleado.html"
-                class="boton-menu-empresa"
+            <button
+                type="button"
+                class="boton-perfil"
+                id="botonPerfil"
+                title="Abrir menú de perfil"
+                aria-label="Abrir menú de perfil"
+                aria-expanded="false"
             >
-                Inicio
-            </a>
+                <span class="perfil-cabeza"></span>
+                <span class="perfil-cuerpo"></span>
+            </button>
 
-            <a
-                href="preferencias-trabajo.html"
-                class="boton-menu-empresa"
-            >
-                Preferencias de trabajo
-            </a>
+            <div class="menu-perfil" id="menuPerfil">
 
-        </nav>
+                <button type="button" id="botonConfiguracion">
+                    Configuración
+                </button>
 
-        <a
-            href="configuracion.html"
-            class="perfil-empresa"
-            title="Configuración"
-        >
+                <button type="button" id="botonInformacionPersonal">
+                    Información personal
+                </button>
 
-            <span class="perfil-cabeza"></span>
-            <span class="perfil-cuerpo"></span>
+                <button type="button" id="botonCerrarSesion">
+                    Cerrar sesión
+                </button>
 
-        </a>
+            </div>
 
+        </div>
     </header>
 
+    <main class="pagina-preferencias">
 
-    <main class="empresa-principal">
-
-        <section class="empresa-bienvenida">
-
-            <h1>
-                Preferencias de trabajo
-            </h1>
+        <header class="encabezado-preferencias">
+            <h1>Preferencias de trabajo</h1>
 
             <p>
-                Completá tus preferencias para que tu entorno
-                de trabajo pueda adaptarse mejor a vos.
+                Completá tus preferencias para que tu entorno de trabajo pueda adaptarse mejor a vos.
             </p>
+        </header>
 
-        </section>
+        <section
+            class="formulario-preferencias-trabajo"
+            aria-label="Formulario de preferencias de trabajo"
+        >
 
-
-        <section class="formulario-preferencias-trabajo">
-
+            <!-- AMBIENTE DE TRABAJO -->
             <div class="campo-preferencia">
+                <label>Ambiente de trabajo</label>
 
-                <label for="ambienteTrabajo">
-                    Ambiente de trabajo
-                </label>
+                <div class="desplegable-personalizado" data-id="ambienteTrabajo">
+                    <button type="button" class="boton-desplegable sin-seleccion" aria-expanded="false">
+                        <span class="texto-desplegable">Seleccioná una opción</span>
+                        <svg class="flecha-desplegable" viewBox="0 0 10 7">
+                            <path d="M1 1l4 4 4-4" fill="none" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
 
-                <select id="ambienteTrabajo">
+                    <div class="opciones-desplegable">
+                        <button type="button" class="opcion-desplegable" data-value="">Seleccioná una opción</button>
+                        <button type="button" class="opcion-desplegable" data-value="tranquilo">Ambiente tranquilo</button>
+                        <button type="button" class="opcion-desplegable" data-value="dinamico">Ambiente dinámico</button>
+                        <button type="button" class="opcion-desplegable" data-value="indiferente">Me es indiferente</button>
+                    </div>
+                </div>
 
-                    <option value="">
-                        Seleccioná una opción
-                    </option>
-
-                    <option value="tranquilo">
-                        Ambiente tranquilo
-                    </option>
-
-                    <option value="dinamico">
-                        Ambiente dinámico
-                    </option>
-
-                    <option value="indiferente">
-                        Me es indiferente
-                    </option>
-
-                </select>
-
+                <input type="hidden" id="ambienteTrabajo" value="">
             </div>
 
-
+            <!-- FORMA DE TRABAJO -->
             <div class="campo-preferencia">
+                <label>Forma de trabajo</label>
 
-                <label for="trabajoEquipo">
-                    Forma de trabajo
-                </label>
+                <div class="desplegable-personalizado" data-id="trabajoEquipo">
+                    <button type="button" class="boton-desplegable sin-seleccion" aria-expanded="false">
+                        <span class="texto-desplegable">Seleccioná una opción</span>
+                        <svg class="flecha-desplegable" viewBox="0 0 10 7">
+                            <path d="M1 1l4 4 4-4" fill="none" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
 
-                <select id="trabajoEquipo">
+                    <div class="opciones-desplegable">
+                        <button type="button" class="opcion-desplegable" data-value="">Seleccioná una opción</button>
+                        <button type="button" class="opcion-desplegable" data-value="solo">Prefiero trabajar solo/a</button>
+                        <button type="button" class="opcion-desplegable" data-value="equipo">Prefiero trabajar en equipo</button>
+                        <button type="button" class="opcion-desplegable" data-value="ambos">Me adapto a ambas</button>
+                    </div>
+                </div>
 
-                    <option value="">
-                        Seleccioná una opción
-                    </option>
-
-                    <option value="solo">
-                        Prefiero trabajar solo/a
-                    </option>
-
-                    <option value="equipo">
-                        Prefiero trabajar en equipo
-                    </option>
-
-                    <option value="ambos">
-                        Me adapto a ambas
-                    </option>
-
-                </select>
-
+                <input type="hidden" id="trabajoEquipo" value="">
             </div>
 
-
+            <!-- COMUNICACIÓN -->
             <div class="campo-preferencia">
+                <label>Forma de comunicación</label>
 
-                <label for="comunicacion">
-                    Forma de comunicación
-                </label>
+                <div class="desplegable-personalizado" data-id="comunicacion">
+                    <button type="button" class="boton-desplegable sin-seleccion" aria-expanded="false">
+                        <span class="texto-desplegable">Seleccioná una opción</span>
+                        <svg class="flecha-desplegable" viewBox="0 0 10 7">
+                            <path d="M1 1l4 4 4-4" fill="none" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
 
-                <select id="comunicacion">
+                    <div class="opciones-desplegable">
+                        <button type="button" class="opcion-desplegable" data-value="">Seleccioná una opción</button>
+                        <button type="button" class="opcion-desplegable" data-value="escrita">Comunicación escrita</button>
+                        <button type="button" class="opcion-desplegable" data-value="oral">Comunicación oral</button>
+                        <button type="button" class="opcion-desplegable" data-value="ambas">Ambas</button>
+                    </div>
+                </div>
 
-                    <option value="">
-                        Seleccioná una opción
-                    </option>
-
-                    <option value="escrita">
-                        Comunicación escrita
-                    </option>
-
-                    <option value="oral">
-                        Comunicación oral
-                    </option>
-
-                    <option value="ambas">
-                        Ambas
-                    </option>
-
-                </select>
-
+                <input type="hidden" id="comunicacion" value="">
             </div>
 
-
+            <!-- HORARIO -->
             <div class="campo-preferencia">
+                <label>Preferencia de horario</label>
 
-                <label for="horario">
-                    Preferencia de horario
-                </label>
+                <div class="desplegable-personalizado" data-id="horario">
+                    <button type="button" class="boton-desplegable sin-seleccion" aria-expanded="false">
+                        <span class="texto-desplegable">Seleccioná una opción</span>
+                        <svg class="flecha-desplegable" viewBox="0 0 10 7">
+                            <path d="M1 1l4 4 4-4" fill="none" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
 
-                <select id="horario">
+                    <div class="opciones-desplegable">
+                        <button type="button" class="opcion-desplegable" data-value="">Seleccioná una opción</button>
+                        <button type="button" class="opcion-desplegable" data-value="manana">Mañana</button>
+                        <button type="button" class="opcion-desplegable" data-value="tarde">Tarde</button>
+                        <button type="button" class="opcion-desplegable" data-value="noche">Noche</button>
+                        <button type="button" class="opcion-desplegable" data-value="flexible">Horario flexible</button>
+                    </div>
+                </div>
 
-                    <option value="">
-                        Seleccioná una opción
-                    </option>
-
-                    <option value="manana">
-                        Mañana
-                    </option>
-
-                    <option value="tarde">
-                        Tarde
-                    </option>
-
-                    <option value="noche">
-                        Noche
-                    </option>
-
-                    <option value="flexible">
-                        Horario flexible
-                    </option>
-
-                </select>
-
+                <input type="hidden" id="horario" value="">
             </div>
 
-
+            <!-- DESCRIPCIÓN -->
             <div class="campo-preferencia">
-
-                <label for="adaptaciones">
-                    Adaptaciones o necesidades
-                </label>
+                <label for="adaptaciones">Descripción</label>
 
                 <textarea
                     id="adaptaciones"
-                    placeholder="Contá qué necesitás para trabajar cómodamente..."
+                    aria-label="Adaptaciones o necesidades"
+                    placeholder="Agregá información adicional..."
                 ></textarea>
-
             </div>
 
-
             <div class="campo-preferencia">
-
-                <label for="otrasPreferencias">
-                    Otras preferencias
-                </label>
+                <label for="otrasPreferencias">Descripción</label>
 
                 <textarea
                     id="otrasPreferencias"
-                    placeholder="Agregá cualquier otra preferencia..."
+                    aria-label="Otras preferencias"
+                    placeholder="Agregá información adicional..."
                 ></textarea>
-
             </div>
-
 
             <button
                 type="button"
                 id="guardarPreferencias"
-                class="boton-guardar-agenda"
+                class="boton-guardar-preferencias"
             >
                 Guardar preferencias
             </button>
@@ -233,9 +582,105 @@
 
     </main>
 
+    <script>
+        // MENÚ DE PERFIL
+        const botonPerfil = document.getElementById("botonPerfil");
+        const menuPerfil = document.getElementById("menuPerfil");
+
+        botonPerfil.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            menuPerfil.classList.toggle("abierto");
+
+            const estaAbierto = menuPerfil.classList.contains("abierto");
+            botonPerfil.setAttribute("aria-expanded", estaAbierto);
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!event.target.closest(".contenedor-perfil")) {
+                menuPerfil.classList.remove("abierto");
+                botonPerfil.setAttribute("aria-expanded", "false");
+            }
+
+            if (!event.target.closest(".desplegable-personalizado")) {
+                cerrarTodosLosDesplegables();
+            }
+        });
+
+        const opcionesMenu = menuPerfil.querySelectorAll("button");
+
+        opcionesMenu.forEach(function (boton) {
+            boton.addEventListener("click", function () {
+                menuPerfil.classList.remove("abierto");
+                botonPerfil.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        // DESPLEGABLES PERSONALIZADOS
+        const desplegables = document.querySelectorAll(".desplegable-personalizado");
+
+        function cerrarTodosLosDesplegables() {
+            desplegables.forEach(function (desplegable) {
+                desplegable.classList.remove("abierto");
+                desplegable.querySelector(".boton-desplegable").setAttribute("aria-expanded", "false");
+            });
+        }
+
+        desplegables.forEach(function (desplegable) {
+            const boton = desplegable.querySelector(".boton-desplegable");
+            const texto = desplegable.querySelector(".texto-desplegable");
+            const opciones = desplegable.querySelectorAll(".opcion-desplegable");
+            const input = document.getElementById(desplegable.dataset.id);
+
+            boton.addEventListener("click", function (event) {
+                event.stopPropagation();
+
+                const yaEstabaAbierto = desplegable.classList.contains("abierto");
+
+                cerrarTodosLosDesplegables();
+
+                if (!yaEstabaAbierto) {
+                    desplegable.classList.add("abierto");
+                    boton.setAttribute("aria-expanded", "true");
+                }
+            });
+
+            opciones.forEach(function (opcion) {
+                opcion.addEventListener("click", function () {
+                    const valor = opcion.dataset.value;
+                    const nombre = opcion.textContent.trim();
+
+                    if (valor === "") {
+                        texto.textContent = "Seleccioná una opción";
+                        input.value = "";
+                        boton.classList.add("sin-seleccion");
+
+                        opciones.forEach(function (otraOpcion) {
+                            otraOpcion.classList.remove("seleccionada");
+                        });
+                    } else {
+                        texto.textContent = nombre;
+                        input.value = valor;
+
+                        boton.classList.remove("sin-seleccion");
+
+                        opciones.forEach(function (otraOpcion) {
+                            otraOpcion.classList.remove("seleccionada");
+                        });
+
+                        opcion.classList.add("seleccionada");
+                    }
+
+                    cerrarTodosLosDesplegables();
+
+                    // Permite que otros scripts detecten el cambio
+                    input.dispatchEvent(new Event("change", { bubbles: true }));
+                });
+            });
+        });
+    </script>
 
     <script src="preferencias-trabajo.js"></script>
 
 </body>
-
 </html>

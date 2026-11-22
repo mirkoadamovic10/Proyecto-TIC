@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,7 +10,6 @@
     <link rel="stylesheet" href="../style.css">
 
     <style>
-        /* CONFIGURACIÓN GENERAL */
         html,
         body {
             margin: 0;
@@ -53,44 +51,110 @@
             display: none !important;
         }
 
-       
-/* PERFIL CIRCULAR */
-.barra-empresa .perfil {
-    width: 44px !important;
-    height: 44px !important;
-    border: 3px solid #D9E2E3 !important;
-    border-radius: 50% !important;
+        /* CONTENEDOR DEL PERFIL */
+        .contenedor-perfil {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
 
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
+        /* PERFIL CIRCULAR */
+        .barra-empresa .perfil {
+            width: 44px !important;
+            height: 44px !important;
+            border: 3px solid #D9D9D9 !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+            background: #D9D9D9 !important;
+            flex-shrink: 0 !important;
+            padding: 0 !important;
+            text-decoration: none !important;
+            cursor: pointer;
+            transform: none !important;
+            box-shadow: none !important;
+            transition: none !important;
+        }
 
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-    background: transparent !important;
-    flex-shrink: 0 !important;
-    padding: 0 !important;
-    text-decoration: none !important;
-}
+        .barra-empresa .perfil:hover,
+        .barra-empresa .perfil:focus,
+        .barra-empresa .perfil:active {
+            transform: none !important;
+            box-shadow: none !important;
+            background: #D9D9D9 !important;
+        }
 
-.barra-empresa .perfil .cabeza {
-    display: block !important;
-    width: 11px !important;
-    height: 11px !important;
-    border-radius: 50% !important;
-    background: #D9E2E3 !important;
-    margin-bottom: 2px !important;
-}
+        .barra-empresa .perfil .cabeza {
+            display: block !important;
+            width: 15px !important;
+            height: 15px !important;
+            border-radius: 50% !important;
+            background: #000000 !important;
+            margin-bottom: 2px !important;
+        }
 
-.barra-empresa .perfil .cuerpo {
-    display: block !important;
-    width: 23px !important;
-    height: 13px !important;
-    border-radius: 12px 12px 0 0 !important;
-    background: #D9E2E3 !important;
-}
+        .barra-empresa .perfil .cuerpo {
+            display: block !important;
+            width: 29px !important;
+            height: 16px !important;
+            border-radius: 15px 15px 0 0 !important;
+            background: #000000 !important;
+        }
 
+        /* DESPLEGABLE DEL PERFIL */
+        .menu-perfil {
+            display: none;
+            position: absolute;
+            top: 55px;
+            right: 0;
+            width: 220px;
+            background: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
+            padding: 8px 0;
+            overflow: hidden;
+            z-index: 10000;
+        }
+
+        .menu-perfil.activo {
+            display: block;
+        }
+
+        .menu-perfil a,
+        .menu-perfil button {
+            display: block;
+            width: 100%;
+            padding: 13px 18px;
+            box-sizing: border-box;
+            background: #FFFFFF !important;
+            border: none !important;
+            color: #222222 !important;
+            text-align: left;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 15px;
+            cursor: pointer;
+            transform: none !important;
+            box-shadow: none !important;
+            transition: none !important;
+        }
+
+        .menu-perfil a:hover,
+        .menu-perfil button:hover {
+            background: #F0F8ED !important;
+            color: #222222 !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .menu-perfil .cerrar-sesion {
+            color: #222222 !important;
+            border-top: 1px solid #E5E5E5 !important;
+        }
 
         /* CONTENIDO PRINCIPAL */
         .empresa-principal {
@@ -99,7 +163,7 @@
             box-sizing: border-box;
         }
 
-        /* BIENVENIDA SIN RECTÁNGULOS DE FONDO */
+        /* BIENVENIDA */
         .empresa-bienvenida,
         .empresa-bienvenida > header {
             background: transparent !important;
@@ -111,8 +175,9 @@
             display: flex !important;
             justify-content: center !important;
             width: 100% !important;
-            margin: 40px auto !important;
+            margin: 0 auto 40px !important;
             text-align: center !important;
+            transform: translateY(-30px) !important;
         }
 
         .empresa-bienvenida > header {
@@ -149,17 +214,19 @@
             line-height: 1.5 !important;
             text-align: center !important;
             margin: 0 auto !important;
-            max-width: 900px !important;
+            max-width: 1200px !important;
+            white-space: nowrap !important;
             padding: 0 !important;
+            transform: translateY(-10px) !important;
         }
 
-        /* TARJETA DE EMPLEADOS */
+        /* TARJETA */
         .empresa-acciones {
             display: flex !important;
             justify-content: center !important;
             align-items: stretch !important;
             width: 100% !important;
-            margin: 0 auto !important;
+            margin: -70px auto 0 !important;
             padding: 0 !important;
             box-sizing: border-box;
         }
@@ -170,10 +237,10 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            width: 100% !important;
-            max-width: 520px !important;
-            min-height: 210px !important;
-            padding: 22px 20px !important;
+            width: 85% !important;
+            max-width: 400px !important;
+            min-height: 280px !important;
+            padding: 30px 20px !important;
             box-sizing: border-box !important;
             background: #FFFFFF !important;
             border: 8px solid #B9E4AE !important;
@@ -216,6 +283,7 @@
             min-height: 50px !important;
             padding: 10px 18px !important;
             box-sizing: border-box;
+            background: #B9E4AE !important;
             background-color: #B9E4AE !important;
             border: 1px solid #B9E4AE !important;
             border-radius: 15px !important;
@@ -227,7 +295,9 @@
         }
 
         .tarjeta-empresa button:hover {
-            filter: brightness(0.96);
+            background: #B9E4AE !important;
+            background-color: #B9E4AE !important;
+            border-color: #B9E4AE !important;
         }
 
         /* FRANJA VERDE INFERIOR */
@@ -238,18 +308,15 @@
             height: 88px !important;
             min-height: 88px !important;
             max-height: 88px !important;
-
             background-color: #B7E4C7 !important;
             border: none !important;
             box-shadow: none !important;
             border-radius: 0 !important;
-
             display: flex !important;
             flex-direction: column !important;
             justify-content: center !important;
             align-items: center !important;
             text-align: center !important;
-
             padding: 8px 20px !important;
             box-sizing: border-box !important;
             margin: 30px 0 0 calc(50% - 50vw) !important;
@@ -282,7 +349,7 @@
             margin: 0 !important;
         }
 
-        /* ADAPTACIÓN A CELULARES */
+        /* CELULARES */
         @media (max-width: 600px) {
             .barra-empresa {
                 padding: 0 16px !important;
@@ -298,6 +365,7 @@
 
             .empresa-bienvenida {
                 margin: 30px auto !important;
+                transform: translateY(-30px) !important;
             }
 
             .empresa-bienvenida > header::before {
@@ -312,6 +380,8 @@
             .empresa-bienvenida p {
                 font-size: 18px !important;
                 padding: 0 10px !important;
+                white-space: normal !important;
+                transform: translateY(-10px) !important;
             }
 
             .tarjeta-empresa {
@@ -343,29 +413,71 @@
                 font-size: 13px !important;
             }
         }
+
+        /* FORZAR COLOR EXACTO DE TARJETA Y BOTÓN */
+        html body .empresa-acciones .tarjeta-empresa {
+            border-color: #B9E4AE !important;
+        }
+
+        html body .empresa-acciones .tarjeta-empresa button {
+            background: #B9E4AE !important;
+            background-color: #B9E4AE !important;
+            border-color: #B9E4AE !important;
+            box-shadow: none !important;
+        }
+
+        html body .empresa-acciones .tarjeta-empresa button:hover,
+        html body .empresa-acciones .tarjeta-empresa button:focus,
+        html body .empresa-acciones .tarjeta-empresa button:active {
+            background: #B9E4AE !important;
+            background-color: #B9E4AE !important;
+            border-color: #B9E4AE !important;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
     <header class="barra-empresa">
-        <a
-            href="configuracion.html"
-            class="perfil"
-            id="perfilEmpresa"
-            title="Configuración"
-            aria-label="Configuración">
 
-            <span class="cabeza"></span>
-            <span class="cuerpo"></span>
-        </a>
+        <div class="contenedor-perfil">
+
+            <button
+                type="button"
+                class="perfil"
+                id="perfilEmpresa"
+                aria-label="Abrir menú de perfil"
+                aria-expanded="false">
+
+                <span class="cabeza"></span>
+                <span class="cuerpo"></span>
+            </button>
+
+            <div class="menu-perfil" id="menuPerfil">
+
+                <a href="configuracion.html">
+                    Configuración
+                </a>
+
+                <a href="informacion-personal.html">
+                    Información personal
+                </a>
+
+                <button
+                    type="button"
+                    class="cerrar-sesion"
+                    id="cerrarSesion">
+                    Cerrar sesión
+                </button>
+
+            </div>
+
+        </div>
+
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
     <main class="empresa-principal">
 
-        <!-- BIENVENIDA -->
         <section class="empresa-bienvenida">
             <header>
                 <h1 id="saludoEmpresa">
@@ -373,12 +485,11 @@
                 </h1>
 
                 <p>
-                    Gestioná y acompañá a tus empleados respetando la información que cada uno decide compartir.
+                    Gestioná y acompañá a tus estudiantes respetando la información que cada uno decide compartir.
                 </p>
             </header>
         </section>
 
-        <!-- TARJETA DE EMPLEADOS -->
         <section class="empresa-acciones">
 
             <article class="tarjeta-empresa">
@@ -387,7 +498,7 @@
                 </header>
 
                 <p>
-                    Consultá los empleados vinculados a tu empresa y accedé a las preferencias de trabajo que hayan decidido compartir.
+                    Vinculá a un empleado tu empresa y accedé a sus preferencias de trabajo.
                 </p>
 
                 <button
@@ -399,7 +510,6 @@
 
         </section>
 
-        <!-- INFORMACIÓN COMPARTIDA -->
         <section class="empresa-info">
             <header>
                 <h2>Información compartida</h2>
@@ -414,7 +524,47 @@
 
     <script src="empresa.js" defer></script>
 
+    <script>
+        const perfilEmpresa = document.getElementById("perfilEmpresa");
+        const menuPerfil = document.getElementById("menuPerfil");
+        const cerrarSesion = document.getElementById("cerrarSesion");
+
+        // ABRIR Y CERRAR EL DESPLEGABLE
+        perfilEmpresa.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            menuPerfil.classList.toggle("activo");
+
+            const estaAbierto = menuPerfil.classList.contains("activo");
+            perfilEmpresa.setAttribute("aria-expanded", estaAbierto);
+        });
+
+        // CERRAR AL TOCAR FUERA DEL MENÚ
+        document.addEventListener("click", function (event) {
+            if (
+                !menuPerfil.contains(event.target) &&
+                !perfilEmpresa.contains(event.target)
+            ) {
+                menuPerfil.classList.remove("activo");
+                perfilEmpresa.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        // CERRAR CON ESCAPE
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                menuPerfil.classList.remove("activo");
+                perfilEmpresa.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        // CERRAR SESIÓN
+        cerrarSesion.addEventListener("click", function () {
+            localStorage.removeItem("idUsuario");
+            window.location.href = "../index.html";
+        });
+    </script>
+
 </body>
 
 </html>
-```

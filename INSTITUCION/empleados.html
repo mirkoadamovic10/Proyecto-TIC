@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -26,50 +25,101 @@
             color: #111;
         }
 
-        /* NAVBAR */
-
         .barra-empresa {
             width: 100%;
-            min-height: 54px;
+            min-height: 80px;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            padding: 8px 24px;
+            justify-content: space-between;
+            padding: 8px 35px;
             background: #705E32 !important;
             border: none !important;
             box-shadow: none !important;
         }
 
-        .menu-empresa {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .logo-empresa {
             margin: 0;
             padding: 0;
+            color: #D9E2E3;
+            font-size: 28px;
+            font-weight: 700;
+            text-decoration: none;
         }
 
-        .boton-menu-empresa {
+        /* PERFIL Y MENÚ DESPLEGABLE */
+
+        .contenedor-perfil {
+            position: relative;
+        }
+
+        .boton-perfil {
+            width: 45px;
+            height: 45px;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-width: 120px;
-            min-height: 32px;
-            padding: 6px 18px;
-            border: none !important;
-            border-radius: 8px;
-            background: #D6B5E2 !important;
-            color: #111 !important;
+            border: none;
+            border-radius: 50%;
+            background: #D9D9D9;
+            color: #000000;
+            text-decoration: none;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .boton-perfil:hover {
+            background: #C8C8C8;
+        }
+
+        .menu-perfil {
+            display: none;
+            position: absolute;
+            top: 55px;
+            right: 0;
+            width: 210px;
+            padding: 7px;
+            background: #FFFFFF;
+            border: 1px solid #D6E9D9;
+            border-radius: 10px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+        }
+
+        .menu-perfil.mostrar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .opcion-perfil {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-height: 42px;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 7px;
+            background: transparent;
+            color: #222;
             font-size: 13px;
             font-weight: 500;
+            text-align: left;
             text-decoration: none;
-            box-shadow: none !important;
+            cursor: pointer;
         }
 
-        .boton-menu-empresa:hover {
-            background: #C7A0D6 !important;
+        .opcion-perfil:hover {
+            background: #F0F8ED;
         }
 
-        /* CONTENIDO */
+        .opcion-cerrar-sesion {
+            color: #222;
+        }
+
+        .separador-perfil {
+            height: 1px;
+            margin: 5px 3px;
+            background: #E5E5E5;
+        }
 
         .empresa-principal {
             width: 100%;
@@ -82,18 +132,54 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: flex-end;
             gap: 20px;
             margin: 0 0 26px;
         }
 
+        .empresa-titulos {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
         .empresa-bienvenida h1 {
-            margin: 0;
+            margin: -25px 0 0;
             padding: 0;
             font-size: 48px;
             line-height: 1.2;
             font-weight: 700;
             color: #111;
+        }
+
+        /* BOTÓN VOLVER */
+
+        .boton-volver {
+            width: 80px !important;
+            min-width: 80px !important;
+            height: 30px !important;
+            min-height: 30px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 0 6px !important;
+            margin-left: -8px !important;
+            border: none !important;
+            border-radius: 8px;
+            background: #B7E4C7 !important;
+            background-color: #B7E4C7 !important;
+            color: #285866 !important;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transform: none !important;
+            transition: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+            position: static !important;
         }
 
         .boton-agregar-empleado {
@@ -105,6 +191,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 8px;
             margin: 0;
             padding: 0 12px;
             border: none !important;
@@ -112,16 +199,15 @@
             background: #B7E4C7 !important;
             color: #285866 !important;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 700;
             cursor: pointer;
+            text-decoration: none;
             box-shadow: none !important;
         }
 
         .boton-agregar-empleado:hover {
             background: #A5D9B8 !important;
         }
-
-        /* LISTA DE EMPLEADOS */
 
         .lista-empleados {
             width: 100%;
@@ -199,8 +285,6 @@
             font-size: 16px;
             line-height: 1.5;
         }
-
-        /* VENTANA: MISMO LAYOUT QUE ESTUDIANTES */
 
         .ventana-hospital {
             display: none;
@@ -313,8 +397,6 @@
             line-height: 1.5;
         }
 
-        /* SOLICITUDES */
-
         .seccion-solicitudes {
             margin-top: 24px;
         }
@@ -368,23 +450,19 @@
             display: none !important;
         }
 
-        /* CELULARES */
-
         @media (max-width: 600px) {
             .barra-empresa {
-                padding: 8px 10px;
+                padding: 8px 16px;
+                min-height: 70px;
             }
 
-            .menu-empresa {
-                width: 100%;
-                justify-content: flex-end;
-                gap: 6px;
+            .logo-empresa {
+                font-size: 23px;
             }
 
-            .boton-menu-empresa {
-                min-width: 0;
-                padding: 6px 12px;
-                font-size: 12px;
+            .boton-perfil {
+                width: 42px;
+                height: 42px;
             }
 
             .empresa-principal {
@@ -393,6 +471,7 @@
 
             .empresa-bienvenida {
                 flex-wrap: wrap;
+                align-items: flex-start;
                 gap: 16px;
             }
 
@@ -410,22 +489,82 @@
                 padding: 30px;
             }
         }
+
+        /* COLOR EXACTO DEL BOTÓN VOLVER EN TODOS LOS ESTADOS */
+
+        a.boton-volver,
+        a.boton-volver:hover,
+        a.boton-volver:focus,
+        a.boton-volver:focus-visible,
+        a.boton-volver:active,
+        a.boton-volver:visited {
+            background: #B7E4C7 !important;
+            background-color: #B7E4C7 !important;
+            color: #285866 !important;
+        }
     </style>
 </head>
 
 <body>
 
     <header class="barra-empresa">
-        <nav class="menu-empresa" aria-label="Navegación principal">
-            <a class="boton-menu-empresa" href="empresa.html">Inicio</a>
-            <a class="boton-menu-empresa" href="empleados.html" aria-current="page">Empleados</a>
-        </nav>
+        <h2 class="logo-empresa">NeuroPassport</h2>
+
+        <div class="contenedor-perfil">
+
+            <button
+                type="button"
+                class="boton-perfil"
+                id="botonPerfil"
+                aria-label="Abrir menú de perfil"
+                aria-expanded="false"
+                aria-controls="menuPerfil">
+
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="#000000">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"></path>
+                </svg>
+
+            </button>
+
+            <nav class="menu-perfil" id="menuPerfil">
+
+                <a href="configuracion.html" class="opcion-perfil">
+                    Configuración
+                </a>
+
+                <a href="informacion-personal.html" class="opcion-perfil">
+                    Información personal
+                </a>
+
+                <div class="separador-perfil"></div>
+
+                <button
+                    type="button"
+                    class="opcion-perfil opcion-cerrar-sesion"
+                    id="botonCerrarSesion">
+                    Cerrar sesión
+                </button>
+
+            </nav>
+
+        </div>
     </header>
 
     <main class="empresa-principal">
 
         <section class="empresa-bienvenida">
-            <h1>Empleados</h1>
+
+            <div class="empresa-titulos">
+
+                <a href="javascript:history.back()" class="boton-volver">
+                    <span aria-hidden="true">←</span>
+                    Volver
+                </a>
+
+                <h1>Empleados</h1>
+
+            </div>
 
             <button
                 type="button"
@@ -433,6 +572,7 @@
                 id="botonLinkearEmpleado">
                 + Linkear empleado
             </button>
+
         </section>
 
         <section
@@ -450,8 +590,6 @@
         </section>
 
     </main>
-
-    <!-- VENTANA PARA LINKEAR EMPLEADO -->
 
     <aside
         id="ventanaEmpleado"
@@ -525,6 +663,47 @@
     </aside>
 
     <script src="empleados.js" defer></script>
+
+    <script>
+        const botonPerfil = document.getElementById("botonPerfil");
+        const menuPerfil = document.getElementById("menuPerfil");
+        const botonCerrarSesion = document.getElementById("botonCerrarSesion");
+
+        // Abrir y cerrar el menú
+        botonPerfil.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            const estaAbierto = menuPerfil.classList.toggle("mostrar");
+
+            botonPerfil.setAttribute("aria-expanded", estaAbierto);
+        });
+
+        // Cerrar al hacer clic fuera del menú
+        document.addEventListener("click", function (event) {
+            if (
+                !menuPerfil.contains(event.target) &&
+                !botonPerfil.contains(event.target)
+            ) {
+                menuPerfil.classList.remove("mostrar");
+                botonPerfil.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        // Cerrar con Escape
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                menuPerfil.classList.remove("mostrar");
+                botonPerfil.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        // Cerrar sesión
+        botonCerrarSesion.addEventListener("click", function () {
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.href = "login.html";
+        });
+    </script>
 
 </body>
 </html>
