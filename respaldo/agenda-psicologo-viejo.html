@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agenda - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../../style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* NAVBAR */
+
+        .barra-empresa {
+            background: transparent !important;
+            background-color: transparent !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 15px 30px;
+        }
+
+        .titulo-agenda-navbar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .titulo-agenda-navbar h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .titulo-agenda-navbar p {
+            margin: 4px 0 0;
+            font-size: 15px;
+        }
+
+        /* BOTON VOLVER */
+
+        #botonVolver {
+            position: absolute;
+            left: 30px;
+            padding: 8px 13px;
+            border: none !important;
+            border-radius: 8px;
+            background: #B7E4C7 !important;
+            background-color: #B7E4C7 !important;
+            color: #2F7185 !important;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #botonVolver:hover {
+            background: #B7E4C7 !important;
+            background-color: #B7E4C7 !important;
+            color: #2F7185 !important;
+        }
+
+        /* BOTON AGREGAR EVENTO */
+
+        button#botonAgregarEvento {
+            position: absolute;
+            right: 30px;
+            padding: 11px 20px;
+            border: none !important;
+            border-radius: 8px;
+            background: #B7E4C7 !important;
+            background-color: #B7E4C7 !important;
+            background-image: none !important;
+            color: #2F7185 !important;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button#botonAgregarEvento:hover {
+            background: #B7E4C7 !important;
+            background-color: #B7E4C7 !important;
+            color: #2F7185 !important;
+        }
+
+        /* TARJETA PRINCIPAL */
+
+        .calendario-medico {
+            background: #CEE9DA !important;
+            background-color: #CEE9DA !important;
+        }
+
+        /* BARRA DE MESES TRANSPARENTE */
+
+        .calendario-medico .calendario-cabecera,
+        .calendario-medico .calendario-cabecera h2,
+        .calendario-medico .calendario-cabecera button {
+            background: transparent !important;
+            background-color: transparent !important;
+            background-image: none !important;
+        }
+
+        .calendario-medico .calendario-cabecera::before,
+        .calendario-medico .calendario-cabecera::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        /* BARRA GRIS DE LOS DIAS */
+
+        .calendario-semana {
+            background-color: #D9D9D9 !important;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 12px 0;
+            border-radius: 0;
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        .calendario-semana li {
+            background: transparent !important;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .calendario-semana abbr {
+            text-decoration: none;
+            cursor: default;
+        }
+
+        /* ============================= */
+        /* MODAL AGREGAR EVENTO          */
+        /* ============================= */
+
+        #modalAgenda {
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 1000 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: none !important;
+            max-height: none !important;
+            margin: 0 !important;
+            padding: 20px !important;
+            border: none !important;
+            background: rgba(0, 0, 0, 0.35) !important;
+            color: #000000 !important;
+            box-sizing: border-box !important;
+        }
+
+        #modalAgenda[hidden] {
+            display: none !important;
+        }
+
+        #modalAgenda * {
+            font-family: "Inter", Arial, sans-serif !important;
+            box-sizing: border-box !important;
+            float: none !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+        }
+
+        #modalAgenda .modal-agenda-contenido {
+            display: block !important;
+            position: relative !important;
+            width: 440px !important;
+            max-width: 100% !important;
+            height: auto !important;
+            overflow: visible !important;
+            margin: 0 !important;
+            padding: 27px 0 22px !important;
+            background: #F0F8F2 !important;
+            background-image: none !important;
+            border: none !important;
+            border-radius: 10px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18) !important;
+            text-align: left !important;
+            gap: 0 !important;
+        }
+
+        #modalAgenda #cerrarModal {
+            position: absolute !important;
+            top: 24px !important;
+            right: 30px !important;
+            width: auto !important;
+            height: auto !important;
+            min-width: 0 !important;
+            margin: 0 !important;
+            padding: 2px 4px !important;
+            border: none !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            color: #000000 !important;
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+            cursor: pointer !important;
+        }
+
+        #modalAgenda .modal-evento-encabezado {
+            display: block !important;
+            position: static !important;
+            width: auto !important;
+            height: auto !important;
+            margin: 0 0 34px !important;
+            padding: 0 9px !important;
+            background: transparent !important;
+            background-image: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            color: #000000 !important;
+        }
+
+        #modalAgenda .modal-evento-encabezado h2 {
+            margin: 0 !important;
+            padding: 0 !important;
+            color: #000000 !important;
+            font-size: 20px !important;
+            font-weight: 600 !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
+            background: transparent !important;
+        }
+
+        #modalAgenda .modal-evento-encabezado p {
+            margin: 8px 0 0 !important;
+            padding: 0 !important;
+            color: #1F1F1F !important;
+            font-size: 11px !important;
+            font-weight: 400 !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
+            background: transparent !important;
+        }
+
+        #modalAgenda #fechaSeleccionada {
+            display: none !important;
+        }
+
+        #modalAgenda form {
+            display: flex !important;
+            flex-direction: column !important;
+            width: auto !important;
+            margin: 0 !important;
+            padding: 0 27px 0 23px !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            gap: 0 !important;
+        }
+
+        #modalAgenda .campo-agenda {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            width: auto !important;
+            margin: 0 0 15px !important;
+            padding: 0 !important;
+            border: none !important;
+            background: transparent !important;
+            min-width: 0 !important;
+            text-align: left !important;
+            gap: 0 !important;
+        }
+
+        #modalAgenda .campo-agenda label,
+        #modalAgenda .campo-agenda legend {
+            float: none !important;
+            width: 100% !important;
+            display: block !important;
+            margin: 0 0 8px !important;
+            padding: 0 !important;
+            color: #2F7185 !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
+            background: transparent !important;
+        }
+
+        #modalAgenda .campo-agenda input,
+        #modalAgenda .campo-agenda textarea,
+        #modalAgenda #botonTipoEvento {
+            display: block !important;
+            width: 100% !important;
+            height: 40px !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 12px !important;
+            background: #ECF4EE !important;
+            background-color: #ECF4EE !important;
+            border: 1px solid #DCEBE1 !important;
+            border-radius: 8px !important;
+            box-shadow: none !important;
+            outline: none !important;
+            color: #333333 !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            text-align: left !important;
+        }
+
+        #modalAgenda .campo-agenda input::placeholder,
+        #modalAgenda .campo-agenda textarea::placeholder {
+            color: #9AA19C !important;
+            opacity: 1 !important;
+        }
+
+        #modalAgenda #fechaEvento,
+        #modalAgenda #horaTurno {
+            padding-left: 22px !important;
+            color: #8F9692 !important;
+        }
+
+        #modalAgenda #fechaEvento.con-valor,
+        #modalAgenda #horaTurno.con-valor {
+            color: #333333 !important;
+        }
+
+        #modalAgenda input[type="date"]::-webkit-calendar-picker-indicator,
+        #modalAgenda input[type="time"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            opacity: 0.85;
+        }
+
+        /* TIPO DE EVENTO (desplegable propio) */
+
+        #modalAgenda #tipoTurno {
+            display: none !important;
+        }
+
+        #modalAgenda .campo-agenda-tipo {
+            position: relative !important;
+        }
+
+        #modalAgenda #botonTipoEvento {
+            position: relative !important;
+            padding-left: 22px !important;
+            padding-right: 36px !important;
+            cursor: pointer !important;
+            color: #8F9692 !important;
+            line-height: 38px !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23555' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 12px center !important;
+            background-size: 11px 7px !important;
+        }
+
+        #modalAgenda #botonTipoEvento.con-valor {
+            color: #333333 !important;
+        }
+
+        #modalAgenda #listaTipoEvento {
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 20 !important;
+            display: block !important;
+            width: 100% !important;
+            margin: 2px 0 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+            background: #FFFFFF !important;
+            border: 1px solid #C4CCC7 !important;
+            border-top: 1px solid #3A6F8C !important;
+            border-radius: 0 !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        #modalAgenda #listaTipoEvento[hidden] {
+            display: none !important;
+        }
+
+        #modalAgenda #listaTipoEvento li {
+            display: block !important;
+            height: 38px !important;
+            margin: 0 !important;
+            padding: 0 6px !important;
+            background: #FFFFFF !important;
+            color: #000000 !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            line-height: 38px !important;
+            text-align: left !important;
+            white-space: nowrap !important;
+            cursor: pointer !important;
+        }
+
+        /* Azul en la opción elegida y en la que tenés el mouse encima */
+        #modalAgenda #listaTipoEvento li[aria-selected="true"],
+        #modalAgenda #listaTipoEvento li:hover {
+            background: #94AFD6 !important;
+        }
+
+        #modalAgenda #listaTipoEvento:hover li[aria-selected="true"]:not(:hover) {
+            background: #FFFFFF !important;
+        }
+
+        #modalAgenda .campo-agenda textarea {
+            height: 78px !important;
+            padding: 12px !important;
+            resize: none !important;
+            line-height: 1.3 !important;
+        }
+
+        #modalAgenda .campo-agenda-descripcion {
+            margin-bottom: 18px !important;
+        }
+
+        #modalAgenda #guardarTurno {
+            display: block !important;
+            position: static !important;
+            width: calc(100% - 3px) !important;
+            height: 30px !important;
+            min-height: 0 !important;
+            margin: 0 0 0 3px !important;
+            padding: 0 !important;
+            border: none !important;
+            border-radius: 7px !important;
+            background: #B7E4C7 !important;
+            background-color: #B7E4C7 !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            color: #2F7185 !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            line-height: 30px !important;
+            text-align: center !important;
+            cursor: pointer !important;
+            transition: 0.2s;
+        }
+
+        #modalAgenda #guardarTurno:hover {
+            background: #A8DCBB !important;
+            background-color: #A8DCBB !important;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header class="barra-empresa">
+
+        <nav aria-label="Navegación">
+            <button
+                type="button"
+                id="botonVolver"
+            >
+                ← Volver
+            </button>
+        </nav>
+
+        <hgroup class="titulo-agenda-navbar">
+            <h1>Agenda</h1>
+
+            <p>
+                Organizá tus turnos, estudios, terapias y controles médicos.
+            </p>
+        </hgroup>
+
+        <button
+            type="button"
+            id="botonAgregarEvento"
+            class="boton-agregar-evento"
+            aria-haspopup="dialog"
+            aria-controls="modalAgenda"
+        >
+            + Agregar evento
+        </button>
+
+    </header>
+
+    <main class="empresa-principal">
+
+        <section class="calendario-medico" aria-labelledby="mesActual">
+
+            <header class="calendario-cabecera">
+
+                <button type="button" id="mesAnterior" aria-label="Mes anterior">‹</button>
+
+                <h2 id="mesActual"></h2>
+
+                <button type="button" id="mesSiguiente" aria-label="Mes siguiente">›</button>
+
+            </header>
+
+            <ol class="calendario-semana" aria-label="Días de la semana">
+                <li><abbr title="Lunes">Lun</abbr></li>
+                <li><abbr title="Martes">Mar</abbr></li>
+                <li><abbr title="Miércoles">Mié</abbr></li>
+                <li><abbr title="Jueves">Jue</abbr></li>
+                <li><abbr title="Viernes">Vie</abbr></li>
+                <li><abbr title="Sábado">Sáb</abbr></li>
+                <li><abbr title="Domingo">Dom</abbr></li>
+            </ol>
+
+            <section
+                id="calendarioDias"
+                class="calendario-dias"
+                aria-label="Días del calendario"
+            ></section>
+
+        </section>
+
+    </main>
+
+    <dialog
+        id="modalAgenda"
+        class="modal-agenda"
+        aria-labelledby="tituloModal"
+        aria-modal="true"
+        open
+        hidden
+    >
+
+        <article class="modal-agenda-contenido">
+
+            <button
+                type="button"
+                id="cerrarModal"
+                class="cerrar-modal-agenda"
+                aria-label="Cerrar ventana"
+            >x</button>
+
+            <header class="modal-evento-encabezado">
+                <h2 id="tituloModal">Agregar evento</h2>
+                <p>Completá la informacion del evento</p>
+                <p id="fechaSeleccionada"></p>
+            </header>
+
+            <form>
+
+                <p class="campo-agenda">
+                    <label for="nombrePaciente">Nombre del evento</label>
+                    <input
+                        type="text"
+                        id="nombrePaciente"
+                        name="nombre"
+                        placeholder="Ej.: Turno con el neurólogo"
+                    >
+                </p>
+
+                <p class="campo-agenda">
+                    <label for="fechaEvento">Fecha</label>
+                    <input type="date" id="fechaEvento" name="fecha">
+                </p>
+
+                <p class="campo-agenda">
+                    <label for="horaTurno">Hora</label>
+                    <input type="time" id="horaTurno" name="hora">
+                </p>
+
+                <fieldset class="campo-agenda campo-agenda-tipo">
+                    <legend id="etiquetaTipoEvento">Tipo de evento</legend>
+
+                    <button
+                        type="button"
+                        id="botonTipoEvento"
+                        aria-labelledby="etiquetaTipoEvento botonTipoEvento"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-controls="listaTipoEvento"
+                    >Seleccionar</button>
+
+                    <ul
+                        id="listaTipoEvento"
+                        role="listbox"
+                        aria-labelledby="etiquetaTipoEvento"
+                        hidden
+                    >
+                        <li role="option" data-value="" aria-selected="true">Seleccionar</li>
+                        <li role="option" data-value="turno" aria-selected="false">Turno médico</li>
+                        <li role="option" data-value="estudio" aria-selected="false">Estudio médico</li>
+                        <li role="option" data-value="terapia" aria-selected="false">Terapia</li>
+                        <li role="option" data-value="medicacion" aria-selected="false">Medicación</li>
+                        <li role="option" data-value="control" aria-selected="false">Control / seguimiento</li>
+                    </ul>
+
+                    <select id="tipoTurno" name="tipo" hidden>
+                        <option value="">Seleccionar</option>
+                        <option value="turno">Turno médico</option>
+                        <option value="estudio">Estudio médico</option>
+                        <option value="terapia">Terapia</option>
+                        <option value="medicacion">Medicación</option>
+                        <option value="control">Control / seguimiento</option>
+                    </select>
+                </fieldset>
+
+                <p class="campo-agenda campo-agenda-descripcion">
+                    <label for="motivoConsulta">Descripción</label>
+                    <textarea
+                        id="motivoConsulta"
+                        name="descripcion"
+                        placeholder="Agregá información adicional..."
+                    ></textarea>
+                </p>
+
+                <button
+                    type="button"
+                    id="guardarTurno"
+                    class="boton-guardar-agenda"
+                >
+                    Guardar evento
+                </button>
+
+            </form>
+
+        </article>
+
+    </dialog>
+
+    <script src="agenda-psicologo.js" defer></script>
+
+    <script>
+        document.getElementById("botonAgregarEvento").addEventListener("click", function () {
+            var fecha = document.getElementById("fechaEvento");
+            if (!fecha.value) {
+                var d = new Date();
+                fecha.value = d.getFullYear() + "-" +
+                    String(d.getMonth() + 1).padStart(2, "0") + "-" +
+                    String(d.getDate()).padStart(2, "0");
+            }
+            document.getElementById("modalAgenda").hidden = false;
+        });
+
+        document.getElementById("cerrarModal").addEventListener("click", function () {
+            document.getElementById("modalAgenda").hidden = true;
+            cerrarListaTipo();
+        });
+
+        document.getElementById("modalAgenda").addEventListener("click", function (e) {
+            if (e.target === this) {
+                this.hidden = true;
+                cerrarListaTipo();
+            }
+        });
+
+        document.getElementById("horaTurno").addEventListener("change", function () {
+            this.classList.toggle("con-valor", this.value !== "");
+        });
+
+        /* DESPLEGABLE TIPO DE EVENTO */
+
+        var botonTipo = document.getElementById("botonTipoEvento");
+        var listaTipo = document.getElementById("listaTipoEvento");
+        var selectTipo = document.getElementById("tipoTurno");
+
+        function abrirListaTipo() {
+            listaTipo.hidden = false;
+            botonTipo.setAttribute("aria-expanded", "true");
+        }
+
+        function cerrarListaTipo() {
+            listaTipo.hidden = true;
+            botonTipo.setAttribute("aria-expanded", "false");
+        }
+
+        function elegirTipo(opcion) {
+            listaTipo.querySelectorAll("li").forEach(function (li) {
+                li.setAttribute("aria-selected", li === opcion ? "true" : "false");
+            });
+            botonTipo.textContent = opcion.textContent;
+            botonTipo.classList.toggle("con-valor", opcion.dataset.value !== "");
+            selectTipo.value = opcion.dataset.value;
+            selectTipo.dispatchEvent(new Event("change", { bubbles: true }));
+            cerrarListaTipo();
+        }
+
+        botonTipo.addEventListener("click", function (e) {
+            e.stopPropagation();
+            if (listaTipo.hidden) abrirListaTipo();
+            else cerrarListaTipo();
+        });
+
+        listaTipo.addEventListener("click", function (e) {
+            e.stopPropagation();
+            var opcion = e.target.closest("li");
+            if (opcion) elegirTipo(opcion);
+        });
+
+        document.addEventListener("click", function () {
+            cerrarListaTipo();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") cerrarListaTipo();
+        });
+
+        document.getElementById("botonVolver").addEventListener("click", function () {
+            window.history.back();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,6 +1,23 @@
 const botonPasaporte = document.getElementById("botonPasaporte");
 const submenuPasaporte = document.getElementById("submenuPasaporte");
 
+
+/* ---------- BOTÓN FAMILIA ---------- */
+
+const botonFamilia = document.querySelector('.menu-personal a[href="./familia.html"]');
+
+if (botonFamilia) {
+
+    botonFamilia.addEventListener("click", function (evento) {
+
+        evento.preventDefault();
+        window.location.href = "./familia.html";
+
+    });
+
+}
+
+
 if (botonPasaporte && submenuPasaporte) {
 
     botonPasaporte.addEventListener("click", function () {
