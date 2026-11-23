@@ -155,3 +155,61 @@ if (nombrePerfilSensorial && nombrePersona) {
     nombrePerfilSensorial.textContent = nombrePersona;
     document.title = "NeuroPassport - Perfil sensorial de " + nombrePersona;
 }
+
+
+/* ---------- DATOS DEL PERFIL SENSORIAL ---------- */
+/* Se cargan desde "Perfil sensorial" en el menú de perfil de Personal */
+
+const NIVELES = {
+    hiper: { texto: "Hipersensibilidad", clase: "nivel-hiper" },
+    alta: { texto: "Sensibilidad Alta", clase: "nivel-alta" },
+    media: { texto: "Sensibilidad Media", clase: "nivel-media" },
+    normal: { texto: "Tolerancia Normal", clase: "nivel-normal" }
+};
+
+function leerPerfilSensorial(nombre) {
+    try {
+        const perfiles = JSON.parse(localStorage.getItem("perfilesSensoriales")) || {};
+        return perfiles[nombre.trim().toLowerCase()] || null;
+    } catch (error) {
+        return null;
+    }
+}
+
+const perfil = nombrePersona ? leerPerfilSensorial(nombrePersona) : null;
+
+// Niveles de sensibilidad
+document.querySelectorAll("[data-campo]").forEach(function (casilla) {
+    const nivel = perfil && NIVELES[perfil[casilla.dataset.campo]];
+
+    if (nivel) {
+        casilla.textContent = nivel.texto;
+        casilla.className = "psen-nivel " + nivel.clase;
+    }
+});
+
+// Estrategias
+const listaEstrategias = document.getElementById("listaEstrategias");
+const sinEstrategias = document.getElementById("sinEstrategias");
+const estrategias = perfil && Array.isArray(perfil.estrategias) ? perfil.estrategias : [];
+
+estrategias.forEach(function (estrategia) {
+    const item = document.createElement("li");
+    const etiqueta = document.createElement("span");
+
+    etiqueta.className = "psen-estrategia";
+    etiqueta.textContent = estrategia;
+
+    item.appendChild(etiqueta);
+    listaEstrategias.appendChild(item);
+});
+
+listaEstrategias.hidden = estrategias.length === 0;
+sinEstrategias.hidden = estrategias.length > 0;
+
+// Observaciones
+const textoObservaciones = document.getElementById("textoObservaciones");
+
+if (perfil && perfil.observaciones) {
+    textoObservaciones.textContent = '"' + perfil.observaciones + '"';
+}

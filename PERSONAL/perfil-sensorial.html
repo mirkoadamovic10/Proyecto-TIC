@@ -469,6 +469,23 @@
             color: #2E6E49;
         }
 
+        .nivel-vacio {
+            background: #F4F4F4;
+            border-color: #DDDDDD;
+            color: #9A9A9A;
+        }
+
+        .psen-vacio {
+            margin: 22px 0 0;
+            color: #9A9A9A;
+            font-size: 14px;
+        }
+
+        .psen-vacio[hidden],
+        .psen-botones[hidden] {
+            display: none;
+        }
+
         .psen-divisor {
             width: 100%;
             height: 0;
@@ -755,32 +772,32 @@
 
                     <div class="psen-item">
                         <dt>Sensibilidad al Ruido</dt>
-                        <dd><span class="psen-nivel nivel-media">Sensibilidad Media</span></dd>
+                        <dd><span class="psen-nivel nivel-vacio" data-campo="ruido">Sin completar</span></dd>
                     </div>
 
                     <div class="psen-item">
                         <dt>Sensibilidad a las Luces</dt>
-                        <dd><span class="psen-nivel nivel-hiper">Hipersensibilidad</span></dd>
+                        <dd><span class="psen-nivel nivel-vacio" data-campo="luces">Sin completar</span></dd>
                     </div>
 
                     <div class="psen-item">
                         <dt>Texturas y contacto</dt>
-                        <dd><span class="psen-nivel nivel-alta">Sensibilidad Alta</span></dd>
+                        <dd><span class="psen-nivel nivel-vacio" data-campo="texturas">Sin completar</span></dd>
                     </div>
 
                     <div class="psen-item">
                         <dt>Olores</dt>
-                        <dd><span class="psen-nivel nivel-normal">Tolerancia Normal</span></dd>
+                        <dd><span class="psen-nivel nivel-vacio" data-campo="olores">Sin completar</span></dd>
                     </div>
 
                     <div class="psen-item">
                         <dt>Temperatura</dt>
-                        <dd><span class="psen-nivel nivel-normal">Tolerancia Normal</span></dd>
+                        <dd><span class="psen-nivel nivel-vacio" data-campo="temperatura">Sin completar</span></dd>
                     </div>
 
                     <div class="psen-item">
                         <dt>Contacto físico</dt>
-                        <dd><span class="psen-nivel nivel-media">Sensibilidad Media</span></dd>
+                        <dd><span class="psen-nivel nivel-vacio" data-campo="contacto">Sin completar</span></dd>
                     </div>
 
                 </dl>
@@ -793,11 +810,9 @@
 
                 <h2 id="tituloEstrategias">Estrategias que ayudan ante una sobrecarga</h2>
 
-                <ul class="psen-botones">
-                    <li><span class="psen-estrategia">Auriculares canceladores</span></li>
-                    <li><span class="psen-estrategia">Respiración guiada</span></li>
-                    <li><span class="psen-estrategia">Descansos cortos</span></li>
-                </ul>
+                <ul id="listaEstrategias" class="psen-botones"></ul>
+
+                <p id="sinEstrategias" class="psen-vacio">Todavía no se cargaron estrategias.</p>
 
             </section>
 
@@ -806,7 +821,7 @@
                 <h2 id="tituloObservaciones">Observaciones o indicaciones adicionales</h2>
 
                 <blockquote class="psen-nota">
-                    <p>"Avisar antes de tocarlo durante la revisación clínica y bajar la luz del consultorio si es posible."</p>
+                    <p id="textoObservaciones">Sin observaciones.</p>
                 </blockquote>
 
             </section>
