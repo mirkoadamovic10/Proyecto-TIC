@@ -142,21 +142,26 @@ if (botonAtras) {
 
 function obtenerNombreUsuario() {
 
-    // Datos completos del usuario que inició sesión
+    // Nombre de la cuenta actual: se actualiza al registrarse,
+    // al iniciar sesión y al cambiarlo en Configuración
+    const nombreActual = (localStorage.getItem("nombreUsuario") || "").trim();
+
+    if (nombreActual) {
+        return nombreActual;
+    }
+
+    // Si no hay, se usan los datos del inicio de sesión
     try {
         const usuario = JSON.parse(localStorage.getItem("usuario"));
 
         if (usuario && usuario.nombre) {
-            return usuario.apellido
-                ? usuario.nombre + " " + usuario.apellido
-                : usuario.nombre;
+            return usuario.nombre;
         }
     } catch (error) {
-        // si no hay datos, sigue abajo
+        // sin datos
     }
 
-    // Nombre guardado al registrarse, iniciar sesión o en Configuración
-    return localStorage.getItem("nombreUsuario") || "";
+    return "";
 }
 
 const nombreUsuarioFamilia = document.getElementById("nombreUsuarioFamilia");
