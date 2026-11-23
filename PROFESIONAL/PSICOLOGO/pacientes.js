@@ -150,4 +150,116 @@ function verPaciente(indice) {
 }
 
 
+// ==========================================
+// CONFIGURACIÓN E INFORMACIÓN PERSONAL
+// ==========================================
+
+(function () {
+
+    const RUTAS_CONFIGURACION = [
+        "../../PERSONAL/configuracion.html",
+        "../../INSTITUCION/configuracion.html",
+        "../../PROFESIONAL/configuracion.html"
+    ];
+
+
+    const RUTAS_INFORMACION_PERSONAL = [
+        "../../PERSONAL/informacion-personal.html",
+        "../../INSTITUCION/informacion-personal.html",
+        "../../PROFESIONAL/informacion-personal.html"
+    ];
+
+
+    const menuPerfil =
+        document.getElementById("menuPerfilPacientes");
+
+
+    if (!menuPerfil) {
+        return;
+    }
+
+
+    async function irAPrimeraRutaQueExista(rutas, nombrePagina) {
+
+        for (const ruta of rutas) {
+
+            try {
+
+                const respuesta =
+                    await fetch(ruta, { method: "HEAD" });
+
+
+                if (respuesta.ok) {
+
+                    window.location.href = ruta;
+
+                    return;
+
+                }
+
+            } catch (error) {
+
+                // Se prueba con la siguiente ruta.
+
+            }
+
+        }
+
+
+        alert(
+            "No se encontró la página de " + nombrePagina + ".\n\n" +
+            "Rutas probadas:\n" + rutas.join("\n")
+        );
+
+    }
+
+
+    const botonConfiguracion =
+        menuPerfil.querySelector("li:nth-child(1) button");
+
+
+    const botonInfoPersonal =
+        menuPerfil.querySelector("li:nth-child(2) button");
+
+
+    if (botonConfiguracion) {
+
+        botonConfiguracion.addEventListener(
+            "click",
+            function () {
+
+                irAPrimeraRutaQueExista(
+                    RUTAS_CONFIGURACION,
+                    "configuración"
+                );
+
+            }
+        );
+
+    }
+
+
+    if (botonInfoPersonal) {
+
+        botonInfoPersonal.addEventListener(
+            "click",
+            function () {
+
+                irAPrimeraRutaQueExista(
+                    RUTAS_INFORMACION_PERSONAL,
+                    "información personal"
+                );
+
+            }
+        );
+
+    }
+
+})();
+
+
+// ==========================================
+// INICIAR
+// ==========================================
+
 mostrarPacientes();
