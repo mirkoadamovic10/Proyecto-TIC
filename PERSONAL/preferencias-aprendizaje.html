@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preferencias de aprendizaje - NeuroPassport</title>
+    <title>NeuroPassport - Preferencias de aprendizaje</title>
 
     <link rel="stylesheet" href="../style.css">
 
@@ -13,340 +13,39 @@
     <style>
         body {
             margin: 0;
+            min-height: 100vh;
             background: #F1FAEE !important;
             font-family: "Inter", Arial, sans-serif;
         }
 
         /* ============================= */
-        /* NAVBAR                        */
+        /* BARRA SUPERIOR                */
         /* ============================= */
 
-        body > header.barra-personal {
-            width: 100%;
-            min-height: 75px;
-            padding: 13px 5%;
-            box-sizing: border-box;
-            display: flex;
+        body > header.papr-barra {
+            position: relative;
+            display: flex !important;
             align-items: center;
-            justify-content: flex-end;
-            gap: 20px;
-            background: #8A7090 !important;
-            background-image: none !important;
+            justify-content: center;
+            min-height: 60px;
+            margin: 0;
+            padding: 8px 20px !important;
+            box-sizing: border-box;
+            background: #FFFFFF !important;
             border: none !important;
             box-shadow: none !important;
-            position: relative;
-            z-index: 100;
         }
 
-        .nombre-neuropassport {
+        .papr-atras {
             position: absolute;
-            left: 5%;
+            left: 8px;
             top: 50%;
             transform: translateY(-50%);
-            margin: 0;
-            color: #D9E2E3;
-            font-size: 30px;
-            font-weight: 700;
-        }
-
-        body > header.barra-personal .menu-personal {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin: 0;
-            padding: 0;
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        body > header.barra-personal .menu-personal > .boton-menu {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 9px 15px;
-            background: #CDB4DB !important;
-            color: #000000 !important;
-            border: 1px solid #CDB4DB;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 600;
-            line-height: 1.2;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        body > header.barra-personal .menu-personal > .boton-menu:hover {
-            background: #BFA0D0 !important;
-            color: #000000 !important;
-        }
-
-        /* Campana */
-        .logo-menu {
-            width: 32px;
-            height: 37px;
-            object-fit: contain;
-            display: block;
-            flex-shrink: 0;
-        }
-
-        .boton-notificaciones {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Perfil */
-        .contenedor-perfil {
-            position: relative;
-            margin: 0;
-            padding: 0;
-        }
-
-        body > header.barra-personal .perfil {
-            width: 40px;
-            height: 40px;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: #e0e0e0;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            flex-shrink: 0;
-            overflow: hidden;
-        }
-
-        .perfil-cabeza {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background-color: #111111;
-            margin-bottom: 3px;
-        }
-
-        .perfil-cuerpo {
-            width: 20px;
-            height: 10px;
-            border-radius: 10px 10px 5px 5px;
-            background-color: #111111;
-        }
-
-        .imagen-perfil {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        body > header.barra-personal .submenu-perfil {
-            position: absolute;
-            top: calc(100% + 12px);
-            right: 0;
-            width: 280px;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            display: none;
-            flex-direction: column;
-            gap: 12px;
-            list-style: none;
-            background: #FFFFFF;
-            border: none;
-            border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-            z-index: 200;
-        }
-
-        body > header.barra-personal .submenu-perfil.activo {
-            display: flex;
-        }
-
-        body > header.barra-personal .submenu-perfil li {
-            margin: 0;
-            padding: 0;
-        }
-
-        body > header.barra-personal .submenu-perfil button {
-            width: 100%;
-            min-height: 65px;
-            padding: 16px 12px;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #E1E8E9;
-            color: #2F7185;
-            border: none;
-            border-radius: 14px;
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        body > header.barra-personal .submenu-perfil button:hover {
-            background: #CCDDE0;
-            transform: translateY(-2px);
-        }
-
-        /* ============================= */
-        /* MODAL PASAPORTE               */
-        /* ============================= */
-
-        .modal-pasaporte {
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            max-width: none;
-            max-height: none;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            border: none;
-            background: rgba(0, 0, 0, 0.35);
-        }
-
-        .modal-pasaporte[hidden] {
-            display: none !important;
-        }
-
-        .panel-pasaporte {
-            position: relative;
-            width: 100%;
-            max-width: 850px;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 35px;
-            box-sizing: border-box;
-            background: #FFFFFF;
-            border-radius: 20px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
-        }
-
-        .panel-pasaporte h2 {
-            margin: 0 40px 8px;
-            color: #2F7185;
-            font-size: 28px;
-            text-align: center;
-        }
-
-        .descripcion-pasaporte {
-            margin: 0 0 28px;
-            color: #555555;
-            font-size: 15px;
-            text-align: center;
-        }
-
-        .opciones-pasaporte {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .opciones-pasaporte li {
-            margin: 0;
-            padding: 0;
-        }
-
-        .opciones-pasaporte .boton-pasaporte {
-            width: 100%;
-            height: 100%;
-            min-height: 85px;
-            padding: 18px 12px;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #E1E8E9;
-            color: #2F7185;
-            border: none;
-            border-radius: 14px;
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .opciones-pasaporte .boton-pasaporte:hover {
-            background: #CCDDE0;
-            transform: translateY(-2px);
-        }
-
-        .cerrar-pasaporte {
-            position: absolute;
-            top: 15px;
-            right: 18px;
-            width: 38px;
-            height: 38px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            color: #2F7185;
-            border: none;
-            border-radius: 50%;
-            font-size: 30px;
-            line-height: 1;
-            cursor: pointer;
-        }
-
-        .cerrar-pasaporte:hover {
-            background: #E1E8E9;
-        }
-
-        /* Botones del navbar como en el diseño */
-        body > header.barra-personal .menu-personal > .boton-menu {
-            padding: 9px 24px;
-            font-size: 19px;
-            font-weight: 500;
-        }
-
-        .nombre-neuropassport {
-            font-weight: 500;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ============================= */
-        /* OPCIÓN DEL PASAPORTE          */
-        /* ============================= */
-
-        main.popc-principal {
-            display: block;
-            padding: 22px 6% 50px !important;
-            box-sizing: border-box;
-            text-align: left !important;
-            animation: none !important;
-        }
-
-        .popc-atras {
             display: inline-flex !important;
             align-items: center;
             gap: 5px;
-            margin: 0 0 0 calc(-6% + 8px);
-            padding: 5px 8px !important;
+            margin: 0;
+            padding: 6px 9px !important;
             background: #B7E4C7 !important;
             color: #2F7185 !important;
             border: none !important;
@@ -357,453 +56,607 @@
             cursor: pointer;
         }
 
-        .popc-cabecera {
-            margin: 22px 0 40px;
-            text-align: center;
+        .papr-atras:not(:disabled):hover {
+            transform: translateY(calc(-50% - 2px));
         }
 
-        .popc-cabecera h1 {
+        .papr-barra h1 {
             margin: 0 !important;
             color: #2F7185 !important;
-            font-size: 36px !important;
-            font-weight: 700 !important;
-            letter-spacing: normal !important;
-            line-height: 1.15 !important;
-        }
-
-        .popc-cabecera p {
-            margin: 2px 0 0;
-            color: #2F7185;
-            font-size: 17px;
-            font-weight: 500;
-        }
-
-        .popc-tarjeta {
-            width: 100%;
-            max-width: 905px;
-            margin: 0 auto;
-            box-sizing: border-box;
-            border-radius: 13px;
-            text-align: center;
-        }
-
-        .popc-tarjeta h2 {
-            margin: 0 !important;
-            color: #2F7185 !important;
-            font-size: 23px !important;
+            font-size: 19px !important;
             font-weight: 600 !important;
             letter-spacing: normal !important;
             line-height: 1.2 !important;
         }
 
-        /* Tarjeta verde: agregar */
+        /* ============================= */
+        /* TARJETA                       */
+        /* ============================= */
 
-        .popc-agregar {
-            padding: 40px 30px 52px;
-            background: #CEE9DA;
-        }
-
-        .popc-agregar > hgroup p {
-            margin: 6px 0 0;
-            color: #2F7185;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .popc-boton-agregar {
-            display: inline-flex !important;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            min-width: 250px;
-            height: 57px;
-            margin: 32px 0 0;
-            padding: 0 26px !important;
-            background: #2F7185 !important;
-            color: #FFFFFF !important;
-            border: none !important;
-            border-radius: 10px !important;
-            font-family: inherit;
-            font-size: 16px !important;
-            font-weight: 600 !important;
-            cursor: pointer;
-        }
-
-        .popc-boton-agregar:hover {
-            background: #285F70 !important;
-        }
-
-        .popc-mas {
-            font-size: 30px;
-            font-weight: 300;
-            line-height: 1;
-        }
-
-        /* Formulario que se despliega (lo arma pasaporte.js) */
-
-        .popc-agregar .formulario-agregar {
-            display: none !important;
-            max-width: 620px;
-            margin: 28px auto 0 !important;
-            padding: 24px 26px !important;
-            box-sizing: border-box;
-            background: #FFFFFF !important;
-            border: none !important;
-            border-radius: 12px !important;
-            box-shadow: none !important;
-            text-align: left;
-        }
-
-        .popc-agregar .formulario-agregar.visible {
-            display: block !important;
-        }
-
-        .popc-agregar .formulario-agregar .campo {
-            display: flex;
-            flex-direction: column;
-            margin: 0 0 16px !important;
-            padding: 0;
-            background: transparent !important;
-        }
-
-        .popc-agregar .formulario-agregar label {
-            margin: 0 0 7px !important;
-            color: #2F7185 !important;
-            font-size: 15px !important;
-            font-weight: 600 !important;
-        }
-
-        .popc-agregar .formulario-agregar input,
-        .popc-agregar .formulario-agregar textarea {
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 10px 13px !important;
-            box-sizing: border-box;
-            background: #F4F6F5 !important;
-            border: 1px solid #DCE5DF !important;
-            border-radius: 8px !important;
-            box-shadow: none !important;
-            color: #333333 !important;
-            font-family: inherit;
-            font-size: 14px !important;
-        }
-
-        .popc-agregar .formulario-agregar textarea {
-            min-height: 90px;
-            resize: vertical;
-        }
-
-        .popc-agregar .formulario-agregar .guardar-item {
+        main.papr-principal {
             display: block;
-            min-width: 150px;
-            height: 40px;
-            margin: 6px auto 0 !important;
-            padding: 0 20px !important;
-            background: #2F7185 !important;
-            color: #FFFFFF !important;
-            border: none !important;
-            border-radius: 8px !important;
-            font-family: inherit;
-            font-size: 15px !important;
-            font-weight: 600 !important;
-            cursor: pointer;
+            padding: 36px 20px 40px !important;
+            box-sizing: border-box;
+            text-align: left !important;
         }
 
-        /* Tarjeta blanca: guardados */
-
-        .popc-guardados {
-            margin-top: 27px;
-            padding: 46px 30px 64px;
+        .papr-tarjeta {
+            width: 100%;
+            max-width: 710px;
+            margin: 0 auto;
+            padding: 24px 36px 30px;
+            box-sizing: border-box;
             background: #FFFFFF;
+            border-radius: 12px;
         }
 
-        .popc-guardados .lista-items {
-            display: flex !important;
-            flex-direction: column;
-            gap: 12px;
-            max-width: 770px;
-            margin: 36px auto 0 !important;
-            padding: 0 !important;
+        .papr-formulario {
+            margin: 0;
+            padding: 0;
         }
 
-        /* Mensaje "Todavía no hay información agregada." */
-        .popc-guardados .lista-items > div {
-            padding: 18px 20px;
-            background: #F7F7F7;
-            border: 1px dashed #8C8C8C;
-            border-radius: 9px;
-            color: #8C8C8C;
-            font-size: 16px;
+        .papr-seccion {
+            margin: 0;
+            padding: 0;
             text-align: center;
         }
 
-        .popc-guardados .item-guardado {
-            margin: 0 !important;
-            padding: 16px 20px !important;
-            background: #F7FBF8 !important;
-            border: 1px solid #D5EBDC !important;
-            border-radius: 9px !important;
-            box-shadow: none !important;
-            text-align: left;
-            transform: none !important;
+        .papr-seccion h2 {
+            margin: 0;
+            color: #2F7185 !important;
+            font-size: 25px !important;
+            font-weight: 600 !important;
+            letter-spacing: normal !important;
+            line-height: 1.2;
         }
 
-        .popc-guardados .item-guardado p {
-            margin: 0 0 4px !important;
-            color: #333333 !important;
-            font-size: 14px !important;
+        .papr-bajada {
+            max-width: 520px;
+            margin: 4px auto 0;
+            color: #333333;
+            font-size: 14px;
+            line-height: 1.3;
         }
 
-        .popc-guardados .item-guardado p:last-child {
-            margin: 6px 0 0 !important;
-            color: #8C8C8C !important;
-            font-size: 12px !important;
+        /* Selectores */
+
+        .papr-grilla {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 34px;
+            row-gap: 16px;
+            margin: 26px 0 0;
         }
 
-        .popc-guardados .item-guardado strong {
+        .papr-campo {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            text-align: center;
+        }
+
+        .papr-campo label {
+            margin: 0 0 13px;
             color: #2F7185;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .papr-campo select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 40px;
+            margin: 0;
+            padding: 0 36px 0 18px;
+            box-sizing: border-box;
+            background-color: #F4F6F5;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23555' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 11px 7px;
+            border: 1px solid #E1E6E3;
+            border-radius: 8px;
+            outline: none;
+            color: #333333;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .papr-campo select:invalid,
+        .papr-campo select.sin-valor {
+            color: #8F9692;
+        }
+
+        .papr-campo select option {
+            color: #333333;
+        }
+
+        .papr-divisor {
+            width: 100%;
+            height: 0;
+            margin: 28px 0 26px;
+            border: none;
+            border-top: 1px solid #E2E2E2;
+        }
+
+        /* Botones para elegir */
+
+        .papr-estrategias {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 26px 16px;
+            max-width: 560px;
+            margin: 36px auto 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .papr-estrategias li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .papr-estrategia {
+            height: 49px;
+            padding: 0 17px !important;
+            background: #EEF0EF !important;
+            color: #1E1E1E !important;
+            border: 2px solid #D9DEDB !important;
+            border-radius: 9px !important;
+            font-family: inherit;
+            font-size: 20px !important;
+            font-weight: 500 !important;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .papr-estrategia[aria-pressed="true"] {
+            background: #2F7185 !important;
+            color: #FFFFFF !important;
+            border-color: #2F7185 !important;
+        }
+
+        /* Recursos (tecnología asistiva): más chicos para que entren de a tres */
+        .papr-recursos {
+            gap: 14px 12px;
+            max-width: 620px;
+            margin-top: 28px;
+        }
+
+        .papr-recursos .papr-estrategia {
+            height: 40px;
+            padding: 0 14px !important;
+            font-size: 15px !important;
+        }
+
+        /* Observaciones */
+
+        .papr-observaciones {
+            margin: 34px 0 0;
+        }
+
+        .papr-observaciones label {
+            display: block;
+            margin: 0 0 13px;
+            color: #2F7185;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .papr-observaciones input {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            height: 40px;
+            margin: 0 auto;
+            padding: 0 16px;
+            box-sizing: border-box;
+            background: #F4F6F5;
+            border: 1px solid #E1E6E3;
+            border-radius: 8px;
+            outline: none;
+            color: #333333;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .papr-observaciones input::placeholder {
+            color: #9A9A9A;
+            opacity: 1;
+        }
+
+        .papr-guardar {
+            display: block;
+            min-width: 180px;
+            height: 34px;
+            margin: 30px auto 0;
+            padding: 0 22px !important;
+            background: #2F7185 !important;
+            color: #FFFFFF !important;
+            border: none !important;
+            border-radius: 7px !important;
+            font-family: inherit;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+        }
+
+        .papr-guardar:hover {
+            background: #285F70 !important;
+        }
+
+
+        /* Modalidad: una sola opción */
+        .papr-modalidad {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin: 24px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .papr-modalidad li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Campos de texto en dos columnas */
+        .papr-campo input {
+            width: 100%;
+            height: 40px;
+            margin: 0;
+            padding: 0 16px;
+            box-sizing: border-box;
+            background: #F4F6F5;
+            border: 1px solid #E1E6E3;
+            border-radius: 8px;
+            outline: none;
+            color: #333333;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .papr-campo input::placeholder {
+            color: #9A9A9A;
+            opacity: 1;
+        }
+
+        /* Informes adjuntos */
+        .papr-informes-cabecera {
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            max-width: 600px;
+            margin: 30px auto 0;
+        }
+
+        .papr-informes-cabecera h3 {
+            margin: 0 !important;
+            color: #2F7185 !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+        }
+
+        .papr-adjuntar {
+            padding: 7px 12px !important;
+            background: #B7E4C7 !important;
+            color: #2F7185 !important;
+            border: none !important;
+            border-radius: 7px !important;
+            font-family: inherit;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+        }
+
+        .papr-archivos {
+            max-width: 500px;
+            margin: 18px auto 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .papr-archivo {
+            position: relative;
+            margin: 0;
+            padding: 11px 44px 11px 16px;
+            background: #F4F6F5;
+            border: 1px solid #E1E6E3;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .papr-archivo strong {
+            display: block;
+            color: #1E1E1E;
+            font-size: 14px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .papr-archivo span {
+            display: block;
+            margin: 2px 0 0 12px;
+            color: #6B6B6B;
+            font-size: 13px;
+        }
+
+        .papr-quitar {
+            position: absolute !important;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            padding: 2px 6px !important;
+            background: transparent !important;
+            color: #6B6B6B !important;
+            border: none !important;
+            font-family: inherit;
+            font-size: 15px !important;
+            cursor: pointer;
+        }
+
+        .papr-quitar:not(:disabled):hover {
+            transform: translateY(calc(-50% - 2px));
+        }
+
+        .papr-sin-archivos {
+            margin: 14px 0 0;
+            color: #9A9A9A;
+            font-size: 13px;
+        }
+
+        .papr-sin-archivos[hidden] {
+            display: none;
+        }
+
+        .papr-mensaje {
+            min-height: 18px;
+            margin: 12px 0 0;
+            color: #2F7185;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
         }
 
         /* ============================= */
         /* RESPONSIVE                    */
         /* ============================= */
 
-        @media (max-width: 700px) {
-            .opciones-pasaporte {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 12px;
+        @media (max-width: 600px) {
+            body > header.papr-barra {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .papr-atras {
+                position: static;
+                transform: none;
+                align-self: flex-start;
+            }
+
+            .papr-tarjeta {
+                padding: 20px 16px;
+            }
+
+            .papr-grilla {
+                grid-template-columns: 1fr;
+            }
+
+            .papr-estrategia {
+                font-size: 16px !important;
+                height: 44px;
             }
         }
 
-        @media (max-width: 600px) {
-            body > header.barra-personal {
-                padding: 15px 4%;
-                flex-wrap: wrap;
-            }
+        .papr-oculto-visual {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            overflow: hidden !important;
+            clip: rect(0 0 0 0) !important;
+            white-space: nowrap !important;
+        }
 
-            body > header.barra-personal .menu-personal {
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-
-            body > header.barra-personal .menu-personal > .boton-menu {
-                padding: 8px 10px;
-                font-size: 13px;
-            }
-
-            body > header.barra-personal .submenu-perfil {
-                width: 250px;
-                padding: 15px;
-            }
-
-            main.popc-principal {
-                padding: 20px 4% 40px !important;
-            }
-
-            .popc-atras {
-                margin-left: 0;
-            }
-
-            .popc-cabecera h1 {
-                font-size: 28px !important;
-            }
-
-            .popc-agregar,
-            .popc-guardados {
-                padding: 28px 16px 36px;
-            }
-
-            .popc-boton-agregar {
-                min-width: 0;
-                width: 100%;
-            }
+        .papr-observaciones {
+            margin: 22px 0 0 !important;
         }
     </style>
 </head>
 
-<body data-tipo="preferencias" data-nombre="Preferencias de aprendizaje">
+<body>
 
-    <header class="barra-personal">
+    <header class="papr-barra">
 
-        <p class="nombre-neuropassport">
-            NeuroPassport
-        </p>
-
-        <nav class="menu-personal" aria-label="Menú principal">
-
-            <a href="./familia.html" class="boton-menu">
-                Familia
-            </a>
-
-            <button
-                type="button"
-                class="boton-menu"
-                id="botonPasaporte"
-                aria-expanded="false"
-                aria-controls="submenuPasaporte">
-                Pasaporte
-            </button>
-
-            <a href="./agenda.html" class="boton-menu">
-                Agenda
-            </a>
-
-            <a
-                href="./notificaciones.html"
-                class="boton-notificaciones"
-                id="botonNotificaciones"
-                title="Notificaciones"
-                aria-label="Notificaciones">
-
-                <img
-                    class="logo-menu"
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAlCAYAAAAjt+tHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALgSURBVFhH7ZfPaxNBFMefjZpgKym2ZKuHLR4Sf0Ajtam9lCBS8VAU7UEveulBKfQPqOChh4I966EHDwVvIkUozUGhhdQerKmNNErV1Fb3oEnowYDIRg063+mEmM3sbja2RCEfGHZmsrvvO2/fvDfZdWtk5BfVkAZxrRl1AXUB/6+AVCZD05EIfdA0MbPFnt176ZjaSV2BMG+q4he/yKlaQE7XaSWRoGw2K2aI2pmxc6ErdFQ9SarPz1uXP8zn9nmaxF2luMK9vaOib4vOjC7H4zQXjdJiLEb5fJ4+Mg+sb2zQAW8rXTx9jVwNLnF3EXilubGFtExSzBSp2ANw+b3JSXoyO0updJqavV5qV1VqUxQu4rByXNwpp9V7kDcjFaXit8kkTc/M8H5PdzedCoXI4/HwMYBnznReIqXlkJiRs6ot0xstLkZb2HrgC/vGMA6D1wcHiX2yEuMA46bG/WLkDFsB8wsLlMvl6EJ/P3mZ283YzH4WPXM2synRK2IpAKtHpAc7Ovj3tkLLrImenG/6V6lISwEILnCCCbADL3/xbl6MSoHxp68iYlSKpYA0i3yg+Hz8age22eOlB7T26TUtJRYpvhqjlfVnNPfyERchw1IAohsYg84KGEowozduXqU792/Teybmx8/v4tdybINwp/m3BfyZ56uhkudNBWD/Yxf0sKxXDdg5eB4V0wqpABhHw0vO9vWJWWecZ4kLzyOPoH6YUSZAZ1kPxhVWZPCSvwHPBwIBes4qJ5KajDIBqPPgiN/6IFEpbTY5pKwaInDuTkyI0fYxPDTES7gRaTlG4MgiGG7EPDKjMTkh4NxuNz8fGHGzey8PDIhRKY7+mhWCU7aasfFxXrRQNZ1gmQeMeNgKgdE7OC0BmYvtcCQgGAxyN+MTFaIa14dTU7xfSdU04vjfMfZ1IblgxQUhOCmhOcWxAIBPEGWxgCtOSVi53YHFjKoEbCeOYmAnqAuosQCi3xaSIgq0RFQFAAAAAElFTkSuQmCC"
-                    alt="Notificaciones">
-
-            </a>
-
-        </nav>
-
-        <aside class="contenedor-perfil" aria-label="Perfil de usuario">
-
-            <button
-                type="button"
-                class="perfil"
-                aria-label="Perfil"
-                id="botonPerfil"
-                aria-expanded="false"
-                aria-controls="submenuPerfil">
-
-                <span class="perfil-cabeza"></span>
-                <span class="perfil-cuerpo"></span>
-
-            </button>
-
-            <menu
-                class="submenu-perfil"
-                id="submenuPerfil">
-
-                <li>
-                    <button type="button" data-pagina="configuracion.html">
-                        Configuración
-                    </button>
-                </li>
-
-                <li>
-                    <button type="button" data-pagina="informacion-personal.html">
-                        Información personal
-                    </button>
-                </li>
-
-                <li>
-                    <button type="button" data-pagina="editar-perfil-sensorial.html">
-                        Perfil sensorial
-                    </button>
-                </li>
-
-                <li>
-                    <button type="button">
-                        Preferencias de aprendizaje
-                    </button>
-                </li>
-
-                <li>
-                    <button type="button" data-pagina="cerrar-sesion.html">
-                        Cerrar Sesión
-                    </button>
-                </li>
-
-            </menu>
-
-        </aside>
-
-    </header>
-
-    <dialog
-        id="submenuPasaporte"
-        class="modal-pasaporte"
-        aria-modal="true"
-        aria-labelledby="tituloPasaporte"
-        open
-        hidden>
-
-        <section class="panel-pasaporte">
-
-            <button
-                type="button"
-                class="cerrar-pasaporte"
-                id="cerrarPasaporte"
-                aria-label="Cerrar menú">
-                &times;
-            </button>
-
-            <h2 id="tituloPasaporte">Mi Pasaporte</h2>
-
-            <p class="descripcion-pasaporte">
-                Seleccioná una opción
-            </p>
-
-            <ul class="opciones-pasaporte">
-                <li><button type="button" class="boton-pasaporte">Diagnósticos</button></li>
-                <li><button type="button" class="boton-pasaporte">Medicación</button></li>
-                <li><button type="button" class="boton-pasaporte">Alergias</button></li>
-                <li><button type="button" class="boton-pasaporte">Estudios</button></li>
-                <li><button type="button" class="boton-pasaporte">Terapias</button></li>
-                <li><button type="button" class="boton-pasaporte">Cirugías</button></li>
-                <li><button type="button" class="boton-pasaporte">Contactos</button></li>
-                <li><button type="button" class="boton-pasaporte">Cobertura médica</button></li>
-                <li><button type="button" class="boton-pasaporte">Certificados</button></li>
-                <li><button type="button" class="boton-pasaporte">Adaptaciones</button></li>
-                <li><button type="button" class="boton-pasaporte">Objetivos</button></li>
-                <li><button type="button" class="boton-pasaporte">Preferencias de aprendizaje</button></li>
-                <li><button type="button" class="boton-pasaporte">Formas de comunicación</button></li>
-            </ul>
-
-        </section>
-
-    </dialog>
-
-    <main class="popc-principal">
-
-        <button type="button" id="botonAtrasOpcion" class="popc-atras">
+        <button type="button" id="botonAtrasPreferencias" class="papr-atras">
             <span aria-hidden="true">⟵</span> Volver
         </button>
 
-        <hgroup class="popc-cabecera">
-            <h1>Preferencias de aprendizaje</h1>
-            <p>Tu información sobre formas y preferencias para aprender</p>
-        </hgroup>
+        <h1>Preferencias de aprendizaje</h1>
 
-        <section class="popc-tarjeta popc-agregar" aria-labelledby="tituloAgregar">
+    </header>
 
-            <hgroup class="popc-encabezado">
-                <h2 id="tituloAgregar">Agregar preferencia</h2>
-                <p>Tu información sobre formas y preferencias para aprender</p>
-            </hgroup>
+    <main class="papr-principal">
 
-            <button type="button" id="botonAgregar" class="popc-boton-agregar" aria-controls="formularioAgregar">
-                <span class="popc-mas" aria-hidden="true">+</span>
-                Agregar preferencia
-            </button>
+        <article class="papr-tarjeta">
 
-            <form id="formularioAgregar" class="formulario-agregar" aria-label="Agregar preferencia">
-                <fieldset id="formularioContenido" style="border: none; margin: 0; padding: 0; min-width: 0;"></fieldset>
+            <form id="formPreferencias" class="papr-formulario">
+
+                <section class="papr-seccion" aria-labelledby="tituloModalidad">
+
+                    <h2 id="tituloModalidad">Preferencias de aprendizaje</h2>
+
+                    <p class="papr-bajada">
+                        Completá tus necesidades educativas y apoyos en el aula
+                    </p>
+
+                    <ul class="papr-modalidad" aria-label="Modalidad">
+                        <li><button type="button" class="papr-estrategia papr-opcion-modalidad" aria-pressed="false">Presencial</button></li>
+                        <li><button type="button" class="papr-estrategia papr-opcion-modalidad" aria-pressed="false">Híbrido</button></li>
+                        <li><button type="button" class="papr-estrategia papr-opcion-modalidad" aria-pressed="false">Virtual</button></li>
+                    </ul>
+
+                </section>
+
+                <hr class="papr-divisor">
+
+                <section class="papr-seccion" aria-labelledby="tituloApoyos">
+
+                    <h2 id="tituloApoyos">Apoyos en el aula</h2>
+
+                    <p class="papr-bajada">
+                        Definí cómo necesitás recibir consignas y rendir en clase
+                    </p>
+
+                    <section class="papr-grilla" aria-label="Apoyos en el aula">
+
+                    <p class="papr-campo">
+                        <label for="formaInstrucciones">Forma de instrucciones</label>
+                        <select id="formaInstrucciones" name="formaInstrucciones">
+                            <option value="">Seleccionar</option>
+                            <option value="escritas">Escritas</option>
+                            <option value="orales">Orales</option>
+                            <option value="visuales">Visuales (con imágenes)</option>
+                            <option value="paso-a-paso">Paso a paso</option>
+                            <option value="combinadas">Combinadas</option>
+                        </select>
+                    </p>
+
+                    <p class="papr-campo">
+                        <label for="evaluacionesAdaptadas">Evaluaciones adaptadas</label>
+                        <select id="evaluacionesAdaptadas" name="evaluacionesAdaptadas">
+                            <option value="">Seleccionar</option>
+                            <option value="orales">Orales</option>
+                            <option value="escritas-tiempo-extra">Escritas con tiempo extra</option>
+                            <option value="multiple-opcion">Múltiple opción</option>
+                            <option value="trabajos-practicos">Trabajos prácticos</option>
+                            <option value="no-necesito">No necesito</option>
+                        </select>
+                    </p>
+
+                    <p class="papr-campo">
+                        <label for="tiempoDescansos">Tiempo y descansos</label>
+                        <select id="tiempoDescansos" name="tiempoDescansos">
+                            <option value="">Seleccionar</option>
+                            <option value="tiempo-extra">Tiempo extra en evaluaciones</option>
+                            <option value="pausas">Pausas cortas frecuentes</option>
+                            <option value="ambos">Tiempo extra y pausas</option>
+                            <option value="no-necesito">No necesito</option>
+                        </select>
+                    </p>
+
+                    <p class="papr-campo">
+                        <label for="ubicacionAula">Ubicación en el aula</label>
+                        <select id="ubicacionAula" name="ubicacionAula">
+                            <option value="">Seleccionar</option>
+                            <option value="adelante">Adelante</option>
+                            <option value="cerca-puerta">Cerca de la puerta</option>
+                            <option value="lejos-ruido">Lejos de ventanas y ruido</option>
+                            <option value="indistinto">Indistinto</option>
+                        </select>
+                    </p>
+
+                    </section>
+
+                </section>
+
+                <hr class="papr-divisor">
+
+                <section class="papr-seccion" aria-labelledby="tituloPerfilAcademico">
+
+                    <h2 id="tituloPerfilAcademico">Perfil académico y tecnología asistiva</h2>
+
+                    <p class="papr-bajada">
+                        Fortalezas, materias desafiantes y recursos de apoyo
+                    </p>
+
+                    <section class="papr-grilla" aria-label="Perfil académico">
+
+                        <p class="papr-campo">
+                            <label for="fortalezas">Fortalezas</label>
+                            <input type="text" id="fortalezas" name="fortalezas" placeholder="Tus fortalezas a la hora de aprender">
+                        </p>
+
+                        <p class="papr-campo">
+                            <label for="materiasDificultad">Materias con dificultad</label>
+                            <input type="text" id="materiasDificultad" name="materiasDificultad" placeholder="Materias que te cuestan más">
+                        </p>
+
+                    </section>
+
+                    <ul class="papr-estrategias papr-recursos" aria-label="Tecnología asistiva y recursos">
+                        <li><button type="button" class="papr-estrategia papr-opcion-recurso" aria-pressed="false">Auriculares canceladores</button></li>
+                        <li><button type="button" class="papr-estrategia papr-opcion-recurso" aria-pressed="false">Tablet / Notebook en clase</button></li>
+                        <li><button type="button" class="papr-estrategia papr-opcion-recurso" aria-pressed="false">Material ampliado</button></li>
+                        <li><button type="button" class="papr-estrategia papr-opcion-recurso" aria-pressed="false">Lector de pantalla</button></li>
+                        <li><button type="button" class="papr-estrategia papr-opcion-recurso" aria-pressed="false">Dictado por voz</button></li>
+                        <li><button type="button" class="papr-estrategia papr-opcion-recurso" aria-pressed="false">Agenda visual</button></li>
+                    </ul>
+
+                </section>
+
+                <hr class="papr-divisor">
+
+                <section class="papr-seccion" aria-labelledby="tituloInformes">
+
+                    <h2 id="tituloInformes">Apoyos necesarios e informes</h2>
+
+                    <p class="papr-bajada">
+                        Aclaraciones pedagógicas específicas e informes vinculados
+                    </p>
+
+                    <p class="papr-observaciones">
+                        <label for="apoyosNecesarios" class="papr-oculto-visual">Apoyos necesarios</label>
+                        <input
+                            type="text"
+                            id="apoyosNecesarios"
+                            name="apoyosNecesarios"
+                            placeholder="Agregá apoyos que pienses que puedan ser útil">
+                    </p>
+
+                    <header class="papr-informes-cabecera">
+                        <h3>Informes y certificados adjuntos</h3>
+
+                        <button type="button" id="botonAdjuntar" class="papr-adjuntar">
+                            + Adjuntar informe
+                        </button>
+
+                        <input type="file" id="inputInforme" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" multiple hidden>
+                    </header>
+
+                    <ul id="listaInformes" class="papr-archivos" aria-label="Informes adjuntos"></ul>
+
+                    <p id="sinInformes" class="papr-sin-archivos">Todavía no adjuntaste informes.</p>
+
+                </section>
+
+                <button type="submit" class="papr-guardar">
+                    Guardar preferencias
+                </button>
+
+                <p id="mensajePreferencias" class="papr-mensaje" role="status"></p>
+
             </form>
 
-        </section>
-
-        <section class="popc-tarjeta popc-guardados" aria-labelledby="tituloGuardados">
-
-            <h2 id="tituloGuardados">Preferencias guardadas</h2>
-
-            <section id="listaItems" class="lista-items" aria-live="polite"></section>
-
-        </section>
+        </article>
 
     </main>
 
-    <script src="./pasaporte-navbar.js"></script>
-    <script src="./pasaporte.js"></script>
+    <script src="./preferencias-aprendizaje.js"></script>
 
 </body>
 
