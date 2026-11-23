@@ -462,6 +462,140 @@
         }
 
         /* ============================= */
+        /* POP UP CÓDIGO DE FAMILIA      */
+        /* ============================= */
+
+        .pcod-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            border: none;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .pcod-modal[hidden] {
+            display: none !important;
+        }
+
+        .pcod-panel {
+            width: 100%;
+            max-width: 535px;
+            margin: 0;
+            padding: 40px 49px 30px 45px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            border: 4px solid #B7E4C7;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+            text-align: left;
+        }
+
+        .pcod-titulo-oculto {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+        .pcod-campo {
+            margin: 0;
+            padding: 0;
+        }
+
+        .pcod-campo label {
+            display: block;
+            margin: 0 0 13px;
+            color: #000000;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .pcod-caja {
+            position: relative;
+            display: block;
+        }
+
+        .pcod-caja input {
+            display: block;
+            width: 100%;
+            height: 66px;
+            margin: 0;
+            padding: 0 62px 0 13px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            border: 2px solid #2F7185;
+            border-radius: 10px;
+            outline: none;
+            color: #333333;
+            font-family: inherit;
+            font-size: 18px;
+        }
+
+        .pcod-caja input::placeholder {
+            color: #9A9A9A;
+            opacity: 1;
+        }
+
+        .pcod-copiar {
+            position: absolute;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            margin: 0;
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            cursor: pointer;
+        }
+
+        .pcod-copiar:not(:disabled):hover {
+            transform: translateY(calc(-50% - 2px));
+        }
+
+        .pcod-copiar svg {
+            width: 34px;
+            height: 34px;
+        }
+
+        .pcod-ayuda {
+            max-width: 400px;
+            margin: 24px auto 0;
+            color: #000000;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .pcod-estado {
+            min-height: 16px;
+            margin: 6px 0 0;
+            color: #2F7185;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* ============================= */
         /* RESPONSIVE                    */
         /* ============================= */
 
@@ -507,6 +641,10 @@
 
             .pfam-cabecera h1 {
                 font-size: 25px;
+            }
+
+            .pcod-panel {
+                padding: 30px 22px 24px;
             }
         }
     </style>
@@ -659,7 +797,8 @@
                 type="button"
                 id="botonCodigoFamilia"
                 class="pfam-codigo"
-                aria-live="polite">
+                aria-haspopup="dialog"
+                aria-controls="modalCodigoFamilia">
                 Mostrar código de familia
             </button>
 
@@ -698,6 +837,52 @@
         </section>
 
     </main>
+
+    <dialog
+        id="modalCodigoFamilia"
+        class="pcod-modal"
+        aria-modal="true"
+        aria-labelledby="tituloCodigoFamilia"
+        open
+        hidden>
+
+        <article class="pcod-panel">
+
+            <h2 id="tituloCodigoFamilia" class="pcod-titulo-oculto">Código de familia</h2>
+
+            <p class="pcod-campo">
+                <label for="codigoFamilia">Código de familia</label>
+
+                <span class="pcod-caja">
+                    <input
+                        type="text"
+                        id="codigoFamilia"
+                        placeholder="Ej: FAM-1234"
+                        readonly>
+
+                    <button
+                        type="button"
+                        id="botonCopiarCodigo"
+                        class="pcod-copiar"
+                        aria-label="Copiar código"
+                        title="Copiar código">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="8" width="13" height="13" rx="3"></rect>
+                            <path d="M8 8V6a3 3 0 0 1 3-3h7a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-2"></path>
+                        </svg>
+                    </button>
+                </span>
+            </p>
+
+            <p class="pcod-ayuda">
+                ¿Queres agregar a alguien? Dáselo a la persona que quiere entrar al grupo.
+            </p>
+
+            <p id="estadoCopiado" class="pcod-estado" role="status"></p>
+
+        </article>
+
+    </dialog>
 
     <script src="./personas-familia.js"></script>
 

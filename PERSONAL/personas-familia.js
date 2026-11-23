@@ -148,32 +148,80 @@ if (nombreGuardado && nombreUsuarioFamilia) {
 }
 
 
-/* ---------- MOSTRAR CÓDIGO DE FAMILIA ---------- */
+/* ---------- POP UP CÓDIGO DE FAMILIA ---------- */
 
 const botonCodigoFamilia = document.getElementById("botonCodigoFamilia");
+const modalCodigoFamilia = document.getElementById("modalCodigoFamilia");
+const codigoFamilia = document.getElementById("codigoFamilia");
+const botonCopiarCodigo = document.getElementById("botonCopiarCodigo");
+const estadoCopiado = document.getElementById("estadoCopiado");
 
-if (botonCodigoFamilia) {
+function leerCodigoFamilia() {
+    try {
+        const grupo = JSON.parse(localStorage.getItem("grupoFamiliar"));
+        return grupo && grupo.codigo ? grupo.codigo : "";
+    } catch (error) {
+        return "";
+    }
+}
 
-    let codigoVisible = false;
+function abrirCodigoFamilia() {
+    codigoFamilia.value = leerCodigoFamilia();
+    estadoCopiado.textContent = "";
+    modalCodigoFamilia.hidden = false;
+    botonCopiarCodigo.focus();
+}
 
-    botonCodigoFamilia.addEventListener("click", function () {
+function cerrarCodigoFamilia() {
+    modalCodigoFamilia.hidden = true;
+    botonCodigoFamilia.focus();
+}
 
-        if (codigoVisible) {
-            botonCodigoFamilia.textContent = "Mostrar código de familia";
-            codigoVisible = false;
+if (botonCodigoFamilia && modalCodigoFamilia) {
+
+    botonCodigoFamilia.addEventListener("click", abrirCodigoFamilia);
+
+    // Cerrar tocando afuera del pop up
+    modalCodigoFamilia.addEventListener("click", function (evento) {
+        if (evento.target === modalCodigoFamilia) {
+            cerrarCodigoFamilia();
+        }
+    });
+
+    // Cerrar con Escape
+    document.addEventListener("keydown", function (evento) {
+        if (evento.key === "Escape" && !modalCodigoFamilia.hidden) {
+            cerrarCodigoFamilia();
+        }
+    });
+}
+
+// Copiar el código
+if (botonCopiarCodigo) {
+
+    botonCopiarCodigo.addEventListener("click", function () {
+
+        const codigo = codigoFamilia.value.trim();
+
+        if (!codigo) {
+            estadoCopiado.textContent = "Todavía no hay un código cargado.";
             return;
         }
 
-        let codigo = "";
-
-        try {
-            const grupo = JSON.parse(localStorage.getItem("grupoFamiliar"));
-            codigo = grupo && grupo.codigo ? grupo.codigo : "";
-        } catch (error) {
-            codigo = "";
+        function avisarCopiado() {
+            estadoCopiado.textContent = "¡Código copiado!";
         }
 
-        botonCodigoFamilia.textContent = codigo ? "Código: " + codigo : "Sin código cargado";
-        codigoVisible = true;
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(codigo).then(avisarCopiado).catch(function () {
+                codigoFamilia.select();
+                document.execCommand("copy");
+                avisarCopiado();
+            });
+        } else {
+            codigoFamilia.select();
+            document.execCommand("copy");
+            avisarCopiado();
+        }
     });
 }
