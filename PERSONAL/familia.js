@@ -181,8 +181,7 @@ if (formCrearGrupo) {
 
         localStorage.setItem("grupoFamiliar", JSON.stringify(grupo));
 
-        formCrearGrupo.reset();
-        cerrarCrearGrupo();
+        window.location.href = "./familia-home.html";
     });
 }
 
