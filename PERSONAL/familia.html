@@ -520,6 +520,121 @@
         }
 
         /* ============================= */
+        /* POP UP UNIRSE A UN GRUPO      */
+        /* ============================= */
+
+        .unir-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            border: none;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .unir-modal[hidden] {
+            display: none !important;
+        }
+
+        .unir-panel {
+            width: 100%;
+            max-width: 474px;
+            margin: 0;
+            padding: 34px 40px 28px 36px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            border: 4px solid #2F7185;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+            text-align: left;
+        }
+
+        .unir-formulario {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+        .unir-campo {
+            margin: 0;
+            padding: 0;
+        }
+
+        .unir-campo label {
+            display: block;
+            margin: 0 0 11px;
+            color: #000000;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .unir-campo input {
+            display: block;
+            width: 100%;
+            height: 50px;
+            margin: 0;
+            padding: 0 13px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            border: 2px solid #2F7185;
+            border-radius: 10px;
+            outline: none;
+            color: #333333;
+            font-family: inherit;
+            font-size: 17px;
+        }
+
+        .unir-campo input::placeholder {
+            color: #9A9A9A;
+            opacity: 1;
+        }
+
+        .unir-campo input:focus {
+            box-shadow: 0 0 0 3px rgba(47, 113, 133, 0.18);
+        }
+
+        .unir-ayuda {
+            max-width: 360px;
+            margin: 20px auto 0;
+            color: #000000;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .unir-boton {
+            display: block;
+            min-width: 147px;
+            height: 42px;
+            margin: 18px auto 0;
+            padding: 0 22px;
+            background: #2F7185 !important;
+            color: #FFFFFF !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: inherit;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+        }
+
+        .unir-boton:hover {
+            background: #285F70 !important;
+        }
+
+        /* ============================= */
         /* RESPONSIVE                    */
         /* ============================= */
 
@@ -725,7 +840,8 @@
                         type="button"
                         id="botonUnirseGrupo"
                         class="boton-familia boton-unirse-grupo"
-                        data-pagina="unirse-grupo.html">
+                        aria-haspopup="dialog"
+                        aria-controls="modalUnirseGrupo">
                         Unirse a uno
                     </button>
                 </li>
@@ -788,6 +904,45 @@
 
                 <button type="submit" class="boton-confirmar-grupo">
                     Crear grupo
+                </button>
+
+            </form>
+
+        </article>
+
+    </dialog>
+
+    <dialog
+        id="modalUnirseGrupo"
+        class="unir-modal"
+        aria-modal="true"
+        aria-labelledby="tituloUnirseGrupo"
+        open
+        hidden>
+
+        <article class="unir-panel">
+
+            <h2 id="tituloUnirseGrupo" class="titulo-oculto">Unirse a un grupo familiar</h2>
+
+            <form id="formUnirseGrupo" class="unir-formulario">
+
+                <p class="unir-campo">
+                    <label for="codigoInvitacion">Código de invitacion</label>
+                    <input
+                        type="text"
+                        id="codigoInvitacion"
+                        name="codigo"
+                        placeholder="Ej: FAM-1234"
+                        autocomplete="off"
+                        required>
+                </p>
+
+                <p class="unir-ayuda">
+                    ¿No tenés el código? Pedíselo a la persona que administra el grupo.
+                </p>
+
+                <button type="submit" class="unir-boton">
+                    Unirse al grupo
                 </button>
 
             </form>

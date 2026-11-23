@@ -186,15 +186,55 @@ if (formCrearGrupo) {
 }
 
 
-/* ---------- UNIRSE A UN GRUPO ---------- */
+/* ---------- POP UP UNIRSE A UN GRUPO ---------- */
 
-if (botonUnirseGrupo) {
+const modalUnirseGrupo = document.getElementById("modalUnirseGrupo");
+const formUnirseGrupo = document.getElementById("formUnirseGrupo");
+const codigoInvitacion = document.getElementById("codigoInvitacion");
 
-    botonUnirseGrupo.addEventListener("click", function () {
-        const pagina = botonUnirseGrupo.getAttribute("data-pagina");
+function abrirUnirseGrupo() {
+    modalUnirseGrupo.hidden = false;
+    codigoInvitacion.focus();
+}
 
-        if (pagina) {
-            window.location.href = pagina;
+function cerrarUnirseGrupo() {
+    modalUnirseGrupo.hidden = true;
+    botonUnirseGrupo.focus();
+}
+
+if (botonUnirseGrupo && modalUnirseGrupo) {
+
+    botonUnirseGrupo.addEventListener("click", abrirUnirseGrupo);
+
+    // Cerrar tocando afuera del pop up
+    modalUnirseGrupo.addEventListener("click", function (evento) {
+        if (evento.target === modalUnirseGrupo) {
+            cerrarUnirseGrupo();
         }
+    });
+
+    // Cerrar con Escape
+    document.addEventListener("keydown", function (evento) {
+        if (evento.key === "Escape" && !modalUnirseGrupo.hidden) {
+            cerrarUnirseGrupo();
+        }
+    });
+}
+
+if (formUnirseGrupo) {
+
+    formUnirseGrupo.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        const codigo = codigoInvitacion.value.trim();
+
+        if (!codigo) {
+            codigoInvitacion.focus();
+            return;
+        }
+
+        localStorage.setItem("grupoFamiliar", JSON.stringify({ codigo: codigo }));
+
+        window.location.href = "./familia-home.html";
     });
 }
