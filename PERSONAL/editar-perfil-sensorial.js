@@ -118,6 +118,11 @@ formPerfilSensorial.addEventListener("submit", function (evento) {
 
 /* ---------- VOLVER ---------- */
 
+// Vuelve a la pantalla desde donde se abrió (Personal o Familia)
 botonAtrasEditar.addEventListener("click", function () {
-    window.location.href = "./personal.html";
+    if (document.referrer && window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "./personal.html";
+    }
 });
