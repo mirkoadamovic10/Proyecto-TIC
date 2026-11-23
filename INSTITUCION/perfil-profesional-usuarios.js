@@ -11,7 +11,6 @@ const CLAVE_USUARIOS = "usuariosEscuela_" + idInstitucionUsuario;
 
 const codigoProfesional = new URLSearchParams(window.location.search).get("id") || "";
 
-const SIN_DATO = "Sin completar";
 
 
 function leerUsuarios() {
@@ -23,13 +22,41 @@ function leerUsuarios() {
     }
 }
 
-// Escribe un dato en pantalla; si no hay, muestra "Sin completar" en gris
+const CLAVE_PERFIL = "perfilUsuarioEscuela_" + idInstitucionUsuario + "_" + codigoProfesional;
+
+const CAMPOS = [
+    "datoEspecialidad", "datoMatricula", "datoTelefono", "datoCorreo",
+    "datoConsultorio", "datoHorarios", "datoModalidad", "datoAmbiente",
+    "datoFormaTrabajo", "datoComunicacion", "datoHorario", "datoEnfoque"
+];
+
+// Pone un valor en su campo. En los desplegables solo si es una opción válida.
 function mostrarDato(id, valor) {
-    const elemento = document.getElementById(id);
+    const campo = document.getElementById(id);
     const texto = valor === undefined || valor === null ? "" : String(valor).trim();
 
-    elemento.textContent = texto || SIN_DATO;
-    elemento.classList.toggle("ppu-sin-dato", !texto);
+    if (campo.tagName === "SELECT") {
+        const existe = Array.from(campo.options).some(function (opcion) {
+            return opcion.value === texto;
+        });
+        campo.value = existe ? texto : "";
+        actualizarColor(campo);
+    } else {
+        campo.value = texto;
+    }
+}
+
+// Los desplegables sin nada elegido se ven en gris
+function actualizarColor(select) {
+    select.classList.toggle("ppu-sin-dato", select.value === "");
+}
+
+function leerPerfilGuardado() {
+    try {
+        return JSON.parse(localStorage.getItem(CLAVE_PERFIL)) || null;
+    } catch (error) {
+        return null;
+    }
 }
 
 const NOMBRES_PROFESION = { medico: "Médico", psicologo: "Psicólogo", terapista: "Terapista", empleado: "Empleado" };
@@ -92,25 +119,60 @@ async function cargarPerfil() {
     const nombre = usuario.nombre || info.apellidoNombre || vinculado.nombre || "";
     document.getElementById("nombreProfesional").textContent = nombre || "Profesional sin nombre";
 
-    // Datos profesionales
+    // Lo que se editó en esta pantalla tiene prioridad sobre lo del servidor
+    const guardado = leerPerfilGuardado();
+
+    if (guardado) {
+        CAMPOS.forEach(function (id) { mostrarDato(id, guardado[id]); });
+        return;
+    }
+
+    const enfoque = preferencias.enfoque || preferencias.otrasPreferencias;
+
     mostrarDato("datoEspecialidad", info.especialidad || capitalizar(usuario.tipoProfesional) || vinculado.rol);
     mostrarDato("datoMatricula", info.matricula);
     mostrarDato("datoTelefono", info.telefono || info.telFijo);
     mostrarDato("datoCorreo", info.correoProfesional || usuario.email);
     mostrarDato("datoConsultorio", info.consultorio);
     mostrarDato("datoHorarios", info.horarios);
-
-    // Modalidad y entorno de trabajo
     mostrarDato("datoModalidad", preferencias.modalidad);
     mostrarDato("datoAmbiente", textoAmbiente(preferencias.ambienteTrabajo));
     mostrarDato("datoFormaTrabajo", textoFormaTrabajo(preferencias.formaTrabajo));
     mostrarDato("datoComunicacion", preferencias.formaComunicacion);
     mostrarDato("datoHorario", textoHorario(preferencias.preferenciaHorario));
-
-    // Enfoque de trabajo
-    const enfoque = preferencias.enfoque || preferencias.otrasPreferencias;
-    mostrarDato("datoEnfoque", enfoque ? "“" + enfoque + "”" : "");
+    mostrarDato("datoEnfoque", enfoque);
 }
+
+
+/* ---------- GUARDAR LOS CAMBIOS (automático) ---------- */
+
+const mensajeGuardado = document.getElementById("mensajeGuardado");
+let temporizadorMensaje = null;
+
+function guardarPerfil() {
+    const datos = {};
+
+    CAMPOS.forEach(function (id) {
+        datos[id] = document.getElementById(id).value.trim();
+    });
+
+    localStorage.setItem(CLAVE_PERFIL, JSON.stringify(datos));
+
+    mensajeGuardado.textContent = "Cambios guardados";
+    clearTimeout(temporizadorMensaje);
+    temporizadorMensaje = setTimeout(function () {
+        mensajeGuardado.textContent = "";
+    }, 2000);
+}
+
+CAMPOS.forEach(function (id) {
+    const campo = document.getElementById(id);
+
+    campo.addEventListener(campo.tagName === "SELECT" ? "change" : "input", function () {
+        if (campo.tagName === "SELECT") actualizarColor(campo);
+        guardarPerfil();
+    });
+});
 
 
 /* ---------- DESVINCULAR ---------- */
@@ -121,6 +183,8 @@ document.getElementById("botonDesvincular").addEventListener("click", function (
     if (!window.confirm("¿Querés desvincular a " + nombre + " de la institución?")) {
         return;
     }
+
+    localStorage.removeItem(CLAVE_PERFIL);
 
     const restantes = leerUsuarios().filter(function (usuario) {
         return String(usuario.codigo) !== String(codigoProfesional);

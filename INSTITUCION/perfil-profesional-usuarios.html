@@ -211,6 +211,41 @@
             text-align: center;
         }
 
+        .ppu-dato label {
+            display: block;
+            margin: 0 0 12px;
+            color: #2F7185;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .ppu-dato input {
+            width: 100% !important;
+            height: 38px !important;
+            margin: 0 !important;
+            padding: 0 14px !important;
+            background: #F7F8F7 !important;
+            border: 1px solid #E6EAE7 !important;
+            border-radius: 6px !important;
+            box-shadow: none !important;
+            color: #111111 !important;
+            font-family: inherit;
+            font-size: 14px !important;
+            text-align: center;
+        }
+
+        .ppu-dato input:focus,
+        .ppu-enfoque:focus {
+            outline: 2px solid #B7E4C7 !important;
+            border-color: #8FCBA5 !important;
+        }
+
+        .ppu-dato input::placeholder,
+        .ppu-enfoque::placeholder {
+            color: #9A9A9A;
+            opacity: 1;
+        }
+
         .ppu-dato dt {
             margin: 0 0 12px;
             color: #2F7185;
@@ -245,6 +280,24 @@
             margin: 0 0 16px;
         }
 
+        select.ppu-chip {
+            appearance: none;
+            -webkit-appearance: none;
+            width: auto !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 8px 38px 8px 16px !important;
+            border-width: 2px !important;
+            border-style: solid !important;
+            border-radius: 9px !important;
+            box-shadow: none !important;
+            font-family: inherit;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23555' stroke-width='2'/%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 14px center !important;
+            cursor: pointer;
+        }
+
         .ppu-chip {
             display: inline-flex;
             align-items: center;
@@ -258,7 +311,7 @@
             text-align: center;
         }
 
-        .ppu-chip-modalidad {
+        select.ppu-chip.ppu-chip-modalidad {
             min-height: 42px;
             padding: 6px 16px;
             background: #2F7185;
@@ -290,32 +343,54 @@
         }
 
         .ppu-azul {
-            background: #DCEBF1;
-            border-color: #A9CEDB;
-            color: #2E5F6F;
+            background-color: #DCEBF1 !important;
+            border-color: #A9CEDB !important;
+            color: #2E5F6F !important;
         }
 
         .ppu-verde {
-            background: #DDF1E3;
-            border-color: #A8D8B6;
-            color: #2C6B3D;
+            background-color: #DDF1E3 !important;
+            border-color: #A8D8B6 !important;
+            color: #2C6B3D !important;
         }
 
         .ppu-naranja {
-            background: #F9E3D2;
-            border-color: #E6BD98;
-            color: #8B4E1D;
+            background-color: #F9E3D2 !important;
+            border-color: #E6BD98 !important;
+            color: #8B4E1D !important;
         }
 
         .ppu-gris {
-            background: #E9EBEF;
-            border-color: #C8CCD3;
-            color: #4B5058;
+            background-color: #E9EBEF !important;
+            border-color: #C8CCD3 !important;
+            color: #4B5058 !important;
+        }
+
+        select.ppu-chip.ppu-chip-modalidad {
+            border-color: #2F7185 !important;
+            background-color: #2F7185 !important;
+            color: #FFFFFF !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") !important;
+        }
+
+        .ppu-chip option {
+            background: #FFFFFF;
+            color: #111111;
+        }
+
+        .ppu-guardado {
+            display: block;
+            min-height: 16px;
+            margin-top: 8px;
+            color: #2F7185;
+            font-size: 13px;
+            text-align: center;
         }
 
         .ppu-chip.ppu-sin-dato {
-            background: #F4F5F4;
-            border-color: #E1E4E1;
+            background-color: #F4F5F4 !important;
+            border-color: #E1E4E1 !important;
+            color: #9A9A9A !important;
             font-size: 15px;
         }
 
@@ -327,8 +402,14 @@
         }
 
         .ppu-enfoque {
+            display: block;
+            width: 100% !important;
             max-width: 560px;
-            margin: 0 auto;
+            min-height: 70px;
+            margin: 0 auto !important;
+            resize: vertical;
+            font-family: inherit;
+            box-shadow: none !important;
             padding: 12px 16px;
             background: #F7F8F7;
             border: 1px solid #E6EAE7;
@@ -425,64 +506,94 @@
             <section class="ppu-seccion">
                 <h2 id="tituloDatos">Datos Profesionales</h2>
 
-                <dl class="ppu-datos">
-                    <div class="ppu-dato">
-                        <dt>Especialidad / Rol</dt>
-                        <dd id="datoEspecialidad"></dd>
-                    </div>
-                    <div class="ppu-dato">
-                        <dt>Matrícula</dt>
-                        <dd id="datoMatricula"></dd>
-                    </div>
-                    <div class="ppu-dato">
-                        <dt>Teléfono de contacto</dt>
-                        <dd id="datoTelefono"></dd>
-                    </div>
-                    <div class="ppu-dato">
-                        <dt>Correo profesional</dt>
-                        <dd id="datoCorreo"></dd>
-                    </div>
-                    <div class="ppu-dato">
-                        <dt>Consultorio / Área</dt>
-                        <dd id="datoConsultorio"></dd>
-                    </div>
-                    <div class="ppu-dato">
-                        <dt>Días y horarios de atención</dt>
-                        <dd id="datoHorarios"></dd>
-                    </div>
-                </dl>
+                <div class="ppu-datos">
+                    <p class="ppu-dato">
+                        <label for="datoEspecialidad">Especialidad / Rol</label>
+                        <input type="text" id="datoEspecialidad" placeholder="Ej.: Docente" autocomplete="off">
+                    </p>
+                    <p class="ppu-dato">
+                        <label for="datoMatricula">Matrícula</label>
+                        <input type="text" id="datoMatricula" placeholder="Ej.: MN 142.890" autocomplete="off">
+                    </p>
+                    <p class="ppu-dato">
+                        <label for="datoTelefono">Teléfono de contacto</label>
+                        <input type="tel" id="datoTelefono" placeholder="Ej.: +54 11 1234-5678" autocomplete="off">
+                    </p>
+                    <p class="ppu-dato">
+                        <label for="datoCorreo">Correo profesional</label>
+                        <input type="email" id="datoCorreo" placeholder="Ej.: nombre@mail.com" autocomplete="off">
+                    </p>
+                    <p class="ppu-dato">
+                        <label for="datoConsultorio">Consultorio / Área</label>
+                        <input type="text" id="datoConsultorio" placeholder="Ej.: Consultorio 4 - Ala Norte" autocomplete="off">
+                    </p>
+                    <p class="ppu-dato">
+                        <label for="datoHorarios">Días y horarios de atención</label>
+                        <input type="text" id="datoHorarios" placeholder="Ej.: Lun y Mié de 9:00 a 14:00 hs" autocomplete="off">
+                    </p>
+                </div>
             </section>
 
             <section class="ppu-seccion" aria-labelledby="tituloModalidad">
                 <h2 id="tituloModalidad">Modalidad y entorno de trabajo</h2>
 
                 <p class="ppu-modalidad">
-                    <span class="ppu-chip ppu-chip-modalidad" id="datoModalidad"></span>
+                    <select class="ppu-chip ppu-chip-modalidad" id="datoModalidad" aria-label="Modalidad">
+                            <option value="">Seleccionar</option>
+                            <option value="Presencial">Presencial</option>
+                            <option value="Híbrido">Híbrido</option>
+                            <option value="Virtual">Virtual</option>
+                        </select>
                 </p>
 
                 <dl class="ppu-entorno">
                     <div>
-                        <dt>Ambiente de trabajo</dt>
-                        <dd><span class="ppu-chip ppu-azul" id="datoAmbiente"></span></dd>
+                        <dt id="datoAmbienteTitulo">Ambiente de trabajo</dt>
+                        <dd><select class="ppu-chip ppu-azul" id="datoAmbiente" aria-labelledby="datoAmbienteTitulo">
+                            <option value="">Seleccionar</option>
+                            <option value="Ambiente tranquilo">Ambiente tranquilo</option>
+                            <option value="Ambiente dinámico">Ambiente dinámico</option>
+                            <option value="Ambiente luminoso">Ambiente luminoso</option>
+                            <option value="Ambiente poco ruidoso">Ambiente poco ruidoso</option>
+                        </select></dd>
                     </div>
                     <div>
-                        <dt>Forma de trabajo</dt>
-                        <dd><span class="ppu-chip ppu-verde" id="datoFormaTrabajo"></span></dd>
+                        <dt id="datoFormaTrabajoTitulo">Forma de trabajo</dt>
+                        <dd><select class="ppu-chip ppu-verde" id="datoFormaTrabajo" aria-labelledby="datoFormaTrabajoTitulo">
+                            <option value="">Seleccionar</option>
+                            <option value="Prefiero trabajar solo">Prefiero trabajar solo</option>
+                            <option value="Prefiero trabajar en equipo">Prefiero trabajar en equipo</option>
+                            <option value="Solo o en equipo">Solo o en equipo</option>
+                        </select></dd>
                     </div>
                     <div>
-                        <dt>Forma de comunicación</dt>
-                        <dd><span class="ppu-chip ppu-naranja" id="datoComunicacion"></span></dd>
+                        <dt id="datoComunicacionTitulo">Forma de comunicación</dt>
+                        <dd><select class="ppu-chip ppu-naranja" id="datoComunicacion" aria-labelledby="datoComunicacionTitulo">
+                            <option value="">Seleccionar</option>
+                            <option value="Escrita">Escrita</option>
+                            <option value="Verbal">Verbal</option>
+                            <option value="Visual">Visual</option>
+                            <option value="Ambas">Ambas</option>
+                        </select></dd>
                     </div>
                     <div>
-                        <dt>Preferencia de horario</dt>
-                        <dd><span class="ppu-chip ppu-gris" id="datoHorario"></span></dd>
+                        <dt id="datoHorarioTitulo">Preferencia de horario</dt>
+                        <dd><select class="ppu-chip ppu-gris" id="datoHorario" aria-labelledby="datoHorarioTitulo">
+                            <option value="">Seleccionar</option>
+                            <option value="Turno mañana">Turno mañana</option>
+                            <option value="Turno tarde">Turno tarde</option>
+                            <option value="Turno noche">Turno noche</option>
+                            <option value="Horario flexible">Horario flexible</option>
+                        </select></dd>
                     </div>
                 </dl>
             </section>
 
             <section class="ppu-seccion ppu-seccion-enfoque" aria-labelledby="tituloEnfoque">
                 <h2 id="tituloEnfoque">Sobre mi enfoque de trabajo</h2>
-                <p class="ppu-enfoque" id="datoEnfoque"></p>
+                <textarea class="ppu-enfoque" id="datoEnfoque" aria-labelledby="tituloEnfoque" rows="3" placeholder="Contá cómo trabaja este profesional"></textarea>
+
+                <output class="ppu-guardado" id="mensajeGuardado" aria-live="polite"></output>
             </section>
 
             <button type="button" class="ppu-desvincular" id="botonDesvincular">

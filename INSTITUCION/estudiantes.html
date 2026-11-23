@@ -574,11 +574,11 @@
 
             <nav class="menu-perfil" id="menuPerfil">
 
-                <button type="button" class="opcion-perfil">
+                <button type="button" class="opcion-perfil" data-pagina="configuracion.html">
                     Configuración
                 </button>
 
-                <button type="button" class="opcion-perfil">
+                <button type="button" class="opcion-perfil" data-pagina="informacion-personal.html">
                     Información personal
                 </button>
 
@@ -722,6 +722,13 @@
     </script>
 
     <script>
+        // Configuración e Información personal
+        document.querySelectorAll("#menuPerfil [data-pagina]").forEach(function (boton) {
+            boton.addEventListener("click", function () {
+                window.location.href = boton.dataset.pagina;
+            });
+        });
+
         // Cerrar sesión
         document.querySelectorAll(".opcion-cerrar-sesion").forEach(function (boton) {
             boton.addEventListener("click", function () {

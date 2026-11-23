@@ -683,6 +683,15 @@
     <script src="preferencias-trabajo.js"></script>
 
     <script>
+        // Configuración e Información personal
+        document.getElementById("botonConfiguracion").addEventListener("click", function () {
+            window.location.href = "configuracion.html";
+        });
+
+        document.getElementById("botonInformacionPersonal").addEventListener("click", function () {
+            window.location.href = "informacion-personal.html";
+        });
+
         // Cerrar sesión
         document.getElementById("botonCerrarSesion").addEventListener("click", function () {
             window.location.href = "../../cerrar-sesion.html";
