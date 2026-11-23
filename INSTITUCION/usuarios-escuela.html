@@ -256,6 +256,10 @@
         /* VENTANA PARA LINKEAR */
 
         .usu-ventana {
+            position: fixed !important;
+            inset: 0 !important;
+            margin: auto !important;
+            height: fit-content;
             width: min(420px, calc(100% - 40px));
             padding: 28px 28px 24px;
             border: none;
@@ -431,9 +435,8 @@
             <input
                 type="text"
                 id="codigoUsuarioVincular"
-                inputmode="numeric"
                 autocomplete="off"
-                placeholder="Número de usuario en NeuroPassport"
+                placeholder="Ingresá el código"
                 required>
 
             <button type="submit" class="usu-guardar">Linkear usuario</button>

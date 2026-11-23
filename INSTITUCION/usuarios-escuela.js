@@ -122,7 +122,7 @@ function capitalizar(texto) {
 formularioUsuario.addEventListener("submit", async function (evento) {
     evento.preventDefault();
 
-    const codigo = codigoInput.value.replace(/\D/g, "");
+    const codigo = codigoInput.value.trim();
     let nombre = nombreInput.value.trim();
     let rol = "";
 
@@ -132,7 +132,7 @@ formularioUsuario.addEventListener("submit", async function (evento) {
     }
 
     const yaEsta = usuarios.some(function (usuario) {
-        return String(usuario.codigo) === codigo;
+        return String(usuario.codigo).toLowerCase() === codigo.toLowerCase();
     });
 
     if (yaEsta) {
@@ -140,24 +140,14 @@ formularioUsuario.addEventListener("submit", async function (evento) {
         return;
     }
 
-    // Se comprueba en el servidor que el usuario exista y sea profesional
+    // Cualquier código sirve. Si el usuario existe en el servidor,
+    // se completan su nombre y profesión con los datos reales.
     try {
-        const respuesta = await fetch(`${API_USUARIOS}/${codigo}`);
-
-        if (respuesta.status === 404) {
-            mensajeUsuario.textContent = "No existe ningún usuario con ese código.";
-            return;
-        }
+        const respuesta = await fetch(`${API_USUARIOS}/${encodeURIComponent(codigo)}`);
 
         if (respuesta.ok) {
             const datos = await respuesta.json();
-
-            if (datos.rol && datos.rol !== "profesional") {
-                mensajeUsuario.textContent = "Ese código no corresponde a un profesional.";
-                return;
-            }
-
-            nombre = datos.nombre || nombre;
+            nombre = nombre || datos.nombre || "";
             rol = capitalizar(datos.tipoProfesional);
         }
     } catch (error) {
