@@ -140,11 +140,30 @@ if (botonAtras) {
 
 /* ---------- NOMBRE DEL USUARIO ---------- */
 
-const nombreGuardado = localStorage.getItem("nombreUsuario");
+function obtenerNombreUsuario() {
+
+    // Datos completos del usuario que inició sesión
+    try {
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+        if (usuario && usuario.nombre) {
+            return usuario.apellido
+                ? usuario.nombre + " " + usuario.apellido
+                : usuario.nombre;
+        }
+    } catch (error) {
+        // si no hay datos, sigue abajo
+    }
+
+    // Nombre guardado al registrarse, iniciar sesión o en Configuración
+    return localStorage.getItem("nombreUsuario") || "";
+}
+
 const nombreUsuarioFamilia = document.getElementById("nombreUsuarioFamilia");
 
-if (nombreGuardado && nombreUsuarioFamilia) {
-    nombreUsuarioFamilia.textContent = nombreGuardado + "  (Tú)";
+if (nombreUsuarioFamilia) {
+    const nombre = obtenerNombreUsuario().trim();
+    nombreUsuarioFamilia.textContent = (nombre || "Vos") + "\u00A0 (Tú)";
 }
 
 
