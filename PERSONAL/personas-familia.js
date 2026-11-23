@@ -321,8 +321,20 @@ if (listaIntegrantes) {
             actual = {};
         }
 
+        // Mantiene el código que eligió quien creó el grupo (si lo hay)
+        let codigoElegido = actual.idGrupo === grupo.idGrupo ? actual.codigo : "";
+
+        try {
+            const guardados = JSON.parse(localStorage.getItem("gruposFamiliares")) || [];
+            const mismo = guardados.find(function (g) { return g.idGrupo === grupo.idGrupo; });
+            if (!codigoElegido && mismo) codigoElegido = mismo.codigo;
+        } catch (error) {
+            // sin lista guardada
+        }
+
         localStorage.setItem("grupoFamiliar", JSON.stringify(Object.assign(actual, grupo, {
-            codigo: "FAM-" + grupo.idGrupo
+            codigo: codigoElegido || "FAM-" + grupo.idGrupo,
+            codigoServidor: "FAM-" + grupo.idGrupo
         })));
     } catch (error) {
         console.error("No se pudieron cargar los integrantes del servidor:", error);

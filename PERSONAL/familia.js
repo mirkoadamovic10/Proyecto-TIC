@@ -221,8 +221,12 @@ async function cargarGrupoDelServidor() {
             actual = null;
         }
 
-        localStorage.setItem("grupoFamiliar", JSON.stringify(Object.assign({}, actual || {}, grupo, {
-            codigo: codigoDeGrupo(grupo.idGrupo)
+        const guardado = leerGruposFamiliares().find(function (g) { return g.idGrupo === grupo.idGrupo; });
+        const mismoGrupo = actual && actual.idGrupo === grupo.idGrupo ? actual : (guardado || {});
+
+        localStorage.setItem("grupoFamiliar", JSON.stringify(Object.assign({}, mismoGrupo, grupo, {
+            codigo: mismoGrupo.codigo || codigoDeGrupo(grupo.idGrupo),
+            codigoServidor: codigoDeGrupo(grupo.idGrupo)
         })));
     } catch (error) {
         console.error("No se pudo cargar el grupo familiar del servidor:", error);
@@ -288,8 +292,11 @@ if (formCrearGrupo) {
 
                 if (respuesta.ok) {
                     datosServidor = await respuesta.json();
-                    // El código real es el del servidor
-                    codigo = codigoDeGrupo(datosServidor.idGrupo);
+
+                    // Si no escribió un código, se usa el del servidor (ej: FAM-3)
+                    if (!codigo) {
+                        codigo = codigoDeGrupo(datosServidor.idGrupo);
+                    }
                 } else {
                     const error = await respuesta.json().catch(() => ({}));
                     console.error("No se pudo crear el grupo en el servidor:", error.error);
@@ -311,6 +318,8 @@ if (formCrearGrupo) {
             codigo: codigo,
             miembros: nombreActual() ? [nombreActual()] : [],
             idGrupo: datosServidor.idGrupo,
+            // El código del servidor también sirve para unirse (ej: FAM-3)
+            codigoServidor: datosServidor.idGrupo ? codigoDeGrupo(datosServidor.idGrupo) : undefined,
             integrantes: datosServidor.integrantes
         };
 
@@ -396,7 +405,14 @@ if (formUnirseGrupo) {
         }
 
         // POST /api/grupos-familiares/:idGrupo/unirse
-        const idGrupo = idDesdeCodigo(codigo);
+        // Primero se busca el código que eligió quien creó el grupo; si no, se usa el número (FAM-3 -> 3)
+        const grupoConEseCodigo = leerGruposFamiliares().find(function (grupo) {
+            return grupo.codigo === codigo || grupo.codigoServidor === codigo;
+        });
+
+        const idGrupo = grupoConEseCodigo && grupoConEseCodigo.idGrupo
+            ? grupoConEseCodigo.idGrupo
+            : idDesdeCodigo(codigo);
 
         if (idUsuarioActual() && idGrupo) {
             try {
@@ -406,22 +422,19 @@ if (formUnirseGrupo) {
                     body: JSON.stringify({ idUsuario: idUsuarioActual() })
                 });
 
-                if (respuesta.status === 404) {
-                    // Código incorrecto: no entra a ningún grupo
-                    mostrarErrorCodigo("El código no es correcto. Revisalo y probá de nuevo.");
-                    return;
-                }
-
                 if (respuesta.ok) {
                     const grupo = await respuesta.json();
 
-                    localStorage.setItem("grupoFamiliar", JSON.stringify(Object.assign({}, grupo, {
-                        codigo: codigoDeGrupo(grupo.idGrupo)
+                    localStorage.setItem("grupoFamiliar", JSON.stringify(Object.assign({}, grupoConEseCodigo || {}, grupo, {
+                        codigo: grupoConEseCodigo ? grupoConEseCodigo.codigo : codigoDeGrupo(grupo.idGrupo),
+                        codigoServidor: codigoDeGrupo(grupo.idGrupo)
                     })));
 
                     window.location.href = "./familia-home.html";
                     return;
                 }
+
+                // Si el servidor no lo encuentra, se prueba con lo guardado en este navegador (abajo)
             } catch (error) {
                 // Sin servidor: se usa lo guardado en este navegador
                 console.error("No se pudo conectar con el servidor:", error);
@@ -429,7 +442,7 @@ if (formUnirseGrupo) {
         }
 
         const grupoEncontrado = leerGruposFamiliares().find(function (grupo) {
-            return grupo.codigo === codigo;
+            return grupo.codigo === codigo || grupo.codigoServidor === codigo;
         });
 
         // Código incorrecto: no entra a ningún grupo
