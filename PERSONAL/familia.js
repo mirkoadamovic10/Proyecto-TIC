@@ -133,6 +133,33 @@ const botonCrearGrupo = document.getElementById("botonCrearGrupo");
 const botonUnirseGrupo = document.getElementById("botonUnirseGrupo");
 
 
+/* ---------- GRUPOS GUARDADOS ---------- */
+
+function leerGruposFamiliares() {
+    let grupos = [];
+
+    try {
+        const guardados = JSON.parse(localStorage.getItem("gruposFamiliares"));
+        if (Array.isArray(guardados)) grupos = guardados;
+    } catch (error) {
+        grupos = [];
+    }
+
+    // Grupos creados antes de este cambio
+    try {
+        const actual = JSON.parse(localStorage.getItem("grupoFamiliar"));
+        if (actual && actual.codigo && actual.nombre && !grupos.some(function (g) { return g.codigo === actual.codigo.toUpperCase(); })) {
+            actual.codigo = actual.codigo.toUpperCase();
+            grupos.push(actual);
+        }
+    } catch (error) {
+        // nada
+    }
+
+    return grupos;
+}
+
+
 /* ---------- POP UP CREAR GRUPO ---------- */
 
 const modalCrearGrupo = document.getElementById("modalCrearGrupo");
@@ -172,14 +199,29 @@ if (formCrearGrupo) {
     formCrearGrupo.addEventListener("submit", function (evento) {
         evento.preventDefault();
 
+        let codigo = document.getElementById("codigoGrupo").value.trim().toUpperCase();
+
+        // Si no escribió un código, se genera uno (ej: FAM-4821)
+        if (!codigo) {
+            codigo = "FAM-" + Math.floor(1000 + Math.random() * 9000);
+        }
+
         const grupo = {
             nombre: document.getElementById("nombreGrupo").value.trim(),
             descripcion: document.getElementById("descripcionGrupo").value.trim(),
             correo: document.getElementById("correoGrupo").value.trim(),
-            codigo: document.getElementById("codigoGrupo").value.trim()
+            codigo: codigo
         };
 
+        // Grupo actual del usuario
         localStorage.setItem("grupoFamiliar", JSON.stringify(grupo));
+
+        // Lista de todos los grupos creados (para poder unirse con el código)
+        const grupos = leerGruposFamiliares().filter(function (g) {
+            return g.codigo !== codigo;
+        });
+        grupos.push(grupo);
+        localStorage.setItem("gruposFamiliares", JSON.stringify(grupos));
 
         window.location.href = "./familia-home.html";
     });
@@ -192,9 +234,28 @@ const modalUnirseGrupo = document.getElementById("modalUnirseGrupo");
 const formUnirseGrupo = document.getElementById("formUnirseGrupo");
 const codigoInvitacion = document.getElementById("codigoInvitacion");
 
+const errorCodigoInvitacion = document.getElementById("errorCodigoInvitacion");
+
+function mostrarErrorCodigo(mensaje) {
+    errorCodigoInvitacion.textContent = mensaje;
+    codigoInvitacion.setAttribute("aria-invalid", "true");
+    codigoInvitacion.focus();
+}
+
+function limpiarErrorCodigo() {
+    errorCodigoInvitacion.textContent = "";
+    codigoInvitacion.removeAttribute("aria-invalid");
+}
+
 function abrirUnirseGrupo() {
+    limpiarErrorCodigo();
+    codigoInvitacion.value = "";
     modalUnirseGrupo.hidden = false;
     codigoInvitacion.focus();
+}
+
+if (codigoInvitacion) {
+    codigoInvitacion.addEventListener("input", limpiarErrorCodigo);
 }
 
 function cerrarUnirseGrupo() {
@@ -226,14 +287,24 @@ if (formUnirseGrupo) {
     formUnirseGrupo.addEventListener("submit", function (evento) {
         evento.preventDefault();
 
-        const codigo = codigoInvitacion.value.trim();
+        const codigo = codigoInvitacion.value.trim().toUpperCase();
 
         if (!codigo) {
-            codigoInvitacion.focus();
+            mostrarErrorCodigo("Escribí el código de invitación.");
             return;
         }
 
-        localStorage.setItem("grupoFamiliar", JSON.stringify({ codigo: codigo }));
+        const grupoEncontrado = leerGruposFamiliares().find(function (grupo) {
+            return grupo.codigo === codigo;
+        });
+
+        // Código incorrecto: no entra a ningún grupo
+        if (!grupoEncontrado) {
+            mostrarErrorCodigo("El código no es correcto. Revisalo y probá de nuevo.");
+            return;
+        }
+
+        localStorage.setItem("grupoFamiliar", JSON.stringify(grupoEncontrado));
 
         window.location.href = "./familia-home.html";
     });

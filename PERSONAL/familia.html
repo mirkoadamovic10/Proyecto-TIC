@@ -604,6 +604,22 @@
             box-shadow: 0 0 0 3px rgba(47, 113, 133, 0.18);
         }
 
+        .unir-campo input[aria-invalid="true"] {
+            border-color: #C0392B;
+        }
+
+        .unir-error {
+            margin: 8px 0 0;
+            color: #C0392B;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .unir-error:empty {
+            display: none;
+        }
+
         .unir-ayuda {
             max-width: 360px;
             margin: 20px auto 0;
@@ -934,8 +950,10 @@
                         name="codigo"
                         placeholder="Ej: FAM-1234"
                         autocomplete="off"
-                        required>
+                        aria-describedby="errorCodigoInvitacion">
                 </p>
+
+                <p id="errorCodigoInvitacion" class="unir-error" role="alert"></p>
 
                 <p class="unir-ayuda">
                     ¿No tenés el código? Pedíselo a la persona que administra el grupo.
