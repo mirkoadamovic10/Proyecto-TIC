@@ -135,6 +135,22 @@ const botonUnirseGrupo = document.getElementById("botonUnirseGrupo");
 
 /* ---------- GRUPOS GUARDADOS ---------- */
 
+// Nombre de la cuenta que está usando la página
+function nombreActual() {
+    const nombre = (localStorage.getItem("nombreUsuario") || "").trim();
+
+    if (nombre) {
+        return nombre;
+    }
+
+    try {
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+        return usuario && usuario.nombre ? usuario.nombre.trim() : "";
+    } catch (error) {
+        return "";
+    }
+}
+
 function leerGruposFamiliares() {
     let grupos = [];
 
@@ -210,7 +226,8 @@ if (formCrearGrupo) {
             nombre: document.getElementById("nombreGrupo").value.trim(),
             descripcion: document.getElementById("descripcionGrupo").value.trim(),
             correo: document.getElementById("correoGrupo").value.trim(),
-            codigo: codigo
+            codigo: codigo,
+            miembros: nombreActual() ? [nombreActual()] : []
         };
 
         // Grupo actual del usuario
@@ -304,6 +321,26 @@ if (formUnirseGrupo) {
             return;
         }
 
+        // Se suma como integrante del grupo
+        const nombre = nombreActual();
+
+        if (!Array.isArray(grupoEncontrado.miembros)) {
+            grupoEncontrado.miembros = [];
+        }
+
+        const yaEsta = grupoEncontrado.miembros.some(function (miembro) {
+            return miembro.toLowerCase() === nombre.toLowerCase();
+        });
+
+        if (nombre && !yaEsta) {
+            grupoEncontrado.miembros.push(nombre);
+        }
+
+        const grupos = leerGruposFamiliares().map(function (g) {
+            return g.codigo === grupoEncontrado.codigo ? grupoEncontrado : g;
+        });
+
+        localStorage.setItem("gruposFamiliares", JSON.stringify(grupos));
         localStorage.setItem("grupoFamiliar", JSON.stringify(grupoEncontrado));
 
         window.location.href = "./familia-home.html";

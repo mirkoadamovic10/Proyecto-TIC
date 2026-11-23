@@ -172,6 +172,85 @@ if (nombreUsuarioFamilia) {
 }
 
 
+/* ---------- INTEGRANTES DEL GRUPO ---------- */
+/* Solo aparecen las personas que se unieron con el código */
+
+function leerGrupoActual() {
+    let grupo = null;
+
+    try {
+        grupo = JSON.parse(localStorage.getItem("grupoFamiliar"));
+    } catch (error) {
+        grupo = null;
+    }
+
+    if (!grupo || !grupo.codigo) {
+        return null;
+    }
+
+    // Busca la versión más nueva del grupo (con los que se unieron después)
+    try {
+        const grupos = JSON.parse(localStorage.getItem("gruposFamiliares"));
+
+        if (Array.isArray(grupos)) {
+            const actualizado = grupos.find(function (g) {
+                return g.codigo === String(grupo.codigo).toUpperCase();
+            });
+
+            if (actualizado) {
+                return actualizado;
+            }
+        }
+    } catch (error) {
+        // sin lista
+    }
+
+    return grupo;
+}
+
+function crearPersona(nombre) {
+    const item = document.createElement("li");
+    item.className = "pfam-persona";
+
+    const avatar = document.createElement("span");
+    avatar.className = "pfam-avatar";
+    avatar.setAttribute("aria-hidden", "true");
+    avatar.innerHTML = '<span class="perfil-cabeza"></span><span class="perfil-cuerpo"></span>';
+
+    const texto = document.createElement("p");
+    texto.className = "pfam-nombre";
+    texto.textContent = nombre;
+
+    item.appendChild(avatar);
+    item.appendChild(texto);
+
+    return item;
+}
+
+const listaIntegrantes = document.getElementById("listaIntegrantes");
+const sinIntegrantes = document.getElementById("sinIntegrantes");
+
+if (listaIntegrantes) {
+    const grupoActual = leerGrupoActual();
+    const yo = obtenerNombreUsuario().trim().toLowerCase();
+
+    const otros = (grupoActual && Array.isArray(grupoActual.miembros) ? grupoActual.miembros : [])
+        .filter(function (nombre) {
+            return nombre && nombre.trim().toLowerCase() !== yo;
+        });
+
+    otros.forEach(function (nombre) {
+        listaIntegrantes.appendChild(crearPersona(nombre));
+    });
+
+    listaIntegrantes.hidden = otros.length === 0;
+
+    if (sinIntegrantes) {
+        sinIntegrantes.hidden = otros.length > 0;
+    }
+}
+
+
 /* ---------- POP UP CÓDIGO DE FAMILIA ---------- */
 
 const botonCodigoFamilia = document.getElementById("botonCodigoFamilia");

@@ -418,6 +418,16 @@
             margin-top: 50px;
         }
 
+        .pfam-vacio {
+            margin: 0;
+            color: #6B6B6B;
+            font-size: 13px;
+        }
+
+        .pfam-vacio[hidden] {
+            display: none;
+        }
+
         .pfam-persona {
             display: flex;
             align-items: center;
@@ -817,23 +827,11 @@
         </section>
 
         <section class="pfam-integrantes" aria-label="Integrantes de la familia">
-            <ul class="pfam-lista">
-                <li class="pfam-persona">
-                    <span class="pfam-avatar" aria-hidden="true">
-                        <span class="perfil-cabeza"></span>
-                        <span class="perfil-cuerpo"></span>
-                    </span>
-                    <p class="pfam-nombre">Mamá de Isa</p>
-                </li>
+            <ul id="listaIntegrantes" class="pfam-lista"></ul>
 
-                <li class="pfam-persona">
-                    <span class="pfam-avatar" aria-hidden="true">
-                        <span class="perfil-cabeza"></span>
-                        <span class="perfil-cuerpo"></span>
-                    </span>
-                    <p class="pfam-nombre">Papá de Isa</p>
-                </li>
-            </ul>
+            <p id="sinIntegrantes" class="pfam-vacio">
+                Todavía no se unió nadie más. Compartí el código de familia para que se sumen.
+            </p>
         </section>
 
     </main>
