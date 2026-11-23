@@ -187,6 +187,7 @@ if (botonPasaporte && submenuPasaporte && cerrarPasaporte) {
 // ==========================================
 // NOTIFICACIONES Y DASHBOARD
 // POST /api/notificaciones · GET /api/notificaciones/:idUsuario · PUT /api/notificaciones/:idNotificacion
+// (se crean a partir de lo pendiente en la agenda: GET /api/agenda/:idUsuario)
 // POST /api/dashboard      · GET /api/dashboard/:idUsuario
 // ==========================================
 
@@ -224,32 +225,78 @@ if (botonPasaporte && submenuPasaporte && cerrarPasaporte) {
         });
     }
 
-    async function cargarNotificaciones() {
-        try {
-            const respuesta = await fetch(`${API}/notificaciones/${idUsuario}`);
+    /* Arma las notificaciones a partir de lo pendiente en la agenda:
+       GET /api/agenda/:idUsuario -> eventos de hoy en adelante
+       GET /api/notificaciones/:idUsuario -> las que ya existen
+       POST /api/notificaciones -> crea las que falten
+       Devuelve solo las notificaciones de eventos pendientes */
+    async function sincronizarNotificacionesAgenda(API, idUsuario) {
+        var NOMBRES = {
+            turno: "Turno médico",
+            estudio: "Estudio médico",
+            terapia: "Terapia",
+            medicacion: "Medicación",
+            control: "Control / seguimiento"
+        };
 
-            if (!respuesta.ok) return;
+        var ahora = new Date();
+        var hoy = ahora.getFullYear() + "-" + String(ahora.getMonth() + 1).padStart(2, "0") + "-" + String(ahora.getDate()).padStart(2, "0");
 
-            let lista = await respuesta.json();
+        function armarMensaje(evento) {
+            var partes = String(evento.fecha).split("-");
+            var fecha = partes.length === 3 ? partes[2] + "/" + partes[1] : evento.fecha;
+            var tipo = NOMBRES[evento.tipo] || "Evento";
+            var titulo = evento.titulo || evento.descripcion || "";
 
-            // La primera vez se crea una notificación de bienvenida
-            if (lista.length === 0 && !localStorage.getItem("bienvenidaEnviada_" + idUsuario)) {
-                const nueva = await fetch(`${API}/notificaciones`, {
+            return tipo + (titulo ? ": " + titulo : "") + " — " + fecha + (evento.hora ? " " + evento.hora : "");
+        }
+
+        var respuestaAgenda = await fetch(API + "/agenda/" + idUsuario);
+        var eventos = respuestaAgenda.ok ? await respuestaAgenda.json() : [];
+
+        var pendientes = eventos.filter(function (evento) {
+            return evento.fecha && evento.fecha >= hoy;
+        });
+
+        var respuestaNotificaciones = await fetch(API + "/notificaciones/" + idUsuario);
+        var notificaciones = respuestaNotificaciones.ok ? await respuestaNotificaciones.json() : [];
+
+        var resultado = [];
+
+        for (var i = 0; i < pendientes.length; i++) {
+            var evento = pendientes[i];
+            var mensaje = armarMensaje(evento);
+
+            var existente = notificaciones.find(function (n) { return n.mensaje === mensaje; });
+
+            if (!existente) {
+                var nueva = await fetch(API + "/notificaciones", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        idUsuario: idUsuario,
-                        mensaje: "¡Bienvenido/a a NeuroPassport!",
-                        fecha: new Date().toISOString().slice(0, 10)
-                    })
+                    body: JSON.stringify({ idUsuario: idUsuario, mensaje: mensaje, fecha: evento.fecha })
                 });
 
-                if (nueva.ok) {
-                    localStorage.setItem("bienvenidaEnviada_" + idUsuario, "si");
-                    lista = [await nueva.json()];
-                }
+                if (!nueva.ok) continue;
+
+                existente = await nueva.json();
+                notificaciones.push(existente);
             }
 
+            if (resultado.indexOf(existente) === -1) {
+                existente.tipo = evento.tipo;
+                resultado.push(existente);
+            }
+        }
+
+        resultado.sort(function (a, b) { return String(a.fecha).localeCompare(String(b.fecha)); });
+
+        return resultado;
+    }
+
+    // Solo notificaciones de cosas pendientes en la agenda
+    async function cargarNotificaciones() {
+        try {
+            const lista = await sincronizarNotificacionesAgenda(API, idUsuario);
             mostrarAviso(lista.filter(function (notificacion) { return !notificacion.leida; }));
         } catch (error) {
             console.error("No se pudieron cargar las notificaciones:", error);

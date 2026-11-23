@@ -331,6 +331,17 @@
         }
 
         /* Notificación ya leída */
+        .sin-notificaciones {
+            margin: 10px 0;
+            color: #6B6B6B;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .sin-notificaciones[hidden] {
+            display: none;
+        }
+
         .item-notificacion.leida {
             opacity: 0.55;
         }
@@ -473,48 +484,11 @@
 
         <section class="panel-notificaciones" aria-label="Lista de notificaciones">
 
-            <ul class="lista-notificaciones">
+            <ul class="lista-notificaciones" id="listaNotificaciones" aria-live="polite"></ul>
 
-                <li>
-                    <article class="item-notificacion" data-id="medicacion">
-                        <span class="item-icono urgente" aria-hidden="true"></span>
-
-                        <p class="item-texto">Medicación / Vencimiento urgente</p>
-
-                        <div class="item-acciones">
-                            <button type="button" class="boton-marcar-leido">Marcar como leido</button>
-                            <a href="./agenda.html" class="boton-ver-agenda">Ver en la agenda</a>
-                        </div>
-                    </article>
-                </li>
-
-                <li>
-                    <article class="item-notificacion" data-id="turno">
-                        <span class="item-icono turno" aria-hidden="true"></span>
-
-                        <p class="item-texto">Turno próximo</p>
-
-                        <div class="item-acciones">
-                            <button type="button" class="boton-marcar-leido">Marcar como leido</button>
-                            <a href="./agenda.html" class="boton-ver-agenda">Ver en la agenda</a>
-                        </div>
-                    </article>
-                </li>
-
-                <li>
-                    <article class="item-notificacion" data-id="familiar">
-                        <span class="item-icono familiar" aria-hidden="true"></span>
-
-                        <p class="item-texto">Aviso familiar</p>
-
-                        <div class="item-acciones">
-                            <button type="button" class="boton-marcar-leido">Marcar como leido</button>
-                            <a href="./agenda.html" class="boton-ver-agenda">Ver en la agenda</a>
-                        </div>
-                    </article>
-                </li>
-
-            </ul>
+            <p class="sin-notificaciones" id="sinNotificaciones" hidden>
+                No tenés nada pendiente en tu agenda.
+            </p>
 
         </section>
 
@@ -543,50 +517,172 @@
                 });
             });
 
-            /* ---------- MARCAR COMO LEÍDO ---------- */
-            var CLAVE = "notificacionesLeidas";
+            /* ---------- NOTIFICACIONES DE LA AGENDA ----------
+               Solo aparecen cuando hay algo pendiente en el calendario.
+               PUT /api/notificaciones/:idNotificacion para marcarlas como leídas */
+            var API = "http://localhost:3000/api";
+            var idUsuario = Number(localStorage.getItem("idUsuario")) || null;
+            var lista = document.getElementById("listaNotificaciones");
+            var vacio = document.getElementById("sinNotificaciones");
             var punto = document.getElementById("puntoNotificacion");
-            var notificaciones = document.querySelectorAll(".item-notificacion");
-            var leidas = [];
 
-            try {
-                leidas = JSON.parse(localStorage.getItem(CLAVE)) || [];
-            } catch (error) {
-                leidas = [];
+            var ICONOS = {
+                medicacion: "urgente",
+                turno: "turno",
+                estudio: "turno",
+                control: "turno",
+                terapia: "familiar"
+            };
+
+            /* Arma las notificaciones a partir de lo pendiente en la agenda:
+               GET /api/agenda/:idUsuario -> eventos de hoy en adelante
+               GET /api/notificaciones/:idUsuario -> las que ya existen
+               POST /api/notificaciones -> crea las que falten
+               Devuelve solo las notificaciones de eventos pendientes */
+            async function sincronizarNotificacionesAgenda(API, idUsuario) {
+                var NOMBRES = {
+                    turno: "Turno médico",
+                    estudio: "Estudio médico",
+                    terapia: "Terapia",
+                    medicacion: "Medicación",
+                    control: "Control / seguimiento"
+                };
+
+                var ahora = new Date();
+                var hoy = ahora.getFullYear() + "-" + String(ahora.getMonth() + 1).padStart(2, "0") + "-" + String(ahora.getDate()).padStart(2, "0");
+
+                function armarMensaje(evento) {
+                    var partes = String(evento.fecha).split("-");
+                    var fecha = partes.length === 3 ? partes[2] + "/" + partes[1] : evento.fecha;
+                    var tipo = NOMBRES[evento.tipo] || "Evento";
+                    var titulo = evento.titulo || evento.descripcion || "";
+
+                    return tipo + (titulo ? ": " + titulo : "") + " — " + fecha + (evento.hora ? " " + evento.hora : "");
+                }
+
+                var respuestaAgenda = await fetch(API + "/agenda/" + idUsuario);
+                var eventos = respuestaAgenda.ok ? await respuestaAgenda.json() : [];
+
+                var pendientes = eventos.filter(function (evento) {
+                    return evento.fecha && evento.fecha >= hoy;
+                });
+
+                var respuestaNotificaciones = await fetch(API + "/notificaciones/" + idUsuario);
+                var notificaciones = respuestaNotificaciones.ok ? await respuestaNotificaciones.json() : [];
+
+                var resultado = [];
+
+                for (var i = 0; i < pendientes.length; i++) {
+                    var evento = pendientes[i];
+                    var mensaje = armarMensaje(evento);
+
+                    var existente = notificaciones.find(function (n) { return n.mensaje === mensaje; });
+
+                    if (!existente) {
+                        var nueva = await fetch(API + "/notificaciones", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ idUsuario: idUsuario, mensaje: mensaje, fecha: evento.fecha })
+                        });
+
+                        if (!nueva.ok) continue;
+
+                        existente = await nueva.json();
+                        notificaciones.push(existente);
+                    }
+
+                    if (resultado.indexOf(existente) === -1) {
+                        existente.tipo = evento.tipo;
+                        resultado.push(existente);
+                    }
+                }
+
+                resultado.sort(function (a, b) { return String(a.fecha).localeCompare(String(b.fecha)); });
+
+                return resultado;
             }
 
             function actualizarPunto() {
-                punto.hidden = document.querySelectorAll(".item-notificacion:not(.leida)").length === 0;
+                punto.hidden = lista.querySelectorAll(".item-notificacion:not(.leida)").length === 0;
             }
 
-            function marcarLeida(notificacion) {
-                notificacion.classList.add("leida");
+            function marcarLeida(articulo) {
+                articulo.classList.add("leida");
 
-                var boton = notificacion.querySelector(".boton-marcar-leido");
+                var boton = articulo.querySelector(".boton-marcar-leido");
                 boton.textContent = "Leido";
                 boton.disabled = true;
             }
 
-            notificaciones.forEach(function (notificacion) {
-                var id = notificacion.getAttribute("data-id");
+            function mostrar(notificaciones) {
+                lista.innerHTML = "";
+                vacio.hidden = notificaciones.length > 0;
 
-                if (leidas.indexOf(id) !== -1) {
-                    marcarLeida(notificacion);
-                }
+                notificaciones.forEach(function (notificacion) {
+                    var item = document.createElement("li");
 
-                notificacion.querySelector(".boton-marcar-leido").addEventListener("click", function () {
-                    marcarLeida(notificacion);
+                    var articulo = document.createElement("article");
+                    articulo.className = "item-notificacion";
+                    articulo.dataset.id = notificacion.idNotificacion;
 
-                    if (leidas.indexOf(id) === -1) {
-                        leidas.push(id);
-                        localStorage.setItem(CLAVE, JSON.stringify(leidas));
+                    var icono = document.createElement("span");
+                    icono.className = "item-icono " + (ICONOS[notificacion.tipo] || "turno");
+                    icono.setAttribute("aria-hidden", "true");
+
+                    var texto = document.createElement("p");
+                    texto.className = "item-texto";
+                    texto.textContent = notificacion.mensaje;
+
+                    var acciones = document.createElement("div");
+                    acciones.className = "item-acciones";
+
+                    var boton = document.createElement("button");
+                    boton.type = "button";
+                    boton.className = "boton-marcar-leido";
+                    boton.textContent = "Marcar como leido";
+
+                    var enlace = document.createElement("a");
+                    enlace.href = "./agenda.html";
+                    enlace.className = "boton-ver-agenda";
+                    enlace.textContent = "Ver en la agenda";
+
+                    boton.addEventListener("click", async function () {
+                        try {
+                            var respuesta = await fetch(API + "/notificaciones/" + notificacion.idNotificacion, { method: "PUT" });
+
+                            if (!respuesta.ok) throw new Error("No se pudo marcar como leída.");
+
+                            marcarLeida(articulo);
+                            actualizarPunto();
+                        } catch (error) {
+                            console.error(error);
+                            alert("No se pudo conectar con el servidor.");
+                        }
+                    });
+
+                    acciones.append(boton, enlace);
+                    articulo.append(icono, texto, acciones);
+                    item.appendChild(articulo);
+                    lista.appendChild(item);
+
+                    if (notificacion.leida) {
+                        marcarLeida(articulo);
                     }
-
-                    actualizarPunto();
                 });
-            });
 
-            actualizarPunto();
+                actualizarPunto();
+            }
+
+            if (!idUsuario) {
+                mostrar([]);
+            } else {
+                sincronizarNotificacionesAgenda(API, idUsuario)
+                    .then(mostrar)
+                    .catch(function (error) {
+                        console.error("No se pudieron cargar las notificaciones:", error);
+                        mostrar([]);
+                    });
+            }
         })();
     </script>
 
