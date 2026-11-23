@@ -429,16 +429,30 @@
         }
 
         .pfam-persona {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-height: 56px;
             margin: 0;
-            padding: 5px 6px;
+            padding: 0;
             box-sizing: border-box;
             background: #FFFFFF;
             border: 1px solid #D5EBDC;
             border-radius: 6px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .pfam-persona:hover {
+            background: #F7FCF8;
+            border-color: #B7E4C7;
+        }
+
+        .pfam-enlace {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 56px;
+            padding: 5px 6px;
+            box-sizing: border-box;
+            color: inherit !important;
+            text-decoration: none !important;
+            cursor: pointer;
         }
 
         .pfam-avatar {
@@ -817,11 +831,13 @@
         <section aria-label="Vos">
             <ul class="pfam-lista">
                 <li class="pfam-persona">
-                    <span class="pfam-avatar" aria-hidden="true">
-                        <span class="perfil-cabeza"></span>
-                        <span class="perfil-cuerpo"></span>
-                    </span>
-                    <p class="pfam-nombre" id="nombreUsuarioFamilia">Vos&nbsp; (Tú)</p>
+                    <a id="enlacePerfilPropio" class="pfam-enlace" href="./perfil-sensorial.html">
+                        <span class="pfam-avatar" aria-hidden="true">
+                            <span class="perfil-cabeza"></span>
+                            <span class="perfil-cuerpo"></span>
+                        </span>
+                        <p class="pfam-nombre" id="nombreUsuarioFamilia">Vos&nbsp; (Tú)</p>
+                    </a>
                 </li>
             </ul>
         </section>

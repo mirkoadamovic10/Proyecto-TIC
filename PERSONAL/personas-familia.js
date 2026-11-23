@@ -169,6 +169,13 @@ const nombreUsuarioFamilia = document.getElementById("nombreUsuarioFamilia");
 if (nombreUsuarioFamilia) {
     const nombre = obtenerNombreUsuario().trim();
     nombreUsuarioFamilia.textContent = (nombre || "Vos") + "\u00A0 (Tú)";
+
+    // Al tocarse a uno mismo abre su perfil sensorial
+    const enlacePerfilPropio = document.getElementById("enlacePerfilPropio");
+
+    if (enlacePerfilPropio && nombre) {
+        enlacePerfilPropio.href = "./perfil-sensorial.html?nombre=" + encodeURIComponent(nombre);
+    }
 }
 
 
@@ -208,9 +215,17 @@ function leerGrupoActual() {
     return grupo;
 }
 
+function enlacePerfil(nombre) {
+    return "./perfil-sensorial.html?nombre=" + encodeURIComponent(nombre);
+}
+
 function crearPersona(nombre) {
     const item = document.createElement("li");
     item.className = "pfam-persona";
+
+    const enlace = document.createElement("a");
+    enlace.className = "pfam-enlace";
+    enlace.href = enlacePerfil(nombre);
 
     const avatar = document.createElement("span");
     avatar.className = "pfam-avatar";
@@ -221,8 +236,9 @@ function crearPersona(nombre) {
     texto.className = "pfam-nombre";
     texto.textContent = nombre;
 
-    item.appendChild(avatar);
-    item.appendChild(texto);
+    enlace.appendChild(avatar);
+    enlace.appendChild(texto);
+    item.appendChild(enlace);
 
     return item;
 }
