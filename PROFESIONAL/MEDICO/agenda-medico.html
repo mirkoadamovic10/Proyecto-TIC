@@ -431,118 +431,1011 @@
                 padding: 23px;
             }
         }
+
+        /* ============================= */
+        /* AGENDA (diseño nuevo)         */
+        /* ============================= */
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #F1FAEE !important;
+            font-family: "Inter", Arial, sans-serif;
+        }
+
+        body > header.agd-barra {
+            position: relative;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            min-height: 58px;
+            margin: 0;
+            padding: 8px 20px !important;
+            box-sizing: border-box;
+            background: #FFFFFF !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        body > header.agd-barra .agd-atras {
+            position: absolute !important;
+            left: 12px !important;
+            right: auto !important;
+            top: 50% !important;
+            transform: translateY(-50%);
+            display: inline-flex !important;
+            align-items: center;
+            gap: 5px;
+            margin: 0 !important;
+            padding: 6px 9px !important;
+            background: #B7E4C7 !important;
+            color: #2F7185 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: inherit;
+            font-size: 11px !important;
+            font-weight: 500 !important;
+            cursor: pointer;
+        }
+
+        body > header.agd-barra .agd-agregar {
+            position: absolute !important;
+            right: 14px !important;
+            left: auto !important;
+            top: 50% !important;
+            transform: translateY(-50%);
+            display: inline-flex !important;
+            align-items: center;
+            margin: 0 !important;
+            padding: 8px 11px !important;
+            background: #B7E4C7 !important;
+            background-image: none !important;
+            color: #2F7185 !important;
+            border: none !important;
+            border-radius: 10px !important;
+            font-family: inherit;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+        }
+
+        body > header.agd-barra .agd-atras:not(:disabled):hover,
+        body > header.agd-barra .agd-agregar:not(:disabled):hover {
+            transform: translateY(calc(-50% - 2px));
+        }
+
+        .agd-titulo {
+            text-align: center;
+        }
+
+        .agd-titulo h1 {
+            margin: 0 !important;
+            color: #2F7185 !important;
+            font-size: 19px !important;
+            font-weight: 700 !important;
+            letter-spacing: normal !important;
+            line-height: 1.2 !important;
+        }
+
+        .agd-titulo p {
+            margin: 2px 0 0 !important;
+            color: #2F7185 !important;
+            font-size: 9px !important;
+            font-weight: 600 !important;
+        }
+
+        main.agd-principal {
+            display: block !important;
+            padding: 0 20px 30px !important;
+            box-sizing: border-box;
+            text-align: left !important;
+            animation: none !important;
+        }
+
+        .agd-calendario {
+            width: 100%;
+            max-width: 716px;
+            margin: 0 auto !important;
+            padding: 27px 53px 26px !important;
+            box-sizing: border-box;
+            background: #CEE9DA !important;
+            border: 1px solid #BCD6C7 !important;
+            border-radius: 12px !important;
+            box-shadow: none !important;
+        }
+
+        .agd-meses {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 29px;
+            margin: 0 0 27px !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .agd-meses h2 {
+            min-width: 150px;
+            margin: 0 !important;
+            color: #2F7185 !important;
+            font-size: 19px !important;
+            font-weight: 600 !important;
+            letter-spacing: normal !important;
+            text-align: center;
+            background: transparent !important;
+        }
+
+        .agd-flecha {
+            width: 38px !important;
+            height: 38px !important;
+            min-width: 0 !important;
+            padding: 0 !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            background: #FFFFFF !important;
+            color: #000000 !important;
+            border: none !important;
+            border-radius: 9px !important;
+            box-shadow: none !important;
+            font-family: inherit;
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            cursor: pointer;
+        }
+
+        .agd-semana {
+            display: grid !important;
+            grid-template-columns: repeat(7, 1fr);
+            margin: 0 0 30px !important;
+            padding: 9px 0 !important;
+            list-style: none;
+            background: #D9D9D9 !important;
+            border-radius: 0 !important;
+        }
+
+        .agd-semana li {
+            margin: 0;
+            padding: 0;
+            color: #000000;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            background: transparent !important;
+        }
+
+        .agd-semana abbr {
+            text-decoration: none;
+            cursor: default;
+        }
+
+        /* Casilleros que arma el JS de cada agenda */
+
+        .agd-dias {
+            display: grid !important;
+            grid-template-columns: repeat(7, 1fr) !important;
+            gap: 11px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+        }
+
+        .agd-dias > * {
+            aspect-ratio: 1 / 1;
+            min-width: 0 !important;
+            min-height: 0 !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 6px !important;
+            box-sizing: border-box;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            justify-content: flex-start !important;
+            gap: 3px;
+            overflow: hidden;
+            background: #FFFFFF !important;
+            border: 1px solid #D6D6D6 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            color: #000000 !important;
+            font-family: inherit;
+            font-size: 11px !important;
+            text-align: left !important;
+            transform: none !important;
+            opacity: 1 !important;
+        }
+
+        .agd-dias > button,
+        .agd-dias > .dia:not(.dia-vacio) {
+            cursor: pointer;
+        }
+
+        .agd-dias > button:hover,
+        .agd-dias > .dia:not(.dia-vacio):hover {
+            border-color: #2F7185 !important;
+        }
+
+        .agd-dias > .hoy {
+            outline: 2px solid #2F7185;
+            outline-offset: -2px;
+        }
+
+        .agd-dias .numero-dia {
+            display: block !important;
+            width: auto !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            text-align: left !important;
+            background: transparent !important;
+            color: #000000 !important;
+            font-size: 11px !important;
+            font-weight: 400 !important;
+            line-height: 1 !important;
+        }
+
+        .agd-dias .evento-calendario,
+        .agd-dias .indicador-turno {
+            display: block !important;
+            margin: 0 !important;
+            padding: 2px 4px !important;
+            border-radius: 4px !important;
+            background: #CDB4DB;
+            color: #000000 !important;
+            font-size: 9px !important;
+            line-height: 1.2 !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .agd-dias .evento-calendario span {
+            font-size: 9px !important;
+            margin-right: 3px;
+        }
+
+        .agd-dias .evento-calendario.turno { background: #CDB4DB !important; }
+        .agd-dias .evento-calendario.estudio { background: #CEE9DA !important; }
+        .agd-dias .evento-calendario.terapia { background: #E5B5D4 !important; }
+        .agd-dias .evento-calendario.medicacion { background: #F7A3A0 !important; }
+        .agd-dias .evento-calendario.control { background: #6E6E6E !important; color: #FFFFFF !important; }
+
+        /* Referencias de colores */
+
+        .agd-referencias {
+            max-width: 724px;
+            margin: 14px auto 0 !important;
+            padding: 0 !important;
+            list-style: none;
+            display: flex !important;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+            background: transparent !important;
+        }
+
+        .agd-referencias li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+            color: #8A8A8A;
+            font-size: 12px;
+        }
+
+        .agd-punto {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .agd-punto.turno { background: #CDB4DB; }
+        .agd-punto.estudio { background: #CEE9DA; }
+        .agd-punto.terapia { background: #E5B5D4; }
+        .agd-punto.medicacion { background: #F7A3A0; }
+        .agd-punto.control { background: #6E6E6E; }
+
+        @media (max-width: 600px) {
+            body > header.agd-barra {
+                flex-direction: column;
+                gap: 8px;
+                padding-top: 50px !important;
+            }
+
+            body > header.agd-barra .agd-atras {
+                top: 12px !important;
+                transform: none;
+            }
+
+            body > header.agd-barra .agd-agregar {
+                top: 8px !important;
+                transform: none;
+            }
+
+            .agd-calendario {
+                padding: 18px 10px !important;
+            }
+
+            .agd-dias {
+                gap: 5px !important;
+            }
+
+            .agd-semana li {
+                font-size: 11px;
+            }
+        }
+
+        /* ============================= */
+        /* MODAL AGREGAR EVENTO (igual en todas las agendas) */
+        /* ============================= */
+
+        .mev-modal {
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 1000 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: none !important;
+            max-height: none !important;
+            margin: 0 !important;
+            padding: 20px !important;
+            border: none !important;
+            background: rgba(0, 0, 0, 0.35) !important;
+            color: #000000 !important;
+            box-sizing: border-box !important;
+        }
+
+        .mev-modal[hidden],
+        .mev-modal.mev-con-clase:not(.mostrar) {
+            display: none !important;
+        }
+
+        .mev-modal .mev-turnos-dia:empty {
+            display: none !important;
+        }
+
+        .mev-modal .mev-turnos-dia {
+            margin: -18px 23px 22px 23px !important;
+            padding: 12px 14px !important;
+            background: #FFFFFF !important;
+            border: 1px solid #DCEBE1 !important;
+            border-radius: 8px !important;
+            font-size: 13px !important;
+            color: #333333 !important;
+        }
+
+        .mev-modal .mev-turnos-dia p {
+            margin: 0 !important;
+            font-size: 13px !important;
+            color: #555555 !important;
+        }
+
+        .mev-modal .mev-turnos-dia .turno-guardado {
+            display: flex !important;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+            gap: 10px;
+            margin: 0 0 8px !important;
+            padding: 0 0 8px !important;
+            border-bottom: 1px solid #E6EFE9 !important;
+            background: transparent !important;
+        }
+
+        .mev-modal .mev-turnos-dia .turno-guardado:last-child {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            border-bottom: none !important;
+        }
+
+        .mev-modal .mev-turnos-dia strong {
+            color: #2F7185 !important;
+            font-size: 13px !important;
+        }
+
+        .mev-modal .mev-turnos-dia .eliminar-turno {
+            flex-shrink: 0;
+            padding: 4px 9px !important;
+            background: #F6D7D7 !important;
+            color: #9C3B3B !important;
+            border: none !important;
+            border-radius: 6px !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+        }
+
+        .mev-modal * {
+            font-family: "Inter", Arial, sans-serif !important;
+            box-sizing: border-box !important;
+            float: none !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+        }
+
+        .mev-modal .modal-agenda-contenido {
+            display: block !important;
+            position: relative !important;
+            width: 440px !important;
+            max-width: 100% !important;
+            height: auto !important;
+            overflow: visible !important;
+            margin: 0 !important;
+            padding: 27px 0 22px !important;
+            background: #F0F8F2 !important;
+            background-image: none !important;
+            border: none !important;
+            border-radius: 10px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18) !important;
+            text-align: left !important;
+            gap: 0 !important;
+        }
+
+        .mev-modal .mev-cerrar {
+            position: absolute !important;
+            top: 24px !important;
+            right: 30px !important;
+            width: auto !important;
+            height: auto !important;
+            min-width: 0 !important;
+            margin: 0 !important;
+            padding: 2px 4px !important;
+            border: none !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            color: #000000 !important;
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+            cursor: pointer !important;
+        }
+
+        .mev-modal .modal-evento-encabezado {
+            display: block !important;
+            position: static !important;
+            width: auto !important;
+            height: auto !important;
+            margin: 0 0 34px !important;
+            padding: 0 9px !important;
+            background: transparent !important;
+            background-image: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            color: #000000 !important;
+        }
+
+        .mev-modal .modal-evento-encabezado h2 {
+            margin: 0 !important;
+            padding: 0 !important;
+            color: #000000 !important;
+            font-size: 20px !important;
+            font-weight: 600 !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
+            background: transparent !important;
+        }
+
+        .mev-modal .modal-evento-encabezado p {
+            margin: 8px 0 0 !important;
+            padding: 0 !important;
+            color: #1F1F1F !important;
+            font-size: 11px !important;
+            font-weight: 400 !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
+            background: transparent !important;
+        }
+
+        .mev-modal .mev-oculto {
+            display: none !important;
+        }
+
+        .mev-modal form {
+            display: flex !important;
+            flex-direction: column !important;
+            width: auto !important;
+            margin: 0 !important;
+            padding: 0 27px 0 23px !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            gap: 0 !important;
+        }
+
+        .mev-modal .campo-agenda {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            width: auto !important;
+            margin: 0 0 15px !important;
+            padding: 0 !important;
+            border: none !important;
+            background: transparent !important;
+            min-width: 0 !important;
+            text-align: left !important;
+            gap: 0 !important;
+        }
+
+        .mev-modal .campo-agenda label,
+        .mev-modal .campo-agenda legend {
+            float: none !important;
+            width: 100% !important;
+            display: block !important;
+            margin: 0 0 8px !important;
+            padding: 0 !important;
+            color: #2F7185 !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
+            background: transparent !important;
+        }
+
+        .mev-modal .campo-agenda input,
+        .mev-modal .campo-agenda textarea,
+        .mev-modal .mev-tipo-boton {
+            display: block !important;
+            width: 100% !important;
+            height: 40px !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 12px !important;
+            background: #ECF4EE !important;
+            background-color: #ECF4EE !important;
+            border: 1px solid #DCEBE1 !important;
+            border-radius: 8px !important;
+            box-shadow: none !important;
+            outline: none !important;
+            color: #333333 !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            text-align: left !important;
+        }
+
+        .mev-modal .campo-agenda input::placeholder,
+        .mev-modal .campo-agenda textarea::placeholder {
+            color: #9AA19C !important;
+            opacity: 1 !important;
+        }
+
+        .mev-modal .mev-fecha,
+        .mev-modal .mev-hora {
+            padding-left: 22px !important;
+            color: #8F9692 !important;
+        }
+
+        .mev-modal .mev-fecha.con-valor,
+        .mev-modal .mev-hora.con-valor {
+            color: #333333 !important;
+        }
+
+        .mev-modal input[type="date"]::-webkit-calendar-picker-indicator,
+        .mev-modal input[type="time"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            opacity: 0.85;
+        }
+
+        /* TIPO DE EVENTO (desplegable propio) */
+
+        .mev-modal .mev-select-oculto {
+            display: none !important;
+        }
+
+        .mev-modal .campo-agenda-tipo {
+            position: relative !important;
+        }
+
+        .mev-modal .mev-tipo-boton {
+            position: relative !important;
+            padding-left: 22px !important;
+            padding-right: 36px !important;
+            cursor: pointer !important;
+            color: #8F9692 !important;
+            line-height: 38px !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23555' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 12px center !important;
+            background-size: 11px 7px !important;
+        }
+
+        .mev-modal .mev-tipo-boton.con-valor {
+            color: #333333 !important;
+        }
+
+        .mev-modal .mev-tipo-lista {
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 20 !important;
+            display: block !important;
+            width: 100% !important;
+            margin: 2px 0 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+            background: #FFFFFF !important;
+            border: 1px solid #C4CCC7 !important;
+            border-top: 1px solid #3A6F8C !important;
+            border-radius: 0 !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .mev-modal .mev-tipo-lista[hidden] {
+            display: none !important;
+        }
+
+        .mev-modal .mev-tipo-lista li {
+            display: block !important;
+            height: 38px !important;
+            margin: 0 !important;
+            padding: 0 6px !important;
+            background: #FFFFFF !important;
+            color: #000000 !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            line-height: 38px !important;
+            text-align: left !important;
+            white-space: nowrap !important;
+            cursor: pointer !important;
+        }
+
+        /* Azul en la opción elegida y en la que tenés el mouse encima */
+        .mev-modal .mev-tipo-lista li[aria-selected="true"],
+        .mev-modal .mev-tipo-lista li:hover {
+            background: #94AFD6 !important;
+        }
+
+        .mev-modal .mev-tipo-lista:hover li[aria-selected="true"]:not(:hover) {
+            background: #FFFFFF !important;
+        }
+
+        .mev-modal .campo-agenda textarea {
+            height: 78px !important;
+            padding: 12px !important;
+            resize: none !important;
+            line-height: 1.3 !important;
+        }
+
+        .mev-modal .campo-agenda-descripcion {
+            margin-bottom: 18px !important;
+        }
+
+        .mev-modal .mev-guardar {
+            display: block !important;
+            position: static !important;
+            width: calc(100% - 3px) !important;
+            height: 30px !important;
+            min-height: 0 !important;
+            margin: 0 0 0 3px !important;
+            padding: 0 !important;
+            border: none !important;
+            border-radius: 7px !important;
+            background: #B7E4C7 !important;
+            background-color: #B7E4C7 !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            color: #2F7185 !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            line-height: 30px !important;
+            text-align: center !important;
+            cursor: pointer !important;
+            transition: 0.2s;
+        }
+
+        .mev-modal .mev-guardar:hover {
+            background: #A8DCBB !important;
+            background-color: #A8DCBB !important;
+        }
+
     </style>
 </head>
 
 <body>
 
-    <header class="barra-empresa">
+    <header class="agd-barra">
 
-        <nav class="menu-empresa">
-            <a href="medico.html" class="boton-menu-empresa">Inicio</a>
-            <a href="pacientes.html" class="boton-menu-empresa">Pacientes</a>
-            <a href="agenda-medico.html" class="boton-menu-empresa">Agenda</a>
-        </nav>
+        <button type="button" id="botonVolverAgenda" class="agd-atras">
+            <span aria-hidden="true">⟵</span> Volver
+        </button>
 
-        <a href="configuracion.html"
-           class="perfil-empresa"
-           title="Configuración"
-           aria-label="Configuración">
-            <span class="perfil-cabeza"></span>
-            <span class="perfil-cuerpo"></span>
-        </a>
+        <hgroup class="agd-titulo">
+            <h1>Agenda</h1>
+            <p>Organizá tus turnos, estudios, terapias y controles medicos</p>
+        </hgroup>
+
+        <button type="button" id="botonAgregarEvento" class="agd-agregar">
+            + Agregar evento
+        </button>
 
     </header>
 
-    <main class="empresa-principal">
+    <main class="agd-principal">
 
-        <section class="empresa-bienvenida">
-            <header>
-                <h1>Agenda</h1>
-                <p>Organizá tus sesiones y consultas.</p>
+        <section class="agd-calendario" aria-labelledby="mesActual">
+
+            <header class="agd-meses">
+
+                <button type="button" id="mesAnterior" class="agd-flecha" aria-label="Mes anterior">&lt;</button>
+
+                <h2 id="mesActual" aria-live="polite"></h2>
+
+                <button type="button" id="mesSiguiente" class="agd-flecha" aria-label="Mes siguiente">&gt;</button>
+
             </header>
-        </section>
 
-        <section class="calendario-medico">
+            <ol class="agd-semana" aria-label="Días de la semana">
+                <li><abbr title="Lunes">Lun</abbr></li>
+                <li><abbr title="Martes">Mar</abbr></li>
+                <li><abbr title="Miércoles">Mie</abbr></li>
+                <li><abbr title="Jueves">Jue</abbr></li>
+                <li><abbr title="Viernes">Vie</abbr></li>
+                <li><abbr title="Sábado">Sáb</abbr></li>
+                <li><abbr title="Domingo">Dom</abbr></li>
+            </ol>
 
-            <div class="calendario-cabecera">
-                <button type="button" id="mesAnterior" aria-label="Mes anterior">‹</button>
-                <h2 id="mesActual"></h2>
-                <button type="button" id="mesSiguiente" aria-label="Mes siguiente">›</button>
-            </div>
-
-            <div class="calendario-semana">
-                <div>Lun</div>
-                <div>Mar</div>
-                <div>Mié</div>
-                <div>Jue</div>
-                <div>Vie</div>
-                <div>Sáb</div>
-                <div>Dom</div>
-            </div>
-
-            <div id="calendarioDias" class="calendario-dias"></div>
+            <section id="calendarioDias" class="agd-dias" aria-label="Días del mes"></section>
 
         </section>
+
+        <ul class="agd-referencias" aria-label="Referencias de colores">
+            <li><span class="agd-punto turno" aria-hidden="true"></span>Turno médico</li>
+            <li><span class="agd-punto estudio" aria-hidden="true"></span>Estudio médico</li>
+            <li><span class="agd-punto terapia" aria-hidden="true"></span>Terapia</li>
+            <li><span class="agd-punto medicacion" aria-hidden="true"></span>Medicación</li>
+            <li><span class="agd-punto control" aria-hidden="true"></span>Control / seguimiento</li>
+        </ul>
 
     </main>
 
-    <div id="modalAgenda" class="modal-agenda" hidden>
+    <dialog
+        id="modalAgenda"
+        class="mev-modal"
+        aria-modal="true"
+        aria-labelledby="tituloModalEvento"
+        open
+        hidden
+    >
 
-        <div class="modal-agenda-contenido">
+        <article class="modal-agenda-contenido">
 
-            <button type="button"
-                    id="cerrarModal"
-                    class="cerrar-modal-agenda">
-                ×
-            </button>
+            <button
+                type="button"
+                id="cerrarModal"
+                class="mev-cerrar"
+                aria-label="Cerrar ventana"
+            >x</button>
 
-            <h2>Agregar sesión</h2>
+            <header class="modal-evento-encabezado">
+                <h2 id="tituloModalEvento">Agregar evento</h2>
+                <p>Completá la informacion del evento</p>
+                <p id="fechaSeleccionada" class="mev-oculto"></p>
+            </header>
 
-            <p id="fechaSeleccionada"></p>
+                <section id="turnosDelDia" class="mev-turnos-dia" aria-label="Turnos de ese día"></section>
 
-            <div id="turnosDelDia"></div>
+            <form id="formularioTurno" class="mev-formulario" novalidate>
 
-            <form id="formularioTurno">
+                <p class="campo-agenda">
+                    <label for="nombrePaciente">Nombre del evento</label>
+                    <input
+                        type="text"
+                        id="nombrePaciente"
+                        name="nombre"
+                        placeholder="Ej.: Turno con el neurólogo"
+                    >
+                </p>
 
-                <div class="campo-agenda">
-                    <label for="nombrePaciente">Paciente</label>
-                    <input type="text" id="nombrePaciente" placeholder="Nombre del paciente" required>
-                </div>
+                <p class="campo-agenda">
+                    <label for="fechaEvento">Fecha</label>
+                    <input type="date" id="fechaEvento" class="mev-fecha" name="fecha">
+                </p>
 
-                <div class="campo-agenda">
+                <p class="campo-agenda">
                     <label for="horaTurno">Hora</label>
-                    <input type="time" id="horaTurno" required>
-                </div>
+                    <input type="time" id="horaTurno" class="mev-hora" name="hora">
+                </p>
 
-                <div class="campo-agenda">
-                    <label for="motivoConsulta">Motivo de consulta</label>
-                    <textarea id="motivoConsulta" placeholder="Escribí el motivo de la consulta"></textarea>
-                </div>
+                <fieldset class="campo-agenda campo-agenda-tipo">
+                    <legend id="etiquetaTipoEvento">Tipo de evento</legend>
 
-                <div class="campo-agenda">
-                    <label for="tipoTurno">Tipo de turno</label>
-                    <select id="tipoTurno" required>
-                        <option value="">Seleccioná una opción</option>
-                        <option value="primera-consulta">Primera consulta</option>
-                        <option value="sesion">Sesión</option>
-                        <option value="seguimiento">Seguimiento</option>
-                        <option value="control">Control</option>
+                    <button
+                        type="button"
+                        id="botonTipoEvento"
+                        class="mev-tipo-boton"
+                        aria-labelledby="etiquetaTipoEvento botonTipoEvento"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-controls="listaTipoEvento"
+                    >Seleccionar</button>
+
+                    <ul
+                        id="listaTipoEvento"
+                        class="mev-tipo-lista"
+                        role="listbox"
+                        aria-labelledby="etiquetaTipoEvento"
+                        hidden
+                    >
+                        <li role="option" data-value="" aria-selected="true">Seleccionar</li>
+                        <li role="option" data-value="turno" aria-selected="false">Turno médico</li>
+                        <li role="option" data-value="estudio" aria-selected="false">Estudio médico</li>
+                        <li role="option" data-value="terapia" aria-selected="false">Terapia</li>
+                        <li role="option" data-value="medicacion" aria-selected="false">Medicación</li>
+                        <li role="option" data-value="control" aria-selected="false">Control / seguimiento</li>
+                    </ul>
+
+                    <select id="tipoTurno" class="mev-select-oculto" name="tipo" hidden>
+                        <option value="">Seleccionar</option>
+                        <option value="turno">Turno médico</option>
+                        <option value="estudio">Estudio médico</option>
+                        <option value="terapia">Terapia</option>
+                        <option value="medicacion">Medicación</option>
+                        <option value="control">Control / seguimiento</option>
                     </select>
-                </div>
+                </fieldset>
 
-                <button type="submit" id="guardarTurno" class="boton-guardar-agenda">
-                    Guardar turno
+                <p class="campo-agenda campo-agenda-descripcion">
+                    <label for="motivoConsulta">Descripción</label>
+                    <textarea
+                        id="motivoConsulta"
+                        name="descripcion"
+                        placeholder="Agregá información adicional..."
+                    ></textarea>
+                </p>
+
+                <button
+                    type="submit"
+                    id="guardarTurno"
+                    class="mev-guardar"
+                >
+                    Guardar evento
                 </button>
 
             </form>
 
-        </div>
+        </article>
 
-    </div>
+    </dialog>
+
 
     <script src="agenda-medico.js" defer></script>
 
+    <script>
+        /* Formulario "Agregar evento": desplegable de tipo y detalles visuales */
+        (function () {
+            var modal = document.getElementById("modalAgenda");
+            var select = document.getElementById("tipoTurno");
+            var hora = document.getElementById("horaTurno");
+            var fecha = document.getElementById("fechaEvento");
+            var botonTipo = document.getElementById("botonTipoEvento");
+            var listaTipo = document.getElementById("listaTipoEvento");
+
+            function abrirLista() {
+                listaTipo.hidden = false;
+                botonTipo.setAttribute("aria-expanded", "true");
+            }
+
+            function cerrarLista() {
+                listaTipo.hidden = true;
+                botonTipo.setAttribute("aria-expanded", "false");
+            }
+
+            function marcarTipo(valor) {
+                var elegido = null;
+
+                listaTipo.querySelectorAll("li").forEach(function (li) {
+                    var esEste = li.dataset.value === valor;
+                    li.setAttribute("aria-selected", esEste ? "true" : "false");
+                    if (esEste) elegido = li;
+                });
+
+                botonTipo.textContent = elegido ? elegido.textContent : "Seleccionar";
+                botonTipo.classList.toggle("con-valor", !!valor);
+            }
+
+            function actualizarColores() {
+                hora.classList.toggle("con-valor", hora.value !== "");
+                fecha.classList.toggle("con-valor", fecha.value !== "");
+            }
+
+            // Deja el formulario a la vista igual que los valores reales
+            window.sincronizarFormularioEvento = function () {
+                marcarTipo(select.value);
+                actualizarColores();
+                cerrarLista();
+            };
+
+            botonTipo.addEventListener("click", function (e) {
+                e.stopPropagation();
+                if (listaTipo.hidden) abrirLista(); else cerrarLista();
+            });
+
+            listaTipo.addEventListener("click", function (e) {
+                e.stopPropagation();
+                var opcion = e.target.closest("li");
+                if (!opcion) return;
+
+                select.value = opcion.dataset.value;
+                select.dispatchEvent(new Event("change", { bubbles: true }));
+                marcarTipo(select.value);
+                cerrarLista();
+            });
+
+            document.addEventListener("click", cerrarLista);
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") cerrarLista();
+            });
+
+            hora.addEventListener("input", actualizarColores);
+            hora.addEventListener("change", actualizarColores);
+            fecha.addEventListener("input", actualizarColores);
+            fecha.addEventListener("change", actualizarColores);
+
+            // Cada vez que se abre la ventana, se actualiza lo que se ve
+            new MutationObserver(function () {
+                window.sincronizarFormularioEvento();
+            }).observe(modal, { attributes: true, attributeFilter: ["hidden", "class"] });
+
+            // Cerrar tocando afuera
+            modal.addEventListener("click", function (e) {
+                if (e.target === modal) {
+                    document.getElementById("cerrarModal").click();
+                }
+            });
+
+            window.sincronizarFormularioEvento();
+        })();
+    </script>
+
+    <script>
+        function hoyISO() {
+            var d = new Date();
+            return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+        }
+
+        // "+ Agregar evento": abre el formulario con la fecha de hoy
+        document.getElementById("botonAgregarEvento").addEventListener("click", function () {
+            if (window.abrirModalMedico) window.abrirModalMedico(hoyISO());
+        });
+
+        // Si se cambia la fecha en el formulario, el turno se guarda en ese día
+        document.getElementById("fechaEvento").addEventListener("change", function () {
+            if (!this.value || !window.abrirModalMedico) return;
+
+            var campos = ["nombrePaciente", "horaTurno", "motivoConsulta", "tipoTurno"];
+            var valores = campos.map(function (id) { return document.getElementById(id).value; });
+
+            window.abrirModalMedico(this.value);
+
+            campos.forEach(function (id, i) { document.getElementById(id).value = valores[i]; });
+            window.sincronizarFormularioEvento();
+        });
+
+        // Después de guardar, el formulario se limpia: actualizar lo que se ve
+        document.getElementById("formularioTurno").addEventListener("reset", function () {
+            setTimeout(window.sincronizarFormularioEvento, 0);
+        });
+    </script>
+
+    <script>
+        document.getElementById("botonVolverAgenda").addEventListener("click", function () {
+            if (document.referrer && window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = "./medico.html";
+            }
+        });
+    </script>
+
+
 </body>
 </html>
-```

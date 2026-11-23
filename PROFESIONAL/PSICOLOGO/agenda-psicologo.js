@@ -275,14 +275,12 @@ guardarTurno.addEventListener(
 
             horaTurno.value === "" ||
 
-            motivoConsulta.value.trim() === "" ||
-
             tipoTurno.value === ""
 
         ) {
 
             alert(
-                "Completá todos los datos del turno."
+                "Completá el nombre del evento, la hora y el tipo de evento."
             );
 
             return;

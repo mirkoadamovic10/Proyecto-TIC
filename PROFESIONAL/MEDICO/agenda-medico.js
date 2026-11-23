@@ -45,11 +45,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const anio = fechaVisible.getFullYear();
         const mes = fechaVisible.getMonth();
 
-        mesActual.textContent = new Date(anio, mes, 1)
-            .toLocaleDateString("es-AR", {
-                month: "long",
-                year: "numeric"
-            });
+        const nombreMes = new Date(anio, mes, 1)
+            .toLocaleDateString("es-AR", { month: "long" });
+
+        // "Octubre 2026"
+        mesActual.textContent =
+            nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1) + " " + anio;
 
         calendarioDias.replaceChildren();
 
@@ -120,11 +121,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         formularioTurno.reset();
+        marcarFecha();
         renderizarTurnosDelDia();
 
         modalAgenda.hidden = false;
         nombrePaciente.focus();
     }
+
+    // Muestra en el formulario la fecha del turno
+    function marcarFecha() {
+        const campoFecha = document.getElementById("fechaEvento");
+
+        if (campoFecha) {
+            campoFecha.value = fechaElegida;
+        }
+    }
+
+    // Para el botón "+ Agregar evento" y el campo Fecha del formulario
+    window.abrirModalMedico = abrirModal;
 
     function cerrarVentana() {
         modalAgenda.hidden = true;
@@ -186,10 +200,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function etiquetaTipo(tipo) {
         const etiquetas = {
+            "turno": "Turno médico",
+            "estudio": "Estudio médico",
+            "terapia": "Terapia",
+            "medicacion": "Medicación",
             "primera-consulta": "Primera consulta",
             "sesion": "Sesión",
             "seguimiento": "Seguimiento",
-            "control": "Control"
+            "control": "Control / seguimiento"
         };
 
         return etiquetas[tipo] || tipo;
@@ -239,7 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const tipo = tipoTurno.value;
 
         if (!paciente || !hora || !tipo) {
-            alert("Completá el paciente, la hora y el tipo de turno.");
+            alert("Completá el nombre del evento, la hora y el tipo de evento.");
             return;
         }
 
@@ -264,6 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizarCalendario();
         renderizarTurnosDelDia();
         formularioTurno.reset();
+        marcarFecha();
     });
 
     renderizarCalendario();
