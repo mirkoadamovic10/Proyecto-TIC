@@ -142,7 +142,13 @@ if (botonAtrasPerfil) {
 /* Llega en la dirección: perfil-sensorial.html?nombre=Juan */
 
 const parametros = new URLSearchParams(window.location.search);
-const nombrePersona = (parametros.get("nombre") || "").trim();
+
+// Si no viene un nombre (por ejemplo, desde el menú de perfil), es el propio usuario
+const nombrePersona = (
+    parametros.get("nombre") ||
+    localStorage.getItem("nombreUsuario") ||
+    ""
+).trim();
 const nombrePerfilSensorial = document.getElementById("nombrePerfilSensorial");
 
 if (nombrePerfilSensorial && nombrePersona) {
