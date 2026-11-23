@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerrando sesión - NeuroPassport</title>
+</head>
+
+<body>
+
+    <main>
+        <p>Cerrando sesión...</p>
+    </main>
+
+    <script>
+        /* Borra solo los datos de la sesión (quién está conectado).
+           Lo que cada usuario cargó en la app (grupos, perfiles, turnos) se mantiene. */
+        [
+            "usuario",
+            "usuarioLogueado",
+            "idUsuario",
+            "nombreUsuario",
+            "emailUsuario",
+            "token",
+            "fotoPerfil",
+            "tipoInstitucion",
+            "tipoProfesional"
+        ].forEach(function (clave) {
+            localStorage.removeItem(clave);
+        });
+
+        sessionStorage.clear();
+
+        window.location.replace("./index.html");
+    </script>
+
+</body>
+
+</html>

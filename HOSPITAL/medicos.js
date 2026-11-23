@@ -332,7 +332,7 @@ mostrarSolicitudes();
         "informacion-personal.html"
     ];
 
-    const RUTA_CERRAR_SESION = "../index.html";
+    const RUTA_CERRAR_SESION = "../cerrar-sesion.html";
 
     const fotoUsuario = localStorage.getItem("fotoPerfil");
     const perfilMedicos = document.getElementById("botonPerfilMedicos");

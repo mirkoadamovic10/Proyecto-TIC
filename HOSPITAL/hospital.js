@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "informacion-personal.html"
     ];
 
-    const RUTA_CERRAR_SESION = "../index.html";
+    const RUTA_CERRAR_SESION = "../cerrar-sesion.html";
 
     const nombreUsuario = localStorage.getItem("nombreUsuario");
     const fotoUsuario = localStorage.getItem("fotoPerfil");
