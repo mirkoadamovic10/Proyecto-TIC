@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroPassport - Agenda compartida</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #F1FAEE !important;
+            font-family: "Inter", Arial, sans-serif;
+        }
+
+        /* ============================= */
+        /* BARRA SUPERIOR                */
+        /* ============================= */
+
+        body > header.acomp-barra {
+            position: relative;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            min-height: 58px;
+            margin: 0;
+            padding: 8px 20px !important;
+            box-sizing: border-box;
+            background: #FFFFFF !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .acomp-atras {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: inline-flex !important;
+            align-items: center;
+            gap: 5px;
+            margin: 0;
+            padding: 5px 7px !important;
+            background: #B7E4C7 !important;
+            color: #2F7185 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: inherit;
+            font-size: 11px !important;
+            font-weight: 500 !important;
+            cursor: pointer;
+        }
+
+        .acomp-atras:not(:disabled):hover {
+            transform: translateY(calc(-50% - 2px));
+        }
+
+        .acomp-titulo {
+            text-align: center;
+        }
+
+        .acomp-titulo h1 {
+            margin: 0 !important;
+            color: #2F7185 !important;
+            font-size: 19px !important;
+            font-weight: 700 !important;
+            letter-spacing: normal !important;
+            line-height: 1.2 !important;
+        }
+
+        .acomp-titulo p {
+            margin: 2px 0 0;
+            color: #2F7185;
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        /* ============================= */
+        /* CALENDARIO                    */
+        /* ============================= */
+
+        main.acomp-principal {
+            display: block;
+            padding: 0 20px 30px !important;
+            box-sizing: border-box;
+            text-align: left !important;
+        }
+
+        .acomp-calendario {
+            width: 100%;
+            max-width: 652px;
+            margin: 0 auto;
+            padding: 26px 48px 26px;
+            box-sizing: border-box;
+            background: #CEE9DA;
+            border: 1px solid #BCD6C7;
+            border-radius: 12px;
+        }
+
+        .acomp-meses {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 26px;
+            margin: 0 0 25px;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .acomp-meses h2 {
+            min-width: 138px;
+            margin: 0;
+            color: #2F7185 !important;
+            font-size: 17px !important;
+            font-weight: 600 !important;
+            letter-spacing: normal !important;
+            text-align: center;
+        }
+
+        .acomp-flecha {
+            width: 35px;
+            height: 35px;
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FFFFFF !important;
+            color: #000000 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: inherit;
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            cursor: pointer;
+        }
+
+        .acomp-semana {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            margin: 0 0 27px;
+            padding: 8px 0;
+            list-style: none;
+            background: #D9D9D9;
+        }
+
+        .acomp-semana li {
+            margin: 0;
+            padding: 0;
+            color: #000000;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .acomp-semana abbr {
+            text-decoration: none;
+            cursor: default;
+        }
+
+        .acomp-dias {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 11px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .acomp-dia {
+            aspect-ratio: 1 / 1;
+            margin: 0;
+            padding: 6px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            overflow: hidden;
+            background: #FFFFFF;
+            border: 1px solid #D6D6D6;
+            color: #000000;
+            font-size: 11px;
+        }
+
+        .acomp-dia-vacio {
+            background: #FFFFFF;
+        }
+
+        .acomp-dia-oculto {
+            visibility: hidden;
+        }
+
+        .acomp-dia-hoy {
+            outline: 2px solid #2F7185;
+            outline-offset: -2px;
+        }
+
+        .acomp-numero {
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .acomp-evento {
+            display: block;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 9px;
+            line-height: 1.2;
+            color: #000000;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ============================= */
+        /* REFERENCIAS DE COLORES        */
+        /* ============================= */
+
+        .acomp-referencias {
+            max-width: 660px;
+            margin: 10px auto 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+        }
+
+        .acomp-referencias li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+            color: #8A8A8A;
+            font-size: 11px;
+        }
+
+        .acomp-punto {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .tipo-turno { background: #CDB4DB; }
+        .tipo-estudio { background: #CEE9DA; }
+        .tipo-terapia { background: #E5B5D4; }
+        .tipo-medicacion { background: #F7A3A0; }
+        .tipo-control { background: #6E6E6E; color: #FFFFFF; }
+
+        /* ============================= */
+        /* RESPONSIVE                    */
+        /* ============================= */
+
+        @media (max-width: 600px) {
+            body > header.acomp-barra {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .acomp-atras {
+                position: static;
+                transform: none;
+                align-self: flex-start;
+            }
+
+            .acomp-atras:not(:disabled):hover {
+                transform: translateY(-2px);
+            }
+
+            .acomp-calendario {
+                padding: 18px 10px;
+            }
+
+            .acomp-dias {
+                gap: 5px;
+            }
+
+            .acomp-semana li {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="acomp-barra">
+
+        <button type="button" id="botonAtrasAgenda" class="acomp-atras">
+            <span aria-hidden="true">⟵</span> Volver
+        </button>
+
+        <hgroup class="acomp-titulo">
+            <h1>Agenda</h1>
+            <p>Organizá tus turnos, estudios, terapias y controles medicos</p>
+        </hgroup>
+
+    </header>
+
+    <main class="acomp-principal">
+
+        <section class="acomp-calendario" aria-labelledby="mesActualCompartida">
+
+            <header class="acomp-meses">
+
+                <button type="button" id="mesAnteriorCompartida" class="acomp-flecha" aria-label="Mes anterior">&lt;</button>
+
+                <h2 id="mesActualCompartida" aria-live="polite"></h2>
+
+                <button type="button" id="mesSiguienteCompartida" class="acomp-flecha" aria-label="Mes siguiente">&gt;</button>
+
+            </header>
+
+            <ol class="acomp-semana" aria-label="Días de la semana">
+                <li><abbr title="Lunes">Lun</abbr></li>
+                <li><abbr title="Martes">Mar</abbr></li>
+                <li><abbr title="Miércoles">Mie</abbr></li>
+                <li><abbr title="Jueves">Jue</abbr></li>
+                <li><abbr title="Viernes">Vie</abbr></li>
+                <li><abbr title="Sábado">Sáb</abbr></li>
+                <li><abbr title="Domingo">Dom</abbr></li>
+            </ol>
+
+            <ol id="diasCompartida" class="acomp-dias" aria-label="Días del mes"></ol>
+
+        </section>
+
+        <ul class="acomp-referencias" aria-label="Referencias de colores">
+            <li><span class="acomp-punto tipo-turno" aria-hidden="true"></span>Turno médico</li>
+            <li><span class="acomp-punto tipo-estudio" aria-hidden="true"></span>Estudio médico</li>
+            <li><span class="acomp-punto tipo-terapia" aria-hidden="true"></span>Terapia</li>
+            <li><span class="acomp-punto tipo-medicacion" aria-hidden="true"></span>Medicación</li>
+            <li><span class="acomp-punto tipo-control" aria-hidden="true"></span>Control / seguimiento</li>
+        </ul>
+
+    </main>
+
+    <script src="./agenda-compartida.js"></script>
+
+</body>
+
+</html>
