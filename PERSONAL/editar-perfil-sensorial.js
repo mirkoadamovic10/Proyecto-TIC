@@ -86,9 +86,81 @@ if (guardado) {
 }
 
 
+/* ---------- API: /api/perfil-sensorial ---------- */
+
+const API_PERFIL = "http://localhost:3000/api/perfil-sensorial";
+const idUsuarioActual = Number(localStorage.getItem("idUsuario")) || null;
+
+// Perfil que ya está en el servidor (para no pisar las adaptaciones del pasaporte)
+let perfilServidor = null;
+
+async function cargarDesdeServidor() {
+    if (!idUsuarioActual) return;
+
+    try {
+        const respuesta = await fetch(`${API_PERFIL}/${idUsuarioActual}`);
+
+        if (!respuesta.ok) return;
+
+        perfilServidor = await respuesta.json();
+
+        // El backend usa "contactoFisico"; la pantalla usa "contacto"
+        const datos = Object.assign({}, perfilServidor, {
+            contacto: perfilServidor.contacto || perfilServidor.contactoFisico || ""
+        });
+
+        CAMPOS.forEach(function (campo) {
+            const select = document.getElementById("nivel-" + campo);
+
+            if (datos[campo]) {
+                select.value = datos[campo];
+            }
+
+            actualizarColorSelect(select);
+        });
+
+        const elegidas = Array.isArray(datos.estrategias)
+            ? datos.estrategias
+            : String(datos.ayudasSobrecarga || "").split(", ").filter(Boolean);
+
+        botonesEstrategia.forEach(function (boton) {
+            boton.setAttribute("aria-pressed", String(elegidas.includes(boton.textContent.trim())));
+        });
+
+        if (datos.observaciones) {
+            observacionesPerfil.value = datos.observaciones;
+        }
+    } catch (error) {
+        console.error("No se pudo cargar el perfil sensorial del servidor:", error);
+    }
+}
+
+async function guardarEnServidor(datos) {
+    if (!idUsuarioActual) return;
+
+    const cuerpo = Object.assign({}, perfilServidor || {}, datos, {
+        idUsuario: idUsuarioActual,
+        contactoFisico: datos.contacto,
+        ayudasSobrecarga: datos.estrategias.join(", ")
+    });
+
+    const respuesta = await fetch(API_PERFIL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cuerpo)
+    });
+
+    if (!respuesta.ok) {
+        throw new Error("No se pudo guardar el perfil sensorial en el servidor.");
+    }
+}
+
+cargarDesdeServidor();
+
+
 /* ---------- GUARDAR ---------- */
 
-formPerfilSensorial.addEventListener("submit", function (evento) {
+formPerfilSensorial.addEventListener("submit", async function (evento) {
     evento.preventDefault();
 
     const datos = {
@@ -110,6 +182,13 @@ formPerfilSensorial.addEventListener("submit", function (evento) {
     const perfiles = leerPerfiles();
     perfiles[clave] = datos;
     localStorage.setItem("perfilesSensoriales", JSON.stringify(perfiles));
+
+    try {
+        await guardarEnServidor(datos);
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
 
     // Muestra cómo quedó el perfil
     window.location.href = "./perfil-sensorial.html" + (nombre ? "?nombre=" + encodeURIComponent(nombre) : "");

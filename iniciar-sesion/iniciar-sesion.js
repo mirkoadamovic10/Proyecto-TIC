@@ -6,6 +6,47 @@ const inputPassword = document.getElementById("password");
 
 let usuarios = [];
 
+// ==========================================
+// BUSCAR EL USUARIO POR EMAIL
+// El backend no devuelve el usuario al registrarse ni al iniciar sesión,
+// así que se busca con GET /api/usuarios/:id (los id van 1, 2, 3...)
+// ==========================================
+
+async function buscarUsuarioPorEmail(emailBuscado) {
+    for (let id = 1; id <= 1000; id++) {
+        const respuesta = await fetch(`http://localhost:3000/api/usuarios/${id}`);
+
+        if (!respuesta.ok) {
+            return null; // ya no hay más usuarios
+        }
+
+        const usuario = await respuesta.json();
+
+        if (usuario.email && usuario.email.toLowerCase() === emailBuscado.toLowerCase()) {
+            return usuario;
+        }
+    }
+
+    return null;
+}
+
+// Guarda los datos de la sesión para que los usen las demás pantallas
+function guardarSesion(usuario) {
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+    localStorage.setItem("idUsuario", usuario.idUsuario);
+    localStorage.setItem("nombreUsuario", usuario.nombre || "");
+    localStorage.setItem("emailUsuario", usuario.email || "");
+    localStorage.setItem("rolUsuario", usuario.rol || "");
+
+    if (usuario.tipoInstitucion) {
+        localStorage.setItem("tipoInstitucion", usuario.tipoInstitucion);
+    }
+
+    if (usuario.tipoProfesional) {
+        localStorage.setItem("tipoProfesional", usuario.tipoProfesional);
+    }
+}
+
 formulario?.addEventListener("submit", (evento) => {
 
     evento.preventDefault();
@@ -38,28 +79,20 @@ formulario?.addEventListener("submit", (evento) => {
         }
         return response.json();
     })
-    .then(data => {
+    .then(async data => {
         console.log('Usuario autenticado con éxito:', data);
         
         usuarios = data;
 
-        if (data.usuario) {
-            localStorage.setItem("usuario", JSON.stringify(data.usuario));
+        // Si el backend no manda el usuario, se busca por email
+        const usuarioLogueado = data.usuario || await buscarUsuarioPorEmail(email);
 
+        if (usuarioLogueado) {
             // Guardar el ID del usuario para las demás APIs
-            localStorage.setItem("idUsuario", data.usuario.idUsuario);
-            
-            if (data.usuario.nombre) {
-                localStorage.setItem("nombreUsuario", data.usuario.nombre);
-            }
-            if (data.usuario.email) {
-                localStorage.setItem("emailUsuario", data.usuario.email);
-            }
+            guardarSesion(usuarioLogueado);
         }
 
         alert(data.mensaje || "¡Bienvenido/a!");
-
-        const usuarioLogueado = data.usuario;
 
         if (usuarioLogueado && usuarioLogueado.rol) {
             const rol = usuarioLogueado.rol;
@@ -70,7 +103,7 @@ formulario?.addEventListener("submit", (evento) => {
             }
 
             if (rol === "familia") {
-                window.location.href = "../FAMILIA/familia.html";
+                window.location.href = "../PERSONAL/familia.html";
                 return;
             }
 

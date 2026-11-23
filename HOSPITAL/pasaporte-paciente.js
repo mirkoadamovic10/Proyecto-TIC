@@ -264,3 +264,34 @@ guardarPasaporte.addEventListener(
 
 
 mostrarInformacion();
+
+
+// ==========================================
+// DATOS DEL PACIENTE DESDE EL SERVIDOR
+// GET /api/hospitales/:idHospital/pacientes
+// ==========================================
+
+(async function actualizarPacienteDesdeServidor() {
+    const idUsuario = Number(localStorage.getItem("idUsuario")) || null;
+    const idHospital = idUsuario ? Number(localStorage.getItem("idHospital_" + idUsuario)) : null;
+
+    if (!paciente || !idHospital) return;
+
+    try {
+        const respuesta = await fetch(`http://localhost:3000/api/hospitales/${idHospital}/pacientes`);
+
+        if (!respuesta.ok) return;
+
+        const lista = await respuesta.json();
+        const encontrado = lista.find(function (usuario) {
+            return usuario.idUsuario === paciente.idUsuario ||
+                (usuario.email || "").toLowerCase() === (paciente.email || "").toLowerCase();
+        });
+
+        if (encontrado) {
+            nombrePaciente.textContent = `Pasaporte de ${encontrado.nombre || encontrado.email}`;
+        }
+    } catch (error) {
+        console.error("No se pudieron cargar los datos del paciente:", error);
+    }
+})();

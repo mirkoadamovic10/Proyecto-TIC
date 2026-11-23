@@ -1,3 +1,47 @@
+// ==========================================
+// HOSPITAL DEL USUARIO: POST /api/hospitales
+// Se crea una sola vez por usuario y se guarda su idHospital
+// ==========================================
+
+async function obtenerIdHospital() {
+    const idUsuario = Number(localStorage.getItem("idUsuario")) || null;
+
+    if (!idUsuario) {
+        return null;
+    }
+
+    const clave = "idHospital_" + idUsuario;
+    const guardado = Number(localStorage.getItem(clave));
+
+    if (guardado) {
+        return guardado;
+    }
+
+    try {
+        const respuesta = await fetch("http://localhost:3000/api/hospitales", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                nombre: localStorage.getItem("nombreUsuario") || "Hospital"
+            })
+        });
+
+        if (!respuesta.ok) {
+            const error = await respuesta.json().catch(() => ({}));
+            console.error("No se pudo crear el hospital:", error.error || respuesta.status);
+            return null;
+        }
+
+        const hospital = await respuesta.json();
+        localStorage.setItem(clave, hospital.idHospital);
+        return hospital.idHospital;
+    } catch (error) {
+        console.error("No se pudo conectar con el servidor:", error);
+        return null;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     // RUTAS POSIBLES: prueba una por una y va a la primera que exista.
     // Cuando sepas la ruta exacta, dejá solo esa en cada lista.
@@ -27,6 +71,20 @@ document.addEventListener("DOMContentLoaded", function () {
     if (nombreUsuario && saludoHospital) {
         saludoHospital.textContent = `¡Hola ${nombreUsuario}! Bienvenido a NeuroPassport`;
     }
+
+    // Crea (o recupera) el hospital y muestra su código para que se vinculen los médicos
+    obtenerIdHospital().then(function (idHospital) {
+        const titulo = saludoHospital || document.querySelector("main h1");
+
+        if (!idHospital || !titulo) return;
+
+        const codigo = document.createElement("p");
+        codigo.className = "codigo-hospital";
+        codigo.textContent = "Código del hospital: " + idHospital;
+        codigo.style.textAlign = "center";
+        codigo.style.margin = "6px 0 0";
+        titulo.insertAdjacentElement("afterend", codigo);
+    });
 
     if (fotoUsuario && perfilHospital) {
         perfilHospital.style.backgroundImage = `url("${fotoUsuario}")`;

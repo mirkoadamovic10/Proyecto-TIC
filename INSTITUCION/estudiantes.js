@@ -1,3 +1,47 @@
+// ==========================================
+// INSTITUCIÓN DEL USUARIO: POST /api/instituciones
+// Se crea una sola vez por usuario y se guarda su idInstitucion
+// ==========================================
+
+async function obtenerIdInstitucion() {
+    const idUsuario = Number(localStorage.getItem("idUsuario")) || null;
+
+    if (!idUsuario) {
+        return null;
+    }
+
+    const clave = "idInstitucion_" + idUsuario;
+    const guardado = Number(localStorage.getItem(clave));
+
+    if (guardado) {
+        return guardado;
+    }
+
+    try {
+        const respuesta = await fetch("http://localhost:3000/api/instituciones", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                nombre: localStorage.getItem("nombreUsuario") || "Institución",
+                tipo: localStorage.getItem("tipoInstitucion") || "escuela"
+            })
+        });
+
+        if (!respuesta.ok) {
+            console.error("No se pudo crear la institución:", respuesta.status);
+            return null;
+        }
+
+        const institucion = await respuesta.json();
+        localStorage.setItem(clave, institucion.idInstitucion);
+        return institucion.idInstitucion;
+    } catch (error) {
+        console.error("No se pudo conectar con el servidor:", error);
+        return null;
+    }
+}
+
 
 const botonLinkearEstudiante = document.getElementById("botonLinkearEstudiante");
 const ventanaEstudiante = document.getElementById("ventanaEstudiante");
@@ -305,6 +349,8 @@ function aceptarSolicitudEstudiante(id) {
 
     solicitud.estado = "aceptada";
 
+    vincularEstudianteEnServidor(solicitud);
+
     estudiantes.push({
         id: solicitud.id,
         nombre: solicitud.nombre,
@@ -316,6 +362,76 @@ function aceptarSolicitudEstudiante(id) {
     guardarEstudiantes();
     mostrarEstudiantes();
     mostrarSolicitudesEstudiantes();
+}
+
+// POST /api/instituciones/vincular-estudiante
+// El "código" del estudiante es su número de usuario en NeuroPassport
+async function vincularEstudianteEnServidor(solicitud) {
+    const idInstitucion = await obtenerIdInstitucion();
+    const idUsuario = Number(String(solicitud.codigo).replace(/\D/g, ""));
+
+    if (!idInstitucion || !idUsuario) {
+        console.warn("No se pudo vincular en el servidor: falta la institución o el código del estudiante.");
+        return;
+    }
+
+    try {
+        const respuesta = await fetch("http://localhost:3000/api/instituciones/vincular-estudiante", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idInstitucion: idInstitucion,
+                idUsuario: idUsuario,
+                dni: String(solicitud.dni),
+                codigoEstudiante: String(solicitud.codigo),
+                nombre: solicitud.nombre
+            })
+        });
+
+        if (!respuesta.ok) {
+            const error = await respuesta.json().catch(() => ({}));
+            alert(error.error || "No se pudo vincular al estudiante en el servidor.");
+        }
+    } catch (error) {
+        console.error("No se pudo conectar con el servidor:", error);
+    }
+}
+
+// GET /api/instituciones/:idInstitucion/estudiantes
+async function cargarEstudiantesDelServidor() {
+    const idInstitucion = await obtenerIdInstitucion();
+
+    if (!idInstitucion) return;
+
+    try {
+        const respuesta = await fetch(`http://localhost:3000/api/instituciones/${idInstitucion}/estudiantes`);
+
+        if (!respuesta.ok) return;
+
+        const vinculos = await respuesta.json();
+
+        vinculos.forEach(function (vinculo) {
+            const yaEsta = estudiantes.some(function (estudiante) {
+                return String(estudiante.codigo) === String(vinculo.codigoEstudiante) ||
+                    String(estudiante.dni) === String(vinculo.dni);
+            });
+
+            if (!yaEsta) {
+                estudiantes.push({
+                    id: vinculo.idVinculo,
+                    nombre: vinculo.nombre || "Estudiante",
+                    dni: vinculo.dni,
+                    codigo: vinculo.codigoEstudiante,
+                    foto: ""
+                });
+            }
+        });
+
+        guardarEstudiantes();
+        mostrarEstudiantes();
+    } catch (error) {
+        console.error("No se pudieron cargar los estudiantes del servidor:", error);
+    }
 }
 
 // Rechazar solicitud.
@@ -337,3 +453,4 @@ function rechazarSolicitudEstudiante(id) {
 // Inicializar pantalla.
 mostrarEstudiantes();
 mostrarSolicitudesEstudiantes();
+cargarEstudiantesDelServidor();

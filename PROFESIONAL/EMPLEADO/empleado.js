@@ -87,89 +87,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ==========================
     // MOSTRAR PREFERENCIAS
+    // GET /api/preferencias-trabajo/:idUsuario
     // ==========================
 
-    const preferenciasGuardadas =
-        localStorage.getItem("preferenciasTrabajo");
+    const textos = {
+        tranquilo: "Ambiente tranquilo",
+        dinamico: "Ambiente dinámico",
+        indiferente: "Me es indiferente",
+        solo: "Prefiero trabajar solo/a",
+        equipo: "Prefiero trabajar en equipo",
+        ambos: "Me adapto a ambas",
+        escrita: "Comunicación escrita",
+        oral: "Comunicación oral",
+        ambas: "Comunicación escrita y oral"
+    };
 
+    function mostrarPreferencias(preferencias) {
+        const poner = (id, valor) => {
+            const elemento = document.getElementById(id);
 
-    if (preferenciasGuardadas) {
+            if (elemento && valor) {
+                elemento.textContent = valor;
+            }
+        };
 
-        const preferencias =
-            JSON.parse(preferenciasGuardadas);
-
-
-        const comunicacion =
-            document.getElementById("comunicacion");
-
-        const ambiente =
-            document.getElementById("ambiente");
-
-        const organizacion =
-            document.getElementById("organizacion");
-
-        const adaptaciones =
-            document.getElementById("adaptaciones");
-
-        const otrasPreferencias =
-            document.getElementById("otrasPreferencias");
-
-
-        if (
-            comunicacion &&
-            preferencias.comunicacion
-        ) {
-
-            comunicacion.textContent =
-                preferencias.comunicacion;
-
-        }
-
-
-        if (
-            ambiente &&
-            preferencias.ambiente
-        ) {
-
-            ambiente.textContent =
-                preferencias.ambiente;
-
-        }
-
-
-        if (
-            organizacion &&
-            preferencias.organizacion
-        ) {
-
-            organizacion.textContent =
-                preferencias.organizacion;
-
-        }
-
-
-        if (
-            adaptaciones &&
-            preferencias.adaptaciones
-        ) {
-
-            adaptaciones.textContent =
-                preferencias.adaptaciones;
-
-        }
-
-
-        if (
-            otrasPreferencias &&
-            preferencias.otrasPreferencias
-        ) {
-
-            otrasPreferencias.textContent =
-                preferencias.otrasPreferencias;
-
-        }
-
+        poner("comunicacion", textos[preferencias.comunicacion] || preferencias.formaComunicacion);
+        poner("ambiente", textos[preferencias.ambienteTrabajoOriginal] || preferencias.ambienteTrabajo);
+        poner("organizacion", textos[preferencias.trabajoEquipo] || preferencias.formaTrabajo);
+        poner("adaptaciones", preferencias.adaptaciones);
+        poner("otrasPreferencias", preferencias.otrasPreferencias);
     }
+
+    async function cargarPreferencias() {
+        const idUsuario = Number(localStorage.getItem("idUsuario")) || null;
+
+        if (idUsuario) {
+            try {
+                const respuesta = await fetch(`http://localhost:3000/api/preferencias-trabajo/${idUsuario}`);
+
+                if (respuesta.ok) {
+                    const datos = await respuesta.json();
+                    mostrarPreferencias(datos);
+                    localStorage.setItem("preferenciasTrabajo", JSON.stringify(datos));
+                    return;
+                }
+            } catch (error) {
+                console.error("No se pudieron cargar las preferencias del servidor:", error);
+            }
+        }
+
+        try {
+            const guardadas = JSON.parse(localStorage.getItem("preferenciasTrabajo"));
+            if (guardadas) mostrarPreferencias(guardadas);
+        } catch (error) {
+            // sin datos guardados
+        }
+    }
+
+    cargarPreferencias();
 
 });
 

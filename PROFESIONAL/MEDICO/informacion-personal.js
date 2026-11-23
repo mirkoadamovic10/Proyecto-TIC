@@ -1,5 +1,6 @@
-```javascript
 document.addEventListener("DOMContentLoaded", () => {
+    const API_URL = "http://localhost:3000/api/info-personal";
+
     const formulario = document.getElementById("formularioInfo");
     const botonEditar = document.getElementById("botonEditar");
     const mensaje = document.getElementById("mensaje");
@@ -20,7 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
         "celularPadre"
     ];
 
+    // Respaldo local por si el servidor no está levantado
     const CLAVE = "informacionPersonalMedico";
+
+    function obtenerIdUsuario() {
+        const id = localStorage.getItem("idUsuario");
+
+        if (id) {
+            return Number(id);
+        }
+
+        try {
+            const usuario = JSON.parse(localStorage.getItem("usuario"));
+            return usuario && usuario.idUsuario ? Number(usuario.idUsuario) : null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    const idUsuario = obtenerIdUsuario();
 
     // Habilita o deshabilita los campos del formulario.
     function establecerEdicion(habilitado) {
@@ -41,70 +60,107 @@ document.addEventListener("DOMContentLoaded", () => {
         botonEditar.style.opacity = habilitado ? "0.6" : "1";
     }
 
-    // Carga la información guardada.
-    function cargarInformacion() {
-        const datosGuardados = localStorage.getItem(CLAVE);
+    function completarFormulario(datos) {
+        campos.forEach((id) => {
+            const campo = document.getElementById(id);
 
-        if (!datosGuardados) {
-            establecerEdicion(true);
-            return;
-        }
-
-        try {
-            const datos = JSON.parse(datosGuardados);
-
-            campos.forEach((id) => {
-                const campo = document.getElementById(id);
-
-                if (campo && datos[id] !== undefined) {
-                    campo.value = datos[id];
-                }
-            });
-
-            establecerEdicion(false);
-            mensaje.textContent = "Información cargada correctamente.";
-            mensaje.style.color = "#397D8C";
-        } catch (error) {
-            console.error("No se pudo cargar la información:", error);
-            establecerEdicion(true);
-        }
+            if (campo && datos[id] !== undefined && datos[id] !== null) {
+                campo.value = datos[id];
+            }
+        });
     }
 
-    // Guarda los datos del formulario.
-    formulario.addEventListener("submit", (evento) => {
+    function mostrarMensaje(texto, error) {
+        mensaje.textContent = texto;
+        mensaje.style.color = error ? "#B00020" : "#397D8C";
+    }
+
+    // GET /api/info-personal/:idUsuario
+    async function cargarInformacion() {
+        if (idUsuario) {
+            try {
+                const respuesta = await fetch(`${API_URL}/${idUsuario}`);
+
+                if (respuesta.ok) {
+                    const datos = await respuesta.json();
+                    completarFormulario(datos);
+                    localStorage.setItem(CLAVE, JSON.stringify(datos));
+                    establecerEdicion(false);
+                    mostrarMensaje("Información cargada correctamente.");
+                    return;
+                }
+            } catch (error) {
+                console.error("No se pudo conectar con el servidor:", error);
+            }
+        }
+
+        // Si no hay datos en el servidor, se usa la copia local
+        try {
+            const guardados = JSON.parse(localStorage.getItem(CLAVE));
+
+            if (guardados) {
+                completarFormulario(guardados);
+                establecerEdicion(false);
+                mostrarMensaje("Información cargada correctamente.");
+                return;
+            }
+        } catch (error) {
+            console.error("No se pudo cargar la información:", error);
+        }
+
+        establecerEdicion(true);
+    }
+
+    // POST /api/info-personal
+    formulario.addEventListener("submit", async (evento) => {
         evento.preventDefault();
 
-        const datos = {};
+        const datos = { idUsuario: idUsuario };
 
         campos.forEach((id) => {
             const campo = document.getElementById(id);
 
             if (campo) {
-                datos[id] = campo.value.trim();
+                datos[id] = id === "edad"
+                    ? (campo.value ? Number(campo.value) : 0)
+                    : campo.value.trim();
             }
         });
 
+        localStorage.setItem(CLAVE, JSON.stringify(datos));
+
+        if (!idUsuario) {
+            establecerEdicion(false);
+            mostrarMensaje("Se guardó en este navegador (no hay sesión iniciada).");
+            return;
+        }
+
         try {
-            localStorage.setItem(CLAVE, JSON.stringify(datos));
+            const respuesta = await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datos)
+            });
+
+            const resultado = await respuesta.json().catch(() => ({}));
+
+            if (!respuesta.ok) {
+                throw new Error(resultado.error || "No se pudo guardar la información.");
+            }
 
             establecerEdicion(false);
-            mensaje.textContent = "¡Información guardada correctamente!";
-            mensaje.style.color = "#397D8C";
+            mostrarMensaje("¡Información guardada correctamente!");
         } catch (error) {
             console.error("No se pudo guardar la información:", error);
-            mensaje.textContent = "No se pudo guardar la información.";
-            mensaje.style.color = "#B00020";
+            mostrarMensaje(error.message || "No se pudo guardar la información.", true);
         }
     });
 
     // Permite volver a editar los datos.
     botonEditar.addEventListener("click", () => {
         establecerEdicion(true);
-
-        mensaje.textContent = "Podés editar tu información.";
-        mensaje.style.color = "#397D8C";
+        mostrarMensaje("Podés editar tu información.");
     });
 
     cargarInformacion();
 });
-```

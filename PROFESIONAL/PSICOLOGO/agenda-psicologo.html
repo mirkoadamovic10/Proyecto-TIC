@@ -238,6 +238,18 @@
             border-color: #2F7185 !important;
         }
 
+        /* Día con alerta pendiente: puntito rojo al lado del número */
+        .agd-dias > .con-alerta .numero-dia::after {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            margin-left: 4px;
+            vertical-align: middle;
+            background: #E05A5A;
+            border-radius: 50%;
+        }
+
         .agd-dias > .hoy {
             outline: 2px solid #2F7185;
             outline-offset: -2px;
@@ -357,7 +369,8 @@
             inset: 0 !important;
             z-index: 1000 !important;
             display: flex !important;
-            align-items: center !important;
+            overflow-y: auto !important;
+            align-items: flex-start !important;
             justify-content: center !important;
             width: 100% !important;
             height: 100% !important;
@@ -446,7 +459,7 @@
             max-width: 100% !important;
             height: auto !important;
             overflow: visible !important;
-            margin: 0 !important;
+            margin: auto !important;
             padding: 27px 0 22px !important;
             background: #F0F8F2 !important;
             background-image: none !important;

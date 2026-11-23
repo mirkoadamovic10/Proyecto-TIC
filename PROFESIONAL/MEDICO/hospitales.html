@@ -641,7 +641,7 @@
                 });
             }
 
-            formulario.addEventListener("submit", function (evento) {
+            formulario.addEventListener("submit", async function (evento) {
                 evento.preventDefault();
 
                 const codigo = codigoInput.value.trim();
@@ -658,6 +658,31 @@
                 if (existe) {
                     mensaje.textContent = "Este hospital ya está vinculado.";
                     return;
+                }
+
+                // POST /api/hospitales/vincular-medico
+                // El código es el número que ve el hospital en su pantalla de inicio
+                const idHospital = Number(codigo.replace(/\D/g, ""));
+                const idMedico = Number(localStorage.getItem("idUsuario")) || null;
+
+                if (idHospital && idMedico) {
+                    try {
+                        const respuesta = await fetch("http://localhost:3000/api/hospitales/vincular-medico", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ idHospital: idHospital, idMedico: idMedico })
+                        });
+
+                        if (!respuesta.ok) {
+                            const error = await respuesta.json().catch(() => ({}));
+                            mensaje.textContent = error.error === "Hospital o médico no encontrado."
+                                ? "El código no corresponde a ningún hospital."
+                                : (error.error || "No se pudo vincular el hospital.");
+                            return;
+                        }
+                    } catch (error) {
+                        console.error("No se pudo conectar con el servidor:", error);
+                    }
                 }
 
                 hospitales.push({

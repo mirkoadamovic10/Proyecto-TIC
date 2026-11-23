@@ -176,40 +176,73 @@ function leerPerfilSensorial(nombre) {
     }
 }
 
-const perfil = nombrePersona ? leerPerfilSensorial(nombrePersona) : null;
+let perfil = nombrePersona ? leerPerfilSensorial(nombrePersona) : null;
 
-// Niveles de sensibilidad
-document.querySelectorAll("[data-campo]").forEach(function (casilla) {
-    const nivel = perfil && NIVELES[perfil[casilla.dataset.campo]];
+function mostrarPerfil() {
+    // Niveles de sensibilidad
+    document.querySelectorAll("[data-campo]").forEach(function (casilla) {
+        const nivel = perfil && NIVELES[perfil[casilla.dataset.campo]];
 
-    if (nivel) {
-        casilla.textContent = nivel.texto;
-        casilla.className = "psen-nivel " + nivel.clase;
+        if (nivel) {
+            casilla.textContent = nivel.texto;
+            casilla.className = "psen-nivel " + nivel.clase;
+        }
+    });
+
+    // Estrategias
+    const listaEstrategias = document.getElementById("listaEstrategias");
+    const sinEstrategias = document.getElementById("sinEstrategias");
+    const estrategias = perfil && Array.isArray(perfil.estrategias) ? perfil.estrategias : [];
+
+    listaEstrategias.innerHTML = "";
+
+    estrategias.forEach(function (estrategia) {
+        const item = document.createElement("li");
+        const etiqueta = document.createElement("span");
+
+        etiqueta.className = "psen-estrategia";
+        etiqueta.textContent = estrategia;
+
+        item.appendChild(etiqueta);
+        listaEstrategias.appendChild(item);
+    });
+
+    listaEstrategias.hidden = estrategias.length === 0;
+    sinEstrategias.hidden = estrategias.length > 0;
+
+    // Observaciones
+    const textoObservaciones = document.getElementById("textoObservaciones");
+
+    if (perfil && perfil.observaciones) {
+        textoObservaciones.textContent = '"' + perfil.observaciones + '"';
     }
-});
-
-// Estrategias
-const listaEstrategias = document.getElementById("listaEstrategias");
-const sinEstrategias = document.getElementById("sinEstrategias");
-const estrategias = perfil && Array.isArray(perfil.estrategias) ? perfil.estrategias : [];
-
-estrategias.forEach(function (estrategia) {
-    const item = document.createElement("li");
-    const etiqueta = document.createElement("span");
-
-    etiqueta.className = "psen-estrategia";
-    etiqueta.textContent = estrategia;
-
-    item.appendChild(etiqueta);
-    listaEstrategias.appendChild(item);
-});
-
-listaEstrategias.hidden = estrategias.length === 0;
-sinEstrategias.hidden = estrategias.length > 0;
-
-// Observaciones
-const textoObservaciones = document.getElementById("textoObservaciones");
-
-if (perfil && perfil.observaciones) {
-    textoObservaciones.textContent = '"' + perfil.observaciones + '"';
 }
+
+mostrarPerfil();
+
+// Si es el perfil propio, se trae la versión guardada en el servidor (GET /api/perfil-sensorial/:idUsuario)
+(async function () {
+    const idPropio = Number(localStorage.getItem("idUsuario")) || null;
+    const nombrePropio = (localStorage.getItem("nombreUsuario") || "").trim().toLowerCase();
+
+    if (!idPropio || nombrePersona.toLowerCase() !== nombrePropio) return;
+
+    try {
+        const respuesta = await fetch(`http://localhost:3000/api/perfil-sensorial/${idPropio}`);
+
+        if (!respuesta.ok) return;
+
+        const datos = await respuesta.json();
+
+        perfil = Object.assign({}, datos, {
+            contacto: datos.contacto || datos.contactoFisico || "",
+            estrategias: Array.isArray(datos.estrategias)
+                ? datos.estrategias
+                : String(datos.ayudasSobrecarga || "").split(", ").filter(Boolean)
+        });
+
+        mostrarPerfil();
+    } catch (error) {
+        console.error("No se pudo cargar el perfil sensorial del servidor:", error);
+    }
+})();

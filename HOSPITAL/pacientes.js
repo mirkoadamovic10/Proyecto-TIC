@@ -1,3 +1,66 @@
+// ==========================================
+// HOSPITAL DEL USUARIO: POST /api/hospitales
+// Se crea una sola vez por usuario y se guarda su idHospital
+// ==========================================
+
+async function obtenerIdHospital() {
+    const idUsuario = Number(localStorage.getItem("idUsuario")) || null;
+
+    if (!idUsuario) {
+        return null;
+    }
+
+    const clave = "idHospital_" + idUsuario;
+    const guardado = Number(localStorage.getItem(clave));
+
+    if (guardado) {
+        return guardado;
+    }
+
+    try {
+        const respuesta = await fetch("http://localhost:3000/api/hospitales", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                nombre: localStorage.getItem("nombreUsuario") || "Hospital"
+            })
+        });
+
+        if (!respuesta.ok) {
+            const error = await respuesta.json().catch(() => ({}));
+            console.error("No se pudo crear el hospital:", error.error || respuesta.status);
+            return null;
+        }
+
+        const hospital = await respuesta.json();
+        localStorage.setItem(clave, hospital.idHospital);
+        return hospital.idHospital;
+    } catch (error) {
+        console.error("No se pudo conectar con el servidor:", error);
+        return null;
+    }
+}
+
+// Busca un usuario por email con GET /api/usuarios/:id (los id van 1, 2, 3...)
+async function buscarUsuarioPorEmail(emailBuscado) {
+    for (let id = 1; id <= 1000; id++) {
+        const respuesta = await fetch(`http://localhost:3000/api/usuarios/${id}`);
+
+        if (!respuesta.ok) {
+            return null;
+        }
+
+        const usuario = await respuesta.json();
+
+        if (usuario.email && usuario.email.toLowerCase() === emailBuscado.toLowerCase()) {
+            return usuario;
+        }
+    }
+
+    return null;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const botonAgregar = document.getElementById("botonAgregarPaciente");
     const ventana = document.getElementById("ventanaPaciente");
@@ -91,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    formulario.addEventListener("submit", function (evento) {
+    formulario.addEventListener("submit", async function (evento) {
         evento.preventDefault();
 
         const email = emailInput.value.trim();
@@ -110,10 +173,42 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // POST /api/hospitales/vincular-paciente
+        let usuarioPaciente = null;
+
+        try {
+            mensaje.textContent = "Buscando al paciente...";
+            usuarioPaciente = await buscarUsuarioPorEmail(email);
+            const idHospital = await obtenerIdHospital();
+
+            if (usuarioPaciente && idHospital) {
+                const respuesta = await fetch("http://localhost:3000/api/hospitales/vincular-paciente", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        idHospital: idHospital,
+                        idPaciente: usuarioPaciente.idUsuario
+                    })
+                });
+
+                if (!respuesta.ok) {
+                    const error = await respuesta.json().catch(() => ({}));
+                    mensaje.textContent = error.error || "No se pudo vincular al paciente.";
+                    return;
+                }
+            } else if (!usuarioPaciente) {
+                mensaje.textContent = "No hay ningún usuario registrado con ese correo.";
+                return;
+            }
+        } catch (error) {
+            console.error("No se pudo conectar con el servidor:", error);
+        }
+
         pacientes.push({
             id: Date.now(),
+            idUsuario: usuarioPaciente ? usuarioPaciente.idUsuario : null,
             email: email,
-            nombre: "Paciente"
+            nombre: usuarioPaciente ? usuarioPaciente.nombre : "Paciente"
         });
 
         localStorage.setItem("pacientesHospital", JSON.stringify(pacientes));
@@ -124,4 +219,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     mostrarPacientes();
+
+    // GET /api/hospitales/:idHospital/pacientes
+    async function cargarPacientesDelServidor() {
+        const idHospital = await obtenerIdHospital();
+
+        if (!idHospital) return;
+
+        try {
+            const respuesta = await fetch(`http://localhost:3000/api/hospitales/${idHospital}/pacientes`);
+
+            if (!respuesta.ok) return;
+
+            const lista = await respuesta.json();
+
+            pacientes = lista.map(function (usuario) {
+                return {
+                    id: usuario.idUsuario,
+                    idUsuario: usuario.idUsuario,
+                    email: usuario.email,
+                    nombre: usuario.nombre
+                };
+            });
+
+            localStorage.setItem("pacientesHospital", JSON.stringify(pacientes));
+            mostrarPacientes();
+        } catch (error) {
+            console.error("No se pudieron cargar los pacientes del servidor:", error);
+        }
+    }
+
+    cargarPacientesDelServidor();
 });

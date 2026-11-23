@@ -3,7 +3,10 @@ const API_URL = "http://localhost:3000";
 // Obtener el ID del usuario logueado
 const usuarioGuardado = localStorage.getItem("usuario") || localStorage.getItem("usuarioLogueado");
 const usuarioLogueado = usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
-const idUsuario = usuarioLogueado ? usuarioLogueado.idUsuario : 1;
+const idUsuario = Number(
+    localStorage.getItem("idUsuario") ||
+    (usuarioLogueado ? usuarioLogueado.idUsuario : 1)
+);
 
 const tipo = document.body.dataset.tipo;
 const nombre = document.body.dataset.nombre;
@@ -86,10 +89,202 @@ const campos = {
 };
 
 // =========================================================
+// 0. A qué API va cada sección
+// =========================================================
+// - "pasaporte": todo el pasaporte junto  -> /api/pasaportes
+// - "perfil":    un solo objeto por usuario (se agrega la lista adentro)
+// - "lista":     cada elemento es un registro aparte
+
+function hoy() {
+    return new Date().toISOString().slice(0, 10);
+}
+
+const rutasApi = {
+    adaptaciones: {
+        modo: "perfil",
+        url: "/api/perfil-sensorial",
+        clave: "adaptaciones"
+    },
+    preferencias: {
+        modo: "perfil",
+        url: "/api/perfil-educativo",
+        clave: "preferencias",
+        // El backend tiene el campo de texto "preferenciasAprendizaje"
+        texto: function (lista) {
+            return lista.map(function (item) { return item.preferencia; }).filter(Boolean).join(", ");
+        },
+        campoTexto: "preferenciasAprendizaje"
+    },
+    estudios: {
+        modo: "lista",
+        url: "/api/documentos",
+        aBackend: function (item) {
+            return Object.assign({}, item, {
+                tipoDocumento: "estudios",
+                nombreArchivo: item.estudio || "Estudio",
+                fechaCarga: item.fecha || hoy()
+            });
+        },
+        esDeEstaSeccion: function (registro) { return registro.tipoDocumento === "estudios"; }
+    },
+    certificados: {
+        modo: "lista",
+        url: "/api/documentos",
+        aBackend: function (item) {
+            return Object.assign({}, item, {
+                tipoDocumento: "certificados",
+                nombreArchivo: item.certificado || "Certificado",
+                fechaCarga: item.fecha || hoy()
+            });
+        },
+        esDeEstaSeccion: function (registro) { return registro.tipoDocumento === "certificados"; }
+    },
+    terapias: {
+        modo: "lista",
+        url: "/api/terapias",
+        aBackend: function (item) {
+            return Object.assign({}, item, {
+                tipo: item.terapia || "",
+                profesional: item.profesional || "",
+                fecha: hoy()
+            });
+        },
+        desdeBackend: function (registro) {
+            return Object.assign({ terapia: registro.tipo }, registro);
+        }
+    },
+    cirugias: {
+        modo: "lista",
+        url: "/api/historial",
+        aBackend: function (item) {
+            return Object.assign({}, item, {
+                tipoEvento: "cirugia",
+                fecha: item.fecha || hoy(),
+                descripcion: item.cirugia || item.notas || ""
+            });
+        },
+        esDeEstaSeccion: function (registro) { return registro.tipoEvento === "cirugia"; },
+        desdeBackend: function (registro) {
+            return Object.assign({ cirugia: registro.descripcion }, registro);
+        }
+    },
+    objetivos: {
+        modo: "lista",
+        url: "/api/objetivos",
+        aBackend: function (item) {
+            return Object.assign({}, item, {
+                profesional: "",
+                objetivo: item.objetivo || "",
+                estado: "pendiente",
+                progreso: 0
+            });
+        }
+    }
+};
+
+const rutaActual = rutasApi[tipo] || { modo: "pasaporte" };
+
+// Perfil completo (sensorial o educativo) para no pisar los otros datos al guardar
+let perfilCompleto = { idUsuario: idUsuario };
+
+// GET de las secciones que no usan /api/pasaportes
+async function cargarSeccionAparte() {
+    const respuesta = await fetch(`${API_URL}${rutaActual.url}/${encodeURIComponent(idUsuario)}`);
+
+    if (respuesta.status === 404) {
+        pasaporte[tipo] = [];
+        return;
+    }
+
+    if (!respuesta.ok) {
+        throw new Error(`Error HTTP ${respuesta.status}`);
+    }
+
+    const data = await respuesta.json();
+
+    if (rutaActual.modo === "perfil") {
+        perfilCompleto = data || { idUsuario: idUsuario };
+        pasaporte[tipo] = Array.isArray(perfilCompleto[rutaActual.clave]) ? perfilCompleto[rutaActual.clave] : [];
+        return;
+    }
+
+    let registros = Array.isArray(data) ? data : [];
+
+    if (rutaActual.esDeEstaSeccion) {
+        registros = registros.filter(rutaActual.esDeEstaSeccion);
+    }
+
+    if (rutaActual.desdeBackend) {
+        registros = registros.map(rutaActual.desdeBackend);
+    }
+
+    pasaporte[tipo] = registros;
+}
+
+// POST de las secciones que no usan /api/pasaportes
+async function guardarSeccionAparte(item) {
+    let cuerpo;
+
+    if (rutaActual.modo === "perfil") {
+        perfilCompleto.idUsuario = idUsuario;
+        perfilCompleto[rutaActual.clave] = pasaporte[tipo];
+
+        if (rutaActual.campoTexto) {
+            perfilCompleto[rutaActual.campoTexto] = rutaActual.texto(pasaporte[tipo]);
+        }
+
+        cuerpo = perfilCompleto;
+    } else {
+        cuerpo = Object.assign({ idUsuario: idUsuario }, rutaActual.aBackend(item));
+    }
+
+    const respuesta = await fetch(`${API_URL}${rutaActual.url}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(cuerpo)
+    });
+
+    if (!respuesta.ok) {
+        const errorData = await respuesta.json().catch(() => ({}));
+        throw new Error(errorData.error || "Error al guardar.");
+    }
+}
+
+// Copia local por si el servidor no está levantado
+function guardarCopiaLocal() {
+    try {
+        const local = JSON.parse(localStorage.getItem("neuropassport_datos")) || {};
+        local[tipo] = pasaporte[tipo];
+        localStorage.setItem("neuropassport_datos", JSON.stringify(local));
+    } catch (e) {
+        // sin copia local
+    }
+}
+
+// =========================================================
 // 1. GET: Cargar el pasaporte completo desde la API
 // =========================================================
 
 async function cargarPasaporte() {
+    if (rutaActual.modo !== "pasaporte") {
+        try {
+            await cargarSeccionAparte();
+            guardarCopiaLocal();
+        } catch (error) {
+            console.error("No se pudo cargar la sección desde el servidor:", error);
+
+            try {
+                const local = JSON.parse(localStorage.getItem("neuropassport_datos"));
+                pasaporte[tipo] = local && Array.isArray(local[tipo]) ? local[tipo] : [];
+            } catch (e) {
+                pasaporte[tipo] = [];
+            }
+        }
+        return;
+    }
+
     try {
         const respuesta = await fetch(`${API_URL}/api/pasaportes/${encodeURIComponent(idUsuario)}`);
 
@@ -236,7 +431,17 @@ async function guardarItem() {
 
     pasaporte[tipo].push(item);
 
-    await guardarPasaporte();
+    if (rutaActual.modo === "pasaporte") {
+        await guardarPasaporte();
+    } else {
+        try {
+            await guardarSeccionAparte(item);
+        } catch (error) {
+            console.error("Error al guardar en el servidor:", error);
+            alert("No se pudo guardar la información en el servidor.");
+        }
+        guardarCopiaLocal();
+    }
 
     if (formulario) {
         formulario.classList.remove("visible");

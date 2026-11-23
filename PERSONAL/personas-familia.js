@@ -267,6 +267,69 @@ if (listaIntegrantes) {
 }
 
 
+/* ---------- INTEGRANTES DESDE EL SERVIDOR ----------
+   GET /api/grupos-familiares/usuario/:idUsuario y GET /api/usuarios/:id */
+
+(async function cargarIntegrantesDelServidor() {
+    const idUsuario = Number(localStorage.getItem("idUsuario")) || null;
+
+    if (!idUsuario || !listaIntegrantes) return;
+
+    try {
+        const respuesta = await fetch(`http://localhost:3000/api/grupos-familiares/usuario/${idUsuario}`);
+
+        if (!respuesta.ok) return;
+
+        const grupos = await respuesta.json();
+
+        if (!Array.isArray(grupos) || grupos.length === 0) return;
+
+        const grupo = grupos[grupos.length - 1];
+        const otrosIds = grupo.integrantes.filter(function (id) { return id !== idUsuario; });
+
+        const nombres = await Promise.all(otrosIds.map(async function (id) {
+            try {
+                const r = await fetch(`http://localhost:3000/api/usuarios/${id}`);
+                if (!r.ok) return null;
+                const usuario = await r.json();
+                return { nombre: [usuario.nombre, usuario.apellido].filter(Boolean).join(" "), id: id };
+            } catch (error) {
+                return null;
+            }
+        }));
+
+        const integrantes = nombres.filter(Boolean);
+
+        listaIntegrantes.innerHTML = "";
+
+        integrantes.forEach(function (persona) {
+            listaIntegrantes.appendChild(crearPersona(persona.nombre));
+        });
+
+        listaIntegrantes.hidden = integrantes.length === 0;
+
+        if (sinIntegrantes) {
+            sinIntegrantes.hidden = integrantes.length > 0;
+        }
+
+        // Guarda el código real para el pop up "Mostrar código de familia"
+        let actual = {};
+
+        try {
+            actual = JSON.parse(localStorage.getItem("grupoFamiliar")) || {};
+        } catch (error) {
+            actual = {};
+        }
+
+        localStorage.setItem("grupoFamiliar", JSON.stringify(Object.assign(actual, grupo, {
+            codigo: "FAM-" + grupo.idGrupo
+        })));
+    } catch (error) {
+        console.error("No se pudieron cargar los integrantes del servidor:", error);
+    }
+})();
+
+
 /* ---------- POP UP CÓDIGO DE FAMILIA ---------- */
 
 const botonCodigoFamilia = document.getElementById("botonCodigoFamilia");

@@ -1,3 +1,47 @@
+// ==========================================
+// HOSPITAL DEL USUARIO: POST /api/hospitales
+// Se crea una sola vez por usuario y se guarda su idHospital
+// ==========================================
+
+async function obtenerIdHospital() {
+    const idUsuario = Number(localStorage.getItem("idUsuario")) || null;
+
+    if (!idUsuario) {
+        return null;
+    }
+
+    const clave = "idHospital_" + idUsuario;
+    const guardado = Number(localStorage.getItem(clave));
+
+    if (guardado) {
+        return guardado;
+    }
+
+    try {
+        const respuesta = await fetch("http://localhost:3000/api/hospitales", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                nombre: localStorage.getItem("nombreUsuario") || "Hospital"
+            })
+        });
+
+        if (!respuesta.ok) {
+            const error = await respuesta.json().catch(() => ({}));
+            console.error("No se pudo crear el hospital:", error.error || respuesta.status);
+            return null;
+        }
+
+        const hospital = await respuesta.json();
+        localStorage.setItem(clave, hospital.idHospital);
+        return hospital.idHospital;
+    } catch (error) {
+        console.error("No se pudo conectar con el servidor:", error);
+        return null;
+    }
+}
+
 const botonAgregarMedico = document.getElementById("botonAgregarMedico");
 const ventanaMedico = document.getElementById("ventanaMedico");
 const cerrarMedico = document.getElementById("cerrarMedico");
@@ -278,6 +322,8 @@ function aceptarSolicitud(id) {
 
     solicitud.estado = "aceptada";
 
+    vincularMedicoEnServidor(solicitud);
+
     medicos.push({
         id: solicitud.id,
         nombre: solicitud.nombre,
@@ -289,6 +335,33 @@ function aceptarSolicitud(id) {
     guardarDatos();
     mostrarMedicos();
     mostrarSolicitudes();
+}
+
+// POST /api/hospitales/vincular-medico
+// El "código" del médico es su número de usuario en NeuroPassport
+async function vincularMedicoEnServidor(solicitud) {
+    const idHospital = await obtenerIdHospital();
+    const idMedico = Number(String(solicitud.codigo).replace(/\D/g, ""));
+
+    if (!idHospital || !idMedico) {
+        console.warn("No se pudo vincular en el servidor: falta el hospital o el código del médico.");
+        return;
+    }
+
+    try {
+        const respuesta = await fetch("http://localhost:3000/api/hospitales/vincular-medico", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idHospital: idHospital, idMedico: idMedico })
+        });
+
+        if (!respuesta.ok) {
+            const error = await respuesta.json().catch(() => ({}));
+            alert(error.error || "No se pudo vincular al médico en el servidor.");
+        }
+    } catch (error) {
+        console.error("No se pudo conectar con el servidor:", error);
+    }
 }
 
 // Rechazar solicitud.

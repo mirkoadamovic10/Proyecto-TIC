@@ -20,6 +20,102 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let fechaVisible = new Date();
     let fechaElegida = "";
+    let fechasConAlerta = [];
+
+    // =====================================
+    // API: AGENDA Y ALERTAS
+    // POST /api/agenda  · GET /api/agenda/:idUsuario
+    // POST /api/alertas · GET /api/alertas/:idUsuario
+    // =====================================
+
+    const URL_API = "http://localhost:3000/api";
+
+    function idUsuarioActual() {
+        return Number(localStorage.getItem("idUsuario")) || 1;
+    }
+
+    async function guardarTurnoEnServidor(fecha, turno) {
+        const idUsuario = idUsuarioActual();
+
+        try {
+            await fetch(`${URL_API}/agenda`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuario,
+                    fecha,
+                    hora: turno.hora,
+                    tipo: turno.tipo,
+                    descripcion: turno.motivo,
+                    titulo: turno.paciente
+                })
+            });
+
+            await fetch(`${URL_API}/alertas`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUsuario,
+                    tipoAlerta: turno.tipo,
+                    fecha,
+                    estado: "pendiente",
+                    mensaje: `${turno.paciente} a las ${turno.hora}`
+                })
+            });
+
+            fechasConAlerta.push(fecha);
+            renderizarCalendario();
+        } catch (error) {
+            console.error("No se pudo guardar el turno en el servidor:", error);
+        }
+    }
+
+    async function cargarDesdeServidor() {
+        const idUsuario = idUsuarioActual();
+
+        try {
+            const respuestaAgenda = await fetch(`${URL_API}/agenda/${idUsuario}`);
+
+            if (respuestaAgenda.ok) {
+                const eventos = await respuestaAgenda.json();
+                const turnos = obtenerTurnos();
+
+                // Suma los turnos del servidor que no estén en este navegador
+                eventos.forEach((evento) => {
+                    const lista = turnos[evento.fecha] || [];
+                    const yaEsta = lista.some((turno) =>
+                        turno.hora === evento.hora && turno.paciente === evento.titulo
+                    );
+
+                    if (!yaEsta) {
+                        lista.push({
+                            paciente: evento.titulo || "Evento",
+                            hora: evento.hora,
+                            motivo: evento.descripcion || "",
+                            tipo: evento.tipo
+                        });
+                        lista.sort((a, b) => a.hora.localeCompare(b.hora));
+                        turnos[evento.fecha] = lista;
+                    }
+                });
+
+                guardarTurnos(turnos);
+            }
+
+            const respuestaAlertas = await fetch(`${URL_API}/alertas/${idUsuario}`);
+
+            if (respuestaAlertas.ok) {
+                const alertas = await respuestaAlertas.json();
+                fechasConAlerta = alertas
+                    .filter((alerta) => alerta.estado !== "vista")
+                    .map((alerta) => alerta.fecha);
+            }
+
+            renderizarCalendario();
+        } catch (error) {
+            console.error("No se pudo cargar la agenda del servidor:", error);
+        }
+    }
 
     function obtenerTurnos() {
         try {
@@ -83,6 +179,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (claveFecha === claveHoy) {
                 botonDia.classList.add("hoy");
+            }
+
+            if (fechasConAlerta.includes(claveFecha)) {
+                botonDia.classList.add("con-alerta");
             }
 
             const numero = document.createElement("span");
@@ -267,18 +367,21 @@ document.addEventListener("DOMContentLoaded", () => {
             turnos[fechaElegida] = [];
         }
 
-        turnos[fechaElegida].push({
+        const nuevoTurno = {
             paciente,
             hora,
             motivo: motivoConsulta.value.trim(),
             tipo
-        });
+        };
+
+        turnos[fechaElegida].push(nuevoTurno);
 
         turnos[fechaElegida].sort((a, b) =>
             a.hora.localeCompare(b.hora)
         );
 
         guardarTurnos(turnos);
+        guardarTurnoEnServidor(fechaElegida, nuevoTurno);
         renderizarCalendario();
         renderizarTurnosDelDia();
         formularioTurno.reset();
@@ -286,4 +389,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     renderizarCalendario();
+    cargarDesdeServidor();
 });

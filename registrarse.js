@@ -1,6 +1,47 @@
 let usuarios = [];
 
 // ==========================================
+// BUSCAR EL USUARIO POR EMAIL
+// El backend no devuelve el usuario al registrarse ni al iniciar sesión,
+// así que se busca con GET /api/usuarios/:id (los id van 1, 2, 3...)
+// ==========================================
+
+async function buscarUsuarioPorEmail(emailBuscado) {
+    for (let id = 1; id <= 1000; id++) {
+        const respuesta = await fetch(`http://localhost:3000/api/usuarios/${id}`);
+
+        if (!respuesta.ok) {
+            return null; // ya no hay más usuarios
+        }
+
+        const usuario = await respuesta.json();
+
+        if (usuario.email && usuario.email.toLowerCase() === emailBuscado.toLowerCase()) {
+            return usuario;
+        }
+    }
+
+    return null;
+}
+
+// Guarda los datos de la sesión para que los usen las demás pantallas
+function guardarSesion(usuario) {
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+    localStorage.setItem("idUsuario", usuario.idUsuario);
+    localStorage.setItem("nombreUsuario", usuario.nombre || "");
+    localStorage.setItem("emailUsuario", usuario.email || "");
+    localStorage.setItem("rolUsuario", usuario.rol || "");
+
+    if (usuario.tipoInstitucion) {
+        localStorage.setItem("tipoInstitucion", usuario.tipoInstitucion);
+    }
+
+    if (usuario.tipoProfesional) {
+        localStorage.setItem("tipoProfesional", usuario.tipoProfesional);
+    }
+}
+
+// ==========================================
 // ELEMENTOS DEL FORMULARIO
 // ==========================================
 
@@ -108,7 +149,7 @@ botonRegistrarse?.addEventListener("click", function (event) {
         }
         return response.json();
     })
-    .then(data => {
+    .then(async data => {
         console.log('Usuario registrado con éxito:');
         console.log(data);
         
@@ -118,13 +159,20 @@ botonRegistrarse?.addEventListener("click", function (event) {
         localStorage.setItem("nombreUsuario", datosUsuario.nombre);
         localStorage.setItem("emailUsuario", datosUsuario.email);
 
+        // Busca el usuario recién creado para guardar su idUsuario
+        const usuarioCreado = await buscarUsuarioPorEmail(datosUsuario.email);
+
+        if (usuarioCreado) {
+            guardarSesion(usuarioCreado);
+        }
+
         if (rol.value === "personal") {
             window.location.href = "PERSONAL/personal.html";
             return;
         }
 
         if (rol.value === "familia") {
-            window.location.href = "FAMILIA/familia.html";
+            window.location.href = "PERSONAL/familia.html";
             return;
         }
 

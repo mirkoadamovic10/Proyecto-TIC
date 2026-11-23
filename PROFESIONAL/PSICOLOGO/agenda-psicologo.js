@@ -42,6 +42,10 @@ let fechaElegida =
     "";
 
 
+let fechasConAlerta =
+    [];
+
+
 let turnos =
     JSON.parse(
         localStorage.getItem("turnosPsicologo")
@@ -149,6 +153,15 @@ function mostrarCalendario() {
 
         celda.innerHTML =
             `<span class="numero-dia">${dia}</span>`;
+
+
+        if (
+            fechasConAlerta.includes(celda.dataset.fecha)
+        ) {
+
+            celda.classList.add("con-alerta");
+
+        }
 
 
         const turnosDelDia =
@@ -321,6 +334,11 @@ guardarTurno.addEventListener(
         );
 
 
+        guardarTurnoEnServidor(
+            nuevoTurno
+        );
+
+
         cerrarVentana();
 
         mostrarCalendario();
@@ -367,3 +385,143 @@ mesSiguiente.addEventListener(
 
 
 mostrarCalendario();
+
+
+// ==========================================
+// API: AGENDA Y ALERTAS
+// POST /api/agenda  ·  GET /api/agenda/:idUsuario
+// POST /api/alertas ·  GET /api/alertas/:idUsuario
+// ==========================================
+
+const URL_API =
+    "http://localhost:3000/api";
+
+
+function idUsuarioActual() {
+
+    return Number(
+        localStorage.getItem("idUsuario")
+    ) || 1;
+
+}
+
+
+async function guardarTurnoEnServidor(turno) {
+
+    const idUsuario =
+        idUsuarioActual();
+
+    try {
+
+        // Evento de agenda
+        await fetch(`${URL_API}/agenda`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                fecha: turno.fecha,
+                hora: turno.hora,
+                tipo: turno.tipo,
+                descripcion: turno.motivo,
+                titulo: turno.paciente,
+                idLocal: turno.id
+            })
+        });
+
+        // Alerta para recordar el turno
+        await fetch(`${URL_API}/alertas`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idUsuario: idUsuario,
+                tipoAlerta: turno.tipo,
+                fecha: turno.fecha,
+                estado: "pendiente",
+                mensaje: `${turno.paciente} a las ${turno.hora}`
+            })
+        });
+
+        fechasConAlerta.push(turno.fecha);
+        mostrarCalendario();
+
+    } catch (error) {
+
+        console.error("No se pudo guardar el turno en el servidor:", error);
+
+    }
+
+}
+
+
+async function cargarDesdeServidor() {
+
+    const idUsuario =
+        idUsuarioActual();
+
+    try {
+
+        const respuestaAgenda =
+            await fetch(`${URL_API}/agenda/${idUsuario}`);
+
+        if (respuestaAgenda.ok) {
+
+            const eventos =
+                await respuestaAgenda.json();
+
+            // Suma los turnos del servidor que no estén en este navegador
+            eventos.forEach(function (evento) {
+
+                const yaEsta =
+                    turnos.some(function (turno) {
+                        return turno.id === evento.idLocal ||
+                            (turno.fecha === evento.fecha && turno.hora === evento.hora && turno.paciente === evento.titulo);
+                    });
+
+                if (!yaEsta) {
+
+                    turnos.push({
+                        id: evento.idLocal || evento.idEvento,
+                        fecha: evento.fecha,
+                        paciente: evento.titulo || "Evento",
+                        hora: evento.hora,
+                        motivo: evento.descripcion || "",
+                        tipo: evento.tipo
+                    });
+
+                }
+
+            });
+
+            localStorage.setItem(
+                "turnosPsicologo",
+                JSON.stringify(turnos)
+            );
+
+        }
+
+        const respuestaAlertas =
+            await fetch(`${URL_API}/alertas/${idUsuario}`);
+
+        if (respuestaAlertas.ok) {
+
+            const alertas =
+                await respuestaAlertas.json();
+
+            fechasConAlerta = alertas
+                .filter(function (alerta) { return alerta.estado !== "vista"; })
+                .map(function (alerta) { return alerta.fecha; });
+
+        }
+
+        mostrarCalendario();
+
+    } catch (error) {
+
+        console.error("No se pudo cargar la agenda del servidor:", error);
+
+    }
+
+}
+
+
+cargarDesdeServidor();

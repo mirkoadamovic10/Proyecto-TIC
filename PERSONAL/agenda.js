@@ -23,6 +23,7 @@ const ID_USUARIO_PRUEBA = "1"; // Cambiá este valor si querés otro ID por defe
 
 let fechaCalendario = new Date();
 let eventos = [];
+let alertas = [];
 
 const nombresMeses = [
     "Enero",
@@ -123,7 +124,7 @@ async function guardarEventoEnServidor(nuevoEvento) {
     const idUsuario = obtenerIdUsuario();
 
     const datos = {
-        idUsuario: idUsuario,
+        idUsuario: Number(idUsuario),
         ...nuevoEvento
     };
 
@@ -150,6 +151,60 @@ async function guardarEventoEnServidor(nuevoEvento) {
         console.error("Error al guardar el evento:", error);
         alert("No se pudo guardar el evento en el servidor.");
         return false;
+    }
+}
+
+
+// =====================================
+// ALERTAS: POST /api/alertas · GET /api/alertas/:idUsuario
+// =====================================
+
+const URL_ALERTAS = "http://localhost:3000/api/alertas";
+
+async function cargarAlertas() {
+    const idUsuario = obtenerIdUsuario();
+
+    try {
+        const respuesta = await fetch(`${URL_ALERTAS}/${idUsuario}`);
+
+        if (!respuesta.ok) {
+            throw new Error("Error al obtener las alertas: " + respuesta.status);
+        }
+
+        alertas = await respuesta.json();
+        mostrarCalendario();
+        console.log("Alertas cargadas correctamente:", alertas);
+    } catch (error) {
+        console.error("Error al cargar las alertas:", error);
+        alertas = [];
+    }
+}
+
+async function guardarAlertaEnServidor(evento) {
+    const alerta = {
+        idUsuario: Number(obtenerIdUsuario()),
+        tipoAlerta: evento.tipo,
+        fecha: evento.fecha,
+        estado: "pendiente",
+        mensaje: evento.hora ? `${evento.titulo} a las ${evento.hora}` : evento.titulo
+    };
+
+    try {
+        const respuesta = await fetch(URL_ALERTAS, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(alerta)
+        });
+
+        if (!respuesta.ok) {
+            throw new Error("Error al guardar la alerta: " + respuesta.status);
+        }
+
+        alertas.push(alerta);
+    } catch (error) {
+        console.error("Error al guardar la alerta:", error);
     }
 }
 
@@ -193,6 +248,13 @@ function mostrarCalendario() {
         numeroDia.textContent = dia;
 
         elementoDia.appendChild(numeroDia);
+
+        const fechaDelDia =
+            `${año}-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
+
+        if (alertas.some(alerta => alerta.fecha === fechaDelDia && alerta.estado !== "vista")) {
+            elementoDia.classList.add("con-alerta");
+        }
 
         const fechaFormateada =
             `${año}-${String(mes + 1).padStart(2, "0")}-${String(dia).padStart(2, "0")}`;
@@ -310,6 +372,7 @@ guardarEvento.addEventListener("click", async function() {
     }
 
     eventos.push(nuevoEvento);
+    await guardarAlertaEnServidor(nuevoEvento);
     cerrarFormulario();
     mostrarCalendario();
 });
@@ -376,3 +439,4 @@ function mostrarInformacionEvento(evento) {
 // =====================================
 
 cargarEventos();
+cargarAlertas();

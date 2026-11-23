@@ -176,6 +176,62 @@ function leerGruposFamiliares() {
 }
 
 
+/* ---------- API: GRUPOS FAMILIARES ----------
+   POST /api/grupos-familiares
+   POST /api/grupos-familiares/:idGrupo/unirse
+   GET  /api/grupos-familiares/usuario/:idUsuario
+   El código de la familia es "FAM-" + idGrupo (ej: FAM-3) */
+
+const API_GRUPOS = "http://localhost:3000/api/grupos-familiares";
+
+function idUsuarioActual() {
+    return Number(localStorage.getItem("idUsuario")) || null;
+}
+
+function codigoDeGrupo(idGrupo) {
+    return "FAM-" + idGrupo;
+}
+
+function idDesdeCodigo(codigo) {
+    const numero = Number(String(codigo).replace(/\D/g, ""));
+    return numero || null;
+}
+
+// Si el usuario ya está en un grupo del servidor, queda como su grupo actual
+async function cargarGrupoDelServidor() {
+    const idUsuario = idUsuarioActual();
+
+    if (!idUsuario) return;
+
+    try {
+        const respuesta = await fetch(`${API_GRUPOS}/usuario/${idUsuario}`);
+
+        if (!respuesta.ok) return;
+
+        const grupos = await respuesta.json();
+
+        if (!Array.isArray(grupos) || grupos.length === 0) return;
+
+        const grupo = grupos[grupos.length - 1];
+        let actual = null;
+
+        try {
+            actual = JSON.parse(localStorage.getItem("grupoFamiliar"));
+        } catch (error) {
+            actual = null;
+        }
+
+        localStorage.setItem("grupoFamiliar", JSON.stringify(Object.assign({}, actual || {}, grupo, {
+            codigo: codigoDeGrupo(grupo.idGrupo)
+        })));
+    } catch (error) {
+        console.error("No se pudo cargar el grupo familiar del servidor:", error);
+    }
+}
+
+cargarGrupoDelServidor();
+
+
 /* ---------- POP UP CREAR GRUPO ---------- */
 
 const modalCrearGrupo = document.getElementById("modalCrearGrupo");
@@ -212,10 +268,36 @@ if (botonCrearGrupo && modalCrearGrupo) {
 
 if (formCrearGrupo) {
 
-    formCrearGrupo.addEventListener("submit", function (evento) {
+    formCrearGrupo.addEventListener("submit", async function (evento) {
         evento.preventDefault();
 
         let codigo = document.getElementById("codigoGrupo").value.trim().toUpperCase();
+        let datosServidor = {};
+
+        // POST /api/grupos-familiares
+        if (idUsuarioActual()) {
+            try {
+                const respuesta = await fetch(API_GRUPOS, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        idCreador: idUsuarioActual(),
+                        nombre: document.getElementById("nombreGrupo").value.trim()
+                    })
+                });
+
+                if (respuesta.ok) {
+                    datosServidor = await respuesta.json();
+                    // El código real es el del servidor
+                    codigo = codigoDeGrupo(datosServidor.idGrupo);
+                } else {
+                    const error = await respuesta.json().catch(() => ({}));
+                    console.error("No se pudo crear el grupo en el servidor:", error.error);
+                }
+            } catch (error) {
+                console.error("No se pudo conectar con el servidor:", error);
+            }
+        }
 
         // Si no escribió un código, se genera uno (ej: FAM-4821)
         if (!codigo) {
@@ -227,7 +309,9 @@ if (formCrearGrupo) {
             descripcion: document.getElementById("descripcionGrupo").value.trim(),
             correo: document.getElementById("correoGrupo").value.trim(),
             codigo: codigo,
-            miembros: nombreActual() ? [nombreActual()] : []
+            miembros: nombreActual() ? [nombreActual()] : [],
+            idGrupo: datosServidor.idGrupo,
+            integrantes: datosServidor.integrantes
         };
 
         // Grupo actual del usuario
@@ -301,7 +385,7 @@ if (botonUnirseGrupo && modalUnirseGrupo) {
 
 if (formUnirseGrupo) {
 
-    formUnirseGrupo.addEventListener("submit", function (evento) {
+    formUnirseGrupo.addEventListener("submit", async function (evento) {
         evento.preventDefault();
 
         const codigo = codigoInvitacion.value.trim().toUpperCase();
@@ -309,6 +393,39 @@ if (formUnirseGrupo) {
         if (!codigo) {
             mostrarErrorCodigo("Escribí el código de invitación.");
             return;
+        }
+
+        // POST /api/grupos-familiares/:idGrupo/unirse
+        const idGrupo = idDesdeCodigo(codigo);
+
+        if (idUsuarioActual() && idGrupo) {
+            try {
+                const respuesta = await fetch(`${API_GRUPOS}/${idGrupo}/unirse`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ idUsuario: idUsuarioActual() })
+                });
+
+                if (respuesta.status === 404) {
+                    // Código incorrecto: no entra a ningún grupo
+                    mostrarErrorCodigo("El código no es correcto. Revisalo y probá de nuevo.");
+                    return;
+                }
+
+                if (respuesta.ok) {
+                    const grupo = await respuesta.json();
+
+                    localStorage.setItem("grupoFamiliar", JSON.stringify(Object.assign({}, grupo, {
+                        codigo: codigoDeGrupo(grupo.idGrupo)
+                    })));
+
+                    window.location.href = "./familia-home.html";
+                    return;
+                }
+            } catch (error) {
+                // Sin servidor: se usa lo guardado en este navegador
+                console.error("No se pudo conectar con el servidor:", error);
+            }
         }
 
         const grupoEncontrado = leerGruposFamiliares().find(function (grupo) {

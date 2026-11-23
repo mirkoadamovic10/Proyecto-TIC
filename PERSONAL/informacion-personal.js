@@ -3,7 +3,10 @@ const API_URL = "http://localhost:3000/api/info-personal";
 // Obtener el ID del usuario que inició sesión
 const usuarioGuardado = localStorage.getItem("usuario");
 const usuarioLogueado = usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
-const idUsuario = usuarioLogueado ? usuarioLogueado.idUsuario : 1;
+const idUsuario = Number(
+    localStorage.getItem("idUsuario") ||
+    (usuarioLogueado ? usuarioLogueado.idUsuario : 1)
+);
 
 const formulario = document.getElementById("formularioInfo");
 const botonGuardar = document.getElementById("botonGuardar");
