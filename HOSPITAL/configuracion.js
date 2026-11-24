@@ -6,7 +6,11 @@ const botonGuardarConfiguracion = document.getElementById("botonGuardarConfigura
 const mensajeConfiguracion = document.getElementById("mensajeConfiguracion");
 
 const nombreGuardado = localStorage.getItem("nombreUsuario");
-const fotoGuardada = localStorage.getItem("fotoPerfil");
+
+// La foto se guarda por usuario ("fotoPerfil_4") para que no se pierda al cerrar sesión.
+// "fotoPerfil" es la copia que leen las demás pantallas (el botón de perfil).
+const claveFotoUsuario = "fotoPerfil_" + (localStorage.getItem("idUsuario") || "invitado");
+const fotoGuardada = localStorage.getItem(claveFotoUsuario) || localStorage.getItem("fotoPerfil");
 
 if (nombreGuardado) {
     nombreConfiguracion.value = nombreGuardado;
@@ -52,22 +56,62 @@ inputFoto.addEventListener("change", function() {
         return;
     }
 
+    if (!archivo.type.startsWith("image/")) {
+        mensajeConfiguracion.textContent = "Elegí un archivo de imagen.";
+        return;
+    }
+
     const lector = new FileReader();
 
     lector.onload = function(evento) {
+        achicarFoto(evento.target.result, function(foto) {
 
-        const foto = evento.target.result;
+            // Si la foto no entra en el navegador, se avisa en vez de fallar sin decir nada
+            try {
+                localStorage.setItem(claveFotoUsuario, foto);
+                localStorage.setItem("fotoPerfil", foto);
+            } catch (error) {
+                mensajeConfiguracion.textContent = "No se pudo guardar la foto. Probá con otra imagen.";
+                return;
+            }
 
-        fotoConfiguracion.style.backgroundImage = `url("${foto}")`;
-        fotoConfiguracion.classList.add("tiene-foto");
+            fotoConfiguracion.style.backgroundImage = `url("${foto}")`;
+            fotoConfiguracion.classList.add("tiene-foto");
 
-        localStorage.setItem("fotoPerfil", foto);
-
-        mensajeConfiguracion.textContent = "Foto de perfil actualizada.";
+            mensajeConfiguracion.textContent = "Foto de perfil actualizada.";
+        });
     };
 
     lector.readAsDataURL(archivo);
+
+    // Permite volver a elegir la misma foto
+    inputFoto.value = "";
 });
+
+// Achica la foto a 300 px como máximo para que entre en localStorage
+// (las fotos del celular pesan varios MB y el navegador no las deja guardar)
+function achicarFoto(fotoOriginal, cuandoTermine) {
+    const imagen = new Image();
+
+    imagen.onload = function() {
+        const LADO_MAXIMO = 300;
+        const escala = Math.min(1, LADO_MAXIMO / Math.max(imagen.width, imagen.height));
+
+        const lienzo = document.createElement("canvas");
+        lienzo.width = Math.round(imagen.width * escala);
+        lienzo.height = Math.round(imagen.height * escala);
+
+        lienzo.getContext("2d").drawImage(imagen, 0, 0, lienzo.width, lienzo.height);
+
+        cuandoTermine(lienzo.toDataURL("image/jpeg", 0.85));
+    };
+
+    imagen.onerror = function() {
+        mensajeConfiguracion.textContent = "No se pudo leer la imagen. Probá con otra.";
+    };
+
+    imagen.src = fotoOriginal;
+}
 
 // Guardar los cambios del usuario en el backend
 botonGuardarConfiguracion.addEventListener("click", function() {

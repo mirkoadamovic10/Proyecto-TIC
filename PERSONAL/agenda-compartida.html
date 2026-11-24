@@ -286,6 +286,455 @@
                 font-size: 11px;
             }
         }
+        /* ============================= */
+        /* BOTÓN AGREGAR Y DÍAS CLICKEABLES */
+        /* ============================= */
+
+        body > header.acomp-barra .acomp-agregar {
+            position: absolute !important;
+            right: 14px !important;
+            left: auto !important;
+            top: 50% !important;
+            transform: translateY(-50%);
+            display: inline-flex !important;
+            align-items: center;
+            margin: 0 !important;
+            padding: 8px 11px !important;
+            background: #B7E4C7 !important;
+            background-image: none !important;
+            color: #2F7185 !important;
+            border: none !important;
+            border-radius: 10px !important;
+            font-family: inherit;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+        }
+
+        body > header.acomp-barra .acomp-agregar:not(:disabled):hover {
+            transform: translateY(calc(-50% - 2px));
+        }
+
+        .acomp-dia:not(.acomp-dia-vacio) {
+            cursor: pointer;
+        }
+
+        .acomp-dia:not(.acomp-dia-vacio):hover {
+            background: #F7FBF6;
+        }
+
+        .acomp-dia-boton {
+            align-self: flex-start;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: none !important;
+            border: none !important;
+            color: inherit !important;
+            font-family: inherit;
+            font-size: 11px !important;
+            font-weight: 400 !important;
+            line-height: 1 !important;
+            cursor: pointer;
+        }
+
+        button.acomp-evento {
+            width: 100%;
+            margin: 0 !important;
+            border: none !important;
+            font-family: inherit;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        button.acomp-evento:not(.tipo-control) {
+            color: #000000 !important;
+        }
+
+        button.acomp-evento.tipo-control {
+            color: #FFFFFF !important;
+        }
+
+        @media (max-width: 600px) {
+            body > header.acomp-barra .acomp-agregar {
+                position: static !important;
+                transform: none;
+                align-self: flex-end;
+            }
+
+            body > header.acomp-barra .acomp-agregar:not(:disabled):hover {
+                transform: translateY(-2px);
+            }
+        }
+
+        /* ============================= */
+        /* MODAL AGREGAR EVENTO (igual en todas las agendas) */
+        /* ============================= */
+
+        .mev-modal {
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 1000 !important;
+            display: flex !important;
+            overflow-y: auto !important;
+            align-items: flex-start !important;
+            justify-content: center !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: none !important;
+            max-height: none !important;
+            margin: 0 !important;
+            padding: 20px !important;
+            border: none !important;
+            background: rgba(0, 0, 0, 0.35) !important;
+            color: #000000 !important;
+            box-sizing: border-box !important;
+        }
+
+        .mev-modal[hidden],
+        .mev-modal.mev-con-clase:not(.mostrar) {
+            display: none !important;
+        }
+
+        .mev-modal .mev-turnos-dia:empty {
+            display: none !important;
+        }
+
+        .mev-modal .mev-turnos-dia {
+            margin: -18px 23px 22px 23px !important;
+            padding: 12px 14px !important;
+            background: #FFFFFF !important;
+            border: 1px solid #DCEBE1 !important;
+            border-radius: 8px !important;
+            font-size: 13px !important;
+            color: #333333 !important;
+        }
+
+        .mev-modal .mev-turnos-dia p {
+            margin: 0 !important;
+            font-size: 13px !important;
+            color: #555555 !important;
+        }
+
+        .mev-modal .mev-turnos-dia .turno-guardado {
+            display: flex !important;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+            gap: 10px;
+            margin: 0 0 8px !important;
+            padding: 0 0 8px !important;
+            border-bottom: 1px solid #E6EFE9 !important;
+            background: transparent !important;
+        }
+
+        .mev-modal .mev-turnos-dia .turno-guardado:last-child {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            border-bottom: none !important;
+        }
+
+        .mev-modal .mev-turnos-dia strong {
+            color: #2F7185 !important;
+            font-size: 13px !important;
+        }
+
+        .mev-modal .mev-turnos-dia .eliminar-turno {
+            flex-shrink: 0;
+            padding: 4px 9px !important;
+            background: #F6D7D7 !important;
+            color: #9C3B3B !important;
+            border: none !important;
+            border-radius: 6px !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+        }
+
+        .mev-modal * {
+            font-family: "Inter", Arial, sans-serif !important;
+            box-sizing: border-box !important;
+            float: none !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+        }
+
+        .mev-modal .modal-agenda-contenido {
+            display: block !important;
+            position: relative !important;
+            width: 440px !important;
+            max-width: 100% !important;
+            height: auto !important;
+            overflow: visible !important;
+            margin: auto !important;
+            padding: 27px 0 22px !important;
+            background: #F0F8F2 !important;
+            background-image: none !important;
+            border: none !important;
+            border-radius: 10px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18) !important;
+            text-align: left !important;
+            gap: 0 !important;
+        }
+
+        .mev-modal .mev-cerrar {
+            position: absolute !important;
+            top: 24px !important;
+            right: 30px !important;
+            width: auto !important;
+            height: auto !important;
+            min-width: 0 !important;
+            margin: 0 !important;
+            padding: 2px 4px !important;
+            border: none !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            color: #000000 !important;
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+            cursor: pointer !important;
+        }
+
+        .mev-modal .modal-evento-encabezado {
+            display: block !important;
+            position: static !important;
+            width: auto !important;
+            height: auto !important;
+            margin: 0 0 34px !important;
+            padding: 0 9px !important;
+            background: transparent !important;
+            background-image: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            color: #000000 !important;
+        }
+
+        .mev-modal .modal-evento-encabezado h2 {
+            margin: 0 !important;
+            padding: 0 !important;
+            color: #000000 !important;
+            font-size: 20px !important;
+            font-weight: 600 !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
+            background: transparent !important;
+        }
+
+        .mev-modal .modal-evento-encabezado p {
+            margin: 8px 0 0 !important;
+            padding: 0 !important;
+            color: #1F1F1F !important;
+            font-size: 11px !important;
+            font-weight: 400 !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
+            background: transparent !important;
+        }
+
+        .mev-modal .mev-oculto {
+            display: none !important;
+        }
+
+        .mev-modal form {
+            display: flex !important;
+            flex-direction: column !important;
+            width: auto !important;
+            margin: 0 !important;
+            padding: 0 27px 0 23px !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            gap: 0 !important;
+        }
+
+        .mev-modal .campo-agenda {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            width: auto !important;
+            margin: 0 0 15px !important;
+            padding: 0 !important;
+            border: none !important;
+            background: transparent !important;
+            min-width: 0 !important;
+            text-align: left !important;
+            gap: 0 !important;
+        }
+
+        .mev-modal .campo-agenda label,
+        .mev-modal .campo-agenda legend {
+            float: none !important;
+            width: 100% !important;
+            display: block !important;
+            margin: 0 0 8px !important;
+            padding: 0 !important;
+            color: #2F7185 !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            line-height: 1.2 !important;
+            text-align: left !important;
+            background: transparent !important;
+        }
+
+        .mev-modal .campo-agenda input,
+        .mev-modal .campo-agenda textarea,
+        .mev-modal .mev-tipo-boton {
+            display: block !important;
+            width: 100% !important;
+            height: 40px !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 12px !important;
+            background: #ECF4EE !important;
+            background-color: #ECF4EE !important;
+            border: 1px solid #DCEBE1 !important;
+            border-radius: 8px !important;
+            box-shadow: none !important;
+            outline: none !important;
+            color: #333333 !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            text-align: left !important;
+        }
+
+        .mev-modal .campo-agenda input::placeholder,
+        .mev-modal .campo-agenda textarea::placeholder {
+            color: #9AA19C !important;
+            opacity: 1 !important;
+        }
+
+        .mev-modal .mev-fecha,
+        .mev-modal .mev-hora {
+            padding-left: 22px !important;
+            color: #8F9692 !important;
+        }
+
+        .mev-modal .mev-fecha.con-valor,
+        .mev-modal .mev-hora.con-valor {
+            color: #333333 !important;
+        }
+
+        .mev-modal input[type="date"]::-webkit-calendar-picker-indicator,
+        .mev-modal input[type="time"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            opacity: 0.85;
+        }
+
+        /* TIPO DE EVENTO (desplegable propio) */
+
+        .mev-modal .mev-select-oculto {
+            display: none !important;
+        }
+
+        .mev-modal .campo-agenda-tipo {
+            position: relative !important;
+        }
+
+        .mev-modal .mev-tipo-boton {
+            position: relative !important;
+            padding-left: 22px !important;
+            padding-right: 36px !important;
+            cursor: pointer !important;
+            color: #8F9692 !important;
+            line-height: 38px !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23555' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 12px center !important;
+            background-size: 11px 7px !important;
+        }
+
+        .mev-modal .mev-tipo-boton.con-valor {
+            color: #333333 !important;
+        }
+
+        .mev-modal .mev-tipo-lista {
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 20 !important;
+            display: block !important;
+            width: 100% !important;
+            margin: 2px 0 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+            background: #FFFFFF !important;
+            border: 1px solid #C4CCC7 !important;
+            border-top: 1px solid #3A6F8C !important;
+            border-radius: 0 !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .mev-modal .mev-tipo-lista[hidden] {
+            display: none !important;
+        }
+
+        .mev-modal .mev-tipo-lista li {
+            display: block !important;
+            height: 38px !important;
+            margin: 0 !important;
+            padding: 0 6px !important;
+            background: #FFFFFF !important;
+            color: #000000 !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            line-height: 38px !important;
+            text-align: left !important;
+            white-space: nowrap !important;
+            cursor: pointer !important;
+        }
+
+        /* Azul en la opción elegida y en la que tenés el mouse encima */
+        .mev-modal .mev-tipo-lista li[aria-selected="true"],
+        .mev-modal .mev-tipo-lista li:hover {
+            background: #94AFD6 !important;
+        }
+
+        .mev-modal .mev-tipo-lista:hover li[aria-selected="true"]:not(:hover) {
+            background: #FFFFFF !important;
+        }
+
+        .mev-modal .campo-agenda textarea {
+            height: 78px !important;
+            padding: 12px !important;
+            resize: none !important;
+            line-height: 1.3 !important;
+        }
+
+        .mev-modal .campo-agenda-descripcion {
+            margin-bottom: 18px !important;
+        }
+
+        .mev-modal .mev-guardar {
+            display: block !important;
+            position: static !important;
+            width: calc(100% - 3px) !important;
+            height: 30px !important;
+            min-height: 0 !important;
+            margin: 0 0 0 3px !important;
+            padding: 0 !important;
+            border: none !important;
+            border-radius: 7px !important;
+            background: #B7E4C7 !important;
+            background-color: #B7E4C7 !important;
+            background-image: none !important;
+            box-shadow: none !important;
+            color: #2F7185 !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            line-height: 30px !important;
+            text-align: center !important;
+            cursor: pointer !important;
+            transition: 0.2s;
+        }
+
+        .mev-modal .mev-guardar:hover {
+            background: #A8DCBB !important;
+            background-color: #A8DCBB !important;
+        }
+
     </style>
 </head>
 
@@ -301,6 +750,10 @@
             <h1>Agenda</h1>
             <p>Organizá tus turnos, estudios, terapias y controles medicos</p>
         </hgroup>
+
+        <button type="button" id="botonAgregarEvento" class="acomp-agregar">
+            + Agregar evento
+        </button>
 
     </header>
 
@@ -342,7 +795,218 @@
 
     </main>
 
+    <dialog
+        id="ventanaEvento"
+        class="mev-modal mev-con-clase"
+        aria-modal="true"
+        aria-labelledby="tituloModalEvento"
+        open
+    >
+
+        <article class="modal-agenda-contenido">
+
+            <button
+                type="button"
+                id="cerrarEvento"
+                class="mev-cerrar"
+                aria-label="Cerrar ventana"
+            >x</button>
+
+            <header class="modal-evento-encabezado">
+                <h2 id="tituloModalEvento">Agregar evento</h2>
+                <p>Completá la informacion del evento</p>
+            </header>
+
+            <form class="mev-formulario" novalidate>
+
+                <p class="campo-agenda">
+                    <label for="tituloEvento">Nombre del evento</label>
+                    <input
+                        type="text"
+                        id="tituloEvento"
+                        name="nombre"
+                        placeholder="Ej.: Turno con el neurólogo"
+                    >
+                </p>
+
+                <p class="campo-agenda">
+                    <label for="fechaEvento">Fecha</label>
+                    <input type="date" id="fechaEvento" class="mev-fecha" name="fecha">
+                </p>
+
+                <p class="campo-agenda">
+                    <label for="horaEvento">Hora</label>
+                    <input type="time" id="horaEvento" class="mev-hora" name="hora">
+                </p>
+
+                <fieldset class="campo-agenda campo-agenda-tipo">
+                    <legend id="etiquetaTipoEvento">Tipo de evento</legend>
+
+                    <button
+                        type="button"
+                        id="botonTipoEvento"
+                        class="mev-tipo-boton"
+                        aria-labelledby="etiquetaTipoEvento botonTipoEvento"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-controls="listaTipoEvento"
+                    >Seleccionar</button>
+
+                    <ul
+                        id="listaTipoEvento"
+                        class="mev-tipo-lista"
+                        role="listbox"
+                        aria-labelledby="etiquetaTipoEvento"
+                        hidden
+                    >
+                        <li role="option" data-value="" aria-selected="true">Seleccionar</li>
+                        <li role="option" data-value="turno" aria-selected="false">Turno médico</li>
+                        <li role="option" data-value="estudio" aria-selected="false">Estudio médico</li>
+                        <li role="option" data-value="terapia" aria-selected="false">Terapia</li>
+                        <li role="option" data-value="medicacion" aria-selected="false">Medicación</li>
+                        <li role="option" data-value="control" aria-selected="false">Control / seguimiento</li>
+                    </ul>
+
+                    <select id="tipoEvento" class="mev-select-oculto" name="tipo" hidden>
+                        <option value="">Seleccionar</option>
+                        <option value="turno">Turno médico</option>
+                        <option value="estudio">Estudio médico</option>
+                        <option value="terapia">Terapia</option>
+                        <option value="medicacion">Medicación</option>
+                        <option value="control">Control / seguimiento</option>
+                    </select>
+                </fieldset>
+
+                <p class="campo-agenda campo-agenda-descripcion">
+                    <label for="descripcionEvento">Descripción</label>
+                    <textarea
+                        id="descripcionEvento"
+                        name="descripcion"
+                        placeholder="Agregá información adicional..."
+                    ></textarea>
+                </p>
+
+                <button
+                    type="button"
+                    id="guardarEvento"
+                    class="mev-guardar"
+                >
+                    Guardar evento
+                </button>
+
+            </form>
+
+        </article>
+
+    </dialog>
+
     <script src="./agenda-compartida.js"></script>
+
+    <script>
+        /* Formulario "Agregar evento": desplegable de tipo y detalles visuales */
+        (function () {
+            var modal = document.getElementById("ventanaEvento");
+            var select = document.getElementById("tipoEvento");
+            var hora = document.getElementById("horaEvento");
+            var fecha = document.getElementById("fechaEvento");
+            var botonTipo = document.getElementById("botonTipoEvento");
+            var listaTipo = document.getElementById("listaTipoEvento");
+
+            function abrirLista() {
+                listaTipo.hidden = false;
+                botonTipo.setAttribute("aria-expanded", "true");
+            }
+
+            function cerrarLista() {
+                listaTipo.hidden = true;
+                botonTipo.setAttribute("aria-expanded", "false");
+            }
+
+            function marcarTipo(valor) {
+                var elegido = null;
+
+                listaTipo.querySelectorAll("li").forEach(function (li) {
+                    var esEste = li.dataset.value === valor;
+                    li.setAttribute("aria-selected", esEste ? "true" : "false");
+                    if (esEste) elegido = li;
+                });
+
+                botonTipo.textContent = elegido ? elegido.textContent : "Seleccionar";
+                botonTipo.classList.toggle("con-valor", !!valor);
+            }
+
+            function actualizarColores() {
+                hora.classList.toggle("con-valor", hora.value !== "");
+                fecha.classList.toggle("con-valor", fecha.value !== "");
+            }
+
+            // Deja el formulario a la vista igual que los valores reales
+            window.sincronizarFormularioEvento = function () {
+                marcarTipo(select.value);
+                actualizarColores();
+                cerrarLista();
+            };
+
+            botonTipo.addEventListener("click", function (e) {
+                e.stopPropagation();
+                if (listaTipo.hidden) abrirLista(); else cerrarLista();
+            });
+
+            listaTipo.addEventListener("click", function (e) {
+                e.stopPropagation();
+                var opcion = e.target.closest("li");
+                if (!opcion) return;
+
+                select.value = opcion.dataset.value;
+                select.dispatchEvent(new Event("change", { bubbles: true }));
+                marcarTipo(select.value);
+                cerrarLista();
+            });
+
+            document.addEventListener("click", cerrarLista);
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") cerrarLista();
+            });
+
+            hora.addEventListener("input", actualizarColores);
+            hora.addEventListener("change", actualizarColores);
+            fecha.addEventListener("input", actualizarColores);
+            fecha.addEventListener("change", actualizarColores);
+
+            // Cada vez que se abre la ventana, se actualiza lo que se ve
+            new MutationObserver(function () {
+                window.sincronizarFormularioEvento();
+            }).observe(modal, { attributes: true, attributeFilter: ["hidden", "class"] });
+
+            // Cerrar tocando afuera
+            modal.addEventListener("click", function (e) {
+                if (e.target === modal) {
+                    document.getElementById("cerrarEvento").click();
+                }
+            });
+
+            window.sincronizarFormularioEvento();
+        })();
+    </script>
+
+    <script>
+        // No deja guardar sin elegir el tipo de evento
+        document.getElementById("guardarEvento").addEventListener("click", function (e) {
+            if (!document.getElementById("tipoEvento").value) {
+                alert("Por favor, elegí el tipo de evento.");
+                e.stopImmediatePropagation();
+            }
+        }, true);
+
+        // Cerrar con Escape
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && document.getElementById("ventanaEvento").classList.contains("mostrar")) {
+                document.getElementById("cerrarEvento").click();
+            }
+        });
+    </script>
+
 
 </body>
 

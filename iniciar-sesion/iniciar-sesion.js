@@ -38,6 +38,15 @@ function guardarSesion(usuario) {
     localStorage.setItem("emailUsuario", usuario.email || "");
     localStorage.setItem("rolUsuario", usuario.rol || "");
 
+    // Recupera la foto de perfil que este usuario ya había elegido
+    const fotoDelUsuario = localStorage.getItem("fotoPerfil_" + usuario.idUsuario);
+
+    if (fotoDelUsuario) {
+        localStorage.setItem("fotoPerfil", fotoDelUsuario);
+    } else {
+        localStorage.removeItem("fotoPerfil");
+    }
+
     if (usuario.tipoInstitucion) {
         localStorage.setItem("tipoInstitucion", usuario.tipoInstitucion);
     }

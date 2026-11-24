@@ -77,11 +77,47 @@ function obtenerIdUsuario() {
 
 
 // =====================================
+// GUARDADO EN EL NAVEGADOR (por usuario)
+// Así los eventos no se pierden aunque el servidor esté apagado
+// =====================================
+
+function claveEventos() {
+    return "eventosAgenda_" + obtenerIdUsuario();
+}
+
+function claveEliminados() {
+    return "eventosAgendaEliminados_" + obtenerIdUsuario();
+}
+
+function leerLista(clave) {
+    try {
+        const lista = JSON.parse(localStorage.getItem(clave));
+        return Array.isArray(lista) ? lista : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function guardarEventosLocales() {
+    localStorage.setItem(claveEventos(), JSON.stringify(eventos));
+}
+
+// Cada evento tiene un id; los que vienen solo del servidor usan su idEvento
+function idDeEvento(evento) {
+    return String(evento.id || "srv-" + evento.idEvento);
+}
+
+
+// =====================================
 // GET: OBTENER EVENTOS DEL USUARIO
 // =====================================
 
 async function cargarEventos() {
     const idUsuario = obtenerIdUsuario();
+
+    // Primero lo guardado en este navegador, así se ve enseguida
+    eventos = leerLista(claveEventos());
+    mostrarCalendario();
 
     try {
         const respuesta = await fetch(`${URL_API}/${idUsuario}`);
@@ -93,25 +129,48 @@ async function cargarEventos() {
         const resultado = await respuesta.json();
 
         // Admite distintas estructuras habituales de respuesta.
+        let delServidor = [];
+
         if (Array.isArray(resultado)) {
-            eventos = resultado;
+            delServidor = resultado;
         } else if (Array.isArray(resultado.eventos)) {
-            eventos = resultado.eventos;
+            delServidor = resultado.eventos;
         } else if (Array.isArray(resultado.datos)) {
-            eventos = resultado.datos;
-        } else {
-            eventos = [];
+            delServidor = resultado.datos;
         }
 
+        const eliminados = leerLista(claveEliminados());
+        const yaEstan = eventos.map(idDeEvento);
+
+        // Suma los del servidor que no estén acá y que no se hayan borrado
+        delServidor.forEach(function (evento) {
+            // Los eventos de la agenda compartida de la familia van en su propia agenda
+            if (evento.compartido) {
+                return;
+            }
+
+            const id = idDeEvento(evento);
+
+            if (!yaEstan.includes(id) && !eliminados.includes(id)) {
+                eventos.push(evento);
+            }
+        });
+
+        // Los que se guardaron con el servidor apagado se suben ahora
+        for (const evento of eventos.filter(function (e) { return e.pendiente; })) {
+            const { pendiente, ...datos } = evento;
+
+            if (await guardarEventoEnServidor(datos)) {
+                delete evento.pendiente;
+            }
+        }
+
+        guardarEventosLocales();
         mostrarCalendario();
         console.log("Eventos cargados correctamente:", eventos);
     } catch (error) {
-        console.error("Error al cargar los eventos:", error);
-
-        // Si el backend no está levantado o falla, igual muestra el calendario vacío
-        eventos = [];
-        mostrarCalendario();
-        alert("No se pudieron cargar los eventos desde el servidor.");
+        // Sin servidor se usa lo guardado en el navegador
+        console.error("No se pudo conectar con el servidor; se muestran los eventos guardados:", error);
     }
 }
 
@@ -148,8 +207,7 @@ async function guardarEventoEnServidor(nuevoEvento) {
         console.log("Evento guardado correctamente:", resultado);
         return true;
     } catch (error) {
-        console.error("Error al guardar el evento:", error);
-        alert("No se pudo guardar el evento en el servidor.");
+        console.error("Error al guardar el evento en el servidor:", error);
         return false;
     }
 }
@@ -363,18 +421,23 @@ guardarEvento.addEventListener("click", async function() {
         descripcion: descripcionEvento.value.trim()
     };
 
+    // Se guarda en el navegador apenas se toca "Guardar"
+    eventos.push(nuevoEvento);
+    guardarEventosLocales();
+    cerrarFormulario();
+    mostrarCalendario();
+
+    // Y después en el servidor; si está apagado, queda pendiente y se sube la próxima vez
     guardarEvento.disabled = true;
     const guardado = await guardarEventoEnServidor(nuevoEvento);
     guardarEvento.disabled = false;
 
-    if (!guardado) {
-        return;
+    if (guardado) {
+        await guardarAlertaEnServidor(nuevoEvento);
+    } else {
+        nuevoEvento.pendiente = true;
+        guardarEventosLocales();
     }
-
-    eventos.push(nuevoEvento);
-    await guardarAlertaEnServidor(nuevoEvento);
-    cerrarFormulario();
-    mostrarCalendario();
 });
 
 
@@ -426,9 +489,18 @@ function mostrarInformacionEvento(evento) {
     );
 
     if (eliminar) {
+        const id = idDeEvento(evento);
+
         eventos = eventos.filter(
-            item => item.id !== evento.id
+            item => idDeEvento(item) !== id
         );
+        guardarEventosLocales();
+
+        // El servidor no tiene forma de borrar, así que se recuerda que se eliminó
+        const eliminados = leerLista(claveEliminados());
+        eliminados.push(id);
+        localStorage.setItem(claveEliminados(), JSON.stringify(eliminados));
+
         mostrarCalendario();
     }
 }
