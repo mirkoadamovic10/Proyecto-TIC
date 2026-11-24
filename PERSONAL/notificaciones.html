@@ -547,7 +547,8 @@
                Solo aparecen cuando hay algo pendiente en el calendario.
                PUT /api/notificaciones/:idNotificacion para marcarlas como leídas */
             var API = "http://localhost:3000/api";
-            var idUsuario = Number(localStorage.getItem("idUsuario")) || null;
+            // Mismo usuario que usa la agenda (si no hay sesión, el de prueba)
+            var idUsuario = Number(localStorage.getItem("idUsuario")) || 1;
             var lista = document.getElementById("listaNotificaciones");
             var vacio = document.getElementById("sinNotificaciones");
             var punto = document.getElementById("puntoNotificacion");
@@ -560,11 +561,14 @@
                 terapia: "familiar"
             };
 
-            /* Arma las notificaciones a partir de lo pendiente en la agenda:
-               GET /api/agenda/:idUsuario -> eventos de hoy en adelante
-               GET /api/notificaciones/:idUsuario -> las que ya existen
-               POST /api/notificaciones -> crea las que falten
-               Devuelve solo las notificaciones de eventos pendientes */
+            /* Arma las notificaciones a partir de lo pendiente en la agenda
+               (agenda personal y agenda compartida de la familia):
+               - lo guardado en este navegador (eventosAgenda_<id>, eventosCompartidos_<grupo>)
+               - GET /api/agenda/:idUsuario -> eventos del servidor
+               - GET /api/notificaciones/:idUsuario y POST /api/notificaciones -> las del servidor
+               Las notificaciones también se guardan en el navegador (notificaciones_<id>),
+               así quedan guardadas y se recuerda cuáles se leyeron aunque el servidor esté apagado.
+               Devuelve solo las notificaciones de eventos de hoy en adelante. */
             async function sincronizarNotificacionesAgenda(API, idUsuario) {
                 var NOMBRES = {
                     turno: "Turno médico",
@@ -577,55 +581,143 @@
                 var ahora = new Date();
                 var hoy = ahora.getFullYear() + "-" + String(ahora.getMonth() + 1).padStart(2, "0") + "-" + String(ahora.getDate()).padStart(2, "0");
 
+                function leerLista(clave) {
+                    try {
+                        var lista = JSON.parse(localStorage.getItem(clave));
+                        return Array.isArray(lista) ? lista : [];
+                    } catch (error) {
+                        return [];
+                    }
+                }
+
                 function armarMensaje(evento) {
                     var partes = String(evento.fecha).split("-");
                     var fecha = partes.length === 3 ? partes[2] + "/" + partes[1] : evento.fecha;
                     var tipo = NOMBRES[evento.tipo] || "Evento";
-                    var titulo = evento.titulo || evento.descripcion || "";
+                    var titulo = evento.titulo || evento.nombre || evento.descripcion || "";
 
                     return tipo + (titulo ? ": " + titulo : "") + " — " + fecha + (evento.hora ? " " + evento.hora : "");
                 }
 
-                var respuestaAgenda = await fetch(API + "/agenda/" + idUsuario);
-                var eventos = respuestaAgenda.ok ? await respuestaAgenda.json() : [];
+                // 1) Eventos guardados en el navegador (agenda personal y compartida)
+                var grupo = {};
+
+                try {
+                    grupo = JSON.parse(localStorage.getItem("grupoFamiliar")) || {};
+                } catch (error) {
+                    grupo = {};
+                }
+
+                var claveCompartidos = grupo.idGrupo ? "eventosCompartidos_" + grupo.idGrupo : "eventosCompartidos";
+
+                var eventos = leerLista("eventosAgenda_" + idUsuario)
+                    .concat(leerLista(claveCompartidos));
+
+                var eliminados = leerLista("eventosAgendaEliminados_" + idUsuario)
+                    .concat(leerLista(claveCompartidos + "_eliminados"));
+
+                // 2) Eventos del servidor (si está prendido)
+                var notificacionesServidor = [];
+                var hayServidor = false;
+
+                try {
+                    var respuestaAgenda = await fetch(API + "/agenda/" + idUsuario);
+
+                    if (respuestaAgenda.ok) {
+                        hayServidor = true;
+                        eventos = eventos.concat(await respuestaAgenda.json());
+                    }
+
+                    var respuestaNotificaciones = await fetch(API + "/notificaciones/" + idUsuario);
+
+                    if (respuestaNotificaciones.ok) {
+                        notificacionesServidor = await respuestaNotificaciones.json();
+                    }
+                } catch (error) {
+                    console.error("Servidor apagado: se usan las notificaciones guardadas en el navegador.", error);
+                }
 
                 var pendientes = eventos.filter(function (evento) {
-                    return evento.fecha && evento.fecha >= hoy;
+                    var id = String(evento.id || evento.idLocal || "srv-" + evento.idEvento);
+                    return evento.fecha && evento.fecha >= hoy && eliminados.indexOf(id) === -1;
                 });
 
-                var respuestaNotificaciones = await fetch(API + "/notificaciones/" + idUsuario);
-                var notificaciones = respuestaNotificaciones.ok ? await respuestaNotificaciones.json() : [];
-
+                // 3) Una notificación por evento (sin repetir)
+                var guardadas = leerLista("notificaciones_" + idUsuario);
                 var resultado = [];
 
                 for (var i = 0; i < pendientes.length; i++) {
                     var evento = pendientes[i];
                     var mensaje = armarMensaje(evento);
 
-                    var existente = notificaciones.find(function (n) { return n.mensaje === mensaje; });
+                    var yaEsta = resultado.some(function (n) { return n.mensaje === mensaje; });
 
-                    if (!existente) {
-                        var nueva = await fetch(API + "/notificaciones", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ idUsuario: idUsuario, mensaje: mensaje, fecha: evento.fecha })
-                        });
-
-                        if (!nueva.ok) continue;
-
-                        existente = await nueva.json();
-                        notificaciones.push(existente);
+                    if (yaEsta) {
+                        continue;
                     }
 
-                    if (resultado.indexOf(existente) === -1) {
-                        existente.tipo = evento.tipo;
-                        resultado.push(existente);
+                    var guardada = guardadas.find(function (n) { return n.mensaje === mensaje; }) || {};
+                    var delServidor = notificacionesServidor.find(function (n) { return n.mensaje === mensaje; });
+
+                    // Si el servidor está prendido y todavía no la tiene, se crea
+                    if (hayServidor && !delServidor) {
+                        try {
+                            var nueva = await fetch(API + "/notificaciones", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ idUsuario: idUsuario, mensaje: mensaje, fecha: evento.fecha })
+                            });
+
+                            if (nueva.ok) {
+                                delServidor = await nueva.json();
+                            }
+                        } catch (error) {
+                            console.error(error);
+                        }
                     }
+
+                    resultado.push({
+                        idNotificacion: delServidor ? delServidor.idNotificacion : guardada.idNotificacion,
+                        mensaje: mensaje,
+                        fecha: evento.fecha,
+                        tipo: evento.tipo,
+                        leida: !!(guardada.leida || (delServidor && delServidor.leida))
+                    });
                 }
 
                 resultado.sort(function (a, b) { return String(a.fecha).localeCompare(String(b.fecha)); });
 
+                localStorage.setItem("notificaciones_" + idUsuario, JSON.stringify(resultado));
+
                 return resultado;
+            }
+
+            // Marca una notificación como leída en el navegador y, si se puede, en el servidor
+            async function guardarNotificacionLeida(API, idUsuario, notificacion) {
+                var guardadas;
+
+                try {
+                    guardadas = JSON.parse(localStorage.getItem("notificaciones_" + idUsuario)) || [];
+                } catch (error) {
+                    guardadas = [];
+                }
+
+                guardadas.forEach(function (n) {
+                    if (n.mensaje === notificacion.mensaje) {
+                        n.leida = true;
+                    }
+                });
+
+                localStorage.setItem("notificaciones_" + idUsuario, JSON.stringify(guardadas));
+                notificacion.leida = true;
+
+                if (notificacion.idNotificacion) {
+                    try {
+                        await fetch(API + "/notificaciones/" + notificacion.idNotificacion, { method: "PUT" });
+                    } catch (error) {
+                        console.error("No se pudo avisar al servidor; queda guardada en el navegador.", error);
+                    }
+                }
             }
 
             function actualizarPunto() {
@@ -673,17 +765,10 @@
                     enlace.textContent = "Ver en la agenda";
 
                     boton.addEventListener("click", async function () {
-                        try {
-                            var respuesta = await fetch(API + "/notificaciones/" + notificacion.idNotificacion, { method: "PUT" });
-
-                            if (!respuesta.ok) throw new Error("No se pudo marcar como leída.");
-
-                            marcarLeida(articulo);
-                            actualizarPunto();
-                        } catch (error) {
-                            console.error(error);
-                            alert("No se pudo conectar con el servidor.");
-                        }
+                        // Queda guardada como leída aunque el servidor esté apagado
+                        marcarLeida(articulo);
+                        actualizarPunto();
+                        await guardarNotificacionLeida(API, idUsuario, notificacion);
                     });
 
                     acciones.append(boton, enlace);
