@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferencias de aprendizaje - NeuroPassport</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            margin: 0 !important;
+            min-height: 100vh;
+            background: #F0F8ED !important;
+            color: #111111;
+        }
+
+        /* BARRA SUPERIOR */
+
+        .usu-barra {
+            width: 100%;
+            min-height: 80px;
+            display: flex !important;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 35px !important;
+            background: #705E32 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .usu-logo {
+            margin: 0 !important;
+            color: #D9E2E3 !important;
+            font-size: 28px !important;
+            font-weight: 700 !important;
+        }
+
+        .usu-perfil {
+            position: relative;
+        }
+
+        .usu-boton-perfil {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 !important;
+            border: none !important;
+            border-radius: 50% !important;
+            background: #D9D9D9 !important;
+            cursor: pointer;
+        }
+
+        .usu-menu {
+            display: none;
+            position: absolute;
+            top: 55px;
+            right: 0;
+            width: 210px;
+            padding: 7px;
+            background: #FFFFFF;
+            border: 1px solid #D6E9D9;
+            border-radius: 10px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+        }
+
+        .usu-menu.mostrar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .usu-opcion-menu {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-height: 42px;
+            padding: 10px 12px !important;
+            border: none !important;
+            border-radius: 7px !important;
+            background: transparent !important;
+            color: #222222 !important;
+            font-size: 13px !important;
+            font-weight: 500 !important;
+            text-align: left;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .usu-opcion-menu:hover {
+            background: #F0F8ED !important;
+        }
+
+        .usu-separador {
+            height: 1px;
+            margin: 5px 3px;
+            background: #E5E5E5;
+        }
+
+        .usu-atras {
+            display: inline-flex !important;
+            width: auto !important;
+            margin: 0 !important;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px !important;
+            background: #B7E4C7 !important;
+            color: #285866 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+        }
+
+
+        /* CONTENIDO */
+
+        .ppu-principal {
+            position: relative;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 22px 40px 40px !important;
+        }
+
+        .ppu-principal > .usu-atras {
+            position: absolute;
+            top: 22px;
+            left: 40px;
+        }
+
+        .ppu-titulo {
+            display: block !important;
+            margin: 0 0 26px !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            text-align: center;
+        }
+
+        .ppu-titulo h1 {
+            margin: 0 !important;
+            color: #000000 !important;
+            font-size: 26px !important;
+            font-weight: 700 !important;
+            text-align: center !important;
+        }
+
+        .ppu-titulo p {
+            margin: 2px 0 0 !important;
+            color: #222222;
+            font-size: 14px;
+        }
+
+        .ppu-tarjeta {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 22px 50px 30px;
+            background: #FFFFFF;
+            border-radius: 14px;
+        }
+
+        .ppu-seccion {
+            margin: 0;
+            padding: 0 0 22px;
+            border-bottom: 1px solid #E1E6E3;
+        }
+
+        .ppu-seccion + .ppu-seccion {
+            padding-top: 20px;
+        }
+
+        .ppu-seccion:last-of-type {
+            border-bottom: none;
+        }
+
+        .ppu-seccion h2 {
+            margin: 0 0 20px !important;
+            color: #2F7185 !important;
+            font-size: 24px !important;
+            font-weight: 700 !important;
+            text-align: center !important;
+        }
+
+        /* Datos profesionales */
+
+        .ppu-datos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 50px;
+            margin: 0;
+        }
+
+        .ppu-dato {
+            margin: 0;
+            text-align: center;
+        }
+
+        .ppu-dato label {
+            display: block;
+            margin: 0 0 12px;
+            color: #2F7185;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .ppu-dato input {
+            width: 100% !important;
+            height: 38px !important;
+            margin: 0 !important;
+            padding: 0 14px !important;
+            background: #F7F8F7 !important;
+            border: 1px solid #E6EAE7 !important;
+            border-radius: 6px !important;
+            box-shadow: none !important;
+            color: #111111 !important;
+            font-family: inherit;
+            font-size: 14px !important;
+            text-align: center;
+        }
+
+        .ppu-dato input:focus,
+        .ppu-enfoque:focus {
+            outline: 2px solid #B7E4C7 !important;
+            border-color: #8FCBA5 !important;
+        }
+
+        .ppu-dato input::placeholder,
+        .ppu-enfoque::placeholder {
+            color: #9A9A9A;
+            opacity: 1;
+        }
+
+        .ppu-dato dt {
+            margin: 0 0 12px;
+            color: #2F7185;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .ppu-dato dd {
+            min-height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 8px 14px;
+            background: #F7F8F7;
+            border: 1px solid #E6EAE7;
+            border-radius: 6px;
+            color: #111111;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        .ppu-sin-dato {
+            color: #9A9A9A !important;
+        }
+
+        /* Modalidad y entorno */
+
+        .ppu-modalidad {
+            display: flex;
+            justify-content: center;
+            margin: 0 0 16px;
+        }
+
+        select.ppu-chip {
+            appearance: none;
+            -webkit-appearance: none;
+            width: auto !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 8px 38px 8px 16px !important;
+            border-width: 2px !important;
+            border-style: solid !important;
+            border-radius: 9px !important;
+            box-shadow: none !important;
+            font-family: inherit;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23555' stroke-width='2'/%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 14px center !important;
+            cursor: pointer;
+        }
+
+        .ppu-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 8px 16px;
+            border: 2px solid transparent;
+            border-radius: 9px;
+            font-size: 19px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .ppu-chip-modalidad {
+            min-height: 42px;
+            padding: 6px 16px;
+            background: #2F7185;
+            color: #FFFFFF;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .ppu-entorno {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 30px;
+            margin: 0;
+        }
+
+        .ppu-entorno div {
+            text-align: center;
+        }
+
+        .ppu-entorno dt {
+            margin: 0 0 14px;
+            color: #2F7185;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .ppu-entorno dd {
+            margin: 0;
+        }
+
+        .ppu-azul {
+            background-color: #DCEBF1 !important;
+            border-color: #A9CEDB !important;
+            color: #2E5F6F !important;
+        }
+
+        .ppu-verde {
+            background-color: #DDF1E3 !important;
+            border-color: #A8D8B6 !important;
+            color: #2C6B3D !important;
+        }
+
+        .ppu-naranja {
+            background-color: #F9E3D2 !important;
+            border-color: #E6BD98 !important;
+            color: #8B4E1D !important;
+        }
+
+        .ppu-gris {
+            background-color: #E9EBEF !important;
+            border-color: #C8CCD3 !important;
+            color: #4B5058 !important;
+        }
+
+        select.ppu-chip.ppu-chip-modalidad {
+            border-color: #2F7185 !important;
+            background-color: #2F7185 !important;
+            color: #FFFFFF !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") !important;
+        }
+
+        .ppu-chip option {
+            background: #FFFFFF;
+            color: #111111;
+        }
+
+        .ppu-guardado {
+            display: block;
+            min-height: 16px;
+            margin-top: 8px;
+            color: #2F7185;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .ppu-chip.ppu-sin-dato {
+            background-color: #F4F5F4 !important;
+            border-color: #E1E4E1 !important;
+            color: #9A9A9A !important;
+            font-size: 15px;
+        }
+
+        /* Enfoque */
+
+        .ppu-seccion-enfoque h2 {
+            margin-bottom: 14px !important;
+            font-size: 17px !important;
+        }
+
+        .ppu-seccion-modalidad h2,
+        .ppu-seccion-entorno h2 {
+            margin-bottom: 18px !important;
+        }
+
+        .ppu-seccion-modalidad .ppu-modalidad {
+            margin: 0;
+        }
+
+        p.ppu-enfoque {
+            min-height: 0;
+        }
+
+        .ppu-seccion-enfoque {
+            padding-bottom: 0 !important;
+        }
+
+        .ppu-seccion h2 + .ppu-bajada {
+            margin: -16px 0 18px !important;
+            color: #555555;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .ppu-seccion-apoyos h2,
+        .ppu-seccion-perfil h2,
+        .ppu-seccion-informes h2 {
+            margin-bottom: 18px !important;
+        }
+
+        .ppu-entorno .ppu-chip {
+            font-size: 17px;
+        }
+
+        .ppu-caja {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 36px;
+            margin: 0;
+            padding: 8px 12px;
+            background: #F7F8F7;
+            border: 1px solid #E6EAE7;
+            border-radius: 6px;
+            color: #111111;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .ppu-recursos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            max-width: 520px;
+            margin: 22px auto 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .ppu-recursos li {
+            margin: 0;
+            padding: 8px 16px;
+            background: #2F7185;
+            border-radius: 8px;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .ppu-recursos .ppu-sin-dato {
+            background: #F4F5F4;
+            border: 2px solid #E1E4E1;
+            color: #9A9A9A;
+            font-size: 15px;
+        }
+
+        .ppu-seccion-informes .ppu-enfoque {
+            max-width: 500px;
+            font-size: 13px;
+        }
+
+        .ppu-informes {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 420px;
+            margin: 14px auto 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .ppu-informes li {
+            margin: 0;
+            padding: 9px 14px;
+            background: #F4F6F5;
+            border: 1px solid #E1E6E3;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .ppu-informes strong {
+            display: block;
+            color: #1E1E1E;
+            font-size: 13px;
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        .ppu-informes span {
+            display: block;
+            margin: 2px 0 0 12px;
+            color: #8A8A8A;
+            font-size: 12px;
+        }
+
+        .ppu-sin-informes {
+            margin: 12px 0 0;
+            color: #9A9A9A;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .ppu-principal > .ppu-desvincular {
+            margin-top: 26px !important;
+        }
+
+        .ppu-chip-solo {
+            cursor: default;
+        }
+
+        .ppu-enfoque {
+            display: block;
+            width: 100% !important;
+            max-width: 560px;
+            min-height: 70px;
+            margin: 0 auto !important;
+            resize: vertical;
+            font-family: inherit;
+            box-shadow: none !important;
+            padding: 12px 16px;
+            background: #F7F8F7;
+            border: 1px solid #E6EAE7;
+            border-radius: 6px;
+            color: #111111;
+            font-size: 14px;
+            line-height: 1.45;
+            text-align: center;
+        }
+
+        .ppu-desvincular {
+            display: flex !important;
+            align-items: center;
+            gap: 8px;
+            margin: 22px auto 0 !important;
+            padding: 9px 16px !important;
+            background: #FBE3E3 !important;
+            color: #A03434 !important;
+            border: 1px solid #EDB9B9 !important;
+            border-radius: 7px !important;
+            font-size: 13px !important;
+            font-weight: 500 !important;
+            cursor: pointer;
+        }
+
+        .ppu-desvincular:hover {
+            background: #F7D3D3 !important;
+        }
+
+        @media (max-width: 700px) {
+            .ppu-principal {
+                padding: 70px 16px 30px !important;
+            }
+
+            .ppu-principal > .usu-atras {
+                left: 16px;
+            }
+
+            .ppu-tarjeta {
+                padding: 20px 18px 26px;
+            }
+
+            .ppu-datos,
+            .ppu-entorno {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="usu-barra">
+        <h2 class="usu-logo">NeuroPassport</h2>
+
+        <div class="usu-perfil">
+            <button
+                type="button"
+                class="usu-boton-perfil"
+                id="botonPerfil"
+                aria-label="Abrir menú de perfil"
+                aria-expanded="false"
+                aria-controls="menuPerfil">
+
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="#000000" aria-hidden="true">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"></path>
+                </svg>
+            </button>
+
+            <nav class="usu-menu" id="menuPerfil" aria-label="Menú de perfil">
+                <a href="configuracion.html" class="usu-opcion-menu">Configuración</a>
+                <a href="informacion-personal.html" class="usu-opcion-menu">Información personal</a>
+                <div class="usu-separador"></div>
+                <button type="button" class="usu-opcion-menu" id="botonCerrarSesion">Cerrar sesión</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="ppu-principal">
+
+        <button type="button" class="usu-atras" id="botonAtras">
+            <span aria-hidden="true">←</span>
+            Volver
+        </button>
+
+        <header class="ppu-titulo">
+            <h1>Preferencias de aprendizaje</h1>
+            <p id="nombreEstudiante">Cargando…</p>
+        </header>
+
+        <article class="ppu-tarjeta" aria-labelledby="tituloModalidad">
+
+            <section class="ppu-seccion ppu-seccion-modalidad" aria-labelledby="tituloModalidad">
+                <h2 id="tituloModalidad">Modalidad de cursada</h2>
+
+                <p class="ppu-modalidad">
+                    <span class="ppu-chip ppu-chip-solo ppu-chip-modalidad" id="datoModalidad"></span>
+                </p>
+            </section>
+
+            <section class="ppu-seccion ppu-seccion-apoyos" aria-labelledby="tituloApoyos">
+                <h2 id="tituloApoyos">Apoyos en el aula</h2>
+
+                <dl class="ppu-entorno">
+                    <div>
+                        <dt>Forma de instrucciones</dt>
+                        <dd><span class="ppu-chip ppu-chip-solo ppu-azul" id="datoInstrucciones"></span></dd>
+                    </div>
+                    <div>
+                        <dt>Evaluaciones adaptadas</dt>
+                        <dd><span class="ppu-chip ppu-chip-solo ppu-azul" id="datoEvaluaciones"></span></dd>
+                    </div>
+                    <div>
+                        <dt>Tiempo y descansos</dt>
+                        <dd><span class="ppu-chip ppu-chip-solo ppu-naranja" id="datoTiempo"></span></dd>
+                    </div>
+                    <div>
+                        <dt>Ubicación en el aula</dt>
+                        <dd><span class="ppu-chip ppu-chip-solo ppu-azul" id="datoUbicacion"></span></dd>
+                    </div>
+                </dl>
+            </section>
+
+            <section class="ppu-seccion ppu-seccion-perfil" aria-labelledby="tituloPerfil">
+                <h2 id="tituloPerfil">Perfil académico y tecnología asistiva</h2>
+                <p class="ppu-bajada">Fortalezas, materias desafiantes y recursos de apoyo</p>
+
+                <dl class="ppu-datos">
+                    <div class="ppu-dato">
+                        <dt>Fortalezas</dt>
+                        <dd class="ppu-caja" id="datoFortalezas"></dd>
+                    </div>
+                    <div class="ppu-dato">
+                        <dt>Materias con dificultad</dt>
+                        <dd class="ppu-caja" id="datoMaterias"></dd>
+                    </div>
+                </dl>
+
+                <ul class="ppu-recursos" id="listaRecursos" aria-label="Tecnología asistiva y recursos"></ul>
+            </section>
+
+            <section class="ppu-seccion ppu-seccion-informes ppu-seccion-enfoque" aria-labelledby="tituloInformes">
+                <h2 id="tituloInformes">Apoyos necesarios e informes</h2>
+                <p class="ppu-bajada">Aclaraciones pedagógicas específicas e informes vinculados</p>
+
+                <p class="ppu-enfoque" id="datoApoyos"></p>
+
+                <ul class="ppu-informes" id="listaInformes" aria-label="Informes adjuntos"></ul>
+                <p class="ppu-sin-informes" id="sinInformes" hidden>No hay informes adjuntos.</p>
+            </section>
+
+        </article>
+
+        <button type="button" class="ppu-desvincular" id="botonDesvincular">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="9" cy="8" r="4"></circle>
+                <path d="M2 21c0-3.9 3.1-6.5 7-6.5 1.3 0 2.5.3 3.5.8"></path>
+                <circle cx="18" cy="17" r="4"></circle>
+                <path d="M15.5 19.5l5-5"></path>
+            </svg>
+            Desvincular de la institución
+        </button>
+
+    </main>
+
+    <script src="preferencias-aprendizaje-estudiante.js"></script>
+
+</body>
+
+</html>

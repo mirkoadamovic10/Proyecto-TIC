@@ -125,8 +125,11 @@ function mostrarEstudiantes() {
     }
 
     estudiantes.forEach(function (estudiante) {
-        const tarjeta = document.createElement("article");
-        tarjeta.className = "tarjeta-hospital";
+        // Al tocar la tarjeta se abren sus preferencias de aprendizaje
+        const tarjeta = document.createElement("a");
+        tarjeta.className = "tarjeta-hospital tarjeta-estudiante";
+        tarjeta.href = "preferencias-aprendizaje-estudiante.html?id=" + encodeURIComponent(estudiante.id);
+        tarjeta.setAttribute("aria-label", "Ver preferencias de " + (estudiante.nombre || "estudiante"));
 
         const avatar = crearAvatarEstudiante(estudiante);
 
