@@ -457,3 +457,38 @@ function rechazarSolicitudEstudiante(id) {
 mostrarEstudiantes();
 mostrarSolicitudesEstudiantes();
 cargarEstudiantesDelServidor();
+
+
+// ==========================================
+// FOTO DE PERFIL: se muestra en el botón de perfil
+// (es la que se elige en Configuración)
+// ==========================================
+(function () {
+    function mostrarFotoPerfil() {
+        const foto = localStorage.getItem("fotoPerfil");
+        const botonConFoto = document.getElementById("botonPerfil");
+
+        if (!foto || !botonConFoto) {
+            return;
+        }
+
+        // "important" para ganarle al color de fondo que tiene el botón en el CSS
+        botonConFoto.style.setProperty("background-image", 'url("' + foto + '")', "important");
+        botonConFoto.style.setProperty("background-size", "cover", "important");
+        botonConFoto.style.setProperty("background-position", "center", "important");
+        botonConFoto.style.setProperty("background-repeat", "no-repeat", "important");
+        botonConFoto.classList.add("con-foto-perfil");
+
+        // Se oculta el muñequito que está adentro del botón
+        Array.from(botonConFoto.children).forEach(function (hijo) {
+            hijo.style.setProperty("display", "none", "important");
+        });
+    }
+
+    // Se aplica cuando la página terminó de cargar, después del resto del código
+    if (document.readyState === "complete") {
+        mostrarFotoPerfil();
+    } else {
+        window.addEventListener("load", mostrarFotoPerfil);
+    }
+})();
