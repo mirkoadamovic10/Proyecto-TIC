@@ -325,10 +325,13 @@ function mostrarCalendario() {
             const eventoElemento = document.createElement("div");
             const configuracionTipo = tiposEvento[evento.tipo];
 
-            eventoElemento.classList.add(
-                "evento-calendario",
-                configuracionTipo ? configuracionTipo.clase : ""
-            );
+            eventoElemento.classList.add("evento-calendario");
+
+            // Solo se agrega el color si el tipo es conocido
+            // (agregar una clase vacía da error y corta el calendario)
+            if (configuracionTipo) {
+                eventoElemento.classList.add(configuracionTipo.clase);
+            }
 
             const nombre = document.createElement("span");
             nombre.classList.add("nombre-evento");
