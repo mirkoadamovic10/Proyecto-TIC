@@ -58,8 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         empleados.forEach(function (empleado) {
-            const tarjeta = document.createElement("article");
-            tarjeta.className = "tarjeta-hospital";
+            // Al tocar la tarjeta se abre el perfil del empleado
+            const tarjeta = document.createElement("a");
+            tarjeta.className = "tarjeta-hospital tarjeta-empleado";
+            tarjeta.href = "perfil-profesional-empleados.html?id=" + encodeURIComponent(empleado.id);
+            tarjeta.setAttribute("aria-label", "Ver perfil de " + (empleado.nombre || "empleado"));
 
             const avatar = document.createElement("div");
             avatar.className = "avatar-medico";
