@@ -122,8 +122,11 @@ function mostrarMedicos() {
     }
 
     medicos.forEach(function (medico) {
-        const tarjeta = document.createElement("article");
-        tarjeta.className = "tarjeta-hospital";
+        // Al tocar la tarjeta se abre el perfil profesional
+        const tarjeta = document.createElement("a");
+        tarjeta.className = "tarjeta-hospital tarjeta-medico";
+        tarjeta.href = "perfil-profesional-medicos.html?id=" + encodeURIComponent(medico.id);
+        tarjeta.setAttribute("aria-label", "Ver perfil de " + (medico.nombre || "persona vinculada"));
 
         const avatar = crearAvatar(medico);
 
