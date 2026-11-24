@@ -43,19 +43,12 @@ async function obtenerIdHospital() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    // RUTAS POSIBLES: prueba una por una y va a la primera que exista.
-    // Cuando sepas la ruta exacta, dejá solo esa en cada lista.
+    // Configuración e Información personal propias de esta sección
     const RUTAS_CONFIGURACION = [
-        "../PERSONAL/configuracion.html",
-        "../INSTITUCION/configuracion.html",
-        "../PROFESIONAL/configuracion.html",
         "configuracion.html"
     ];
 
     const RUTAS_INFORMACION_PERSONAL = [
-        "../PERSONAL/informacion-personal.html",
-        "../INSTITUCION/informacion-personal.html",
-        "../PROFESIONAL/informacion-personal.html",
         "informacion-personal.html"
     ];
 

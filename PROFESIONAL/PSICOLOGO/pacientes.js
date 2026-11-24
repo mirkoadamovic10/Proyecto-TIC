@@ -157,16 +157,12 @@ function verPaciente(indice) {
 (function () {
 
     const RUTAS_CONFIGURACION = [
-        "../../PERSONAL/configuracion.html",
-        "../../INSTITUCION/configuracion.html",
-        "../../PROFESIONAL/configuracion.html"
+        "configuracion.html"
     ];
 
 
     const RUTAS_INFORMACION_PERSONAL = [
-        "../../PERSONAL/informacion-personal.html",
-        "../../INSTITUCION/informacion-personal.html",
-        "../../PROFESIONAL/informacion-personal.html"
+        "informacion-personal.html"
     ];
 
 
