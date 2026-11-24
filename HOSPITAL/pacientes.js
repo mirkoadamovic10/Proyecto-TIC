@@ -111,30 +111,35 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         pacientes.forEach(function (paciente) {
-            const tarjeta = document.createElement("article");
-            tarjeta.className = "tarjeta-hospital";
+            // Al tocar la tarjeta se abre el perfil sensorial del paciente
+            const tarjeta = document.createElement("a");
+            tarjeta.className = "tarjeta-hospital tarjeta-paciente";
+            tarjeta.href = "perfil-sensorial-paciente.html?id=" +
+                encodeURIComponent(paciente.idUsuario || paciente.id);
+            tarjeta.setAttribute("aria-label", "Ver perfil sensorial de " + (paciente.nombre || "paciente"));
+
+            const avatar = document.createElement("div");
+            avatar.className = "avatar-medico";
+            avatar.setAttribute("aria-hidden", "true");
+            avatar.textContent = (paciente.nombre || "P")
+                .trim()
+                .split(/\s+/)
+                .slice(0, 2)
+                .map(function (parte) { return parte.charAt(0).toUpperCase(); })
+                .join("");
+
+            const datos = document.createElement("div");
+            datos.className = "datos-medico";
 
             const nombre = document.createElement("h2");
             nombre.textContent = paciente.nombre || "Paciente";
 
-            const email = document.createElement("p");
-            email.textContent = paciente.email;
+            const email = document.createElement("span");
+            email.className = "estado-vinculado";
+            email.textContent = paciente.email || "";
 
-            const botonPasaporte = document.createElement("button");
-            botonPasaporte.type = "button";
-            botonPasaporte.className = "boton-ver-hospital";
-            botonPasaporte.textContent = "Ver pasaporte";
-
-            botonPasaporte.addEventListener("click", function () {
-                localStorage.setItem(
-                    "pacienteSeleccionadoHospital",
-                    JSON.stringify(paciente)
-                );
-
-                window.location.href = "pasaporte-paciente.html";
-            });
-
-            tarjeta.append(nombre, email, botonPasaporte);
+            datos.append(nombre, email);
+            tarjeta.append(avatar, datos);
             lista.appendChild(tarjeta);
         });
     }
