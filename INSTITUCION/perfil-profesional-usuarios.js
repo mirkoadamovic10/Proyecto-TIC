@@ -67,23 +67,15 @@ function capitalizar(texto) {
     return texto.charAt(0).toUpperCase() + texto.slice(1);
 }
 
-// Textos que se muestran para los valores guardados en preferencias de trabajo
-function textoAmbiente(valor) {
-    return valor ? "Ambiente " + valor.toLowerCase() : "";
-}
+// Datos viejos que solo tienen el valor del backend → texto de las opciones
+const DESDE_BACKEND = {
+    ambienteTrabajo: { "Tranquilo": "Ambiente tranquilo", "Dinámico": "Ambiente dinámico" },
+    formaTrabajo: { "Individual": "Prefiero trabajar solo/a", "En equipo": "Prefiero trabajar en equipo", "Mixto": "Me adapto a ambas" },
+    formaComunicacion: { "Escrita": "Comunicación escrita", "Verbal": "Comunicación oral" }
+};
 
-function textoFormaTrabajo(valor) {
-    const textos = {
-        "Individual": "Prefiero trabajar solo",
-        "En equipo": "Prefiero trabajar en equipo",
-        "Mixto": "Solo o en equipo"
-    };
-    return textos[valor] || valor || "";
-}
-
-function textoHorario(valor) {
-    if (!valor) return "";
-    return valor === "Horario flexible" ? valor : "Turno " + valor.toLowerCase();
+function desdeBackend(campo, valor) {
+    return DESDE_BACKEND[campo][valor] || "";
 }
 
 async function pedir(ruta) {
@@ -136,10 +128,10 @@ async function cargarPerfil() {
     mostrarDato("datoConsultorio", info.consultorio);
     mostrarDato("datoHorarios", info.horarios);
     mostrarDato("datoModalidad", preferencias.modalidad);
-    mostrarDato("datoAmbiente", textoAmbiente(preferencias.ambienteTrabajo));
-    mostrarDato("datoFormaTrabajo", textoFormaTrabajo(preferencias.formaTrabajo));
-    mostrarDato("datoComunicacion", preferencias.formaComunicacion);
-    mostrarDato("datoHorario", textoHorario(preferencias.preferenciaHorario));
+    mostrarDato("datoAmbiente", preferencias.ambienteLaboral || desdeBackend("ambienteTrabajo", preferencias.ambienteTrabajo));
+    mostrarDato("datoFormaTrabajo", preferencias.formaTrabajoLaboral || desdeBackend("formaTrabajo", preferencias.formaTrabajo));
+    mostrarDato("datoComunicacion", preferencias.comunicacionLaboral || desdeBackend("formaComunicacion", preferencias.formaComunicacion));
+    mostrarDato("datoHorario", preferencias.horarioLaboral || preferencias.preferenciaHorario);
     mostrarDato("datoEnfoque", enfoque);
 }
 

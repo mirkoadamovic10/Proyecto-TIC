@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroPassport - Preferencias laborales</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0 !important;
+            min-height: 100vh;
+            background: #F1FAEE !important;
+            font-family: "Inter", Arial, sans-serif;
+        }
+
+        /* ============================= */
+        /* BARRA SUPERIOR                */
+        /* ============================= */
+
+        body > header.plab-barra {
+            position: relative;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+            margin: 0;
+            padding: 8px 20px !important;
+            box-sizing: border-box;
+            background: #FFFFFF !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .plab-atras {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: inline-flex !important;
+            align-items: center;
+            gap: 5px;
+            margin: 0;
+            padding: 6px 9px !important;
+            background: #B7E4C7 !important;
+            color: #2F7185 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: inherit;
+            font-size: 11px !important;
+            font-weight: 500 !important;
+            cursor: pointer;
+        }
+
+        .plab-atras:not(:disabled):hover {
+            transform: translateY(calc(-50% - 2px));
+        }
+
+        .plab-barra h1 {
+            margin: 0 !important;
+            color: #2F7185 !important;
+            font-size: 19px !important;
+            font-weight: 600 !important;
+            letter-spacing: normal !important;
+            line-height: 1.2 !important;
+        }
+
+        /* ============================= */
+        /* TARJETA                       */
+        /* ============================= */
+
+        main.plab-principal {
+            display: block;
+            padding: 30px 20px 40px !important;
+            box-sizing: border-box;
+            text-align: left !important;
+        }
+
+        .plab-tarjeta {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 22px 34px 30px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            border-radius: 14px;
+        }
+
+        .plab-seccion {
+            margin: 0;
+            padding: 0 0 22px;
+            border: none;
+        }
+
+        .plab-seccion + .plab-seccion {
+            padding-top: 20px;
+            border-top: 1px solid #E1E6E3;
+        }
+
+        .plab-seccion h2 {
+            margin: 0 !important;
+            color: #2F7185 !important;
+            font-size: 24px !important;
+            font-weight: 700 !important;
+            text-align: center !important;
+        }
+
+        .plab-bajada {
+            margin: 2px 0 0 !important;
+            color: #2F7185;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Grilla de campos */
+
+        .plab-grilla {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 34px;
+            margin-top: 22px;
+        }
+
+        .plab-campo {
+            margin: 0;
+            text-align: center;
+        }
+
+        .plab-campo label,
+        .plab-etiqueta {
+            display: block;
+            margin: 0 0 9px;
+            color: #2F7185;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .plab-campo input,
+        .plab-campo select {
+            width: 100% !important;
+            height: 38px !important;
+            margin: 0 !important;
+            padding: 0 14px !important;
+            box-sizing: border-box;
+            background: #F4F6F5 !important;
+            border: 1px solid #E1E6E3 !important;
+            border-radius: 6px !important;
+            box-shadow: none !important;
+            color: #111111 !important;
+            font-family: inherit;
+            font-size: 13px !important;
+        }
+
+        .plab-campo input {
+            text-align: center;
+        }
+
+        .plab-campo select {
+            appearance: none;
+            -webkit-appearance: none;
+            padding-right: 34px !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23777' stroke-width='1.5'/%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 12px center !important;
+            cursor: pointer;
+        }
+
+        .plab-campo select.sin-valor {
+            color: #9A9A9A !important;
+        }
+
+        .plab-campo select option {
+            color: #111111;
+        }
+
+        .plab-campo input::placeholder {
+            color: #9A9A9A;
+            opacity: 1;
+        }
+
+        .plab-campo input:focus,
+        .plab-campo select:focus {
+            outline: 2px solid #B7E4C7 !important;
+            border-color: #8FCBA5 !important;
+        }
+
+        /* Modalidad */
+
+        .plab-modalidades {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 22px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .plab-modalidades li {
+            margin: 0;
+        }
+
+        .plab-modalidad {
+            height: 40px;
+            padding: 0 16px !important;
+            background: #EEF0EF !important;
+            color: #1E1E1E !important;
+            border: 2px solid #D9DEDB !important;
+            border-radius: 9px !important;
+            font-family: inherit;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .plab-modalidad[aria-pressed="true"] {
+            background: #2F7185 !important;
+            color: #FFFFFF !important;
+            border-color: #2F7185 !important;
+        }
+
+        /* Enfoque */
+
+        .plab-seccion-enfoque h2 {
+            font-size: 17px !important;
+        }
+
+        .plab-campo-ancho {
+            max-width: 460px;
+            margin: 12px auto 0;
+        }
+
+        .plab-campo-ancho input {
+            text-align: left;
+        }
+
+        /* Guardar */
+
+        .plab-guardar {
+            display: block !important;
+            margin: 4px auto 0 !important;
+            padding: 10px 26px !important;
+            background: #2F7185 !important;
+            color: #FFFFFF !important;
+            border: none !important;
+            border-radius: 7px !important;
+            font-family: inherit;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+        }
+
+        .plab-mensaje {
+            display: block;
+            min-height: 18px;
+            margin-top: 10px;
+            color: #2F7185;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .plab-tarjeta {
+                padding: 20px 18px 26px;
+            }
+
+            .plab-grilla {
+                grid-template-columns: 1fr;
+            }
+
+            .plab-barra h1 {
+                font-size: 16px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="plab-barra">
+
+        <button type="button" id="botonAtrasLaborales" class="plab-atras">
+            <span aria-hidden="true">⟵</span> Volver
+        </button>
+
+        <h1>Preferencias laborales</h1>
+
+    </header>
+
+    <main class="plab-principal">
+
+        <form class="plab-tarjeta" id="formLaborales">
+
+            <section class="plab-seccion" aria-labelledby="tituloDatos">
+
+                <h2 id="tituloDatos">Datos Profesionales</h2>
+
+                <div class="plab-grilla">
+
+                    <p class="plab-campo">
+                        <label for="especialidad">Especialidad / Rol</label>
+                        <select id="especialidad">
+                            <option value="">Seleccionar</option>
+                            <option>Neuróloga Infantil</option>
+                            <option>Psicóloga Clínica</option>
+                            <option>Psicopedagoga</option>
+                            <option>Terapeuta Ocupacional</option>
+                            <option>Médico Clínico</option>
+                        </select>
+                    </p>
+
+                    <p class="plab-campo">
+                        <label for="matricula">Matrícula</label>
+                        <input type="text" id="matricula" placeholder="Ej.: MN 142.890" autocomplete="off">
+                    </p>
+
+                    <p class="plab-campo">
+                        <label for="telefono">Teléfono de contacto</label>
+                        <input type="tel" id="telefono" placeholder="Ej.: +54 11 1234-5678" autocomplete="tel">
+                    </p>
+
+                    <p class="plab-campo">
+                        <label for="correoProfesional">Correo profesional</label>
+                        <input type="email" id="correoProfesional" placeholder="Ej.: nombre@clinica.com" autocomplete="email">
+                    </p>
+
+                    <p class="plab-campo">
+                        <label for="consultorio">Consultorio / Área</label>
+                        <input type="text" id="consultorio" placeholder="Ej.: Consultorio 4 - Ala Norte" autocomplete="off">
+                    </p>
+
+                    <p class="plab-campo">
+                        <label for="horarios">Días y horarios de atención</label>
+                        <input type="text" id="horarios" placeholder="Ej.: Lun y Mié de 9:00 a 14:00 hs" autocomplete="off">
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section class="plab-seccion" aria-labelledby="tituloModalidad">
+
+                <h2 id="tituloModalidad">Modalidad y entorno de trabajo</h2>
+
+                <p class="plab-bajada">
+                    Configurá cómo trabajás y cómo preferís comunicarte en tu entorno
+                </p>
+
+                <ul class="plab-modalidades" aria-label="Modalidad de trabajo">
+                    <li><button type="button" class="plab-modalidad" aria-pressed="false">Presencial</button></li>
+                    <li><button type="button" class="plab-modalidad" aria-pressed="false">Virtual / Videoconsulta</button></li>
+                    <li><button type="button" class="plab-modalidad" aria-pressed="false">Domiciliaria</button></li>
+                </ul>
+
+                <div class="plab-grilla">
+
+                    <p class="plab-campo">
+                        <label for="ambienteTrabajo">Ambiente de trabajo</label>
+                        <select id="ambienteTrabajo">
+                            <option value="">Seleccionar</option>
+                            <option>Ambiente tranquilo</option>
+                            <option>Ambiente dinámico</option>
+                            <option>Me es indiferente</option>
+                        </select>
+                    </p>
+
+                    <p class="plab-campo">
+                        <label for="formaTrabajo">Forma de trabajo</label>
+                        <select id="formaTrabajo">
+                            <option value="">Seleccionar</option>
+                            <option>Prefiero trabajar solo/a</option>
+                            <option>Prefiero trabajar en equipo</option>
+                            <option>Me adapto a ambas</option>
+                        </select>
+                    </p>
+
+                    <p class="plab-campo">
+                        <label for="formaComunicacion">Forma de comunicación</label>
+                        <select id="formaComunicacion">
+                            <option value="">Seleccionar</option>
+                            <option>Comunicación escrita</option>
+                            <option>Comunicación oral</option>
+                            <option>Ambas</option>
+                        </select>
+                    </p>
+
+                    <p class="plab-campo">
+                        <label for="preferenciaHorario">Preferencia de horario</label>
+                        <select id="preferenciaHorario">
+                            <option value="">Seleccionar</option>
+                            <option>Mañana</option>
+                            <option>Tarde</option>
+                            <option>Noche</option>
+                            <option>Horario flexible</option>
+                        </select>
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section class="plab-seccion plab-seccion-enfoque" aria-labelledby="tituloEnfoque">
+
+                <h2 id="tituloEnfoque">Sobre mi enfoque de trabajo</h2>
+
+                <p class="plab-campo plab-campo-ancho">
+                    <input type="text" id="enfoque" aria-labelledby="tituloEnfoque" placeholder="Agregá tú enfoque y especialidad" autocomplete="off">
+                </p>
+
+            </section>
+
+            <button type="submit" class="plab-guardar">Guardar información</button>
+
+            <output class="plab-mensaje" id="mensajeLaborales" aria-live="polite"></output>
+
+        </form>
+
+    </main>
+
+    <script src="preferencias-laborales.js"></script>
+
+</body>
+
+</html>

@@ -75,6 +75,10 @@ document.addEventListener("DOMContentLoaded", () => {
         mensaje.style.color = error ? "#B00020" : "#397D8C";
     }
 
+    // Lo que ya está en el servidor (por ejemplo, los datos de Preferencias laborales),
+    // para no borrarlo al guardar
+    let datosServidor = {};
+
     // GET /api/info-personal/:idUsuario
     async function cargarInformacion() {
         if (idUsuario) {
@@ -83,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (respuesta.ok) {
                     const datos = await respuesta.json();
+                    datosServidor = datos;
                     completarFormulario(datos);
                     localStorage.setItem(CLAVE, JSON.stringify(datos));
                     establecerEdicion(false);
@@ -115,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formulario.addEventListener("submit", async (evento) => {
         evento.preventDefault();
 
-        const datos = { idUsuario: idUsuario };
+        const datos = Object.assign({}, datosServidor, { idUsuario: idUsuario });
 
         campos.forEach((id) => {
             const campo = document.getElementById(id);
@@ -148,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error(resultado.error || "No se pudo guardar la información.");
             }
 
+            datosServidor = datos;
             establecerEdicion(false);
             mostrarMensaje("¡Información guardada correctamente!");
         } catch (error) {
